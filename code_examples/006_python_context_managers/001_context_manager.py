@@ -48,14 +48,10 @@ class MyAutoClosable:
 
 if __name__ == "__main__":
     try:
-
         with MyAutoClosable("Creating the new resource.") as a:
             raise Exception("This is a test")
             print("We have an autoclosable now. Next it should get closed as we leave the `with` block scope.")
             # Right here!
-
-
-
     except:
         print("We got an exception")
 

@@ -54,7 +54,7 @@ print(get_full_name())          # Joseph Smith
 # Arguments are the values passed in when calling it
 # ═══════════════════════════════════════════════════════
 
-def greet_employee(name, title):
+def greet_employee(name, title):  # pyright: ignore[reportRedeclaration]
     print(f"Welcome, {title} {name}!")
 
 greet_employee("Joseph", "Developer")      # Welcome, Developer Joseph!

@@ -1,0 +1,51 @@
+product_id,sale_date,state,sales_office,department,item_name,quantity,unit_price
+PRD-054,1/5/2024,Colorado,Colorado North,Electronics,Wireless Mouse,3,29.99
+PRD-021,1/7/2024,Colorado,Colorado East,Home & Garden,Ceramic Plant Pot,5,14.99
+PRD-087,1/8/2024,California,California South,Clothing,Merino Wool Jumper,2,64.99
+PRD-056,1/10/2024,Colorado,Colorado South,Electronics,USB-C Hub,4,44.99
+PRD-023,1/12/2024,Arizona,Arizona,Home & Garden,Garden Hose 20m,1,35.99
+PRD-091,1/14/2024,Colorado,Colorado West,Clothing,Waterproof Hiking Jacket,3,119.99
+PRD-058,1/15/2024,Nevada,Nevada,Electronics,Bluetooth Speaker,2,83.99
+PRD-142,1/17/2024,Colorado,Colorado North,Stationery,Hardback Notebook Set,6,19.99
+PRD-021,1/19/2024,Colorado,Colorado East,Home & Garden,Ceramic Plant Pot,2,14.99
+PRD-054,1/21/2024,California,California North,Electronics,Wireless Mouse,1,29.99
+PRD-147,1/23/2024,Colorado,Colorado South,Stationery,Desk Organiser,4,24.99
+PRD-087,1/25/2024,Arizona,Arizona,Clothing,Merino Wool Jumper,3,59.99
+PRD-061,1/28/2024,Colorado,Colorado North,Electronics,Webcam HD 1080p,2,79.99
+PRD-028,1/30/2024,Nevada,Nevada,Home & Garden,Scented Candle Pack,5,20.99
+PRD-056,2/2/2024,Colorado,Colorado East,Electronics,USB-C Hub,3,44.99
+PRD-025,2/4/2024,Colorado,Colorado West,Home & Garden,Bamboo Cutting Board,4,29.99
+PRD-087,2/6/2024,,California South,Clothing,Merino Wool Jumper,7,64.99
+PRD-142,2/8/2024,Colorado,Colorado South,Stationery,Hardback Notebook Set,10,19.99
+PRD-025,2/10/2024,California,California North,Home & Garden,Bamboo Cutting Board,2,29.99
+PRD-054,2/12/2024,Colorado,Colorado North,Electronics,Wireless Mouse,3,29.99
+PRD-091,2/14/2024,Arizona,Arizona,Clothing,Waterproof Hiking Jacket,4,109.99
+PRD-149,2/16/2024,Colorado,Colorado East,Stationery,Gel Pen Set 20pk,8,9.99
+PRD-058,2/18/2024,Nevada,Nevada,Electronics,Bluetooth Speaker,1,
+PRD-023,2/20/2024,Colorado,Colorado South,Home & Garden,Garden Hose 20m,6,39.99
+PRD-061,2/22/2024,California,California South,Electronics,Webcam HD 1080p,3,79.99
+PRD-093,2/24/2024,Colorado,Colorado North,Clothing,Fleece Zip-Up Hoodie,5,54.99
+PRD-021,2/26/2024,Colorado,Colorado West,Home & Garden,Ceramic Plant Pot,4,14.99
+PRD-056,2/28/2024,Arizona,Arizona,Electronics,USB-C Hub,2,40.99
+PRD-149,3/2/2024,,Colorado East,Stationery,Gel Pen Set 20pk,6,9.99
+PRD-093,3/4/2024,Colorado,Colorado South,Clothing,Fleece Zip-Up Hoodie,2,54.99
+PRD-031,3/6/2024,Nevada,Nevada,Home & Garden,Aroma Diffuser,3,44.99
+PRD-061,3/8/2024,Colorado,Colorado North,Electronics,Webcam HD 1080p,2,79.99
+PRD-087,3/10/2024,California,California South,Clothing,Merino Wool Jumper,4,64.99
+PRD-028,3/12/2024,Colorado,Colorado East,Home & Garden,Scented Candle Pack,7,22.99
+PRD-147,3/14/2024,Arizona,Arizona,Stationery,Desk Organiser,5,
+PRD-058,3/16/2024,Colorado,Colorado West,Electronics,Bluetooth Speaker,4,89.99
+PRD-091,3/18/2024,Nevada,Nevada,Clothing,Waterproof Hiking Jacket,2,109.99
+PRD-031,3/20/2024,Colorado,Colorado North,Home & Garden,Aroma Diffuser,1,49.99
+PRD-054,3/22/2024,California,California North,Electronics,Wireless Mouse,3,29.99
+PRD-142,3/24/2024,Colorado,Colorado South,Stationery,Hardback Notebook Set,6,19.99
+PRD-093,3/26/2024,Colorado,Colorado East,Clothing,Fleece Zip-Up Hoodie,3,54.99
+PRD-025,3/28/2024,Arizona,Arizona,Home & Garden,Bamboo Cutting Board,2,26.99
+PRD-054,3/30/2024,Colorado,Colorado North,Electronics,Wireless Mouse,5,29.99
+PRD-147,4/2/2024,Nevada,Nevada,Stationery,Desk Organiser,1,22.99
+PRD-023,4/4/2024,Colorado,Colorado West,Home & Garden,Garden Hose 20m,8,39.99
+PRD-061,4/6/2024,California,California South,Electronics,Webcam HD 1080p,2,79.99
+PRD-093,4/8/2024,Colorado,Colorado South,Clothing,Fleece Zip-Up Hoodie,3,
+PRD-031,4/10/2024,Colorado,Colorado North,Home & Garden,Aroma Diffuser,4,49.99
+PRD-149,4/12/2024,Arizona,Arizona,Stationery,Gel Pen Set 20pk,2,8.99
+PRD-056,4/14/2024,Colorado,Colorado East,Electronics,USB-C Hub,3,

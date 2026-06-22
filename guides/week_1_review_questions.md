@@ -214,9 +214,9 @@ How would another developer recreate your virtual environment on their machine? 
 What command generates a requirements.txt from your current environment? - `pip freeze requirements.txt`
 What command installs all packages listed in a requirements.txt file? - `pip install -r requirements.txt`
 What is garbage collection and why is it important? - Garbage collections is the automatic management and recovery of unused memory to optimzie the amount of memory a python program uses.
-What is reference counting and how does Python use it to manage memory? - [LATER]
-What happens to an object when its reference count drops to zero? - [LATER]
-What is a circular reference and why is it a problem for reference counting? - [LATER]
+What is reference counting and how does Python use it to manage memory? - each object stores a counter tracking how many references point to it
+What happens to an object when its reference count drops to zero? - it's immediately deallocated and memory is freed up
+What is a circular reference and why is it a problem for reference counting? - occurs when two or more objects/data structures contain references to each other, means neithers' referene count will go to zero
 What is control flow and why is it important in programming? - Flow control is the process of using statements to develop and determine what code is executed based on logical statements and serves as the basis for creating algorithms.
 What is the difference between if elif and else? `elif` are statements which can be added after the `if` block to execute different code based on a separate logical condition. `else` is a statement used to run code if all previous logical statements in `if` and `elif` blocks evaluated to False.
 How does Python decide which block to execute in an if/elif/else chain? - always starts with `if`, follows `elif` blocks in order, evaluating the first block to have its logical statement evaluate to true. If none of the conditional statements do so, the code within the else block is executed.
@@ -243,7 +243,7 @@ What is the key difference between a for loop and a while loop? - loops are impl
 When is a while loop more appropriate than a for loop? - when the duration of the iteration isn't known ahead of time.
 What happens if the condition of a while loop is False before the loop starts? - the code block within the while loop will be skipped.
 What is an infinite loop and what typically causes one? Can you halt an infinite loop? - the most common infinite loop uses `while True` and requires a break for a specific logical condition to be broken. Otherwise it runs forever.
-How is match similar to switch statements in other languages? - [LATER]
+How is match similar to switch statements in other languages? - it evaluates an expression and branches execution based on the first matching pattern
 What does case \_: represent in a match statement? - It represents the wild card outcome if not of the previous match statements' logical conditions evaluate to true.
 What happens if more than one case pattern could match the subject? - the code within the first case statement to be true will be run, the other one would be skipped.
 How does matching sequences work in a match statement? - match statements are evaluated in order.
@@ -293,7 +293,7 @@ What class should custom exceptions inherit from? - Exception (base class)
 What naming convention should custom exception classes follow? - PascalCase
 How do you make use of a custom exception in your program? - `raise CustomException`
 What is a data structure and why does choosing the right one matter? - a data strucutre is a method for organizing and storing data to be accessed and modified efficiently.
-What are the four key characteristics to consider when comparing data structures? - [LATER]
+What are the four key characteristics to consider when comparing data structures? - time complexity, space complexity, data rekationships, and operations on the data
 What is the difference between a mutable and an immutable data structure? - elements in a mutable data structure can be changed within the object, immutable objects can't
 Name four built-in Python data structures. - lists, tuples, sets, and dictionaries
 What is the collections module and what does it provide? - collections module provides additional data structures such as queues and deques
@@ -308,15 +308,15 @@ How do you access an item in a nested list? - `list[index_1[index_2]]`
 Can a Python list hold items of different types? - Yes
 What is the key difference between a list and a tuple? - lists are mutable, tuples are immutable
 What does immutability mean in the context of a tuple? - elements of a tuple can't be modified without creating a new object
-What is tuple unpacking and how does it work? - [LATER]
-What is tuple packing? - [LATER]
+What is tuple unpacking and how does it work? - extracting elements of a tuple and assigning them to new variables
+What is tuple packing? - grouping multiple distinct values into a tuple
 Why can tuples be used as dictionary keys but lists cannot? - dictionary keys must be immutable
 What are two common use cases where a tuple is more appropriate than a list? - when data is fixed and shouldn't be changed and when accessing data (faster for tuples than lists)
 What are the defining characteristics of a set? - mutable, unordered collection of items
 How do you create an empty set and why can't you use {}? - `set()`
 What happens if you add a duplicate value to a set? - the set doesn't change (automatically removed)
 What does deque stand for and where does it come from in Python? - double ended queue, from the collections module
-What limitation of Python lists does the deque address? - [LATER]
+What limitation of Python lists does the deque address? - the time complexity of appending an element to the front of a list
 What is the difference between .append() and .appendleft() on a deque? - append adds to end to deque (list end of list), appendleft for inserting in the front of deque
 What is list comprehension and what does it produce? - a concise method for creating a list from an existing iterable
 What is the basic syntax of a list comprehension? - `[expression for item in iterable]`
@@ -329,7 +329,7 @@ What does \_\_next\_\_() return and what does it do when the sequence is exhaust
 What happens internally when Python executes a for loop? - uses an iterator object to lazily generate values
 What does the built-in iter() function do? - returns the iterator object
 Why are iterators described as single-use? - once all values in an iterator has been exahusted, can't be used again
-How would you build a custom iterator class? - [LATER]
+How would you build a custom iterator class? - define the class, __init__ method, __next__ method, and __iter__ method
 What is an iterable and what method must it implement? - an object which can be looped over
 Give four examples of built-in Python iterables. - lists, sets, tuples, and dictionaries
 What is the key difference between an iterable and an iterator? - an iterable has all items already allocated in memory, iterator returns values lazily
@@ -343,97 +343,97 @@ What is the difference between accessing a value with \["key"] versus .get("key"
 How do you add a new key-value pair to an existing dictionary? - `dict["new_key] = value`
 What do .keys() .values() and .items() return and how are they used? - .keys for keys, values same, .items returns the pair as a tuple
 What does .update() do and what happens if a key exists in both dictionaries?
-* What does .setdefault() do and how does it differ from a regular assignment?
-* What happens when you zip two iterables of different lengths?
-* How does itertools.zip\_longest() differ from zip() and when would you use it?
-* What does zip(\*zipped) do and what is this operation called?
-* Why is zip() described as lazy and what is the memory benefit of this?
-* What is a decorator and what does it do to the function it is applied to?
-* How is a decorator applied to a function in Python?
-* Can you give an example of a decorator used in a Python framework?
-* What problem does the with statement solve and what did code look like before it?
-* What is Object-Oriented Programming and what is it centred around?
-* What is the difference between a class and an object?
-* What is the difference between an attribute and a method?
-* What are the four pillars of Object-oriented programming?
-* Why is Python described as a multi-paradigm language rather than a purely OOP language?
-* What does the \_\_init\_\_ method do and when is it called?
-* What is self and why is it needed?
-* What is the difference between an instance attribute and a class attribute?
-* How would you check whether an object is an instance of a particular class?
-* How do you access an attribute on an object?
-* What are dunder methods and why are they called that?
-* What dunder method would you define to control what len() returns for your object?
-* What is operator overloading and which dunder methods enable it?
-* How does type casting work with custom Python objects?
-* What dunder method is called when you use int() on a custom object?
-* Why should you always use 'with open(...)' rather than calling 'open()' directly?
-* What is the default file mode if none is specified?
-* What is the difference between 'w' and 'a' mode?
-* What does 'x' mode do and when is it useful?
-* What is binary mode, with respect to reading files, and when is it required?
-* Why should you always specify encoding="utf-8" explicitly when opening text files?
-* How do you rewind a file to the beginning after reading it?
-* What are three exceptions you should handle when working with files?
-* What mode must a file be opened in to read its content?
-* When should you use 'a' mode instead of 'w' mode?
-* Why is using the 'with' keyword especially important when writing files?
-* What does f.write() return?
-* What is logging and how does it differ from using print() statements?
-* Name some reasons why logging is important in production software.
-* What three things should a well-written log entry capture?
-* Why can over-logging be a problem and what is the goal of good logging practice?
-* What is the root logger and how do you use it?
-* What is a named logger and how do you create one?
-* Why is \_\_name\_\_ recommended as the logger name?
-* What does logging.basicConfig() do and what are its key parameters?
-* What is a handler and what are two common handler types in Python's logging module?
-* What is a formatter and how do you attach one to a handler?
-* How do you configure a logger to send output to both the console and a file simultaneously?
-* What is the difference between setting a level on a logger versus setting a level on a handler?
-* What are the five standard logging levels in Python in order from lowest to highest severity?
-* What is the default logging level for the root logger and what does this mean in practice?
-* Why is logging to a file preferable to console-only logging in a production environment?
-* How do you direct log output to a file using logging.basicConfig()?
-* What problem does RotatingFileHandler solve and what two parameters control its behaviour?
-* What is the difference between RotatingFileHandler and TimedRotatingFileHandler?
-* What does backupCount control and why is it important to set it?
-* What are two practical habits that make file logging easier to maintain in production?
-* What is unittest and what does it provide out of the box?
-* What class must a test case inherit from and what naming convention must test methods follow?
-* How do you run unittest tests from the command line?
-* What is a test suite and how does it differ from a test case?
-* What is regression testing and why is automated testing valuable for it?
-* What is the purpose of assertion methods in unittest?
-* What happens when an assertion fails? What happens when all assertions pass?
-* Why is it better to use specific assertions (e.g. assertIsNone) rather than always using assertTrue?
-* How do you add a custom failure message to an assertion?
-* Which assertion would you use to check that a value appears in a list?
-* Why is it important to test that exceptions are raised and not just the happy path?
-* What happens if the code inside assertRaises does not raise any exception?
-* What is the difference between assertRaises and assertRaisesRegex?
-* If a function can raise a ValueError for two different reasons how would you test each reason separately?
-* What are the three main skip decorators in unittest and how do they differ?
-* When is it appropriate to use @unittest.skip and when should it be avoided?
-* What does @unittest.expectedFailure do and what does an unexpected success indicate?
-* Why should skipping tests be used sparingly?
-* What is a test fixture and why are fixtures useful?
-* What is the difference between setUp and setUpClass?
-* Why must setUpClass and tearDownClass be decorated with @classmethod?
-* When does a TearDown function run? Why does this matter?
-* Why is it beneficial to store test data in external files rather than hard-coding it in test methods?
-* What formats are commonly used for external test data and what is each well suited for?
-* What is subTest and how does it differ from a plain loop inside a test method?
-* Where should test data files be stored within a project and why?
-* What is mocking and why is it used in unit testing?
-* What kinds of dependencies are typically replaced with mocks?
-* How does mocking improve test speed repeatability and independence?
-* Beyond checking return values what else can you verify using a mock object?
-* What is the difference between Mock and MagicMock?
-* What does return\_value configure and how does it differ from attribute access on a mock?
-* How do assert\_called\_once() and assert\_called\_once\_with() differ?
-* What information is stored in call\_args versus call\_args\_list?
-* When would you choose MagicMock over Mock?
-* What is side\_effect and how does it differ from return\_value?
-* If both side\_effect and return\_value are set on a mock which takes priority?
-* What does patch do and why is it useful for testing functions with external dependencies?
+What does .setdefault() do and how does it differ from a regular assignment? - defines a value for a paritcular key if it doesn't exist in the dictionary, doesn't change the value if the key already exists
+What happens when you zip two iterables of different lengths? - it will only zip objects up to the length of the shorter iterables, elements left in the longer iterable aren't included
+How does itertools.zip\_longest() differ from zip() and when would you use it? - used when iterables have different lengths, filled with None
+What does zip(\*zipped) do and what is this operation called? - unzips a zipped object, i.e. returns the two iterables originally zipped
+Why is zip() described as lazy and what is the memory benefit of this? - the zip object is a lazy iterator of tuples, so pairs of values are generated on demand rather than allocating memory
+What is a decorator and what does it do to the function it is applied to? - a decorator is a function which wraps around another function to extend its behavior
+How is a decorator applied to a function in Python? - `@decorator_name`
+Can you give an example of a decorator used in a Python framework? - `@classmethod` defines a method which receives the class itself
+What problem does the with statement solve and what did code look like before it? - with statements are context managers which are used to properly open and close resources after the code in the indented block is executed
+What is Object-Oriented Programming and what is it centred around? - a programming paradigms which is centered around the idea that everything is an object to promote modularity and readability
+What is the difference between a class and an object? - an object is an instance of a class, a class lists attributes and methods for an eventual object
+What is the difference between an attribute and a method? - attributes are properties of the class, methods are actions/functions performed for a class, or object
+What are the four pillars of Object-oriented programming? - abstraction, encapulsation, polymorphism, and inheritance
+Why is Python described as a multi-paradigm language rather than a purely OOP language? - python development isn't strictly dictated by OOP concepts, python has a plethra of built in functionality so OOP is implemented for more complex concepts
+What does the \_\_init\_\_ method do and when is it called? - used to define the creation of an object for a class, defining some of its attributes
+What is self and why is it needed? - self refers to the object itselfs when defining attibutes and methods
+What is the difference between an instance attribute and a class attribute? - class attribute defines an attribute for every instance of the class
+How would you check whether an object is an instance of a particular class? - type(object)
+How do you access an attribute on an object? - `object.attribute_name`
+What are dunder methods and why are they called that? - non-callable attributes to describe data related to classes, dunder means double underscore
+What dunder method would you define to control what len() returns for your object? - `__len__`
+What is operator overloading and which dunder methods enable it? - using specific dunder methods to override built in operators like add, subtract, times, and divide (`__add__` for +)
+How does type casting work with custom Python objects? - it constructs a new object of the target type with the existing type
+What dunder method is called when you use int() on a custom object? - `__int__`
+Why should you always use 'with open(...)' rather than calling 'open()' directly? - can use an alias to refer and perform operations on the opened resource
+What is the default file mode if none is specified? - read ('r')
+What is the difference between 'w' and 'a' mode? - write will completely rewrite the opened file while append will add onto what's currently in the file
+What does 'x' mode do and when is it useful? - creates a new file to write in like 'w' but will return FileExistsError if the name file already exists in the directory
+What is binary mode, with respect to reading files, and when is it required? - instructs the system to read a file as raw bytes
+Why should you always specify encoding="utf-8" explicitly when opening text files? - it's the default encoding method for files
+How do you rewind a file to the beginning after reading it? - `file.seek(0)` with the opened file
+What are three exceptions you should handle when working with files? - FileNotFoundError, PermissionError, and UnicodeDecodeError
+What mode must a file be opened in to read its content? - 'r'
+When should you use 'a' mode instead of 'w' mode? - when you want to add onto a file rather than rewriting, such as keeping data or keeping logs when running files
+Why is using the 'with' keyword especially important when writing files? - it automatically handles resource clean up
+What does f.write() return? - total number of characters or bytes successfully written in a file
+What is logging and how does it differ from using print() statements? - process of recording program execution to a designated file/location, better than using print statements because logging has different levels to note different levels of severity for issues that arise
+Name some reasons why logging is important in production software. - creating a logging system is crucial to identity potential fixes to make for code, creates a "story" of what went well and what didn't go well when executing a program
+What three things should a well-written log entry capture? - what happended, when it happened, and why it happened
+Why can over-logging be a problem and what is the goal of good logging practice? - over logging can provide a lot of noise which drowns out key issues
+What is the root logger and how do you use it? - the default logger when no configuration details are added
+What is a named logger and how do you create one? - a logger designed for a specific issue (as the name would indicate), created with `logging.getLogger(__name__)`
+Why is \_\_name\_\_ recommended as the logger name? - reflacts the name of the module the logger will be in, if multiple loggers go to the same location it helps separates messages for different files
+What does logging.basicConfig() do and what are its key parameters? - configures the loggers behaviors, key parameters being the logging level, the format of the logged message, filename for the output, filemode for file type, and the format of the date (when it happened)
+What is a handler and what are two common handler types in Python's logging module? - handlers are used to control the behavior of the log messages
+What is a formatter and how do you attach one to a handler? - a component in logging framework to translate raw events into a strcutured message
+How do you configure a logger to send output to both the console and a file simultaneously? - using `StreamHandler(sys.stdout)`
+What is the difference between setting a level on a logger versus setting a level on a handler? - setting a level with a handler can be configured with a different file path to output different logging levels to particular locations
+What are the five standard logging levels in Python in order from lowest to highest severity? - DEBUG, INFO, WARNING, ERROR, CRITICAL
+What is the default logging level for the root logger and what does this mean in practice? - debug, means it picks up every possible message
+Why is logging to a file preferable to console-only logging in a production environment? - can keep records of a program's executions over multiple sessions of tests
+How do you direct log output to a file using logging.basicConfig()? `logging.basicConfig(filename = "file_name")`
+What problem does RotatingFileHandler solve and what two parameters control its behaviour? - it will automatically rotate out log files with new ones when they reach a certain size, managed with `maxBytes` and `backupCount`
+What is the difference between RotatingFileHandler and TimedRotatingFileHandler? - rotating is based on max file size, timed is based on a defined interval
+What does backupCount control and why is it important to set it? - how many old log files to keep, important depending on how much information you want to keep
+What are two practical habits that make file logging easier to maintain in production? - implement automatic log rotation and adopt a strcutured logging directory
+What is unittest and what does it provide out of the box? - a built-in library to manage and handle unit tests
+What class must a test case inherit from and what naming convention must test methods follow? - `unittest.TestCase`
+How do you run unittest tests from the command line? - `python -m unittest`
+What is a test suite and how does it differ from a test case? - a test suite is a collection of test cases grouped together for execution
+What is regression testing and why is automated testing valuable for it? - rerunning previous after implementing a new feature to ensure existing functionality wasn't broken
+What is the purpose of assertion methods in unittest? - assertion methods dictate what the expected behavior of a function being tested should be
+What happens when an assertion fails? What happens when all assertions pass? - when running unittest on a file, the console will display what tests failed
+Why is it better to use specific assertions (e.g. assertIsNone) rather than always using assertTrue? - using specific assertion statements provides unique arguments which are easier than implementing logical expressions with assertTrue
+How do you add a custom failure message to an assertion? - add a string as a arugment after the assert statement is defined
+Which assertion would you use to check that a value appears in a list? `assertIn`
+Why is it important to test that exceptions are raised and not just the happy path? - testing exceptions ensures that a function or program gracefully handles exceptions in the correct way
+What happens if the code inside assertRaises does not raise any exception? - test fails and says so
+What is the difference between assertRaises and assertRaisesRegex? - assertRaises is more general to test whether an exception is being raised, regex extends this behavior by verifying that a raised message is formatted in the intended way (usually combined with formatted string literals)
+If a function can raise a ValueError for two different reasons how would you test each reason separately? - can use a regex assert statement to verifying which reason ValueError was raised
+What are the three main skip decorators in unittest and how do they differ? - skip("reason") skip regardless of a condition, skipIf to skip a test should a condition evalute to true, and skipUnless to perform the opposite (skip the test unless a condition is true)
+When is it appropriate to use @unittest.skip and when should it be avoided? - skip can be used when a portion of functionality maybe hasn't been fully implemented or isn't ready for tests, but should be used sparingly as it implies there is unintended behavior in the program
+What does @unittest.expectedFailure do and what does an unexpected success indicate? - marks tests which are supposed to fail, an unexpected success means fucntionality isn't behaving as intended (just with the inverse logic which usually governs testing)
+Why should skipping tests be used sparingly? - they represent unintended behavior in a program
+What is a test fixture and why are fixtures useful? - test fixtures are classes used to set up and tear down code which runs before and after tests, ensures clean state to prevent tests from affecting each other
+What is the difference between setUp and setUpClass? - setUpClass runs once before all tests in a class while setUp runs before each test method in a class
+Why must setUpClass and tearDownClass be decorated with @classmethod? - because they're decorators, extending the functionality of the functions in place for unit testing
+When does a TearDown function run? Why does this matter? - after each test method in a class, ensures tests don't affect each other
+Why is it beneficial to store test data in external files rather than hard-coding it in test methods? - provides modularity for the program, also ensures data is kept safe and unaltered from testing fucntionality
+What formats are commonly used for external test data and what is each well suited for? - JSON (structured data, better when data is complex and multi-layered), CSV (strucutred like a table to reflect commonly used data in the real world), and text files
+What is subTest and how does it differ from a plain loop inside a test method? - a context manager to run the same test logic for each data item, provides a way to test against multiple sets of data to ensure logic is correct
+Where should test data files be stored within a project and why? - in a separate data/ folders, cleaner and keeps tests readable
+What is mocking and why is it used in unit testing? - practice of replacing real dependencies in testing with controlled, fake substitutes. useful for testing functionality with potentially tampering with real data
+What kinds of dependencies are typically replaced with mocks? - class instances
+How does mocking improve test speed repeatability and independence? - keeping the testing separate from an external state like data makes tests faster
+Beyond checking return values what else can you verify using a mock object? - can validate the mock was called once, can return how many times a mock was called, and check the arguments provided to a mock
+What is the difference between Mock and MagicMock? - magicmock is a subclass of mock to support python dunder methods (aka magic methods)
+What does return\_value configure and how does it differ from attribute access on a mock? - return value reconfigures what a mock object outputs when called, while attributes return a child mock 
+How do assert\_called\_once() and assert\_called\_once\_with() differ? - called once checks just frequency of calls, with also checks argument passed in a call
+What information is stored in call\_args versus call\_args\_list? - call args stores arguments from most recent call, call list gives chronological list of arguments for every call
+When would you choose MagicMock over Mock? - when the code being tested uses a mock in a context manager, iterator, or operator
+What is side\_effect and how does it differ from return\_value? - side effect is an observable change the function makes oterh than that returned value
+If both side\_effect and return\_value are set on a mock which takes priority? - side effect
+What does patch do and why is it useful for testing functions with external dependencies? - patch replaces an object in a module with a mock for the duration of test, so you can mock a dependency without touching the code

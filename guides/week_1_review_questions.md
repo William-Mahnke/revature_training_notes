@@ -2,55 +2,146 @@
 
 The following are specific questions related to concepts covered in Week 1 of training. If you are able to confidently answer the questions in this review guide, you should be able to confidently answer any question related to the week 1 material.
 
-* What does it mean for a language to be interpreted rather than compiled?
-* What is dynamic typing and how does it differ from static typing?
-* What is meant by Python's batteries included philosophy?
-* How would you verify that Python and PIP are correctly installed on your machine?
-* What does PIP stand for and what is its purpose?
-* What is PyPI and how does it relate to PIP?
-* How would you install a specific version of a package using PIP?
-* What is a requirements.txt file and why is it useful?
-* What problem do virtual environments solve?
-* What happens when you run pip install while a virtual environment is active?
-* Why is it considered best practice to use a virtual environment for every project?
-* What does REPL stand for and what does each letter represent?
-* How do you launch and exit the Python REPL?
-* What are the limitations of the REPL for writing full programs?
-* Why do compiled languages generally produce faster-running programs?
-* Why do interpreted languages tend to have faster development cycles?
-* What is the purpose of a comment in Python and how does the interpreter handle them?
-* What symbol is used to write a single-line comment in Python?
-* How do you write a multi-line comment in Python?
-* What is a docstring and how does it differ from a regular comment?
-* Why can over-commenting code be a problem?
-* What Python built-in feature can be used to read a function's docstring?
-* What are the primitive data types in Python?
-* What is the difference between an int and a float?
-* How can you check the type of a variable in Python?
-* What is type casting and when might you need to use it?
-* What are the only two possible values of a bool?
-* What would happen if you tried to add an int and a str together without type casting?
-* What is the difference between / and // in Python?
-* What does the modulo operator % return?
-* What is the difference between = and ==?
-* What do comparison operators always return?
-* Explain the difference between and or and not.
+What does it mean for a language to be interpreted rather than compiled?
+
+- A compiled language requires a build step to translate source code into machine code which is then executed line-by-line. Interpreted languages don't require a build step, allowing code to be translated and executed line by line.
+
+What is dynamic typing and how does it differ from static typing?
+
+- Dynamic typing refers to the fact that variable data types are evaluated at runtime rather than being evaluated before execution (static typing). This means for Python, a language which features dynamic typing, any errors and exceptions raised related to a variable's data type would arise while the program is being run rather than before. 
+
+What is meant by Python's batteries included philosophy?
+
+- The batteries included philosophy for Python refers to the vast dependency library avaiable to developers when creating software, allowing them to install packages such as numpy and pandas to contribute to the software with their specific functionality.
+
+How would you verify that Python and PIP are correctly installed on your machine?
+
+- Within your system's terminal, the command `python --version` will verify if python is installed and also supply the version of python installed. The same command with pip instead of python will do the same.
+
+What does PIP stand for and what is its purpose?
+
+- PIP stands for "Package installer for Python", it's used by developers to install dependencies such as numpy and pandas to use when developing python software. 
+
+What is PyPI and how does it relate to PIP?
+
+- PyPI is a third-party dependency library for python, PIP is used to install packages for in PyPI.
+
+How would you install a specific version of a package using PIP?
+
+- If you wanted to install a specific version of numpy, the command would be `pip install numpy==version_num`
+
+What is a requirements.txt file and why is it useful?
+
+- When working with code in python which relies on dependencies, a requirements file specifies what depedencies are needed to run every file within a project with the option to also specify a specific version of a dependency.  
+
+What problem do virtual environments solve?
+
+- When working with other contributors on a python project, a virtual environment can be added with all the necessary dependencies to make that project work. It enables developers to be on the same page while providing a setup to avoid installing packages on each developer's local machine.
+
+What happens when you run pip install while a virtual environment is active?
+
+- Running pip install when a virtual environment is active will install the dependecy to the virtual environment rather than the developer's local system.
+
+Why is it considered best practice to use a virtual environment for every project?
+
+- Using a virtual environment is considered best practice because it provides a clean, reusable method for running code within a project without navigating local installations.
+
+What does REPL stand for and what does each letter represent?
+
+- REPL stands for Read, Evaluate, Print, and Loop. Read refers to the interpreter "reading" the code given in the terminal, then "evaluting" the code before "printing" an results if necessary and repeating the process (in a loop).
+
+How do you launch and exit the Python REPL?
+
+- Using the `python` command in a terminal will launch REPL and the command `exit()` will exit REPL.
+
+What are the limitations of the REPL for writing full programs?
+
+- REPL isn't well-suited for running the same set of commands over an over compared to using an IDE to run python. Additionally, using a terminal to execute code doesn't scale as full programs grow in size.
+
+Why do compiled languages generally produce faster-running programs?
+
+- Compiled languages translate an entire program into machine-executable code before being run. This is faster than interpreted languages, where each individual line a program has to be translated before execution (line by line).
+
+Why do interpreted languages tend to have faster development cycles?
+
+- Interpreted languages have faster development cycles because developers don't have to create a build step like they do in compiled languages, i.e. the code can quickly be tested and iterated on rather than reconfiguring a build step each  time.
+
+What is the purpose of a comment in Python and how does the interpreter handle them?
+
+- In python, the interpreter will ignore comments when be executed at run time. The purpose of comments in code to describe why functionality is in the program. 
+
+What symbol is used to write a single-line comment in Python? - the hashtag (#)
+
+How do you write a multi-line comment in Python? 
+
+- Multi-line comments in python could be done using a hastag of multiple lines in a row, or the better option is to wrap comment text in triple quotes (creating a docstring).
+
+What is a docstring and how does it differ from a regular comment?
+
+- A docstring is usually used at the beginning of a module, function, class, or other entity to describe its purpose within the program and are returning using the doc dunder method. Single line comments are for shorter explanations, while a docstring can be added to provide for nuanced details on an entity's funcitonality.
+
+Why can over-commenting code be a problem?
+
+- Over commenting can be a problem because it makes the code less readable to a developer or contributor.
+
+What Python built-in feature can be used to read a function's docstring? - `__docs__`
+
+What are the primitive data types in Python?
+
+- The primitive data types of python are strings, floating point values, intergers, boolean values, and the None type. There is also the complex data type built into python but that's more for programs for physics and scientific purposes.
+
+What is the difference between an int and a float? - an integer is for whole number values while a float is for decimal values.
+
+How can you check the type of a variable in Python? - `type()`
+
+What is type casting and when might you need to use it?
+
+- type casting is using python's built in functions such as `int()` or `float()` to convert primitve data type to a different one. A common example is when a program requires user inputs for numeric values because Python's built-in `input()` functions always saves the result as a string.
+
+What are the only two possible values of a bool? - True and False
+
+What would happen if you tried to add an int and a str together without type casting? - you would get a type error
+
+What is the difference between / and // in Python? - a single backslash is for normal division and will return a float value, a double backslash represents integer division and always returns an integer.
+
+What does the modulo operator % return? - the modulo operator returns the remainder of division (for example 5 % 2 returns 1, the remainder for 5 / 2)
+
+What is the difference between = and ==? - a single equal sign is used to assign values to variables, a double equal sign evaluates an expression to a boolean value based on whether the values are the same or use the same position in memory.
+
+What do comparison operators always return? - a boolean, either True or False
+
+Explain the difference between and or and not. - `and` evaluates to true only if both expressions are true, `or` evalutes to true if at least one of the expressions in true, and `not` returns the opposite of an expressions's boolean nature.
+
 * What is the difference between == and is?
-* How would you use a membership operator to check if a value exists in a list?
+
+How would you use a membership operator to check if a value exists in a list? - `value_checking` in `list_name`
+
 * What does the \*\* operator do?
-* What is an identifier in Python?
-* What are the rules for naming a valid identifier?
-* What is a keyword and why can't keywords be used as identifiers?
-* What naming convention should be used for variables and functions in Python?
-* What naming convention should be used for class names in Python?
-* What function is used to display output in Python?
-* What function is used to capture user input in Python?
-* What data type does input() always return?
-* Why is type casting important when working with user input?
-* What is an f-string and how is it different from a regular string?
-* How do you embed expressions inside an f-string?
-* What is a function?
-* What does the DRY principle stand for and how do functions help enforce it?
+
+What is an identifier in Python? - an identifier is a name given to a variable, function, class, or other object.
+
+What are the rules for naming a valid identifier? - Python keywords shouldn't be used when creating identifiers. Identifiers for variables and functions should use snake case convention (an underscore between each term in the identifier) while classes use PascalCasing (capitalize first letter of each term in identifier).
+
+What is a keyword and why can't keywords be used as identifiers? - a keyword is a specific term in python which has a specific use within the language, they shouldn't be used as identifiers so the program doesn't confuse an entity associated with a keyword identifer for python's built-in functionality.
+
+What naming convention should be used for variables and functions in Python? - snake_case
+What naming convention should be used for class names in Python? - PascalCase
+
+What function is used to display output in Python? - `print()`
+What function is used to capture user input in Python? - `input()`
+What data type does input() always return? - string
+
+Why is type casting important when working with user input? - if a user's input is intended to be a numeric value (float or integer), type casting is used to convert the string value returned from using `input()` to the desired data type.
+
+What is an f-string and how is it different from a regular string?
+
+- f-strings are formatted string literals. Using curly braces allows the developer to display outputs from `print()` in a specific manner and allows the inclusion of dynamic values within the returned string literal.
+
+How do you embed expressions inside an f-string? - f"Embedded value: {inside the curly braces}"
+
+What is a function? - a named block of code to perform a specific task. this allows a developer to write code once and use it multiple times.
+What does the DRY principle stand for and how do functions help enforce it? - DRY stands for don't repeat yourself, emphasizes the fact you don't have to repeatedly write the same lines of code to perform the same task.
+
 * What is the benefit of breaking a program into many smaller functions?
 * What is the difference between a built-in function and a user-defined function?
 * Name three built-in Python functions and describe what they do.

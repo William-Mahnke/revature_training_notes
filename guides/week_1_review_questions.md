@@ -8,7 +8,7 @@ What does it mean for a language to be interpreted rather than compiled?
 
 What is dynamic typing and how does it differ from static typing?
 
-- Dynamic typing refers to the fact that variable data types are evaluated at runtime rather than being evaluated before execution (static typing). This means for Python, a language which features dynamic typing, any errors and exceptions raised related to a variable's data type would arise while the program is being run rather than before. 
+- Dynamic typing refers to the fact that variable data types are evaluated at runtime rather than being evaluated before execution (static typing). This means for Python, a language which features dynamic typing, any errors and exceptions raised related to a variable's data type would arise while the program is being run rather than before.
 
 What is meant by Python's batteries included philosophy?
 
@@ -20,7 +20,7 @@ How would you verify that Python and PIP are correctly installed on your machine
 
 What does PIP stand for and what is its purpose?
 
-- PIP stands for "Package installer for Python", it's used by developers to install dependencies such as numpy and pandas to use when developing python software. 
+- PIP stands for "Package installer for Python", it's used by developers to install dependencies such as numpy and pandas to use when developing python software.
 
 What is PyPI and how does it relate to PIP?
 
@@ -68,11 +68,11 @@ Why do interpreted languages tend to have faster development cycles?
 
 What is the purpose of a comment in Python and how does the interpreter handle them?
 
-- In python, the interpreter will ignore comments when be executed at run time. The purpose of comments in code to describe why functionality is in the program. 
+- In python, the interpreter will ignore comments when be executed at run time. The purpose of comments in code to describe why functionality is in the program.
 
 What symbol is used to write a single-line comment in Python? - the hashtag (#)
 
-How do you write a multi-line comment in Python? 
+How do you write a multi-line comment in Python?
 
 - Multi-line comments in python could be done using a hastag of multiple lines in a row, or the better option is to wrap comment text in triple quotes (creating a docstring).
 
@@ -112,11 +112,13 @@ What do comparison operators always return? - a boolean, either True or False
 
 Explain the difference between and or and not. - `and` evaluates to true only if both expressions are true, `or` evalutes to true if at least one of the expressions in true, and `not` returns the opposite of an expressions's boolean nature.
 
-* What is the difference between == and is?
+What is the difference between == and is?
+
+- == is used to check for value equality while `is` is used to check for value identity, This is particularly useful for comparing string values. Two identical strings can return true when compared using an equal sign but `is` might return to false because the objects' identities aren't the same in memory.
 
 How would you use a membership operator to check if a value exists in a list? - `value_checking` in `list_name`
 
-* What does the \*\* operator do?
+What does the \*\* operator do? -[TO CHECK IN THE FUTURE]
 
 What is an identifier in Python? - an identifier is a name given to a variable, function, class, or other object.
 
@@ -142,179 +144,205 @@ How do you embed expressions inside an f-string? - f"Embedded value: {inside the
 What is a function? - a named block of code to perform a specific task. this allows a developer to write code once and use it multiple times.
 What does the DRY principle stand for and how do functions help enforce it? - DRY stands for don't repeat yourself, emphasizes the fact you don't have to repeatedly write the same lines of code to perform the same task.
 
-* What is the benefit of breaking a program into many smaller functions?
-* What is the difference between a built-in function and a user-defined function?
-* Name three built-in Python functions and describe what they do.
-* How do functions improve the maintainability of a codebase?
-* What keyword is used to define a function in Python?
-* What is the correct syntax structure for a function definition?
-* What role does indentation play in a Python function?
-* What is the difference between defining a function and calling a function?
-* Why must a function be defined before it is called?
-* What is the purpose of the pass keyword in a function body?
-* Where should a docstring be placed within a function and what purpose does it serve?
-* What is a parameter and where is it defined?
-* What is a positional parameter and how are values matched to positional parameters?
-* What is a default parameter and what happens if the caller does not provide a value for it?
-* What rule must be followed when mixing parameters with and without default values?
-* What is the difference between a parameter and an argument?
-* What does \*args allow a function to do and what data structure does it collect values into?
-* What does \*\*kwargs allow a function to do and what data structure does it collect values into?
-* Why are parameters considered local to a function?
-* How do you invoke a function in Python?
-* What is a keyword argument and what advantage does it offer over a positional argument?
-* What does the return keyword do in a Python function?
-* What does a function return if it has no return statement?
-* What happens to code written after a return statement in the same function?
-* Can a function return more than one value and how does Python handle this?
-* Can a returned value be passed directly into another function call?
-* What is a Python module?
-* What is the Python standard library and why is it valuable?
-* What is a package and how does it differ from a module?
-* How do modules promote reusability and separation of concerns?
-* What is the purpose of the import statement?
-* What is the difference between 'import math' and 'from math import sqrt'?
-* What is dot notation and why is it useful when working with imports?
-* Why are wildcard imports from module import \* generally discouraged?
-* Can you import multiple items from a module in a single line?
-* What is debugging and why is it an important skill?
-* What is the difference between installing a package globally versus inside a virtual environment?
-* How do you create and activate a virtual environment on your operating system?
-* What effect does activating a virtual environment have on pip install?
-* How would another developer recreate your virtual environment on their machine?
-* What command generates a requirements.txt from your current environment?
-* What command installs all packages listed in a requirements.txt file?
-* How do requirements.txt and virtual environments work together?
-* What is garbage collection and why is it important?
-* What is reference counting and how does Python use it to manage memory?
-* What happens to an object when its reference count drops to zero?
-* What is a circular reference and why is it a problem for reference counting?
-* What is control flow and why is it important in programming?
-* What is the difference between if elif and else?
-* How does Python decide which block to execute in an if/elif/else chain?
-* Can an if statement exist without an else and what happens if the condition is False?
-* What is truthiness in Python and can you name four falsy values?
-* Why does the order of elif conditions matter?
-* How would you write an if statement that checks whether a list is empty using truthiness?
-* What logical operators can be used to combine conditions in an if statement?
-* What is a for loop and what types of objects can it iterate over?
-* How do you iterate over just the values of a dictionary?
-* How do you iterate over both keys and values of a dictionary at the same time?
-* When is a for loop preferred over a while loop?
-* What does range() do and what does it return?
-* What is the default start value for range() if only one argument is provided?
-* Is the stop value in range() inclusive or exclusive?
-* What does the third argument in range(start stop step) control?
-* How would you use range() to count backwards from 10 to 1?
-* Why is range() considered memory efficient?
-* What is the difference between break and continue?
-* When break is encountered where does program execution jump to?
-* When continue is encountered what happens to the rest of the current loop iteration?
-* Give an example of a scenario where using break would be appropriate, and an example where using continue would be appropriate
-* What is the key difference between a for loop and a while loop?
-* When is a while loop more appropriate than a for loop?
-* What happens if the condition of a while loop is False before the loop starts?
-* What is an infinite loop and what typically causes one? Can you halt an infinite loop?
-* How is match similar to switch statements in other languages?
-* What does case \_: represent in a match statement?
-* What happens if more than one case pattern could match the subject?
-* How does matching sequences work in a match statement?
-* When is a match statement more appropriate than an if/elif/else chain?
-* What is variable scope and why does it matter?
-* What does the LEGB rule stand for and in what order does Python search through these scopes?
-* What happens to a local variable when a function finishes executing?
-* What is the difference between a local and a global variable?
-* What is an enclosing scope and in what situation does it apply?
-* What is string interning and what is its purpose?
-* What can happen if you use is to compare strings that were not automatically interned?
-* How can you manually intern a string in Python and when might this be useful?
-* Why is string interning described as an implementation detail rather than a language guarantee?
-* How does string interning relate to memory and performance optimisation?
-* What is a lambda function and how does it differ from a function defined with def?
-* What is the syntax of a lambda function?
-* Why are lambdas called anonymous functions?
-* What are the most common use cases for lambdas in Python?
-* When should you use a def function instead of a lambda?
-* What is a generator expression and how does its syntax differ from a list comprehension?
-* What does lazy evaluation mean in the context of a generator expression?
-* What type of object does a generator expression return?
-* How do you retrieve values from a generator expression?
-* Why are generator expressions more memory-efficient than list comprehensions?
-* What does it mean for a generator to be exhausted and what happens when you iterate over an exhausted generator?
-* When should you choose a generator expression over a list comprehension?
-* Can you pass a generator expression directly to sum() or max()?
-* What does map() do and what does it return?
-* What does filter() do and what does it return?
-* What does reduce() do and when is it useful?
-* What is the difference between map() and a list comprehension?
-* What is an exception and how does it differ from a syntax error?
-* What happens to a program when an exception is raised and not handled?
-* What does it mean for exceptions to have a hierarchy and why does that matter?
-* What is exception handling and why is it important?
-* What is the purpose of the try block?
-* What is the purpose of the except block and when does it run?
-* How do you handle multiple different exception types in the same try/except structure?
-* What is the difference between catching a specific exception versus catching a parent exception?
-* What does the else block do in a try/except structure and when does it run?
-* What does the finally block do and when does it run?
-* Why is finally useful and what is it typically used for?
-* How do you capture the exception object and how do you access its message?
-* Why is it bad practice to catch 'Exception'?
-* What is a custom exception and why would you define one?
-* What class should custom exceptions inherit from?
-* What naming convention should custom exception classes follow?
-* How do you make use of a custom exception in your program?
-* What is a data structure and why does choosing the right one matter?
-* What are the four key characteristics to consider when comparing data structures?
-* What is the difference between a mutable and an immutable data structure?
-* Name four built-in Python data structures.
-* What is the collections module and what does it provide?
-* Why is defaulting to a list for every situation not always the best approach?
-* What does it mean for a list to be ordered and mutable?
-* What is zero-based indexing and what index refers to the last item in a list?
-* How does negative indexing work in Python?
-* What is slicing and what does my\_list\[1:4] return?
-* What is the difference between .remove() and .pop()?
-* What is the difference between .sort() and the built-in sorted() function?
-* How do you access an item in a nested list?
-* Can a Python list hold items of different types?
-* What is the key difference between a list and a tuple?
-* What does immutability mean in the context of a tuple?
-* What is tuple unpacking and how does it work?
-* What is tuple packing?
-* Why can tuples be used as dictionary keys but lists cannot?
-* What are two common use cases where a tuple is more appropriate than a list?
-* What are the defining characteristics of a set?
-* How do you create an empty set and why can't you use {}?
-* What happens if you add a duplicate value to a set?
-* What does deque stand for and where does it come from in Python?
-* What limitation of Python lists does the deque address?
-* What is the difference between .append() and .appendleft() on a deque?
-* What is list comprehension and what does it produce?
-* What is the basic syntax of a list comprehension?
-* How do you add a filtering condition to a list comprehension?
-* What is the equivalent for loop pattern that list comprehension replaces?
-* What is a dict comprehension and how does its syntax differ from a list comprehension?
-* What is an iterator in Python?
-* What two dunder methods must an iterator implement?
-* What does \_\_next\_\_() return and what does it do when the sequence is exhausted?
-* What happens internally when Python executes a for loop?
-* What does the built-in iter() function do?
-* Why are iterators described as single-use?
-* How would you build a custom iterator class?
-* What is an iterable and what method must it implement?
-* Give four examples of built-in Python iterables.
-* What is the key difference between an iterable and an iterator?
-* Can you loop over the same iterable multiple times and what about an iterator?
-* What does calling iter() on an iterable return?
-* Why is the iterable/iterator distinction important for understanding how for loops work?
-* What is a dictionary and how does it differ from a list?
-* What are the requirements for a dictionary key?
-* What types of data can be stored as dictionary values?
-* What is the difference between accessing a value with \["key"] versus .get("key")?
-* How do you add a new key-value pair to an existing dictionary?
-* What do .keys() .values() and .items() return and how are they used?
-* What does .update() do and what happens if a key exists in both dictionaries?
+What is the benefit of breaking a program into many smaller functions?
+
+- Breaking up a program into smaller chunks promotes modularity and makes the code more readable. If a program breaks up logical steps of a task into different functions, this also aids identifying the root cause of a bug or error when troubleshooting.
+
+What is the difference between a built-in function and a user-defined function?
+
+- Built-in functions are pre-written by other developers and come ready to use "out of the box". Meanwhile, user-defined functions have to be created by the developer and also requires the developer to write the code for the function.
+
+Name three built-in Python functions and describe what they do.
+
+- `len()` returns the number of elements within a value such as values in a list, characters in a string, or key-value pairs in a dictionary.
+- `sum()` will aggregate the values in a data structure such as a list or tuple
+- `round()` will return a floating point value rounded to a specified number of decimal places (or to the nearest place value)
+
+How do functions improve the maintainability of a codebase?
+
+- Breaking up a program into logical chunks is easier to maintain a codebase because it will be easier to identify which function causes an error/exception in runtime. Additionally, if any adjustments to the process defined in a function can be made within the function code block and will be applied for every program execution after (do it once).
+
+What keyword is used to define a function in Python? - `def function_name()`
+
+What is the correct syntax structure for a function definition?
+
+- A function is defined with `def function_name(parameters):` on the first line. Every subsequent line of the function is idented once.
+
+What role does indentation play in a Python function? - indentation limits the scope of the function's code to just that function rather than executing the code as a part of the program.
+What is the difference between defining a function and calling a function? - defining a function is creating the functionality for the function's intended task. Calling a function, with optional parameters, is implementing the function's task (with specific values most of the time).
+
+Why must a function be defined before it is called?
+
+- Since python is executed line by line, Python doesn't store the function or its functionality in memory until the lines for the function are executed.
+
+What is the purpose of the pass keyword in a function body? - `pass` means to not return a value associated with a function call and execute the next line of code. It's useful when first creating a function if the developer is unsure how it fits in the program.
+
+Where should a docstring be placed within a function and what purpose does it serve? - a docstring should be the first lines under a function definition, describing what task the function performs alongs with the option to describe parameters for the function.
+
+What is a parameter and where is it defined? - a parameter is a identifier inserted into a function's signature when defined. They don't have a value but are given one when a function is called.
+What is a positional parameter and how are values matched to positional parameters? - a positional parameter is an assigned value in a function call. multiple positional parameters are defined in a certain order which must be matched in the function call.
+What is a default parameter and what happens if the caller does not provide a value for it? - a default parameter is a parameter in a function which is given a value in case one isn't given in a function call. If a user doesn't provide a different value, this default value is applied in the function call.
+What rule must be followed when mixing parameters with and without default values? - parameters with default values must be defined after parameters not assigned with a default value.
+
+What is the difference between a parameter and an argument? - parameters are variables listed in a function definition, arguments are values passed to a function when called.
+
+What does \*args allow a function to do and what data structure does it collect values into? - *args allows the user to input zero to many arguments to a function after providing arguemnts for parameters. When called, the arbitrary arguments are collected into a tuple.
+What does \*\*kwargs allow a function to do and what data structure does it collect values into? - **kwargs allows the same as \*args but stores the variables in a dictionary with key value pairs.
+
+Why are parameters considered local to a function? - parameters are defined within the function which means they are only assigned values when the function is called.
+How do you invoke a function in Python? - `function_name(parameters)`
+What is a keyword argument and what advantage does it offer over a positional argument? - keyword arguments have an associated identifier within the function signature, allows for putting arugments not necessarily in the same order.
+What does the return keyword do in a Python function? - returns a value within a function, usually used to return the result of the function's intended task.
+What does a function return if it has no return statement? - `None`
+What happens to code written after a return statement in the same function? - It won't be run.
+Can a function return more than one value and how does Python handle this? - a function can use a tuple or another data structure to return multiple values, but requires unpacking the tuple after the function call.
+Can a returned value be passed directly into another function call? - Yes by nesting functions.
+What is a Python module? - a file containing python code.
+What is the Python standard library and why is it valuable? - a collection of pre-written code, modules, and functions which come built into python, no pip installing required.
+What is a package and how does it differ from a module? - a module is a single file while a package is a directory containing multiple files/modules
+How do modules promote reusability and separation of concerns? - when installed, modules provide the same process of reusing functionality multiple times with having to recreate processes or code.
+What is the purpose of the import statement? - `import` statements in python tell the interpreter what functionality from a package or module will be used within this module.
+What is the difference between 'import math' and 'from math import sqrt'? - `import math` will tell python to take in all of the functionality from the math package, while the second command only takes in the `sqrt` function from the package.
+What is dot notation and why is it useful when working with imports? - using a dot in imports tells the interpreter to import every function/module from a package/module. It's useful when working with imports if a developer only intends to use certain functionality from a module/package.
+Why are wildcard imports from module import \* generally discouraged? - it's generally better practice to select specific functions/modules from the imported package.
+Can you import multiple items from a module in a single line? - Yes, using commas.
+What is debugging and why is it an important skill? - debugging is the process of finding and fixing errors in code, crucial for developing functioning programs.
+What is the difference between installing a package globally versus inside a virtual environment? - installing a pacakge globally will allow importing the package for the selected interpreter (version of Python). Using a virtual environment limits using the package to that specific virtual environment, usually contained within a single project.
+How do you create and activate a virtual environment on your operating system? `venv .venv` followed by `source .venv/bin/activate`
+What effect does activating a virtual environment have on pip install? All packages installations with pip added the package to the virtual environments library, usually a file within the virtual environment folder created.
+How would another developer recreate your virtual environment on their machine? - with their virtual environment created and the requirements file copied, `pip install -r requirements.txt`
+What command generates a requirements.txt from your current environment? - `pip freeze requirements.txt`
+What command installs all packages listed in a requirements.txt file? - `pip install -r requirements.txt`
+What is garbage collection and why is it important? - Garbage collections is the automatic management and recovery of unused memory to optimzie the amount of memory a python program uses.
+What is reference counting and how does Python use it to manage memory? - [LATER]
+What happens to an object when its reference count drops to zero? - [LATER]
+What is a circular reference and why is it a problem for reference counting? - [LATER]
+What is control flow and why is it important in programming? - Flow control is the process of using statements to develop and determine what code is executed based on logical statements and serves as the basis for creating algorithms.
+What is the difference between if elif and else? `elif` are statements which can be added after the `if` block to execute different code based on a separate logical condition. `else` is a statement used to run code if all previous logical statements in `if` and `elif` blocks evaluated to False.
+How does Python decide which block to execute in an if/elif/else chain? - always starts with `if`, follows `elif` blocks in order, evaluating the first block to have its logical statement evaluate to true. If none of the conditional statements do so, the code within the else block is executed.
+Can an if statement exist without an else and what happens if the condition is False? - Yes, if the condition is false the program continues execution with the next line.
+What is truthiness in Python and can you name four falsy values? - Every python object inheriantly is True when switched to boolean type, except for empty strings, empty lists, empty tuples, empty dictionaries, empty sets, 0, 0.0, and None.
+Why does the order of elif conditions matter? - Within a set of if and elif statements, only the first block with the logical condition evaluated to true is executed, so the order of statements defines the logic of the algorithm.
+How would you write an if statement that checks whether a list is empty using truthiness? - `if not list_name` (if list is empty -> ~Flase -> True)
+What logical operators can be used to combine conditions in an if statement? - `and` and `or`
+What is a for loop and what types of objects can it iterate over? - A for loop repeats the same operations over a sequence until the sequence is exhausted or until a logical condition (within the code block) evaluates to False. It can iterate over strings, tuples, lists, dictionaries, sets, and other iterables.
+How do you iterate over just the values of a dictionary? - `for val in dict_name.values()`
+How do you iterate over both keys and values of a dictionary at the same time? - `for key, value in dict.items()`
+When is a for loop preferred over a while loop? - When the user wants to iterate over a collection of items.
+What does range() do and what does it return? - range() creates a sequence of integers to be, returns a range object iterable.
+What is the default start value for range() if only one argument is provided? - `range(n)` provides 1, 2, ..., n-1
+Is the stop value in range() inclusive or exclusive? - exclusive
+What does the third argument in range(start stop step) control? - the step/jump between integers, i.e. the difference between integers in the sequence.
+How would you use range() to count backwards from 10 to 1? - `range(10, 1, -1)`
+Why is range() considered memory efficient? - range() creates an iterator which generates values on demand rather than allocating memory to a the array of integers.
+What is the difference between break and continue? - break ends a while loop while continue tells the while loop skips the rest of the code in the block to the next iteration.
+When break is encountered where does program execution jump to? - the program execution moves to the next line in the same indentation as the while loop the break was a part of and skips the rest of code indented in the while loop.
+When continue is encountered what happens to the rest of the current loop iteration? - the code for the rest of the current loop is skipped.
+Give an example of a scenario where using break would be appropriate, and an example where using continue would be appropriate - break is often implemented in infinite loops to end the loop when a particular logical condition is met. if the logical condition is complex (requires two if statements), continue can be used in an infinite loop to go to the next iteration is the first logical condition is met and a subsequent logical condition isn't satisfied.
+What is the key difference between a for loop and a while loop? - loops are implemented when a finite collection is being used for iteration, while loops are useful if the desired outcome is continue iteration until a specific logical condition is met.
+When is a while loop more appropriate than a for loop? - when the duration of the iteration isn't known ahead of time.
+What happens if the condition of a while loop is False before the loop starts? - the code block within the while loop will be skipped.
+What is an infinite loop and what typically causes one? Can you halt an infinite loop? - the most common infinite loop uses `while True` and requires a break for a specific logical condition to be broken. Otherwise it runs forever.
+How is match similar to switch statements in other languages? - [LATER]
+What does case \_: represent in a match statement? - It represents the wild card outcome if not of the previous match statements' logical conditions evaluate to true.
+What happens if more than one case pattern could match the subject? - the code within the first case statement to be true will be run, the other one would be skipped.
+How does matching sequences work in a match statement? - match statements are evaluated in order.
+When is a match statement more appropriate than an if/elif/else chain? - if statements are better for logical conditions on a range of values, match statements are better for more specific values.
+What is variable scope and why does it matter? - variable scope is where in the program a variable is accessible. it's important to check track of because it determines when and where variables can be accessed and used in a program.
+What does the LEGB rule stand for and in what order does Python search through these scopes? - 1st local, 2nd enclosing, 3rd global, 4th built-in
+What happens to a local variable when a function finishes executing? - they are garbage collected.
+What is the difference between a local and a global variable? - local variables are defined within the statement/function/class they are defined, global variables are defined within the scope of the file.
+What is an enclosing scope and in what situation does it apply? - enclosing refers to being in scope of any nested functions.
+What is string interning and what is its purpose? - string interning is the process of resuing memory for identical strings. if two different variables are assigned to an identical string, string interning can be done to verify the variables share the same place in memory leading to is conditions evaluating to true.
+What can happen if you use is to compare strings that were not automatically interned? - comparing non-interned strings using `is` might evaluate to false.
+How can you manually intern a string in Python and when might this be useful? - using `sys.intern()`, useful when you want to check if a string generated through operations is identical to a string already defined in the program.
+Why is string interning described as an implementation detail rather than a language guarantee? - string interning isn't automatically done in python or some other languages, so it's a detail which has to be implemented rather than an assumption being made in design.
+How does string interning relate to memory and performance optimisation? - string interning converse memory when multiple variables all route to the same memory address.
+What is a lambda function and how does it differ from a function defined with def? - a lambda is an anonymous function used in line to perform an operation, ususally in the context of a named function.
+What is the syntax of a lambda function? - `lambda parameters: expression`
+Why are lambdas called anonymous functions? - they aren't named.
+What are the most common use cases for lambdas in Python? - short-lived in-line process as a part of another function
+When should you use a def function instead of a lambda? - for a more complex function which will be used repeatedly with varying parameters.
+What is a generator expression and how does its syntax differ from a list comprehension? - generator expressions produce values on demand, uses parentheses instead of brackets like done in list comprehension.
+What does lazy evaluation mean in the context of a generator expression? - lazy evaluation means values are generator on demand, one at a time
+What type of object does a generator expression return? - a generator object rather than a list
+How do you retrieve values from a generator expression? - `next()`
+Why are generator expressions more memory-efficient than list comprehensions? - list comprehensions generate the entire list at once and allocate memory for the entire array, generator expressions don't allocate memory for the whole list but rather generates the values as they're needed.
+What does it mean for a generator to be exhausted and what happens when you iterate over an exhausted generator? - exhausted means every value in the generator object has been generated, have to create a new generator to iterate again.
+When should you choose a generator expression over a list comprehension? - useful for one off functionality rather than needing the entire list of values at once.
+Can you pass a generator expression directly to sum() or max()? - yes, `sum(generator)`
+What does map() do and what does it return? - map() applies a function to every item, returning a map object.
+What does filter() do and what does it return? - filters items for a specific condition, returns a subset of the given input (list -> list, tuple -> tuple, etc.)
+What does reduce() do and when is it useful? - reduce aggregates an entire list to a single value by cumulatively apply a function.
+What is the difference between map() and a list comprehension? - list comprehension will return the entire list where map gnerators the list object.
+What is an exception and how does it differ from a syntax error? - an exception is an object to indicate a disruption in normal code flow
+What happens to a program when an exception is raised and not handled? - program terminates, printing the error in the console.
+What does it mean for exceptions to have a hierarchy and why does that matter? - exception objects can handle specific errors but can also refer to a more general error. when using exception handling, excpetion types have to be implemented in a logical order to ensure the proper exception is raised.
+What is exception handling and why is it important? - introducing and handling the possibility of unintended behavior in a program to ensure a program can continue if necessary or raise the issue to indicate something related to the program is wrong.
+What is the purpose of the try block? - the intent is to try code with the functionality to perform a different action if an exception is raised.
+What is the purpose of the except block and when does it run? - to run code in the case an exception is raised, runs when a particular exception (or exception within the hierarchy) is raised.
+How do you handle multiple different exception types in the same try/except structure? - can use multiple except statements for different exception types, in a logical order to ensure every excpetion type can be raised for its specific issue.
+What is the difference between catching a specific exception versus catching a parent exception? - a parent exception can be used as a catch all for a certain set of unintended issues.
+What does the else block do in a try/except structure and when does it run? - runs in the case when no exceptions are raised, implemented to perform further tasks in the case code functions as intended (without exceptions)
+What does the finally block do and when does it run? - runs regardless of if and exception is raised or not.
+Why is finally useful and what is it typically used for? - useful when using resources which need to be closed after being called (databases, files)
+How do you capture the exception object and how do you access its message? - `except Exception as e` and then using a formatted string literal to print the specific exception
+Why is it bad practice to catch 'Exception'? - every exception inherits from the base Exception class, so it indicates if unintended behavior occurs but might not narrow down the specific issue to arise.
+What is a custom exception and why would you define one? - users can create their own exceptions in relation to a particular class defined in the program, implemented to account for unintended behavior in custom objects for which python might not have an appropriate exception type.
+What class should custom exceptions inherit from? - Exception (base class)
+What naming convention should custom exception classes follow? - PascalCase
+How do you make use of a custom exception in your program? - `raise CustomException`
+What is a data structure and why does choosing the right one matter? - a data strucutre is a method for organizing and storing data to be accessed and modified efficiently.
+What are the four key characteristics to consider when comparing data structures? - [LATER]
+What is the difference between a mutable and an immutable data structure? - elements in a mutable data structure can be changed within the object, immutable objects can't
+Name four built-in Python data structures. - lists, tuples, sets, and dictionaries
+What is the collections module and what does it provide? - collections module provides additional data structures such as queues and deques
+Why is defaulting to a list for every situation not always the best approach? - tuples can be better than lists when modifying elements isn't needed. in the case of accessing particular values, the built in hashing functionality of dictionaries is quicker than the linear behavior of accessing list elements.
+What does it mean for a list to be ordered and mutable? - each element in the list has a corresponding index for which the elements are ordered by, mutable implies elements can be modified within the list.
+What is zero-based indexing and what index refers to the last item in a list? - index for a data structure starts at 0, -1 for last item
+How does negative indexing work in Python? - access elements from reverse order, list[-n] refers to the nth to last element in the list for example
+What is slicing and what does my\_list\[1:4] return? - returns the elemnts in indices 1, 2, and 3.
+What is the difference between .remove() and .pop()? - pop removes an item and returns the removed value, remove just removes the value and returns nothing.
+What is the difference between .sort() and the built-in sorted() function? - sort() modifies the original data strucutre, sorted() returns a new, sorted object.
+How do you access an item in a nested list? - `list[index_1[index_2]]`
+Can a Python list hold items of different types? - Yes
+What is the key difference between a list and a tuple? - lists are mutable, tuples are immutable
+What does immutability mean in the context of a tuple? - elements of a tuple can't be modified without creating a new object
+What is tuple unpacking and how does it work? - [LATER]
+What is tuple packing? - [LATER]
+Why can tuples be used as dictionary keys but lists cannot? - dictionary keys must be immutable
+What are two common use cases where a tuple is more appropriate than a list? - when data is fixed and shouldn't be changed and when accessing data (faster for tuples than lists)
+What are the defining characteristics of a set? - mutable, unordered collection of items
+How do you create an empty set and why can't you use {}? - `set()`
+What happens if you add a duplicate value to a set? - the set doesn't change (automatically removed)
+What does deque stand for and where does it come from in Python? - double ended queue, from the collections module
+What limitation of Python lists does the deque address? - [LATER]
+What is the difference between .append() and .appendleft() on a deque? - append adds to end to deque (list end of list), appendleft for inserting in the front of deque
+What is list comprehension and what does it produce? - a concise method for creating a list from an existing iterable
+What is the basic syntax of a list comprehension? - `[expression for item in iterable]`
+How do you add a filtering condition to a list comprehension? - `[expression for item in iterable for condition]`
+What is the equivalent for loop pattern that list comprehension replaces? - `for item in list: new_list.append(expression(item))`
+What is a dict comprehension and how does its syntax differ from a list comprehension? - `{key: value for item in iterable}`
+What is an iterator in Python? - an object which produces items one at a time
+What two dunder methods must an iterator implement? - `__iter__()` to return the iterator object, `__next()__` to access next item in iterator object
+What does \_\_next\_\_() return and what does it do when the sequence is exhausted? - returns next item in iterator, StopIteration raised when iterator is exhausted
+What happens internally when Python executes a for loop? - uses an iterator object to lazily generate values
+What does the built-in iter() function do? - returns the iterator object
+Why are iterators described as single-use? - once all values in an iterator has been exahusted, can't be used again
+How would you build a custom iterator class? - [LATER]
+What is an iterable and what method must it implement? - an object which can be looped over
+Give four examples of built-in Python iterables. - lists, sets, tuples, and dictionaries
+What is the key difference between an iterable and an iterator? - an iterable has all items already allocated in memory, iterator returns values lazily
+Can you loop over the same iterable multiple times and what about an iterator? - yes, and no
+What does calling iter() on an iterable return? - return an iterator object for the iterable
+Why is the iterable/iterator distinction important for understanding how for loops work? - for loops call iterators internally because it's more memory efficient, iterable might be more useful for list comprehension
+What is a dictionary and how does it differ from a list? - pairs of keys and values
+What are the requirements for a dictionary key? - immutable and unique
+What types of data can be stored as dictionary values? - anything
+What is the difference between accessing a value with \["key"] versus .get("key")? - .get will return None is the key doesn't exist while brackets would crash the program
+How do you add a new key-value pair to an existing dictionary? - `dict["new_key] = value`
+What do .keys() .values() and .items() return and how are they used? - .keys for keys, values same, .items returns the pair as a tuple
+What does .update() do and what happens if a key exists in both dictionaries?
 * What does .setdefault() do and how does it differ from a regular assignment?
 * What happens when you zip two iterables of different lengths?
 * How does itertools.zip\_longest() differ from zip() and when would you use it?

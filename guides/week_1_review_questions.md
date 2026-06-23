@@ -180,7 +180,7 @@ The following are specific questions related to concepts covered in Week 1 of tr
 
 - `value_checking` in `list_name`
 
-**What does the \*\* operator do?**
+**What does the  operator do?**
 
 - [TO CHECK IN THE FUTURE]
 
@@ -310,13 +310,13 @@ The following are specific questions related to concepts covered in Week 1 of tr
 
 - parameters are variables listed in a function definition, arguments are values passed to a function when called.
 
-**What does \*args allow a function to do and what data structure does it collect values into?**
+**What does args allow a function to do and what data structure does it collect values into?**
 
 - *args allows the user to input zero to many arguments to a function after providing arguemnts for parameters. When called, the arbitrary arguments are collected into a tuple.
 
-**What does \*\*kwargs allow a function to do and what data structure does it collect values into?**
+**What does kwargs allow a function to do and what data structure does it collect values into?**
 
-- **kwargs allows the same as \*args but stores the variables in a dictionary with key value pairs.
+- **kwargs allows the same as args but stores the variables in a dictionary with key value pairs.
 
 **Why are parameters considered local to a function?**
 
@@ -382,7 +382,7 @@ The following are specific questions related to concepts covered in Week 1 of tr
 
 - using a dot in imports tells the interpreter to import every function/module from a package/module. It's useful when working with imports if a developer only intends to use certain functionality from a module/package.
 
-**Why are wildcard imports from module import \* generally discouraged?**
+**Why are wildcard imports from module import  generally discouraged?**
 
 - it's generally better practice to select specific functions/modules from the imported package.
 
@@ -504,7 +504,7 @@ The following are specific questions related to concepts covered in Week 1 of tr
 
 - the code for the rest of the current loop is skipped.
 
-**Give an example of a scenario where using break would be appropriate, and an example where using continue would be appropriate**
+**Give an example of a scenario where using break would be appropriate, and an example where using continue would be appropriate.**
 
 - break is often implemented in infinite loops to end the loop when a particular logical condition is met. if the logical condition is complex (requires two if statements), continue can be used in an infinite loop to go to the next iteration is the first logical condition is met and a subsequent logical condition isn't satisfied.
 
@@ -532,7 +532,7 @@ The following are specific questions related to concepts covered in Week 1 of tr
 
 - it evaluates an expression and branches execution based on the first matching pattern
 
-**What does case \_: represent in a match statement?**
+**What does case : represent in a match statement?**
 
 - It represents the wild card outcome if not of the previous match statements' logical conditions evaluate to true.
 
@@ -670,7 +670,7 @@ The following are specific questions related to concepts covered in Week 1 of tr
 
 **What is an exception and how does it differ from a syntax error?**
 
-- an exception is an object to indicate a disruption in normal code flow
+- an exception is an object to indicate a disruption in normal code flow, a syntax error is raised because program code wasn't written in the correct manner
 
 **What happens to a program when an exception is raised and not handled?**
 
@@ -746,7 +746,7 @@ The following are specific questions related to concepts covered in Week 1 of tr
 
 **What are the four key characteristics to consider when comparing data structures?**
 
-- time complexity, space complexity, data rekationships, and operations on the data
+- time complexity, space complexity, data relationships, and operations on the data
 
 **What is the difference between a mutable and an immutable data structure?**
 
@@ -778,7 +778,7 @@ The following are specific questions related to concepts covered in Week 1 of tr
 
 - access elements from reverse order, list[-n] refers to the nth to last element in the list for example
 
-**What is slicing and what does my\_list\[1:4] return?**
+**What is slicing and what does mylist1:4] return?**
 
 - returns the elemnts in indices 1, 2, and 3.
 
@@ -882,9 +882,9 @@ The following are specific questions related to concepts covered in Week 1 of tr
 
 **What two dunder methods must an iterator implement?**
 
-- `__iter__()` to return the iterator object, `__next()__` to access next item in iterator object
+- `__iter__()` to return the iterator object, `__next()_`_ to access next item in iterator object
 
-**What does \_\_next\_\_() return and what does it do when the sequence is exhausted?**
+**What does next() return and what does it do when the sequence is exhausted?**
 
 - returns next item in iterator, StopIteration raised when iterator is exhausted
 
@@ -902,7 +902,7 @@ The following are specific questions related to concepts covered in Week 1 of tr
 
 **How would you build a custom iterator class?**
 
-- define the class, __init__ method, __next__ method, and __iter__ method
+- define the class, `__init__` method, `__next__` method, and `__iter__` method
 
 **What is an iterable and what method must it implement?**
 
@@ -942,7 +942,7 @@ The following are specific questions related to concepts covered in Week 1 of tr
 
 - anything
 
-**What is the difference between accessing a value with \["key"] versus .get("key")?**
+**What is the difference between accessing a value with "key"] versus .get("key")?**
 
 - .get will return None is the key doesn't exist while brackets would crash the program
 
@@ -966,11 +966,11 @@ The following are specific questions related to concepts covered in Week 1 of tr
 
 - it will only zip objects up to the length of the shorter iterables, elements left in the longer iterable aren't included
 
-**How does itertools.zip\_longest() differ from zip() and when would you use it?**
+**How does itertools.ziplongest() differ from zip() and when would you use it?**
 
-- used when iterables have different lengths, filled with None
+- used when iterables have different lengths, filled with None or 0
 
-**What does zip(\*zipped) do and what is this operation called?**
+**What does zip(zipped) do and what is this operation called?**
 
 - unzips a zipped object, i.e. returns the two iterables originally zipped
 
@@ -1018,9 +1018,9 @@ The following are specific questions related to concepts covered in Week 1 of tr
 
 - python development isn't strictly dictated by OOP concepts, python has a plethra of built in functionality so OOP is implemented for more complex concepts
 
-## Classes, \_\_init\_\_, and self
+## Classes, init, and self
 
-**What does the \_\_init\_\_ method do and when is it called?**
+**What does the init method do and when is it called?**
 
 - used to define the creation of an object for a class, defining some of its attributes
 
@@ -1138,7 +1138,7 @@ The following are specific questions related to concepts covered in Week 1 of tr
 
 - a logger designed for a specific issue (as the name would indicate), created with `logging.getLogger(__name__)`
 
-**Why is \_\_name\_\_ recommended as the logger name?**
+**Why is name recommended as the logger name?**
 
 - reflacts the name of the module the logger will be in, if multiple loggers go to the same location it helps separates messages for different files
 
@@ -1156,7 +1156,7 @@ The following are specific questions related to concepts covered in Week 1 of tr
 
 **How do you configure a logger to send output to both the console and a file simultaneously?**
 
-- using `StreamHandler(sys.stdout)`
+- using `StreamHandler(sys.stdout)` , requires imporing sys
 
 **What is the difference between setting a level on a logger versus setting a level on a handler?**
 
@@ -1228,7 +1228,7 @@ The following are specific questions related to concepts covered in Week 1 of tr
 
 **Why is it better to use specific assertions (e.g. assertIsNone) rather than always using assertTrue?**
 
-- using specific assertion statements provides unique arguments which are easier than implementing logical expressions with assertTrue
+- using specific assertion statements provides unique arguments which are easier than implementing more complex expressions with assertTrue
 
 **How do you add a custom failure message to an assertion?**
 
@@ -1290,7 +1290,7 @@ The following are specific questions related to concepts covered in Week 1 of tr
 
 **When does a TearDown function run? Why does this matter?**
 
-- after each test method in a class, ensures tests don't affect each other
+- after each test method in a class, ensures tests don't affect each other via data leakage or another matter
 
 ## External Test Data
 
@@ -1308,7 +1308,7 @@ The following are specific questions related to concepts covered in Week 1 of tr
 
 **Where should test data files be stored within a project and why?**
 
-- in a separate data/ folders, cleaner and keeps tests readable
+- in a separate data/ folder, cleaner and keeps tests readable
 
 ## Mocking
 
@@ -1332,15 +1332,15 @@ The following are specific questions related to concepts covered in Week 1 of tr
 
 - magicmock is a subclass of mock to support python dunder methods (aka magic methods)
 
-**What does return\_value configure and how does it differ from attribute access on a mock?**
+**What does returnvalue configure and how does it differ from attribute access on a mock?**
 
 - return value reconfigures what a mock object outputs when called, while attributes return a child mock
 
-**How do assert\_called\_once() and assert\_called\_once\_with() differ?**
+**How do assertcalledonce() and assertcalledoncewith() differ?**
 
 - called once checks just frequency of calls, with also checks argument passed in a call
 
-**What information is stored in call\_args versus call\_args\_list?**
+**What information is stored in callargs versus callargslist?**
 
 - call args stores arguments from most recent call, call list gives chronological list of arguments for every call
 
@@ -1348,14 +1348,15 @@ The following are specific questions related to concepts covered in Week 1 of tr
 
 - when the code being tested uses a mock in a context manager, iterator, or operator
 
-**What is side\_effect and how does it differ from return\_value?**
+**What is sideeffect and how does it differ from returnvalue?**
 
-- side effect is an observable change the function makes oterh than that returned value
+- side effect is an observable change the function makes other than that returned value
 
-**If both side\_effect and return\_value are set on a mock which takes priority?**
+**If both sideeffect and returnvalue are set on a mock which takes priority?**
 
 - side effect
 
 **What does patch do and why is it useful for testing functions with external dependencies?**
 
 - patch replaces an object in a module with a mock for the duration of test, so you can mock a dependency without touching the code
+

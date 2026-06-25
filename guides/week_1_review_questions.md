@@ -670,73 +670,73 @@ The following are specific questions related to concepts covered in Week 1 of tr
 
 **What is an exception and how does it differ from a syntax error?**
 
-- an exception is an object to indicate a disruption in normal code flow, a syntax error is raised because program code wasn't written in the correct manner
+- An exception is an object raised at runtime to signal that something has gone wrong and disrupted the normal flow of the program. A syntax error, by contrast, is caught before the program runs because the code itself isn't valid Python, so it never executes. Exceptions are generally recoverable and meant to be handled, whereas errors typically are not.
 
 **What happens to a program when an exception is raised and not handled?**
 
-- program terminates, printing the error in the console.
+- The exception propagates up the call stack until it reaches the top of the program. If nothing handles it, the program terminates and Python prints a traceback to the console showing the exception type, its message, and where it occurred.
 
 **What does it mean for exceptions to have a hierarchy and why does that matter?**
 
-- exception objects can handle specific errors but can also refer to a more general error. when using exception handling, excpetion types have to be implemented in a logical order to ensure the proper exception is raised.
+- All exceptions inherit from a common base class (`Exception`), forming a hierarchy where specific exceptions like `ZeroDivisionError` or `KeyError` descend from more general ones. This matters because an `except` block for a parent class also catches its children, so you must order your `except` blocks from most specific to most general to ensure each exception is handled by the right block.
 
 **What is exception handling and why is it important?**
 
-- introducing and handling the possibility of unintended behavior in a program to ensure a program can continue if necessary or raise the issue to indicate something related to the program is wrong.
+- Exception handling is the practice of anticipating and gracefully responding to errors that may occur at runtime, using `try`/`except` blocks. It's important because it lets a program recover and continue running, or fail in a controlled way with a clear message, rather than crashing unexpectedly.
 
 **What is the purpose of the try block?**
 
-- the intent is to try code with the functionality to perform a different action if an exception is raised.
+- The `try` block contains the code that might raise an exception. Python attempts to run it normally, and if an exception occurs, control immediately jumps to the matching `except` block instead of crashing.
 
 **What is the purpose of the except block and when does it run?**
 
-- to run code in the case an exception is raised, runs when a particular exception (or exception within the hierarchy) is raised.
+- The `except` block defines how to respond when an exception is raised in the `try` block. It only runs if a matching exception type (or one of its subclasses in the hierarchy) is raised; otherwise it is skipped.
 
 **How do you handle multiple different exception types in the same try/except structure?**
 
-- can use multiple except statements for different exception types, in a logical order to ensure every excpetion type can be raised for its specific issue.
+- You can chain multiple `except` blocks, each handling a different exception type, ordered from most specific to most general. Alternatively, you can group several exceptions into a single block by passing them as a tuple, e.g. `except (IndexError, KeyError) as e`.
 
 **What is the difference between catching a specific exception versus catching a parent exception?**
 
-- a parent exception can be used as a catch all for a certain set of unintended issues.
+- Catching a specific exception (like `ZeroDivisionError`) lets you handle one precise problem with tailored logic. Catching a parent exception (like `Exception`) acts as a catch-all for a whole category of errors, which is convenient but risks hiding bugs you didn't anticipate.
 
 **What does the else block do in a try/except structure and when does it run?**
 
-- runs in the case when no exceptions are raised, implemented to perform further tasks in the case code functions as intended (without exceptions)
+- The `else` block runs only if the `try` block completes without raising any exception. It is used for code that should run on success, keeping it separate from the code that might fail in the `try` block.
 
 **What does the finally block do and when does it run?**
 
-- runs regardless of if and exception is raised or not.
+- The `finally` block always runs, whether or not an exception was raised and whether or not it was handled. It runs last, after the `try`, `except`, and `else` blocks.
 
 **Why is finally useful and what is it typically used for?**
 
-- useful when using resources which need to be closed after being called (databases, files)
+- Because it always executes, `finally` is ideal for cleanup tasks that must happen no matter what, such as closing files, releasing locks, or closing database connections.
 
 **How do you capture the exception object and how do you access its message?**
 
-- `except Exception as e` and then using a formatted string literal to print the specific exception
+- You capture it with the `as` keyword, e.g. `except Exception as e`, which binds the exception object to a variable. You can then access its message by printing it directly, often in an f-string like `print(f"Error: {e}")`, while `type(e).__name__` gives the exception's class name.
 
 **Why is it bad practice to catch 'Exception'?**
 
-- every exception inherits from the base Exception class, so it indicates if unintended behavior occurs but might not narrow down the specific issue to arise.
+- Since nearly every exception inherits from the base `Exception` class, catching it swallows every possible error, including ones you didn't anticipate like typos or logic bugs. This can mask real problems and make debugging much harder, so it's better to catch the specific exceptions you actually expect.
 
 ## Custom Exceptions
 
 **What is a custom exception and why would you define one?**
 
-- users can create their own exceptions in relation to a particular class defined in the program, implemented to account for unintended behavior in custom objects for which python might not have an appropriate exception type.
+- A custom exception is an exception class you define yourself, usually for a situation specific to your application's domain that the built-in exceptions don't describe well. Defining one makes your error handling more descriptive and lets calling code catch and respond to that specific error by name (e.g. `InvalidAgeError`, `DuplicateEmployeeError`).
 
 **What class should custom exceptions inherit from?**
 
-- Exception (base class)
+- The built-in `Exception` class (or a more specific built-in exception when appropriate). You can also override `__init__` to store extra context, like the invalid value, while calling `super().__init__()` to set the message.
 
 **What naming convention should custom exception classes follow?**
 
-- PascalCase
+- PascalCase, like all class names, and by convention the name ends in "Error" (e.g. `InvalidSalaryError`).
 
 **How do you make use of a custom exception in your program?**
 
-- `raise CustomException`
+- You trigger it manually with the `raise` keyword, typically passing a descriptive message, e.g. `raise InvalidAgeError("Age must be between 18 and 100.")`. It can then be caught in a `try`/`except` block just like any built-in exception.
 
 ## Data Structures: Overview
 
@@ -982,69 +982,69 @@ The following are specific questions related to concepts covered in Week 1 of tr
 
 **What is a decorator and what does it do to the function it is applied to?**
 
-- a decorator is a function which wraps around another function to extend its behavior
+- A decorator is a function that takes another function (or method) and extends or modifies its behavior without changing its source code, typically by wrapping it so behavior can be added before and/or after the original runs.
 
 **How is a decorator applied to a function in Python?**
 
-- `@decorator_name`
+- With the `@` symbol placed on the line directly above the function definition, e.g. `@decorator_name` above `def my_func():`.
 
 **Can you give an example of a decorator used in a Python framework?**
 
-- `@classmethod` defines a method which receives the class itself
+- Built-in examples include `@staticmethod` (a method that needs neither the instance nor the class), `@classmethod` (which receives the class itself as `cls` and is often used as an alternative constructor), and `@abstractmethod` (which forces subclasses to implement a method). Web frameworks like Flask also use decorators such as `@app.route()` to map a URL to a function.
 
 **What problem does the with statement solve and what did code look like before it?**
 
-- with statements are context managers which are used to properly open and close resources after the code in the indented block is executed
+- The `with` statement is a context manager that automatically acquires and releases a resource, guaranteeing cleanup (like closing a file or database connection) even if an exception occurs inside the block. Before it, you had to use `try`/`finally` and manually call `close()` in the `finally` block to ensure the resource was released. Under the hood, a context manager implements the `__enter__` and `__exit__` dunder methods.
 
 ## Object-Oriented Programming: Basics
 
 **What is Object-Oriented Programming and what is it centred around?**
 
-- a programming paradigms which is centered around the idea that everything is an object to promote modularity and readability
+- OOP is a programming paradigm centered on organizing code into objects, which bundle together related data (attributes) and behavior (methods). This promotes modularity, reusability, and readability by modeling real-world entities as self-contained units.
 
 **What is the difference between a class and an object?**
 
-- an object is an instance of a class, a class lists attributes and methods for an eventual object
+- A class is a blueprint or template that defines the attributes and methods its instances will have. An object is a concrete instance of a class, created from that blueprint with its own actual data.
 
 **What is the difference between an attribute and a method?**
 
-- attributes are properties of the class, methods are actions/functions performed for a class, or object
+- An attribute is a piece of data or property associated with a class or object (its state), while a method is a function defined inside a class that describes the behavior or actions an object can perform.
 
 **What are the four pillars of Object-oriented programming?**
 
-- abstraction, encapulsation, polymorphism, and inheritance
+- Abstraction (hiding complexity behind a simple interface), Encapsulation (bundling data with the methods that operate on it and restricting direct access), Inheritance (deriving new classes from existing ones to reuse code), and Polymorphism (allowing different classes to be used through a common interface).
 
 **Why is Python described as a multi-paradigm language rather than a purely OOP language?**
 
-- python development isn't strictly dictated by OOP concepts, python has a plethra of built in functionality so OOP is implemented for more complex concepts
+- Because Python supports several programming styles, not just OOP. You can write simple procedural scripts, use functional techniques (lambdas, `map`, `filter`), or build full object-oriented programs. OOP is available when it helps manage complexity, but Python doesn't force everything to be a class the way a purely OOP language might.
 
 ## Classes, init, and self
 
 **What does the init method do and when is it called?**
 
-- used to define the creation of an object for a class, defining some of its attributes
+- `__init__` is the constructor method. It runs automatically right after a new object is created, and it's used to initialize the object's instance attributes with the values passed in.
 
 **What is self and why is it needed?**
 
-- self refers to the object itselfs when defining attibutes and methods
+- `self` is a reference to the specific instance the method is being called on. It's the first parameter of instance methods and lets each object access and store its own attributes, distinguishing one instance's data from another's.
 
 **What is the difference between an instance attribute and a class attribute?**
 
-- class attribute defines an attribute for every instance of the class
+- A class attribute is defined at the top level of the class and is shared by all instances, while an instance attribute is defined on a specific object (usually inside `__init__` via `self`) and belongs only to that object. Assigning to an attribute on one instance creates or shadows it on that instance without affecting the class attribute or other instances.
 
 **How would you check whether an object is an instance of a particular class?**
 
-- type(object)
+- Use the built-in `isinstance(object, ClassName)`, which returns `True` or `False` and also accounts for inheritance. `type(object)` returns the exact class but is less flexible for inheritance checks.
 
 **How do you access an attribute on an object?**
 
-- `object.attribute_name`
+- With dot notation: `object.attribute_name`.
 
 ## Dunder Methods and Operator Overloading
 
 **What are dunder methods and why are they called that?**
 
-- non-callable attributes to describe data related to classes, dunder means double underscore
+- Dunder ("double underscore") methods are special methods whose names begin and end with two underscores, like `__init__`, `__str__`, or `__len__`. Python calls them automatically in response to built-in operations and syntax, which lets your objects integrate with language features such as construction, printing, and `len()`.
 
 **What dunder method would you define to control what len() returns for your object?**
 
@@ -1052,11 +1052,11 @@ The following are specific questions related to concepts covered in Week 1 of tr
 
 **What is operator overloading and which dunder methods enable it?**
 
-- using specific dunder methods to override built in operators like add, subtract, times, and divide (`__add__` for +)
+- Operator overloading is defining how built-in operators behave for your custom objects by implementing the corresponding dunder methods, e.g. `__add__` for `+`, `__sub__` for `-`, `__mul__` for `*`, and `__eq__` for `==`. This lets you write expressions like `obj1 + obj2` on your own types.
 
 **How does type casting work with custom Python objects?**
 
-- it constructs a new object of the target type with the existing type
+- When you call a built-in conversion function on a custom object, Python looks for the matching dunder method and calls it to produce the converted value. For example, `int(obj)` invokes the object's `__int__` method and `str(obj)` invokes `__str__`.
 
 **What dunder method is called when you use int() on a custom object?**
 
@@ -1066,7 +1066,7 @@ The following are specific questions related to concepts covered in Week 1 of tr
 
 **Why should you always use 'with open(...)' rather than calling 'open()' directly?**
 
-- can use an alias to refer and perform operations on the opened resource
+- Because `with open(...)` is a context manager that automatically closes the file when the block ends, even if an exception is raised. Calling `open()` directly requires you to remember to call `close()` yourself (typically in a `try`/`finally`), and forgetting to do so can leak resources or leave data unwritten.
 
 **What is the default file mode if none is specified?**
 
@@ -1074,43 +1074,43 @@ The following are specific questions related to concepts covered in Week 1 of tr
 
 **What is the difference between 'w' and 'a' mode?**
 
-- write will completely rewrite the opened file while append will add onto what's currently in the file
+- 'w' (write) opens the file for writing and overwrites any existing content, while 'a' (append) preserves the existing content and adds new data to the end. Both create the file if it doesn't already exist.
 
 **What does 'x' mode do and when is it useful?**
 
-- creates a new file to write in like 'w' but will return FileExistsError if the name file already exists in the directory
+- 'x' (exclusive create) creates a new file for writing but raises a `FileExistsError` if a file with that name already exists. It's useful when you want to guarantee you aren't overwriting an existing file.
 
 **What is binary mode, with respect to reading files, and when is it required?**
 
-- instructs the system to read a file as raw bytes
+- Binary mode ('rb'/'wb') reads or writes the file as raw bytes instead of decoded text. It's required for non-text files such as images, audio, or other binary formats, where decoding to a string would corrupt the data.
 
 **Why should you always specify encoding="utf-8" explicitly when opening text files?**
 
-- it's the default encoding method for files
+- Because the default encoding depends on the operating system, so the same code can behave differently across machines. Explicitly setting `encoding="utf-8"` makes reading and writing consistent and portable regardless of platform.
 
 **How do you rewind a file to the beginning after reading it?**
 
-- `file.seek(0)` with the opened file
+- Call `file.seek(0)` to move the cursor back to the start of the file.
 
 **What are three exceptions you should handle when working with files?**
 
-- FileNotFoundError, PermissionError, and UnicodeDecodeError
+- `FileNotFoundError` (the file doesn't exist), `PermissionError` (no access rights), and `UnicodeDecodeError` (the content can't be decoded with the given encoding).
 
 **What mode must a file be opened in to read its content?**
 
-- 'r'
+- 'r' (read mode), which is also the default.
 
 **When should you use 'a' mode instead of 'w' mode?**
 
-- when you want to add onto a file rather than rewriting, such as keeping data or keeping logs when running files
+- When you want to add to a file without destroying what's already there, such as appending to a log file across multiple runs. 'w' would overwrite the existing content each time.
 
 **Why is using the 'with' keyword especially important when writing files?**
 
-- it automatically handles resource clean up
+- Because writes are often buffered, the data may not actually be saved to disk until the file is flushed and closed. The `with` statement guarantees the file is properly closed (and the buffer flushed) when the block ends, even if an error occurs, preventing data loss.
 
 **What does f.write() return?**
 
-- total number of characters or bytes successfully written in a file
+- The number of characters written (or bytes, in binary mode).
 
 ## Logging
 
@@ -1220,41 +1220,41 @@ The following are specific questions related to concepts covered in Week 1 of tr
 
 **What is the purpose of assertion methods in unittest?**
 
-- assertion methods dictate what the expected behavior of a function being tested should be
+- Assertion methods define the expected outcome of the code under test by comparing actual results against expected values. If the assertion holds, the test passes; if it doesn't, the assertion fails and marks the test as failed.
 
 **What happens when an assertion fails? What happens when all assertions pass?**
 
-- when running unittest on a file, the console will display what tests failed
+- When an assertion fails, that test is marked as failed and the runner reports which test failed along with the expected versus actual values. If all assertions in a test pass, the test passes and the runner moves on, typically ending with a summary of how many tests passed and failed.
 
 **Why is it better to use specific assertions (e.g. assertIsNone) rather than always using assertTrue?**
 
-- using specific assertion statements provides unique arguments which are easier than implementing more complex expressions with assertTrue
+- Specific assertions like `assertIsNone`, `assertEqual`, or `assertIn` produce clearer, more informative failure messages (showing exactly what was expected versus what was received), whereas `assertTrue` only reports that a condition was false. They also express intent more readably and avoid writing more complex boolean expressions.
 
 **How do you add a custom failure message to an assertion?**
 
-- add a string as a arugment after the assert statement is defined
+- Pass a string as an extra `msg` argument after the assertion's values, e.g. `self.assertEqual(a, b, "values should match")`. That message is displayed if the assertion fails.
 
 **Which assertion would you use to check that a value appears in a list?**
 
-- `assertIn`
+- `assertIn`, e.g. `self.assertIn(value, my_list)`.
 
 ## Testing Exceptions
 
 **Why is it important to test that exceptions are raised and not just the happy path?**
 
-- testing exceptions ensures that a function or program gracefully handles exceptions in the correct way
+- Because robust code must handle invalid input and edge cases gracefully, not just the ideal "happy path." Testing that the right exception is raised for bad input confirms your error handling actually works and guards against regressions where validation might silently break.
 
 **What happens if the code inside assertRaises does not raise any exception?**
 
-- test fails and says so
+- The test fails, because `assertRaises` expects the specified exception to be raised. If no exception (or a different type) occurs, it reports the failure.
 
 **What is the difference between assertRaises and assertRaisesRegex?**
 
-- assertRaises is more general to test whether an exception is being raised, regex extends this behavior by verifying that a raised message is formatted in the intended way (usually combined with formatted string literals)
+- `assertRaises` only checks that a given exception type is raised, while `assertRaisesRegex` additionally verifies that the exception's message matches a given regex pattern. The latter is useful for confirming not just the type but the specific reason for the error.
 
 **If a function can raise a ValueError for two different reasons how would you test each reason separately?**
 
-- can use a regex assert statement to verifying which reason ValueError was raised
+- Use `assertRaisesRegex` with a distinct pattern matching each error message, so each test confirms the `ValueError` was raised for the correct reason rather than just that some `ValueError` occurred.
 
 ## Skipping Tests
 
@@ -1278,19 +1278,19 @@ The following are specific questions related to concepts covered in Week 1 of tr
 
 **What is a test fixture and why are fixtures useful?**
 
-- test fixtures are classes used to set up and tear down code which runs before and after tests, ensures clean state to prevent tests from affecting each other
+- A test fixture is the setup and teardown code that prepares a known, consistent state before tests run and cleans up afterward. Fixtures are useful because they avoid repeating setup code in every test and ensure each test starts from a clean state, so tests stay independent and don't affect one another.
 
 **What is the difference between setUp and setUpClass?**
 
-- setUpClass runs once before all tests in a class while setUp runs before each test method in a class
+- `setUp` runs before every individual test method, giving each test a fresh starting state, while `setUpClass` runs only once before all tests in the class. `setUpClass` is better for expensive, shared setup that doesn't need to be repeated, whereas `setUp` is for per-test isolation.
 
 **Why must setUpClass and tearDownClass be decorated with @classmethod?**
 
-- because they're decorators, extending the functionality of the functions in place for unit testing
+- Because they operate at the class level rather than on a single instance. They run once for the whole class, before any individual test instance is set up, so they receive the class (`cls`) instead of `self`, which is exactly what the `@classmethod` decorator provides.
 
 **When does a TearDown function run? Why does this matter?**
 
-- after each test method in a class, ensures tests don't affect each other via data leakage or another matter
+- `tearDown` runs after each test method, regardless of whether the test passed or failed. This matters because it cleans up any state or resources the test created, preventing data from leaking between tests and keeping them independent.
 
 ## External Test Data
 
@@ -1314,49 +1314,48 @@ The following are specific questions related to concepts covered in Week 1 of tr
 
 **What is mocking and why is it used in unit testing?**
 
-- practice of replacing real dependencies in testing with controlled, fake substitutes. useful for testing functionality with potentially tampering with real data
+- Mocking is the practice of replacing real dependencies with controlled, fake substitutes during testing. It's used so you can test a piece of code in isolation without involving slow or unpredictable external systems, while still being able to configure return values and verify how the dependency was used.
 
 **What kinds of dependencies are typically replaced with mocks?**
 
-- class instances
+- External or hard-to-control dependencies such as databases, web APIs, file systems, network calls, and service-layer objects, i.e. anything that would make a test slow, flaky, or dependent on external state.
 
 **How does mocking improve test speed repeatability and independence?**
 
-- keeping the testing separate from an external state like data makes tests faster
+- By removing reliance on real external systems, mocks make tests fast (no real I/O or network calls), repeatable (no dependence on changing external state), and independent (each test controls its own fake data rather than sharing a real resource).
 
 **Beyond checking return values what else can you verify using a mock object?**
 
-- can validate the mock was called once, can return how many times a mock was called, and check the arguments provided to a mock
+- You can verify the interactions with the mock: whether it was called (`assert_called_once`), how many times it was called (`call_count`), and what arguments it was called with (`assert_called_once_with`, `call_args`, `call_args_list`).
 
 **What is the difference between Mock and MagicMock?**
 
-- magicmock is a subclass of mock to support python dunder methods (aka magic methods)
+- `MagicMock` is a subclass of `Mock` that additionally pre-configures Python's magic (dunder) methods like `__len__`, `__iter__`, `__enter__`, and `__getitem__`. A plain `Mock` raises an error if the code uses it with `len()`, in a `with` block, or with bracket indexing, whereas `MagicMock` supports those out of the box.
 
 **What does returnvalue configure and how does it differ from attribute access on a mock?**
 
-- return value reconfigures what a mock object outputs when called, while attributes return a child mock
+- `return_value` configures what the mock returns when it is called like a function (e.g. `mock.return_value = 100` means `mock()` returns 100). Accessing an attribute on a mock instead returns a new child mock automatically, rather than a configured value.
 
 **How do assertcalledonce() and assertcalledoncewith() differ?**
 
-- called once checks just frequency of calls, with also checks argument passed in a call
+- `assert_called_once()` only verifies the mock was called exactly once, while `assert_called_once_with()` also checks that the single call was made with the specific arguments provided.
 
 **What information is stored in callargs versus callargslist?**
 
-- call args stores arguments from most recent call, call list gives chronological list of arguments for every call
+- `call_args` stores the arguments of the most recent call (as a `call` object with `.args` and `.kwargs`), while `call_args_list` is a chronological list of `call` objects recording the arguments of every call made to the mock.
 
 **When would you choose MagicMock over Mock?**
 
-- when the code being tested uses a mock in a context manager, iterator, or operator
+- When the code under test uses the mock in a way that relies on magic methods, such as a context manager (`with` block), an iterator, `len()`, or bracket indexing. It's also a reasonable default when mocking complex real-world objects.
 
 **What is sideeffect and how does it differ from returnvalue?**
 
-- side effect is an observable change the function makes other than that returned value
+- `side_effect` lets a mock do something dynamic when called: raise an exception, run a function, or return successive values from an iterable. `return_value` just hands back a single fixed value. `side_effect` is for when calling the mock needs to trigger behavior beyond returning one static result.
 
 **If both sideeffect and returnvalue are set on a mock which takes priority?**
 
-- side effect
+- `side_effect` takes priority (unless it returns the special `DEFAULT` sentinel, in which case `return_value` is used).
 
 **What does patch do and why is it useful for testing functions with external dependencies?**
 
-- patch replaces an object in a module with a mock for the duration of test, so you can mock a dependency without touching the code
-
+- `patch` temporarily replaces an object in a module's namespace with a mock for the duration of a test, then automatically restores the original afterward. It's useful because you can swap out an external dependency (like `requests.get`) without modifying the production code. The key rule is to patch the object where it's used, not where it's defined.

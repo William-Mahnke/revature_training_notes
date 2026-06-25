@@ -87,7 +87,7 @@ Once the Jupyter interface opens in your browser:
 
 ## Step 5 — Understanding the Interface
 
-```
+```text
 ┌─────────────────────────────────────────────────────┐
 │  File  Edit  View  Insert  Cell  Kernel  Help        │  ← Menu bar
 ├─────────────────────────────────────────────────────┤
@@ -100,7 +100,7 @@ Once the Jupyter interface opens in your browser:
 ```
 
 | Element | Description |
-|---|---|
+| --- | --- |
 | **Cell** | The individual block where you write code or text |
 | **In [ ]:** | Indicates a code cell. The number inside shows the order it was run |
 | **Toolbar** | Buttons for running cells, adding cells, and changing cell type |
@@ -115,7 +115,7 @@ Once the Jupyter interface opens in your browser:
 Type code into a cell and run it using one of these methods:
 
 | Action | Shortcut |
-|---|---|
+| --- | --- |
 | Run cell and move to next | `Shift + Enter` |
 | Run cell and stay on same cell | `Ctrl + Enter` |
 | Run cell and insert new cell below | `Alt + Enter` |
@@ -130,7 +130,7 @@ print("Hello, Jupyter!")
 
 The output will appear directly below the cell:
 
-```
+```text
 Hello, Jupyter!
 ```
 
@@ -141,7 +141,7 @@ Hello, Jupyter!
 Jupyter supports different cell types, selectable from the dropdown in the toolbar:
 
 | Type | Purpose |
-|---|---|
+| --- | --- |
 | **Code** | Write and run Python code |
 | **Markdown** | Write formatted notes, headings, and documentation |
 | **Raw** | Plain text — not executed or rendered |
@@ -171,7 +171,7 @@ Jupyter has two modes:
 - **Command Mode** — you are navigating between cells (blue border). Press `Esc` to enter Command Mode.
 
 | Shortcut | Mode | Action |
-|---|---|---|
+| --- | --- | --- |
 | `Shift + Enter` | Either | Run cell and move to next |
 | `Ctrl + Enter` | Either | Run cell, stay in place |
 | `Esc` | Edit | Enter Command Mode |
@@ -207,7 +207,7 @@ Go to **File → Close and Halt** to shut down the notebook's kernel and close t
 
 In the terminal where Jupyter is running, press:
 
-```
+```text
 Ctrl + C
 ```
 
@@ -235,7 +235,7 @@ If you prefer to stay in VS Code, you can run Jupyter Notebooks directly without
 ## Quick Reference
 
 | Task | Command |
-|---|---|
+| --- | --- |
 | Install Jupyter | `pip install notebook` |
 | Launch Jupyter | `jupyter notebook` |
 | Run a cell | `Shift + Enter` |

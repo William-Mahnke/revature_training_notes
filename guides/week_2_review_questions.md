@@ -424,72 +424,140 @@ The following are specific questions related to concepts covered in Week 2 of tr
 
 **What is FastAPI and what two core libraries is it built on? What does each provide?**
 
+- FastAPI is a high-performance Python web framework for building REST APIs. It is built on Starlette, which provides the web/ASGI layer (routing, middleware, request/response handling), and Pydantic, which provides data validation, serialization, and schema generation for automatic API documentation.
+
 **What is Uvicorn and what role does it play when running a FastAPI application?**
+
+- Uvicorn is an ASGI (Asynchronous Server Gateway Interface) server. It sits between the network and the FastAPI application, handling incoming HTTP connections and passing them to the app. You run a FastAPI app with a command like `uvicorn file_name:app --reload`.
 
 **How does FastAPI use Python type annotations and what three things do they drive automatically?**
 
+- FastAPI reads type annotations on path operation function parameters to automatically drive (1) request validation, (2) serialization/deserialization of request and response data, and (3) interactive API documentation (OpenAPI/Swagger).
+
 **What is Swagger UI and how is it made available in a FastAPI application?**
+
+- Swagger UI is an automatically generated interactive API documentation interface where you can browse and test endpoints. FastAPI exposes it at `/docs` (e.g. `http://127.0.0.1:8000/docs`) when the app is running via Uvicorn.
 
 **Why is FastAPI particularly well suited to I/O-bound workloads compared to traditional synchronous frameworks?**
 
+- FastAPI supports `async def` route handlers and `await`, allowing the server to handle other requests while waiting on I/O (database calls, external API requests) instead of blocking the thread until each request fully completes.
+
 **What is Uvicorn's role in a FastAPI application and how does it differ from the application itself?**
+
+- Uvicorn is the server that listens for HTTP traffic and dispatches requests to the FastAPI application. The FastAPI app is the application code that defines routes, validation, and business logic — Uvicorn handles connections and the ASGI protocol; FastAPI handles what to do with each request.
 
 **What does the --reload flag do and why should it not be used in production?**
 
+- `--reload` watches source files for changes and automatically restarts the server so you see updates during development without manually restarting. It should not be used in production because the file-watching and restart behaviour adds unnecessary overhead, is not needed once code is deployed, and can cause instability under load.
+
 **What is the difference between a def and async def path operation function and when should each be used?**
+
+- `def` defines a synchronous handler — the worker blocks while it runs; use it for quick logic or when calling synchronous libraries. `async def` defines an asynchronous handler — FastAPI can run other work while it `await`s I/O; use it when the route performs I/O-bound operations (e.g. calling external APIs with `httpx.AsyncClient`).
 
 **What does the tags parameter on a route decorator do?**
 
+- The `tags` parameter groups related routes together in the Swagger UI documentation, making the docs easier to navigate as the API grows (e.g. `tags=["Employees"]`).
+
 **What are the five core HTTP method decorators in FastAPI and what operation does each represent?**
+
+- `@app.get` (retrieve), `@app.post` (create), `@app.put` (replace), `@app.patch` (partial update), and `@app.delete` (remove).
 
 **What is the difference between a path parameter and a query parameter? How does FastAPI distinguish between them?**
 
+- Path parameters are variable segments embedded in the URL path (e.g. `/employees/{employee_id}`). Query parameters are key-value pairs appended after `?` (e.g. `/employees?department=Engineering`). In FastAPI, path parameters are declared as function arguments whose names match the `{placeholder}` in the route path; query parameters are also function arguments, but for simple types not embedded in the path template.
+
 **How do you make a query parameter optional in FastAPI and what happens if a required query parameter is missing from a request?**
+
+- Give the parameter a default value, typically `Optional[type] = None`, e.g. `department: Optional[str] = None`. If a required query parameter (no default) is missing, FastAPI automatically returns a 422 Unprocessable Entity validation error.
 
 **What is the difference between PUT and PATCH and when would you use each?**
 
+- PUT replaces the entire resource — all fields are required and the client sends a full replacement. PATCH applies a partial update — only supplied fields are changed (e.g. via `model_dump(exclude_none=True)`). Use PUT for full replacements; use PATCH when the client only needs to update one or more fields without sending the complete record.
+
 **How would you define a route that accepts both a path parameter and an optional query parameter?**
+
+- Declare both as function parameters — the path parameter name must match the route placeholder, and the query parameter gets a default: e.g. `@app.get("/employees/{employee_id}")` with `def get_employee(employee_id: int, department: Optional[str] = None):`.
 
 **How does FastAPI know that a function parameter represents a request body rather than a path or query parameter?**
 
+- Parameters typed as Pydantic models (subclasses of `BaseModel`) are treated as the request body. Simple scalar types in the path template become path parameters; simple scalar types not in the path become query parameters.
+
 **What does response_model do and why is its filtering behaviour important for security?**
+
+- `response_model` on a route decorator declares the expected response shape. FastAPI serializes the return value through that model and filters out any fields not declared on it, preventing accidental exposure of internal or sensitive data that may exist on the underlying object.
 
 **What is HTTPException and how does it differ from simply returning an error message in the response body?**
 
+- `HTTPException` is raised to return a proper HTTP error response with the correct status code (e.g. 404) and a structured `detail` message. Returning an error message in a normal 200 response would signal success to the client even though something failed — `HTTPException` sets the status code and error format correctly so clients and HTTP-aware tools can handle it properly.
+
 **What is APIRouter and what problem does it solve as a FastAPI project grows?**
+
+- `APIRouter` is FastAPI's mechanism for grouping related routes into separate modules. As a project grows, it keeps route definitions organised and modular instead of putting every endpoint in a single file.
 
 **How is a router registered on the main app instance and what does that registration do?**
 
+- Register with `app.include_router(router, prefix="/employees", tags=["Employees"])`. This attaches all routes defined on that router to the main application under the given URL prefix, so modular route files are wired into the running app without duplicating the `FastAPI()` instance.
+
 **Why is it better to raise HTTPException than to return a plain dictionary containing an error message?**
+
+- `HTTPException` sets the proper HTTP status code and a standard error response format that clients, proxies, and monitoring tools understand. A plain dict with an error message would still return 200 OK unless you manually set the status code, so the client may treat a failure as success.
 
 ## Consuming APIs with httpx
 
 **What is the difference between httpx.AsyncClient and httpx.Client and when should each be used?**
 
+- `httpx.AsyncClient` is for asynchronous requests — use with `async with` inside `async def` route handlers when you need non-blocking I/O (e.g. fetching from an external API without blocking other requests). `httpx.Client` is synchronous — use inside regular `def` handlers for simple, low-latency calls where blocking is acceptable.
+
 **What does raise_for_status() do and what would happen if you omitted it?**
+
+- `raise_for_status()` raises an `httpx.HTTPStatusError` if the response status code indicates an error (4xx or 5xx). If omitted, the request completes without raising and your code may treat a failed response as valid data unless you manually check `response.status_code`.
 
 **Why is httpx preferred over requests in a FastAPI application and in what situation would requests still be acceptable?**
 
+- httpx supports both async and sync clients, so it integrates cleanly with FastAPI's async routes without blocking the event loop. `requests` is sync-only — it is still acceptable for simple synchronous endpoints or standalone scripts where async is not needed and the external call is reliable with low latency.
+
 **Why is it important to use httpx.AsyncClient as a context manager rather than instantiating it directly?**
+
+- Using `async with httpx.AsyncClient()` ensures the client's connections are properly opened and closed when the block exits. Instantiating without a context manager can leave connections open, wasting resources and potentially causing connection leaks under load.
 
 ## Pydantic
 
 **What is Pydantic and what problem does it solve that Python's built-in type hints do not?**
 
+- Pydantic is a library for data validation and settings management using Python type annotations. Unlike built-in type hints (which are not enforced at runtime), Pydantic validates incoming data, coerces compatible types, and raises structured errors when data is invalid.
+
 **What happens when you pass invalid data to a Pydantic model and what information does the error provide?**
+
+- Pydantic raises a `ValidationError` listing each field that failed, what value was received, and why it failed (e.g. "Field required", "Input should be a valid integer, unable to parse string as an integer").
 
 **What is type coercion in the context of Pydantic and can you give an example of when it occurs?**
 
+- Type coercion is Pydantic automatically converting compatible input types to the declared field type at runtime. For example, passing `id="2"` (a string) to an `int` field is coerced to the integer `2`.
+
 **What is the difference between a required field and an optional field in a Pydantic model?**
+
+- A required field has no default and must be provided at instantiation — omitting it raises `ValidationError`. An optional field has a default (typically `None` via `Optional[type] = None`) and can be omitted without error.
 
 **What does model_dump() return and when would you use it?**
 
+- `model_dump()` serializes a Pydantic model instance to a plain Python dictionary. Use it when you need dict/JSON-friendly output for APIs, logging, or passing data to code that expects a dict (e.g. `{"id": employee_id, **employee.model_dump()}`).
+
 **What does Field() add to a Pydantic field beyond its type annotation and give three examples of constraints it can express?**
+
+- `Field()` adds metadata, defaults, and validation constraints beyond the type annotation. Three examples: `min_length`/`max_length` (string length bounds), `gt`/`lt` (numeric bounds, e.g. `Field(gt=0)` for a positive salary), and `description` (documentation text for the field).
 
 **What is the difference between @field_validator and @model_validator and when would you use each?**
 
+- `@field_validator` runs custom validation on a single field after type validation — use it for field-specific rules (e.g. a name must contain a space). `@model_validator` runs after all fields are validated and has access to the full model — use it for cross-field rules that depend on multiple fields (e.g. Executive employees must have a salary of at least £80,000).
+
 **What is a nested Pydantic model and how does Pydantic handle validation of nested data?**
+
+- A nested model is when one Pydantic model is declared as a field type on another (e.g. `address: Optional[Address] = None`). Pydantic recursively validates nested dicts or objects against the nested model's schema and creates nested model instances.
 
 **How does Pydantic handle Python Enum types and what validation does it apply automatically?**
 
+- When a field is typed as an `Enum`, Pydantic only accepts values that match one of the declared enum members (coercing compatible strings where possible). Invalid values raise `ValidationError` listing the allowed options (e.g. "Input should be 'Engineering', 'Executive', 'Marketing' or 'Finance'").
+
 **Why should API keys never be hardcoded in source code?**
+
+- Hardcoded keys are exposed in version control, code reviews, and shared repositories — anyone with access to the code can see them. They should be loaded from environment variables or a secrets manager so credentials can be rotated without changing code and are not leaked to unauthorised users.

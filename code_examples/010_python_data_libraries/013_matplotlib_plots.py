@@ -9,7 +9,7 @@ monthly_qty = df.groupby(
 )["quantity"].sum()
 
 fig, ax = plt.subplots(figsize=(8, 5))
-ax.plot(monthly_qty.index.astype(str), monthly_qty.values)
+ax.plot(monthly_qty.index.astype(str), monthly_qty.values)  # pyright: ignore[reportAttributeAccessIssue, reportArgumentType]
 ax.set_title("Monthly Quantity Sold (Line Chart)")
 ax.set_xlabel("Month")
 ax.set_ylabel("Total Quantity")
@@ -21,7 +21,7 @@ plt.show()
 dept_qty = df.groupby("department")["quantity"].sum()
 
 fig, ax = plt.subplots(figsize=(8, 5))
-ax.bar(dept_qty.index, dept_qty.values)
+ax.bar(dept_qty.index, dept_qty.values)  # pyright: ignore[reportArgumentType, reportAttributeAccessIssue]
 ax.set_title("Total Quantity Sold by Department (Bar Chart)")
 ax.set_xlabel("Department")
 ax.set_ylabel("Total Quantity")
@@ -30,10 +30,10 @@ plt.show()
 
 # --- Horizontal bar chart: better for longer category labels ---
 
-office_qty = df.groupby("sales_office")["quantity"].sum().sort_values()
+office_qty = df.groupby("sales_office")["quantity"].sum().sort_values()  # pyright: ignore[reportCallIssue, reportAttributeAccessIssue]
 
 fig, ax = plt.subplots(figsize=(8, 6))
-ax.barh(office_qty.index, office_qty.values)
+ax.barh(office_qty.index, office_qty.values)  # pyright: ignore[reportArgumentType]
 ax.set_title("Total Quantity Sold by Sales Office (H Bar Chart)")
 ax.set_xlabel("Total Quantity")
 plt.tight_layout()
@@ -46,7 +46,7 @@ import numpy as np
 dept_monthly = df.groupby([
     df["sale_date"].dt.to_period("M").astype(str),
     "department"
-])["quantity"].sum().unstack()
+])["quantity"].sum().unstack()  # pyright: ignore[reportAttributeAccessIssue]
 
 months = dept_monthly.index.tolist()
 departments = dept_monthly.columns.tolist()
@@ -61,7 +61,7 @@ ax.set_title("Monthly Quantity Sold by Department (GroupedBar Chart)")
 ax.set_xlabel("Month")
 ax.set_ylabel("Total Quantity")
 ax.set_xticks(x + width)
-ax.set_xticklabels(months)
+ax.set_xticklabels(months)  # pyright: ignore[reportArgumentType]
 ax.legend()
 plt.tight_layout()
 plt.show()

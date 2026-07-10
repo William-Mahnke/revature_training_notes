@@ -95,11 +95,11 @@ print(e2.describe())                    # 101 — Alice — Manager
 class Shape(ABC):                       # inherits from ABC
 
     @abstractmethod
-    def area(self):                     # subclasses MUST implement this
+    def area(self) -> float:                     # subclasses MUST implement this
         pass
 
     @abstractmethod
-    def perimeter(self):                # subclasses MUST implement this
+    def perimeter(self) -> float:                # subclasses MUST implement this
         pass
 
     def describe(self):                 # regular method — NOT abstract

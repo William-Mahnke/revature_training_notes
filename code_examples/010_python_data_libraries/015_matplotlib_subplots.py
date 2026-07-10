@@ -5,14 +5,14 @@ df = pd.read_csv("sales_data.csv", parse_dates=["sale_date"])
 
 # Prepare aggregated data used across examples
 dept_qty       = df.groupby("department")["quantity"].sum()
-office_qty     = df.groupby("sales_office")["quantity"].sum().sort_values()
+office_qty     = df.groupby("sales_office")["quantity"].sum().sort_values()  # pyright: ignore[reportAttributeAccessIssue, reportCallIssue]
 monthly_qty    = df.groupby(df["sale_date"].dt.to_period("M"))["quantity"].sum()
 state_qty      = df.groupby("state")["quantity"].sum()
 
 # --- Basic subplot grid: 1 row, 2 columns ---
 fig, ax = plt.subplots(1, 2, figsize=(12, 5))
 
-ax[0].bar(dept_qty.index, dept_qty.values, color="steelblue", edgecolor="white")
+ax[0].bar(dept_qty.index, dept_qty.values, color="steelblue", edgecolor="white")  # pyright: ignore[reportAttributeAccessIssue]
 ax[0].set_title("Quantity by Department")
 ax[0].set_xlabel("Department")
 ax[0].set_ylabel("Total Quantity")
@@ -31,18 +31,18 @@ plt.show()
 fig, ax = plt.subplots(2, 2, figsize=(12, 9))
 
 # Top left: quantity by department
-ax[0, 0].bar(dept_qty.index, dept_qty.values, color="cornflowerblue", edgecolor="white")
+ax[0, 0].bar(dept_qty.index, dept_qty.values, color="cornflowerblue", edgecolor="white")  # pyright: ignore[reportAttributeAccessIssue]
 ax[0, 0].set_title("Quantity by Department")
 ax[0, 0].tick_params(axis="x", rotation=45)
 
 # Top right: monthly trend
-ax[0, 1].plot(monthly_qty.index.astype(str), monthly_qty.values,
+ax[0, 1].plot(monthly_qty.index.astype(str), monthly_qty.values,  # pyright: ignore[reportAttributeAccessIssue]
               marker="o", color="coral", linewidth=2)
 ax[0, 1].set_title("Monthly Quantity Sold")
 ax[0, 1].set_xlabel("Month")
 
 # Bottom left: quantity by state
-ax[1, 0].bar(state_qty.index, state_qty.values, color="springgreen", edgecolor="white")
+ax[1, 0].bar(state_qty.index, state_qty.values, color="springgreen", edgecolor="white")  # pyright: ignore[reportAttributeAccessIssue]
 ax[1, 0].set_title("Quantity by State")
 
 # Bottom right: unit price distribution
@@ -66,7 +66,7 @@ for ax, dept, color in zip(axes.flatten(), departments, colors):
     dept_data = df[df["department"] == dept].groupby(
         df["sale_date"].dt.to_period("M")
     )["quantity"].sum()
-    ax.plot(dept_data.index.astype(str), dept_data.values,
+    ax.plot(dept_data.index.astype(str), dept_data.values,  # pyright: ignore[reportAttributeAccessIssue]
             marker="o", color=color, linewidth=2)
     ax.set_title(f"{dept}")
     ax.set_xlabel("Month")
@@ -82,16 +82,16 @@ plt.show()
 fig, axes = plt.subplots(1, 2, figsize=(12, 5))
 
 # Tell pandas exactly which panel to draw into using the ax parameter
-dept_qty.plot(kind="bar", ax=axes[0], color="royalblue",
+dept_qty.plot(kind="bar", ax=axes[0], color="royalblue",  # pyright: ignore[reportAttributeAccessIssue]
               edgecolor="white", legend=False)
 axes[0].set_title("Quantity by Department")
 axes[0].set_xlabel("Department")
 axes[0].set_ylabel("Total Quantity")
 axes[0].tick_params(axis="x", rotation=45)
 
-monthly_qty_plot = monthly_qty.copy()
-monthly_qty_plot.index = monthly_qty_plot.index.astype(str)
-monthly_qty_plot.plot(kind="line", ax=axes[1], marker="o",
+monthly_qty_plot = monthly_qty.copy()  # pyright: ignore[reportAttributeAccessIssue]
+monthly_qty_plot.index = monthly_qty_plot.index.astype(str)  # pyright: ignore[reportAttributeAccessIssue]
+monthly_qty_plot.plot(kind="line", ax=axes[1], marker="o",  # pyright: ignore[reportAttributeAccessIssue]
                       color="coral", linewidth=2, legend=False)
 axes[1].set_title("Monthly Quantity Sold")
 axes[1].set_xlabel("Month")

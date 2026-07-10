@@ -36,7 +36,7 @@ print("car 2 dict:", car2.__dict__)
 print("Car class dict:", Car.__dict__)
 
 print( "=== Car class Modification ===")
-Car.year = 2026
+Car.year = 2026  # pyright: ignore[reportAttributeAccessIssue]
 Car.wheels = 10
 print( car1.describe(), f"I have {car1.wheels} wheel(s)")
 print( car2.describe(), f"I have {car2.wheels} wheel(s)")

@@ -84,7 +84,7 @@ except InvalidSalaryError as e:
 # ── Custom exception with extra attributes ─────────────
 # You can override __init__ to store additional context
 
-class InvalidSalaryError(Exception):
+class InvalidSalaryError2(Exception):
     """Raised when a salary value is invalid."""
 
     def __init__(self, salary, message="Salary must be a positive number."):
@@ -93,8 +93,8 @@ class InvalidSalaryError(Exception):
         super().__init__(f"{message} Got: {salary}")
 
 try:
-    raise InvalidSalaryError(-500)
-except InvalidSalaryError as e:
+    raise InvalidSalaryError2(-500)
+except InvalidSalaryError2 as e:
     print(f"Error    : {e}")
     print(f"Bad value: {e.salary}")
 

@@ -32,7 +32,7 @@ office_to_state = {
     "Colorado West":    "Colorado"
 }
 # Set each state, where the state is na (fillna) to the corresponding value from the 'office_to_state' dict created above
-df["state"] = df["state"].fillna(df["sales_office"].map(office_to_state))
+df["state"] = df["state"].fillna(df["sales_office"].map(office_to_state))  # pyright: ignore[reportArgumentType]
 print(f"Remianing Null States: {df["state"].isnull().sum()}")  # 0 — all state nulls resolved
 
 # Fill missing unit_price by matching on product_id

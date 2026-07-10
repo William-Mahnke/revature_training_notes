@@ -7,7 +7,7 @@ df = pd.read_csv("sales_data.csv", parse_dates=["sale_date"])
 monthly_by_dept = df.groupby([
     df["sale_date"].dt.to_period("M").astype(str),
     "department"
-])["quantity"].sum().unstack()
+])["quantity"].sum().unstack()  # pyright: ignore[reportAttributeAccessIssue]
 
 fig, ax = plt.subplots(figsize=(9, 5))
 for dept in monthly_by_dept.columns:
@@ -27,8 +27,8 @@ monthly_qty = df.groupby(
 
 fig, ax = plt.subplots(figsize=(8, 5))
 ax.plot(
-    monthly_qty.index.astype(str),
-    monthly_qty.values,
+    monthly_qty.index.astype(str),  # pyright: ignore[reportAttributeAccessIssue]
+    monthly_qty.values,  # pyright: ignore[reportAttributeAccessIssue, reportArgumentType]
     color="steelblue",   # line colour
     linestyle="--",      # dashed line
     linewidth=2,         # line thickness
@@ -46,8 +46,8 @@ dept_qty = df.groupby("department")["quantity"].sum()
 
 fig, ax = plt.subplots(figsize=(8, 5))
 ax.bar(
-    dept_qty.index,
-    dept_qty.values,
+    dept_qty.index,  # pyright: ignore[reportArgumentType, reportAttributeAccessIssue]
+    dept_qty.values,  # pyright: ignore[reportAttributeAccessIssue, reportArgumentType]
     color="steelblue",
     edgecolor="white",  # border around each bar
     alpha=0.85          # slight transparency
@@ -77,7 +77,7 @@ plt.show()
 
 # --- Axis limits ---
 fig, ax = plt.subplots(figsize=(8, 5))
-ax.bar(dept_qty.index, dept_qty.values, color="steelblue", edgecolor="white")
+ax.bar(dept_qty.index, dept_qty.values, color="steelblue", edgecolor="white")  # pyright: ignore[reportArgumentType, reportAttributeAccessIssue]
 ax.set_title("Total Quantity Sold by Department (axis limited)")
 ax.set_ylim(0, 60)   # set y-axis range explicitly
 plt.xticks(rotation=45, ha="right")

@@ -92,7 +92,7 @@ outer_function()                        # Employee: Joseph
 # Use the 'nonlocal' keyword to modify a variable
 # from the enclosing scope
 
-def outer_function():
+def outer_function_2():
     count = 0                           # enclosing variable
 
     def inner_function():
@@ -104,7 +104,7 @@ def outer_function():
     inner_function()
     print(f"Inside outer  : {count}")   # reflects the changes made in inner
 
-outer_function()
+outer_function_2()
 
 # Inside inner  : 1
 # Inside inner  : 2
@@ -113,7 +113,7 @@ outer_function()
 
 # ── Without 'nonlocal' keyword ─────────────────────────
 
-def outer_function():
+def outer_function_3():
     count = 0
 
     def inner_function():
@@ -124,7 +124,7 @@ def outer_function():
     inner_function()
     print(f"Inside outer  : {count}")   # enclosing count unchanged
 
-outer_function()
+outer_function_3()
 
 # Inside inner  : 99
 # Inside outer  : 0                     ← enclosing count unchanged

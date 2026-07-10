@@ -14,7 +14,7 @@ print(type(ax))   # <class 'matplotlib.axes.Axes'>
 
 monthly_qty = df.groupby(df["sale_date"].dt.to_period("M"))["quantity"].sum()
 
-plt.plot(monthly_qty.index.astype(str), monthly_qty.values)
+plt.plot(monthly_qty.index.astype(str), monthly_qty.values)  # pyright: ignore[reportAttributeAccessIssue, reportArgumentType]
 plt.title("Monthly Quantity Sold")
 plt.xlabel("Month")
 plt.ylabel("Quantity")
@@ -25,7 +25,7 @@ plt.ylabel("Quantity")
 # --- The same plot using the ax. object-oriented interface ---
 fig, ax = plt.subplots()
 
-ax.plot(monthly_qty.index.astype(str), monthly_qty.values)
+ax.plot(monthly_qty.index.astype(str), monthly_qty.values)  # pyright: ignore[reportAttributeAccessIssue, reportArgumentType]
 ax.set_title("Monthly Quantity Sold")
 ax.set_xlabel("Month")
 ax.set_ylabel("Quantity")
@@ -38,7 +38,7 @@ ax.set_ylabel("Quantity")
 
 # figsize is specified as (width, height) in inches
 fig, ax = plt.subplots(figsize=(10, 5))
-ax.plot(monthly_qty.index.astype(str), monthly_qty.values)
+ax.plot(monthly_qty.index.astype(str), monthly_qty.values)  # pyright: ignore[reportAttributeAccessIssue, reportArgumentType]
 ax.set_title("Monthly Quantity Sold")
 plt.show()
 

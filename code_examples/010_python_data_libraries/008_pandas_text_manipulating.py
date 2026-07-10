@@ -27,7 +27,7 @@ print(" Filtering with Contains (Colorado Sales Offices) ")
 print(" === " * 4)
 # Filter rows where sales_office contains "Colorado"
 colorado_offices = df[df["sales_office"].str.contains("Colorado", na=False)]
-print(colorado_offices["sales_office"].unique())
+print(colorado_offices["sales_office"].unique())  # pyright: ignore[reportAttributeAccessIssue]
 # ['Colorado North' 'Colorado East' 'Colorado South' 'Colorado West']
 
 # na=False ensures nulls return False rather than NaN in the boolean mask
@@ -36,7 +36,7 @@ print(" === " * 4)
 print(" Filtering with StartsWith (PRD-05) ")
 print(" === " * 4)
 prd_05x = df[df["product_id"].str.startswith("PRD-05")]
-print(prd_05x["product_id"].unique())
+print(prd_05x["product_id"].unique())  # pyright: ignore[reportAttributeAccessIssue]
 # ['PRD-054' 'PRD-056' 'PRD-058']
 
 # --- Extracting parts of a string ---
@@ -101,4 +101,4 @@ print(" === " * 4)
 print(" Checking String Length ")
 print(" === " * 4)
 df["item_name_len"] = df["item_name"].str.len()
-print(df[["item_name", "item_name_len"]].sort_values("item_name_len", ascending=False).head())
+print(df[["item_name", "item_name_len"]].sort_values("item_name_len", ascending=False).head())  # pyright: ignore[reportCallIssue]

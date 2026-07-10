@@ -4,12 +4,12 @@ from abc import ABC, abstractmethod
 class Shape(ABC):
 
     @abstractmethod
-    def area(self):
+    def area(self) -> float:
         """Every shape must implement area()."""
         pass
 
     @abstractmethod
-    def perimeter(self):
+    def perimeter(self) -> float:
         """Every shape must implement perimeter()."""
         pass
 
@@ -77,6 +77,6 @@ class Triangle(Shape):
 
     # perimeter() not implemented — Python will enforce this
 
-t = Triangle(3, 4)
+t = Triangle(3, 4)  # pyright: ignore[reportAbstractUsage]
 # TypeError: Can't instantiate abstract class Triangle
 # without an implementation for abstract method 'perimeter'

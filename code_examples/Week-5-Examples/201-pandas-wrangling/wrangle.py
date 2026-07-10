@@ -106,7 +106,7 @@ def main() -> None:
     regions = pd.read_csv(HERE / "regions.csv")
     by_region = (
         sales.groupby("region")["revenue"].sum()
-        .reset_index()
+        .reset_index()  # pyright: ignore[reportAttributeAccessIssue]
         .rename(columns={"revenue": "actual"})
     )
     scorecard = by_region.merge(regions, on="region", how="left")

@@ -75,8 +75,8 @@ def get_move(move_name: str):
         return parse_move_data(response.json())
     except requests.HTTPError as e:
         raise HTTPException(
-            status_code=e.response.status_code,
-            detail=f"External API error: {e.response.text}"
+            status_code=e.response.status_code,  # pyright: ignore[reportOptionalMemberAccess]
+            detail=f"External API error: {e.response.text}"  # pyright: ignore[reportOptionalMemberAccess]
         )
     
 # Function used to parse data from the endpoint: https://pokeapi.co/api/v2/moves

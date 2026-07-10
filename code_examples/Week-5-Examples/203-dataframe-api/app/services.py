@@ -41,9 +41,9 @@ def summary() -> dict:
     df = load_data()
     return {
         "orders": int(len(df)),
-        "total_revenue": round(float(df["revenue"].sum()), 2),
-        "avg_order_revenue": round(float(df["revenue"].mean()), 2),
-        "customers": int(df["customer"].nunique()),
+        "total_revenue": round(float(df["revenue"].sum()), 2),  # pyright: ignore[reportArgumentType]
+        "avg_order_revenue": round(float(df["revenue"].mean()), 2),  # pyright: ignore[reportArgumentType]
+        "customers": int(df["customer"].nunique()),  # pyright: ignore[reportArgumentType]
     }
 
 

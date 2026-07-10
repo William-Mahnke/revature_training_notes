@@ -25,7 +25,7 @@ conn = psycopg.connect(
     user=os.environ.get("DB_USER"),
     password=os.environ.get("DB_PASSWORD"),
     port=os.environ.get("DB_PORT"),
-    row_factory=dict_row
+    row_factory=dict_row  # pyright: ignore[reportArgumentType]
 )
 conn.close()
 
@@ -43,7 +43,7 @@ conn = psycopg.connect(
     user=config["DB_USER"],
     password=config["DB_PASSWORD"],
     port=config["DB_PORT"],
-    row_factory=dict_row
+    row_factory=dict_row  # pyright: ignore[reportArgumentType]
 )
 conn.close()
 

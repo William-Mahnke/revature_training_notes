@@ -162,7 +162,7 @@ def find_employee(employee_id: int) -> dict:
 # and the browser/client then includes that cookie on subsequent requests.
 # The cookie is used here as a lightweight session marker alongside the key.
 @app.post("/auth", tags=["Auth"])
-def authenticate(request: Request, response: JSONResponse = None, api_key: str = Depends(verify_api_key) ):
+def authenticate(request: Request, response: JSONResponse = None, api_key: str = Depends(verify_api_key) ):  # pyright: ignore[reportArgumentType]
     logger.info("Authentication successful — session cookie issued")
 
     # Build the response manually so we can attach the cookie to it.

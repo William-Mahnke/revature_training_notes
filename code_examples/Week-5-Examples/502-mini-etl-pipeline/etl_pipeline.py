@@ -76,7 +76,7 @@ def transform(records: list[dict]) -> pd.DataFrame:
           f"({before - len(df)} dropped as dup/null/blank)")
 
     # Standardization + derivation ------------------------------------------
-    df = df.rename(columns={"id": "task_id", "userId": "user_id"})
+    df = df.rename(columns={"id": "task_id", "userId": "user_id"})  # pyright: ignore[reportCallIssue]
     df["completed"] = df["completed"].astype(bool)
     # Derive a synthetic load/activity date so we can join a real date dimension.
     # (The demo API has no timestamps; assign deterministic recent dates.)
@@ -85,7 +85,7 @@ def transform(records: list[dict]) -> pd.DataFrame:
     df["activity_date"] = [base + timedelta(days=int(i) % 30) for i in df.index]
     df["title_length"] = df["title"].str.len().astype(int)   # derived measure
 
-    return df[["task_id", "user_id", "activity_date",
+    return df[["task_id", "user_id", "activity_date",  # pyright: ignore[reportReturnType]
                "completed", "title", "title_length"]]
 
 
@@ -94,9 +94,9 @@ def quality_gate(df: pd.DataFrame) -> None:
     problems = []
     if df["task_id"].duplicated().any():
         problems.append("duplicate task_id")
-    if df["task_id"].isnull().any():
+    if df["task_id"].isnull().any():  # pyright: ignore[reportGeneralTypeIssues]
         problems.append("null task_id")
-    if df["title"].isnull().any() or (df["title"] == "").any():
+    if df["title"].isnull().any() or (df["title"] == "").any():  # pyright: ignore[reportGeneralTypeIssues]
         problems.append("empty title")
     if problems:
         raise ValueError(f"[quality] FAILED: {problems}")
@@ -147,10 +147,10 @@ def load(df: pd.DataFrame, con: duckdb.DuckDBPyConnection) -> None:
         FROM staged s;
     """)
 
-    n = con.execute("SELECT COUNT(*) FROM fact_task").fetchone()[0]
+    n = con.execute("SELECT COUNT(*) FROM fact_task").fetchone()[0]  # pyright: ignore[reportOptionalSubscript]
     print(f"[load] star built: fact_task={n} rows, "
-          f"dim_user={con.execute('SELECT COUNT(*) FROM dim_user').fetchone()[0]}, "
-          f"dim_date={con.execute('SELECT COUNT(*) FROM dim_date').fetchone()[0]}")
+          f"dim_user={con.execute('SELECT COUNT(*) FROM dim_user').fetchone()[0]}, "  # pyright: ignore[reportOptionalSubscript]
+          f"dim_date={con.execute('SELECT COUNT(*) FROM dim_date').fetchone()[0]}")  # pyright: ignore[reportOptionalSubscript]
 
 
 # ---------------------------------------------------------------------------

@@ -14,10 +14,10 @@ row = cursor.fetchone()
 print("**** "*5)
 print("::: FETCH BY TUPLE INDEX :::")
 print("**** "*5)
-print(row[0])    # Access by index — emp_id
-print(row[1])    # Access by index — emp_name
-print(row[2])    # Access by index — emp_title
-print(row[3])    # Access by index — emp_salary
+print(row[0])    # Access by index — emp_id  # pyright: ignore[reportOptionalSubscript]
+print(row[1])    # Access by index — emp_name # pyright: ignore[reportOptionalSubscript]
+print(row[2])    # Access by index — emp_title # pyright: ignore[reportOptionalSubscript]
+print(row[3])    # Access by index — emp_salary # pyright: ignore[reportOptionalSubscript]
 
 # --- DictCursor: row access by column name ---
 # Passing row_factory=dict_row to conn.cursor() changes the row type,
@@ -31,10 +31,10 @@ cursor2 = conn.cursor(row_factory=dict_row)
 cursor2.execute("SELECT * FROM examples.employees")
 
 row2 = cursor2.fetchone()
-print(row2["emp_id"])      # Access by column name
-print(row2["emp_name"])
-print(row2["emp_title"])
-print(row2["emp_salary"])
+print(row2["emp_id"])      # Access by column name # pyright: ignore[reportOptionalSubscript]
+print(row2["emp_name"]) # pyright: ignore[reportOptionalSubscript]
+print(row2["emp_title"]) # pyright: ignore[reportOptionalSubscript]
+print(row2["emp_salary"]) # pyright: ignore[reportOptionalSubscript]
 
 # # Always close your cursor and connection when done
 # # (We'll see a better way to handle this with context managers)

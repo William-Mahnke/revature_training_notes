@@ -31,7 +31,7 @@ import pandas as pd
 def in_memory(path: str) -> pd.Series:
     """Load the whole file, then aggregate. Simple, but memory = file size."""
     df = pd.read_csv(path)
-    return df.groupby("category")["value"].sum().sort_index()
+    return df.groupby("category")["value"].sum().sort_index()  # pyright: ignore[reportReturnType, reportAttributeAccessIssue]
 
 
 def chunked(path: str, chunksize: int) -> pd.Series:
@@ -45,7 +45,7 @@ def chunked(path: str, chunksize: int) -> pd.Series:
     for chunk in pd.read_csv(path, chunksize=chunksize):
         partials.append(chunk.groupby("category")["value"].sum())
     # Combine: concat the small partials, then sum per category.
-    return pd.concat(partials).groupby(level=0).sum().sort_index()
+    return pd.concat(partials).groupby(level=0).sum().sort_index()  # pyright: ignore[reportReturnType, reportAttributeAccessIssue]
 
 
 def measure(label: str, fn, *args) -> pd.Series:

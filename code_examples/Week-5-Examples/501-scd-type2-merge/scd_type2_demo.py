@@ -115,22 +115,22 @@ def show(con: duckdb.DuckDBPyConnection, title: str) -> None:
 def point_in_time_examples(con: duckdb.DuckDBPyConnection) -> None:
     print("\n=== Point-in-time queries (the payoff of Type 2) ===")
 
-    region_2024 = con.execute("""
+    region_2024 = con.execute("""  
         SELECT region FROM dim_customer
         WHERE customer_id = 'C001'
           AND DATE '2024-06-01' >= effective_date
           AND DATE '2024-06-01' <  end_date
-    """).fetchone()[0]
+    """).fetchone()[0] # pyright: ignore[reportOptionalSubscript]
     print(f"C001 region as of 2024-06-01 : {region_2024}   (historically accurate)")
 
     region_now = con.execute("""
         SELECT region FROM dim_customer WHERE customer_id = 'C001' AND is_current
-    """).fetchone()[0]
+    """).fetchone()[0] # pyright: ignore[reportOptionalSubscript]
     print(f"C001 region right now        : {region_now}")
 
     n_current = con.execute(
-        "SELECT COUNT(*) FROM dim_customer WHERE is_current").fetchone()[0]
-    n_rows = con.execute("SELECT COUNT(*) FROM dim_customer").fetchone()[0]
+        "SELECT COUNT(*) FROM dim_customer WHERE is_current").fetchone()[0] # pyright: ignore[reportOptionalSubscript]
+    n_rows = con.execute("SELECT COUNT(*) FROM dim_customer").fetchone()[0] # pyright: ignore[reportOptionalSubscript]
     print(f"Current customers: {n_current}   |   Total versioned rows: {n_rows}")
 
 

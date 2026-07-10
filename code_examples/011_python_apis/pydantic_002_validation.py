@@ -49,9 +49,9 @@ class Employee(BaseModel):
 alice = Employee(
     id=1,
     name="alice johnson",       # Normalised to "Alice Johnson" by field validator
-    department="Engineering",   # Coerced to Department.ENGINEERING
+    department="Engineering",   # Coerced to Department.ENGINEERING  # pyright: ignore[reportArgumentType]
     salary=60000,
-    address={
+    address={  # pyright: ignore[reportArgumentType]
         "street": "12 Baker Street",
         "city": "London",
         "postcode": "W1U 3BH"
@@ -60,7 +60,7 @@ alice = Employee(
 
 print(alice.name)                   # Alice Johnson
 print(alice.department)             # Department.ENGINEERING
-print(alice.address.city)           # London
+print(alice.address.city)           # London  # pyright: ignore[reportOptionalMemberAccess]
 print(alice.model_dump())
 
 # --- Constraint violation ---
@@ -70,7 +70,7 @@ from pydantic import ValidationError
 
 try:
     # The field_validator("name") checks if the name has a space. This doesn't - Raises Error
-    invalid = Employee(id=2, name="Bob", department="Engineering", salary=55000)
+    invalid = Employee(id=2, name="Bob", department="Engineering", salary=55000)  # pyright: ignore[reportArgumentType]
 except ValidationError as e:
     print(e)
     # name
@@ -78,7 +78,7 @@ except ValidationError as e:
 
 # --- Invalid enum value ---
 try:
-    invalid_dept = Employee(id=3, name="Carol White", department="Accounting", salary=95000)
+    invalid_dept = Employee(id=3, name="Carol White", department="Accounting", salary=95000)  # pyright: ignore[reportArgumentType]
 except ValidationError as e:
     print(e)
     # department
@@ -88,7 +88,7 @@ except ValidationError as e:
 
 try:
     # The model_validator(mode="after") checks if Executive employees have at least 80,000 salary. This does not - raises Error
-    low_exec = Employee(id=4, name="David Green", department="Executive", salary=50000)
+    low_exec = Employee(id=4, name="David Green", department="Executive", salary=50000)  # pyright: ignore[reportArgumentType]
 except ValidationError as e:
     print(e)
     # Value error: Executive employees must have a salary of at least 80,000
@@ -97,9 +97,9 @@ except ValidationError as e:
 carol = Employee(
     id=5,
     name="Carol White",
-    department="Executive",
+    department="Executive",  # pyright: ignore[reportArgumentType]
     salary=95000,
-    address={"street": "9 Regent Street", "city": "London", "postcode": "SW1Y 4PE"}
+    address={"street": "9 Regent Street", "city": "London", "postcode": "SW1Y 4PE"}  # pyright: ignore[reportArgumentType]
 )
 print(carol.model_dump())
 # {

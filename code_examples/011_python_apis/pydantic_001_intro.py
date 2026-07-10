@@ -18,14 +18,14 @@ print(alice)
 # --- Type coercion ---
 # Pydantic coerces compatible types where possible
 # Here, id is passed as a string "2" — Pydantic converts it to int 2
-bob = Employee(id="2", name="Bob Smith", department="Engineering", salary=55000)
+bob = Employee(id="2", name="Bob Smith", department="Engineering", salary=55000)  # pyright: ignore[reportArgumentType]
 print(bob.id)        # 2
 print(type(bob.id))  # <class 'int'>
 
 # --- ValidationError ---
 # Raised when data cannot be coerced or is missing entirely
 try:
-    invalid = Employee(id="one", name="Carol", department="Executive", salary=95000)
+    invalid = Employee(id="one", name="Carol", department="Executive", salary=95000)  # pyright: ignore[reportArgumentType]
 except ValidationError as e:
     print(e)
     # 1 validation error for Employee
@@ -34,7 +34,7 @@ except ValidationError as e:
 
 # --- Missing required field ---
 try:
-    missing_field = Employee(id=3, department="Executive", salary=95000)
+    missing_field = Employee(id=3, department="Executive", salary=95000)  # pyright: ignore[reportCallIssue]
 except ValidationError as e:
     print(e)
     # 1 validation error for Employee

@@ -41,6 +41,44 @@ def profile_column(values):
 
     return result
 
+def aggregate_sales_statistics(rows):
+    """
+    Aggregate sales statistics from a list of rows.
+    Returns a dictionary with total sales, average quantity, and average unit price.
+    """
+    total_sales = 0.0
+    total_quantity = 0.0
+    total_unit_price = 0.0
+    quantity_count = 0
+    unit_price_count = 0
+
+    for row in rows:
+        total_sale = row.get("total_sale", "").strip()
+        quantity = row.get("quantity", "").strip()
+        unit_price = row.get("unit_price", "").strip()
+
+        try:
+            total_sales += float(total_sale.replace(",", "").replace("$", ""))
+        except ValueError:
+            pass
+
+        try:
+            total_quantity += float(quantity)
+            quantity_count += 1
+        except ValueError:
+            pass
+
+        try:
+            total_unit_price += float(unit_price.replace(",", "").replace("$", ""))
+            unit_price_count += 1
+        except ValueError:
+            pass
+
+    return {
+        "total_sales": round(total_sales, 2),
+        "average_quantity": round(total_quantity / quantity_count, 2) if quantity_count else 0,
+        "average_unit_price": round(total_unit_price / unit_price_count, 2) if unit_price_count else 0,
+    }
 
 def profile(filepath):
     rows = read_csv(filepath)

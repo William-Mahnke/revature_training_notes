@@ -1,5 +1,14 @@
+import os
+import logging
+
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import avg, count
+
+# fix hostname warning (set before Spark starts)
+os.environ["SPARK_LOCAL_HOSTNAME"] = "127.0.0.1"
+
+# quiet bridge messages
+logging.getLogger("py4j").setLevel(logging.ERROR)
 
 # -------------------------------------------------------
 # Part 1 - First PySpark Program

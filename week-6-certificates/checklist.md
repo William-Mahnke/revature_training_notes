@@ -1,11 +1,11 @@
 # HTML Notes Checklist
 
 - [X] Intro to PySpark
-- [ ] Spark Ecosystem
-- [ ] PySpark Setup
-- [ ] Hadoop vs Spark Tutorial
-- [ ] PySpark Shared Variables
-- [ ] PySpark Practical RDD
-- [ ] PySpark RDD Data Loading
+- [X] Spark Ecosystem
+- [X] PySpark Setup
+- [X] Hadoop vs Spark Tutorial
+- [X] PySpark Shared Variables
+- [X] PySpark Practical RDD
+- [X] PySpark RDD Data Loading
 - [ ] GCP DataProc Cluster Architecture
 - [ ] AWS EMR Spark Cluster

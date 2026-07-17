@@ -7,5 +7,5 @@
 - [X] PySpark Shared Variables
 - [X] PySpark Practical RDD
 - [X] PySpark RDD Data Loading
-- [ ] GCP DataProc Cluster Architecture
-- [ ] AWS EMR Spark Cluster
+- [X] GCP DataProc Cluster Architecture
+- [X] AWS EMR Spark Cluster

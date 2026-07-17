@@ -3,7 +3,6 @@
 # ---------------------------------------------------
 
 """
-
 --- Mapper ---
 String[] f = line.split(",", -1);
 String city = f[2].trim();
@@ -22,7 +21,6 @@ context.write(
     new Text(city + "|" + category),
     new LongWritable(netRevenuePaise)
 );
-
 --- Reducer ---
 long totalPaise = 0L;
 for (LongWritable value : values) {
@@ -33,13 +31,11 @@ context.write(key, new Text(
       .divide(BigDecimal.valueOf(100), 2, RoundingMode.HALF_UP)
       .toPlainString()
 ));
-
 --- Command to Run ---
 hdfs dfs -put sales.csv /training/input/
 hadoop jar retail-revenue-mapreduce-1.0.0.jar \
   /training/input /training/output
 hdfs dfs -cat /training/output/part-r-00000
-
 """
 
 # ---------------------------------------------------

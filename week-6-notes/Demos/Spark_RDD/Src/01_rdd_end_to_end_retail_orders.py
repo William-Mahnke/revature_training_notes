@@ -362,7 +362,7 @@ def main() -> None:
 
         data_lines_rdd = (
             raw_lines_rdd
-            .mapPartitionsWithIndex(remove_header)
+            .mapPartitionsWithIndex(remove_header)  # pyright: ignore[reportArgumentType]
             .filter(lambda line: bool(line.strip()))
             .setName("RetailOrderDataLines")
         )
@@ -526,10 +526,10 @@ def main() -> None:
             )
         )
 
-        tag_counts_rdd = (
+        tag_counts_rdd = (  # pyright: ignore[reportCallIssue]
             order_tags_rdd
             .map(lambda tag: (tag, 1))
-            .reduceByKey(lambda left, right: left + right)
+            .reduceByKey(lambda left, right: left + right)  # pyright: ignore[reportArgumentType]
             .sortByKey()
         )
 
@@ -573,7 +573,7 @@ def main() -> None:
         )
 
         print("\nLineage for city revenue:")
-        print(city_revenue_rdd.toDebugString().decode("utf-8"))
+        print(city_revenue_rdd.toDebugString().decode("utf-8"))  # pyright: ignore[reportOptionalMemberAccess]
 
         # ===================================================================
         # TRANSFORMATION: reduceByKey()

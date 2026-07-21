@@ -13,7 +13,7 @@ DATA_DIR.mkdir(parents=True, exist_ok=True)
 
 spark = (
         SparkSession.builder
-        .appName("HealthcarePatientVisitRDD")
+        .appName("NOAAWeatherRDD")
         .master("local[4]")
         .config("spark.driver.host", "127.0.0.1")
         .config("spark.driver.bindAddress", "127.0.0.1")
@@ -50,7 +50,7 @@ data_lines = raw_lines.filter(
 )
 
 # diagnostic check
-print(f"Number of partitions: {os.cpu_count()}")
+print(f"Partitions: {raw_lines.getNumPartitions()}")
 print(f"Rows including header: {raw_lines.count()}")
 print(f"Header: {header}")
 print(f"First data row: {data_lines.first()}")

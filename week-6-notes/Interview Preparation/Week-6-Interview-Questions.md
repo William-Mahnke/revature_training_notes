@@ -477,7 +477,7 @@ Answer
 
 An executor runs tasks, stores cached data, performs shuffle and reports status to the driver.
 
-### 55. Explain application, job, stage and task.
+### 55. Explain application, job, stage and task
 
 Answer
 

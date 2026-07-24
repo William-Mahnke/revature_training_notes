@@ -28,20 +28,20 @@
 
 ---
 
-# 1. Spark Fundamentals
+## 1. Spark Fundamentals
 
-## 1. What is Apache Spark?
+### 1. What is Apache Spark?
 
-### Answer
+Answer
 
 Apache Spark is a distributed data-processing engine used to process large datasets across multiple machines. It supports batch processing, Spark SQL, streaming, machine learning and graph processing. Spark divides data into partitions and processes them in parallel using tasks.
 
-## 2. What are the major components of the Spark ecosystem?
+### 2. What are the major components of the Spark ecosystem?
 
-### Answer
+Answer
 
 | Component | Purpose |
-|---|---|
+| --- | --- |
 | Spark Core | Basic execution engine and RDD API |
 | Spark SQL | DataFrame, SQL and structured-data processing |
 | Structured Streaming | Stream-processing API |
@@ -49,9 +49,9 @@ Apache Spark is a distributed data-processing engine used to process large datas
 | GraphX | Graph-processing library for Scala |
 | PySpark | Python API for Spark |
 
-## 3. What is PySpark?
+### 3. What is PySpark?
 
-### Answer
+Answer
 
 PySpark is the Python API for Apache Spark. It allows developers to write Spark applications using Python while Spark’s main execution engine runs on the JVM.
 
@@ -66,9 +66,9 @@ spark = (
 )
 ```
 
-## 4. What is the difference between Spark and PySpark?
+### 4. What is the difference between Spark and PySpark?
 
-### Answer
+Answer
 
 Spark is the complete distributed-processing engine. PySpark is the Python interface used to communicate with Spark.
 
@@ -82,28 +82,28 @@ Py4J
 Spark JVM execution engine
 ```
 
-## 5. What is Spark Core?
+### 5. What is Spark Core?
 
-### Answer
+Answer
 
 Spark Core is the fundamental execution layer of Spark. It provides RDDs, task scheduling, memory management, fault recovery, input/output operations and communication with cluster managers.
 
 ---
 
-# 2. Hadoop versus Spark
+## 2. Hadoop versus Spark
 
-## 6. What is Hadoop?
+### 6. What is Hadoop?
 
-### Answer
+Answer
 
 Hadoop is an ecosystem for distributed storage and processing. Important components include HDFS, YARN and MapReduce.
 
-## 7. What is the difference between Hadoop MapReduce and Spark?
+### 7. What is the difference between Hadoop MapReduce and Spark?
 
-### Answer
+Answer
 
 | Feature | Hadoop MapReduce | Spark |
-|---|---|---|
+| --- | --- | --- |
 | Processing | Disk-oriented | Can process in memory |
 | Execution model | Map and Reduce stages | DAG-based execution |
 | Iterative processing | Slower | More efficient |
@@ -112,25 +112,25 @@ Hadoop is an ecosystem for distributed storage and processing. Important compone
 | SQL | Hive often used | Spark SQL |
 | Machine learning | External libraries | MLlib |
 
-## 8. Is Spark a replacement for Hadoop?
+### 8. Is Spark a replacement for Hadoop?
 
-### Answer
+Answer
 
 Not completely. Spark can replace Hadoop MapReduce as the processing engine, but it can still use HDFS, YARN and Hadoop-compatible input formats.
 
-## 9. Can Spark work without Hadoop?
+### 9. Can Spark work without Hadoop?
 
-### Answer
+Answer
 
 Yes. Spark can run locally, in standalone mode, on Kubernetes and on cloud services. It can read local files and object storage such as S3 and Google Cloud Storage.
 
 ---
 
-# 3. Spark Setup
+## 3. Spark Setup
 
-## 10. What software is generally required to run PySpark locally?
+### 10. What software is generally required to run PySpark locally?
 
-### Answer
+Answer
 
 - Python
 - Java
@@ -144,26 +144,26 @@ python -m venv .venv
 pip install pyspark
 ```
 
-## 11. Why is Java required for PySpark?
+### 11. Why is Java required for PySpark?
 
-### Answer
+Answer
 
 Spark’s execution engine runs on the JVM. PySpark communicates with the JVM-based engine through Py4J.
 
-## 12. What is a Python virtual environment?
+### 12. What is a Python virtual environment?
 
-### Answer
+Answer
 
 A virtual environment creates an isolated Python environment for one project and prevents dependency conflicts.
 
-## 13. What does `master("local[*]")` mean?
+### 13. What does `master("local[*]")` mean?
 
-### Answer
+Answer
 
 It runs Spark locally using all available logical CPU cores.
 
 | Setting | Meaning |
-|---|---|
+| --- | --- |
 | `local` | One thread |
 | `local[2]` | Two worker threads |
 | `local[4]` | Four worker threads |
@@ -171,23 +171,23 @@ It runs Spark locally using all available logical CPU cores.
 
 ---
 
-# 4. Local Mode versus Cluster Mode
+## 4. Local Mode versus Cluster Mode
 
-## 14. What is local mode?
+### 14. What is local mode?
 
-### Answer
+Answer
 
 In local mode, driver and worker execution occur on the same machine and tasks run as local threads. It is suitable for development and testing.
 
-## 15. What is cluster mode?
+### 15. What is cluster mode?
 
-### Answer
+Answer
 
 In cluster mode, Spark uses multiple machines, a cluster manager allocates resources and executors run on worker nodes.
 
-## 16. What changes when moving from local mode to cluster mode?
+### 16. What changes when moving from local mode to cluster mode?
 
-### Answer
+Answer
 
 - Local paths must be replaced with shared storage paths
 - Resources must be configured
@@ -198,65 +198,65 @@ In cluster mode, Spark uses multiple machines, a cluster manager allocates resou
 
 ---
 
-# 5. RDD Fundamentals
+## 5. RDD Fundamentals
 
-## 17. What is an RDD?
+### 17. What is an RDD?
 
-### Answer
+Answer
 
 RDD stands for Resilient Distributed Dataset. It is distributed, partitioned, immutable, lazily evaluated and fault tolerant.
 
-## 18. Why is an RDD called resilient?
+### 18. Why is an RDD called resilient?
 
-### Answer
+Answer
 
 Spark can recompute lost partitions using lineage.
 
-## 19. What does immutable mean in RDD?
+### 19. What does immutable mean in RDD?
 
-### Answer
+Answer
 
 An RDD cannot be changed after creation. Every transformation creates a new RDD.
 
-## 20. What is an RDD partition?
+### 20. What is an RDD partition?
 
-### Answer
+Answer
 
 A partition is a logical portion of an RDD. Spark normally creates one task per partition during a stage.
 
-## 21. What is lazy evaluation?
+### 21. What is lazy evaluation?
 
-### Answer
+Answer
 
 Spark does not execute transformations immediately. Execution begins when an action such as `count()` or `collect()` runs.
 
 ---
 
-# 6. RDD Creation
+## 6. RDD Creation
 
-## 22. How can you create an RDD using `parallelize()`?
+### 22. How can you create an RDD using `parallelize()`?
 
-### Answer
+Answer
 
 ```python
 numbers_rdd = sc.parallelize([10, 20, 30, 40], 2)
 ```
 
-## 23. What does `textFile()` do?
+### 23. What does `textFile()` do?
 
-### Answer
+Answer
 
 It reads text data and creates an `RDD[str]`, with each element normally representing one line.
 
-## 24. What is the difference between `textFile()` and `wholeTextFiles()`?
+### 24. What is the difference between `textFile()` and `wholeTextFiles()`?
 
-### Answer
+Answer
 
 `textFile()` returns one element per line. `wholeTextFiles()` returns one `(path, complete_content)` element per file.
 
-## 25. Can you create an empty RDD with partitions?
+### 25. Can you create an empty RDD with partitions?
 
-### Answer
+Answer
 
 Yes.
 
@@ -268,78 +268,78 @@ This creates zero records with four partitions.
 
 ---
 
-# 7. Transformations
+## 7. Transformations
 
-## 26. What is an RDD transformation?
+### 26. What is an RDD transformation?
 
-### Answer
+Answer
 
 A transformation creates a new RDD from an existing RDD. Examples include `map()`, `filter()`, `flatMap()`, `distinct()`, `reduceByKey()` and `join()`.
 
-## 27. What does `map()` do?
+### 27. What does `map()` do?
 
-### Answer
+Answer
 
 It produces exactly one output for each input.
 
-## 28. What does `filter()` do?
+### 28. What does `filter()` do?
 
-### Answer
+Answer
 
 It keeps only records that satisfy a Boolean condition.
 
-## 29. What does `flatMap()` do?
+### 29. What does `flatMap()` do?
 
-### Answer
+Answer
 
 It can produce zero, one or many outputs from one input and then flattens them.
 
-## 30. What is the difference between `map()` and `flatMap()`?
+### 30. What is the difference between `map()` and `flatMap()`?
 
-### Answer
+Answer
 
 | Method | Output per input |
-|---|---|
+| --- | --- |
 | `map()` | Exactly one |
 | `flatMap()` | Zero, one or many |
 
-## 31. What does `distinct()` do?
+### 31. What does `distinct()` do?
 
-### Answer
+Answer
 
 It removes duplicate values and normally causes a shuffle.
 
 ---
 
-# 8. Actions
+## 8. Actions
 
-## 32. What is an action?
+### 32. What is an action?
 
-### Answer
+Answer
 
 An action triggers Spark execution. Examples include `count()`, `collect()`, `first()`, `take()`, `reduce()` and `takeOrdered()`.
 
-## 33. What does `collect()` do?
+### 33. What does `collect()` do?
 
-### Answer
+Answer
 
 It returns all RDD records to the driver as a Python list.
 
-## 34. Why can `collect()` cause driver failure?
+### 34. Why can `collect()` cause driver failure?
 
-### Answer
+Answer
 
 Because all distributed records are transferred into driver memory.
 
-## 35. What is the difference between `take()` and `takeOrdered()`?
+### 35. What is the difference between `take()` and `takeOrdered()`?
 
-### Answer
+Answer
 
 `take(n)` returns the first `n` records Spark finds. `takeOrdered(n)` returns `n` records according to ordering.
 
-## 36. How do you get the three largest values using `takeOrdered()`?
+### 36. How do you get the three largest values using `takeOrdered()`?
 
-### Answer
+Answer
 
 ```python
 top_three = rdd.takeOrdered(3, key=lambda value: -value)
@@ -347,139 +347,139 @@ top_three = rdd.takeOrdered(3, key=lambda value: -value)
 
 ---
 
-# 9. Pair RDDs
+## 9. Pair RDDs
 
-## 37. What is a Pair RDD?
+### 37. What is a Pair RDD?
 
-### Answer
+Answer
 
 A Pair RDD contains `(key, value)` elements.
 
-## 38. What does `reduceByKey()` do?
+### 38. What does `reduceByKey()` do?
 
-### Answer
+Answer
 
 It combines values for the same key.
 
-## 39. What is the difference between `groupByKey()` and `reduceByKey()`?
+### 39. What is the difference between `groupByKey()` and `reduceByKey()`?
 
-### Answer
+Answer
 
 `groupByKey()` keeps all values. `reduceByKey()` produces one aggregated value and is usually better for sums and counts.
 
-## 40. When should `groupByKey()` be used?
+### 40. When should `groupByKey()` be used?
 
-### Answer
+Answer
 
 Use it when the complete list of values is required.
 
-## 41. What does `mapValues()` do?
+### 41. What does `mapValues()` do?
 
-### Answer
+Answer
 
 It changes only the value of a Pair RDD and preserves the key.
 
-## 42. What does `sortByKey()` do?
+### 42. What does `sortByKey()` do?
 
-### Answer
+Answer
 
 It sorts a Pair RDD by key.
 
-## 43. What does `join()` do?
+### 43. What does `join()` do?
 
-### Answer
+Answer
 
 It matches Pair RDD records using the same key.
 
 ---
 
-# 10. Shared Variables
+## 10. Shared Variables
 
-## 44. What are shared variables in Spark?
+### 44. What are shared variables in Spark?
 
-### Answer
+Answer
 
 The main shared variables are broadcast variables and accumulators.
 
-## 45. What is a broadcast variable?
+### 45. What is a broadcast variable?
 
-### Answer
+Answer
 
 A broadcast variable efficiently sends a read-only value to executors.
 
-## 46. What is an accumulator?
+### 46. What is an accumulator?
 
-### Answer
+Answer
 
 An accumulator is a shared counter or sum that tasks can update.
 
-## 47. What is the difference between a broadcast variable and an accumulator?
+### 47. What is the difference between a broadcast variable and an accumulator?
 
-### Answer
+Answer
 
 | Broadcast | Accumulator |
-|---|---|
+| --- | --- |
 | Read-only on executors | Executors add values |
 | Used for lookup data | Used for counters and metrics |
 | Driver distributes value | Driver reads final value |
 
 ---
 
-# 11. RDD Data Loading and Saving
+## 11. RDD Data Loading and Saving
 
-## 48. How do you save an RDD as text?
+### 48. How do you save an RDD as text?
 
-### Answer
+Answer
 
 ```python
 result_rdd.saveAsTextFile("outputs/category_revenue")
 ```
 
-## 49. Why does Spark create many part files?
+### 49. Why does Spark create many part files?
 
-### Answer
+Answer
 
 Each partition is normally written by one task.
 
-## 50. How can you reduce the number of output files?
+### 50. How can you reduce the number of output files?
 
-### Answer
+Answer
 
 ```python
 result_rdd.coalesce(2).saveAsTextFile("outputs/report")
 ```
 
-## 51. What is the difference between `repartition()` and `coalesce()`?
+### 51. What is the difference between `repartition()` and `coalesce()`?
 
-### Answer
+Answer
 
 `repartition()` can increase or decrease partitions and performs a shuffle. `coalesce()` is commonly used to reduce partitions with less data movement.
 
 ---
 
-# 12. Spark Cluster Architecture
+## 12. Spark Cluster Architecture
 
-## 52. What is a Spark cluster manager?
+### 52. What is a Spark cluster manager?
 
-### Answer
+Answer
 
 A cluster manager allocates CPU and memory resources to Spark applications.
 
-## 53. What is the Spark driver?
+### 53. What is the Spark driver?
 
-### Answer
+Answer
 
 The driver runs the main program, builds the DAG, creates jobs and stages and schedules tasks.
 
-## 54. What is an executor?
+### 54. What is an executor?
 
-### Answer
+Answer
 
 An executor runs tasks, stores cached data, performs shuffle and reports status to the driver.
 
-## 55. Explain application, job, stage and task.
+### 55. Explain application, job, stage and task.
 
-### Answer
+Answer
 
 ```text
 Application
@@ -488,47 +488,47 @@ Application
             └── Task
 ```
 
-## 56. What normally creates a new stage?
+### 56. What normally creates a new stage?
 
-### Answer
+Answer
 
 A shuffle boundary. Examples include `reduceByKey()`, `groupByKey()`, `join()`, `distinct()`, `sortBy()` and `repartition()`.
 
 ---
 
-# 13. Driver and Executor Memory
+## 13. Driver and Executor Memory
 
-## 57. What is driver memory?
+### 57. What is driver memory?
 
-### Answer
+Answer
 
 Driver memory stores application objects, execution plans, task metadata and small collected results.
 
-## 58. What is executor memory?
+### 58. What is executor memory?
 
-### Answer
+Answer
 
 Executor memory is used for task execution, cached data, shuffle processing and aggregations.
 
-## 59. What can cause driver out-of-memory?
+### 59. What can cause driver out-of-memory?
 
-### Answer
+Answer
 
 Large `collect()`, large `collectAsMap()`, large broadcasts and excessive local objects.
 
-## 60. What can cause executor out-of-memory?
+### 60. What can cause executor out-of-memory?
 
-### Answer
+Answer
 
 Very large partitions, data skew, large shuffles, excessive caching and large groupings.
 
 ---
 
-# 14. spark-submit
+## 14. spark-submit
 
-## 61. What is `spark-submit`?
+### 61. What is `spark-submit`?
 
-### Answer
+Answer
 
 It is the standard command used to submit Spark applications.
 
@@ -536,17 +536,17 @@ It is the standard command used to submit Spark applications.
 spark-submit --master local[4] src/job.py
 ```
 
-## 62. How do you provide driver memory using `spark-submit`?
+### 62. How do you provide driver memory using `spark-submit`?
 
-### Answer
+Answer
 
 ```bash
 spark-submit --driver-memory 2g src/job.py
 ```
 
-## 63. How do you configure executor resources?
+### 63. How do you configure executor resources?
 
-### Answer
+Answer
 
 ```bash
 spark-submit \
@@ -556,98 +556,98 @@ spark-submit \
   src/job.py
 ```
 
-## 64. What is the difference between client mode and cluster mode?
+### 64. What is the difference between client mode and cluster mode?
 
-### Answer
+Answer
 
 In client mode, the driver runs where `spark-submit` is launched. In cluster mode, the driver runs inside the cluster.
 
 ---
 
-# 15. AWS EMR
+## 15. AWS EMR
 
-## 65. What is AWS EMR?
+### 65. What is AWS EMR?
 
-### Answer
+Answer
 
 Amazon EMR is a managed big-data service for running Spark on AWS infrastructure.
 
-## 66. What are the main EMR node types?
+### 66. What are the main EMR node types?
 
-### Answer
+Answer
 
 | Node type | Purpose |
-|---|---|
+| --- | --- |
 | Primary node | Coordinates the cluster |
 | Core node | Runs tasks and can store HDFS data |
 | Task node | Runs tasks without permanent HDFS storage |
 
-## 67. What storage is commonly used with EMR Spark jobs?
+### 67. What storage is commonly used with EMR Spark jobs?
 
-### Answer
+Answer
 
 Amazon S3.
 
-## 68. What IAM roles are required for EMR?
+### 68. What IAM roles are required for EMR?
 
-### Answer
+Answer
 
 Commonly an EMR service role and an EC2 instance profile or node role.
 
-## 69. Why should S3 buckets remain private?
+### 69. Why should S3 buckets remain private?
 
-### Answer
+Answer
 
 To prevent unauthorized public access. Use encryption, block public access and least-privilege IAM policies.
 
-## 70. What is an EMR step?
+### 70. What is an EMR step?
 
-### Answer
+Answer
 
 An EMR step is a unit of work submitted to an EMR cluster, often using `spark-submit`.
 
-## 71. How would you run a Spark job on EMR?
+### 71. How would you run a Spark job on EMR?
 
-### Answer
+Answer
 
 Upload code and data to S3, create the cluster, configure IAM roles, add a Spark step and write results back to S3.
 
 ---
 
-# 16. GCP Dataproc
+## 16. GCP Dataproc
 
-## 72. What is Google Cloud Dataproc?
+### 72. What is Google Cloud Dataproc?
 
-### Answer
+Answer
 
 Dataproc is Google Cloud’s managed service for running Spark and Hadoop clusters.
 
-## 73. What is the GCP equivalent of S3 for Spark data?
+### 73. What is the GCP equivalent of S3 for Spark data?
 
-### Answer
+Answer
 
 Google Cloud Storage using `gs://` paths.
 
-## 74. What is the difference between EMR and Dataproc?
+### 74. What is the difference between EMR and Dataproc?
 
-### Answer
+Answer
 
 | AWS EMR | GCP Dataproc |
-|---|---|
+| --- | --- |
 | AWS managed service | Google Cloud managed service |
 | Common storage: S3 | Common storage: Cloud Storage |
 | Uses IAM roles | Uses service accounts and IAM |
 | Runs on EC2 | Runs on Compute Engine |
 
-## 75. What is a Dataproc service account?
+### 75. What is a Dataproc service account?
 
-### Answer
+Answer
 
 It is an identity used by Dataproc cluster resources to access Cloud Storage, logging, monitoring and compute resources.
 
-## 76. How do you submit a PySpark job to Dataproc?
+### 76. How do you submit a PySpark job to Dataproc?
 
-### Answer
+Answer
 
 ```bash
 gcloud dataproc jobs submit pyspark \
@@ -658,103 +658,103 @@ gcloud dataproc jobs submit pyspark \
 
 ---
 
-# 17. Scenario-Based Questions
+## 17. Scenario-Based Questions
 
-## 77. A participant uses `collect()` on 100 million records. What happens?
+### 77. A participant uses `collect()` on 100 million records. What happens?
 
-### Answer
+Answer
 
 All records move to the driver and may cause driver out-of-memory.
 
-## 78. Revenue must be calculated per category. Which operation should be used?
+### 78. Revenue must be calculated per category. Which operation should be used?
 
-### Answer
+Answer
 
 Use `map()` to create `(category, amount)` pairs and `reduceByKey()` to aggregate them.
 
-## 79. All order IDs must be displayed per category. Which operation should be used?
+### 79. All order IDs must be displayed per category. Which operation should be used?
 
-### Answer
+Answer
 
 Use `groupByKey()` because all original values are required.
 
-## 80. A Spark output directory contains 500 small files. What should you do?
+### 80. A Spark output directory contains 500 small files. What should you do?
 
-### Answer
+Answer
 
 Use `coalesce()` to reduce output partitions before saving.
 
-## 81. One Spark task runs much longer than all others. What may be happening?
+### 81. One Spark task runs much longer than all others. What may be happening?
 
-### Answer
+Answer
 
 Data skew. Consider repartitioning, key salting, filtering earlier or using a better key.
 
-## 82. A small tax-rate dictionary is required for every order. What should you use?
+### 82. A small tax-rate dictionary is required for every order. What should you use?
 
-### Answer
+Answer
 
 A broadcast variable.
 
-## 83. Invalid rows must be counted during processing. What should you use?
+### 83. Invalid rows must be counted during processing. What should you use?
 
-### Answer
+Answer
 
 An accumulator for monitoring.
 
-## 84. A local Windows path works locally but fails on EMR. Why?
+### 84. A local Windows path works locally but fails on EMR. Why?
 
-### Answer
+Answer
 
 The path exists only on the local machine. Use an S3 path.
 
-## 85. A local path works locally but fails on Dataproc. Why?
+### 85. A local path works locally but fails on Dataproc. Why?
 
-### Answer
+Answer
 
 Use a Google Cloud Storage path instead.
 
-## 86. A job reads the same cleaned RDD five times. How can recomputation be reduced?
+### 86. A job reads the same cleaned RDD five times. How can recomputation be reduced?
 
-### Answer
+Answer
 
 Cache or persist the RDD and call an action to materialize it.
 
-## 87. An RDD has two partitions, but the computer has eight cores. How many tasks run?
+### 87. An RDD has two partitions, but the computer has eight cores. How many tasks run?
 
-### Answer
+Answer
 
 Approximately two tasks because task count is based primarily on partition count.
 
-## 88. `reduceByKey()` produces two stages. Why?
+### 88. `reduceByKey()` produces two stages. Why?
 
-### Answer
+Answer
 
 It causes a shuffle boundary between local aggregation and final aggregation.
 
-## 89. The Spark UI Storage tab is empty after calling `cache()`. Why?
+### 89. The Spark UI Storage tab is empty after calling `cache()`. Why?
 
-### Answer
+Answer
 
 `cache()` is lazy. An action such as `count()` must materialize it.
 
-## 90. An EMR cluster cannot read an S3 bucket. What should be checked?
+### 90. An EMR cluster cannot read an S3 bucket. What should be checked?
 
-### Answer
+Answer
 
 IAM permissions, bucket policy, prefix, region, encryption permissions and the S3 URI.
 
-## 91. A Dataproc job cannot access a Cloud Storage bucket. What should be checked?
+### 91. A Dataproc job cannot access a Cloud Storage bucket. What should be checked?
 
-### Answer
+Answer
 
 Service account permissions, object path, bucket location, cluster region and the `gs://` URI.
 
 ---
 
-# 18. Code-Reading Questions
+## 18. Code-Reading Questions
 
-## 92. Explain this code
+### 92. Explain this code
 
 ```python
 city_revenue_rdd = (
@@ -765,34 +765,34 @@ city_revenue_rdd = (
 )
 ```
 
-### Answer
+Answer
 
 It creates city/amount pairs, totals revenue per city and sorts cities by total revenue descending.
 
-## 93. What is inefficient in this code?
+### 93. What is inefficient in this code?
 
 ```python
 totals = category_amount_rdd.groupByKey().mapValues(sum)
 ```
 
-### Answer
+Answer
 
 It shuffles all values. `reduceByKey()` is more efficient for totals.
 
-## 94. Predict the output
+### 94. Predict the output
 
 ```python
 rdd = sc.parallelize(["Spark SQL", "RDD Spark"])
 result = rdd.flatMap(lambda line: line.split()).collect()
 ```
 
-### Answer
+Answer
 
 ```python
 ["Spark", "SQL", "RDD", "Spark"]
 ```
 
-## 95. Predict the output
+### 95. Predict the output
 
 ```python
 empty_rdd = sc.parallelize([], 3)
@@ -801,7 +801,7 @@ print(empty_rdd.getNumPartitions())
 print(empty_rdd.collect())
 ```
 
-### Answer
+Answer
 
 ```text
 0
@@ -811,9 +811,9 @@ print(empty_rdd.collect())
 
 ---
 
-# 19. Recommended 30-Minute Interview Set
+## 19. Recommended 30-Minute Interview Set
 
-## Fundamentals
+### Fundamentals
 
 1. What is Spark?
 2. What is PySpark?
@@ -822,49 +822,49 @@ print(empty_rdd.collect())
 5. Explain transformation versus action.
 6. Explain lazy evaluation.
 
-## Operations
+### Operations
 
-7. `map()` versus `flatMap()`
-8. `groupByKey()` versus `reduceByKey()`
-9. `repartition()` versus `coalesce()`
-10. `take()` versus `takeOrdered()`
+1. `map()` versus `flatMap()`
+2. `groupByKey()` versus `reduceByKey()`
+3. `repartition()` versus `coalesce()`
+4. `take()` versus `takeOrdered()`
 
-## Architecture
+### Architecture
 
-11. Explain driver and executor.
-12. Explain job, stage and task.
-13. What creates a shuffle?
-14. What does the Spark UI show?
+1. Explain driver and executor.
+2. Explain job, stage and task.
+3. What creates a shuffle?
+4. What does the Spark UI show?
 
-## Cloud
+### Cloud
 
-15. What is AWS EMR?
-16. What is GCP Dataproc?
-17. Why use S3 or Cloud Storage?
-18. What is an IAM role or service account?
+1. What is AWS EMR?
+2. What is GCP Dataproc?
+3. Why use S3 or Cloud Storage?
+4. What is an IAM role or service account?
 
-## Scenario
+### Scenario
 
-19. Driver crashes after `collect()`
-20. Too many output files
-21. One slow partition
-22. Local path fails on cloud
-23. Small lookup dataset
-24. Repeated RDD computation
+1. Driver crashes after `collect()`
+2. Too many output files
+3. One slow partition
+4. Local path fails on cloud
+5. Small lookup dataset
+6. Repeated RDD computation
 
 ---
 
-# 20. Evaluation Rubric
+## 20. Evaluation Rubric
 
 | Score | Assessment |
-|---:|---|
+| ---: | --- |
 | 85–100% | Strong conceptual and practical understanding |
 | 70–84% | Good understanding with minor gaps |
 | 55–69% | Understands syntax but needs support with distributed execution |
 | 40–54% | Mostly memorized knowledge |
 | Below 40% | Requires remediation |
 
-## Strong Participant Indicators
+### Strong Participant Indicators
 
 - Explains lazy evaluation clearly
 - Selects `reduceByKey()` for aggregation
@@ -877,7 +877,7 @@ print(empty_rdd.collect())
 - Understands S3 and Cloud Storage paths
 - Can describe IAM roles or service accounts
 
-## Warning Signs
+### Warning Signs
 
 - Thinks transformations execute immediately
 - Uses `groupByKey()` for every aggregation

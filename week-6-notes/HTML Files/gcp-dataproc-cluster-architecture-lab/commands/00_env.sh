@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
-export PROJECT_ID="replace-with-your-gcp-project-id"
+export PROJECT_ID="gcp-dataproc-demo"
 export REGION="asia-south1"
 export CLUSTER_NAME="retail-dataproc-cluster"
 export BUCKET_NAME="${PROJECT_ID}-dataproc-retail-lab"

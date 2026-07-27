@@ -1,0 +1,6 @@
+team,location,resolved_ticket_count,average_resolution_hours,average_customer_rating,within_sla_count,sla_breach_count,sla_compliance_pct
+Identity Support,Chennai,4,1.98,4.75,4,0,100.00
+Account Support,Chennai,2,1.9,4.5,2,0,100.00
+Billing Support,Bengaluru,4,3.88,4.0,3,1,75.00
+Order Support,Hyderabad,3,6.0,4.0,2,1,66.67
+Returns Support,Pune,2,6.75,3.0,1,1,50.00

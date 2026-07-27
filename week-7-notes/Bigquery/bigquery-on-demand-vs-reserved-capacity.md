@@ -1,4 +1,5 @@
-# BigQuery: On-Demand vs Reserved Capacity 
+# BigQuery: On-Demand vs Reserved Capacity
+
 ## 1. Overview
 
 BigQuery offers two compute pricing models: - On-Demand (Pay per
@@ -13,9 +14,9 @@ A slot is BigQuery's unit of compute used to execute SQL work.
 
 ## 3. On-Demand
 
--   Pay for data processed.
--   Shared slot pool.
--   Best for learning, sandbox, ad-hoc analytics.
+- Pay for data processed.
+- Shared slot pool.
+- Best for learning, sandbox, ad-hoc analytics.
 
 Flow:
 
@@ -33,9 +34,9 @@ Cons: - Cost depends on bytes scanned - Performance may vary
 
 ## 4. Reserved Capacity
 
--   Purchase/reserve slot capacity.
--   Dedicated compute.
--   Best for enterprise workloads.
+- Purchase/reserve slot capacity.
+- Dedicated compute.
+- Best for enterprise workloads.
 
 Flow:
 
@@ -69,16 +70,14 @@ Capacity.
 
 ## 7. Sandbox Demo
 
-1.  Create dataset.
-2.  Load retail CSV.
-3.  Execute:
+1. Create dataset.
+2. Load retail CSV.
+3. Execute:
 
-``` sql
-SELECT category,
-SUM(sales_amount) total_sales
-FROM retail_orders
-GROUP BY category;
-```
+    SELECT category,
+    SUM(sales_amount) total_sales
+    FROM retail_orders
+    GROUP BY category;
 
 Observe bytes processed and execution graph.
 
@@ -88,14 +87,14 @@ Run the same query using reserved capacity and compare slot utilization.
 
 ## 9. Interview Questions
 
-1.  What is a slot?
-2.  Difference between On-Demand and Reserved Capacity?
-3.  When should you use reservations?
-4.  Does SQL change between models?
+1. What is a slot?
+2. Difference between On-Demand and Reserved Capacity?
+3. When should you use reservations?
+4. Does SQL change between models?
 
 ## Key Takeaways
 
--   Same SQL engine.
--   Different billing model.
--   On-Demand for variable workloads.
--   Reserved Capacity for predictable enterprise workloads.
+- Same SQL engine.
+- Different billing model.
+- On-Demand for variable workloads.
+- Reserved Capacity for predictable enterprise workloads.

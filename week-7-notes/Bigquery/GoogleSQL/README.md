@@ -3,11 +3,13 @@
 Open `index.html` in a browser.
 
 Files:
+
 - `index.html`: complete interactive trainer tutorial
 - `bigquery_googlesql_demo.sql`: ready-to-run lab script
 - `README.md`: usage instructions
 
 Before running SQL:
+
 1. Replace `YOUR_PROJECT_ID`.
 2. Run statements one section at a time.
 3. The main CTAS demo is compatible with BigQuery Sandbox.

@@ -117,6 +117,7 @@ trusted_sales.select(
 
 unmatched_products.select("sale_id", "product_id").show()
 
+trusted_sales.write.mode("overwrite").csv("data/trusted_sales")
 
 # ------------------------------------------------------------------------
 # WINDOW FUNCTIONS: RANK & RUNNING TOTAL

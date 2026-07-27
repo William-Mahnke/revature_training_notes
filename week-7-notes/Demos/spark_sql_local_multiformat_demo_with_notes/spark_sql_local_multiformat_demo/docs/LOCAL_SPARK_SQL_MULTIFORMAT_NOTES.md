@@ -49,7 +49,7 @@ Real projects rarely receive all data in one format.
 In this example:
 
 | File | Purpose |
-|---|---|
+| --- | --- |
 | `support_tickets.csv` | Transaction-style ticket records |
 | `agents.json` | Agent reference/master data |
 | Parquet output | Efficient columnar output for analytics and reporting |
@@ -142,7 +142,7 @@ T1002,2026-07-01,A102,Payment Issue,CRITICAL,RESOLVED,5.0,4
 Important columns:
 
 | Column | Meaning |
-|---|---|
+| --- | --- |
 | `ticket_id` | Unique ticket identifier |
 | `agent_id` | Agent who handled the ticket |
 | `priority` | LOW, MEDIUM, HIGH or CRITICAL |
@@ -189,7 +189,7 @@ spark = (
 ### Explanation
 
 | Code | Purpose |
-|---|---|
+| --- | --- |
 | `appName(...)` | Gives the Spark application a meaningful name |
 | `master("local[*]")` | Runs locally and uses available CPU cores |
 | `spark.sql.shuffle.partitions` | Uses four shuffle partitions for the small demo |
@@ -295,7 +295,7 @@ prepared_tickets_df = (
 Transformations:
 
 | Transformation | Result |
-|---|---|
+| --- | --- |
 | `to_date()` | Converts text to Spark DateType |
 | `trim()` | Removes surrounding spaces |
 | `upper()` | Standardizes text case |

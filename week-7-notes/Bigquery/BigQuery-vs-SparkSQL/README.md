@@ -3,6 +3,7 @@
 Open `index.html` in any modern browser.
 
 Contents:
+
 - Full comparison tutorial
 - Architecture and hybrid diagrams
 - Similarities and differences

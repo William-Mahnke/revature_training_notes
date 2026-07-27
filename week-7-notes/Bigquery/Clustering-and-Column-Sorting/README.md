@@ -12,3 +12,7 @@ How to use:
 3. Replace every `YOUR_PROJECT_ID` with your actual Google Cloud project ID.
 4. Run each section separately in BigQuery Studio.
 5. Compare bytes processed in Job Information / Execution details.
+
+Results from Notes Demo:
+
+- Query on unclustered table processed 5.22MB, clustered table was 5.22MB too

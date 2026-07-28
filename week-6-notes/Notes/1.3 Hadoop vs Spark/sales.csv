@@ -1,0 +1,4 @@
+order_id,order_date,city,category,quantity,unit_price,discount_pct,status
+1001,2026-07-01,Coimbatore,Electronics,2,25000,5,COMPLETED
+1002,2026-07-01,Chennai,Grocery,10,120,0,COMPLETED
+1004,2026-07-01,Coimbatore,Grocery,5,250,0,CANCELLED

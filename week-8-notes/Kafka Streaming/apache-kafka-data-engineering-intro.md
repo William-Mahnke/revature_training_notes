@@ -99,9 +99,9 @@ Kafka provides:
 
 ---
 
-# 4. Important Kafka Components
+## 4. Important Kafka Components
 
-## 4.1 Producer
+### 4.1 Producer
 
 A **producer** is an application that sends events to Kafka.
 
@@ -122,7 +122,7 @@ Mobile Application
 
 ---
 
-## 4.2 Event or Message
+### 4.2 Event or Message
 
 An **event** represents something that happened.
 
@@ -151,7 +151,7 @@ A Kafka event normally contains:
 
 ---
 
-## 4.3 Topic
+### 4.3 Topic
 
 A **topic** is a logical category used to organise related events.
 
@@ -185,7 +185,7 @@ A topic can have:
 
 ---
 
-## 4.4 Partition
+### 4.4 Partition
 
 A topic is divided into one or more **partitions**.
 
@@ -206,7 +206,7 @@ Partitions provide:
 
 Kafka guarantees ordering **within a partition**, but not automatically across all partitions.
 
-### Partition Key Example
+#### Partition Key Example
 
 Use `order_id` as the event key:
 
@@ -228,7 +228,7 @@ This preserves the event order for that order.
 
 ---
 
-## 4.5 Broker
+### 4.5 Broker
 
 A **broker** is a Kafka server.
 
@@ -247,7 +247,7 @@ Kafka can replicate partitions across different brokers so data remains availabl
 
 ---
 
-## 4.6 Consumer
+### 4.6 Consumer
 
 A **consumer** reads events from Kafka.
 
@@ -271,7 +271,7 @@ Live Order Dashboard
 
 ---
 
-## 4.7 Consumer Group
+### 4.7 Consumer Group
 
 Consumers can work together as a **consumer group**.
 
@@ -304,7 +304,7 @@ orders topic
 
 ---
 
-## 4.8 Offset
+### 4.8 Offset
 
 An **offset** identifies an event's position inside a partition.
 
@@ -328,7 +328,7 @@ Offsets make it possible to:
 
 ---
 
-## 4.9 Replication
+### 4.9 Replication
 
 Replication creates copies of a partition across brokers.
 
@@ -348,13 +348,13 @@ If the leader broker fails, an eligible replica can become the new leader.
 
 ---
 
-# 5. End-to-End Real-World Example
+## 5. End-to-End Real-World Example
 
-## Food-Delivery Order Processing
+### Food-Delivery Order Processing
 
 Assume a customer places an order through a food-delivery application.
 
-### Step 1: Customer Places the Order
+#### Step 1: Customer Places the Order
 
 The customer application creates an event:
 
@@ -369,7 +369,7 @@ The customer application creates an event:
 }
 ```
 
-### Step 2: Producer Sends the Event
+#### Step 2: Producer Sends the Event
 
 ```text
 Customer Application
@@ -381,7 +381,7 @@ Kafka Producer
 Topic: orders
 ```
 
-### Step 3: Kafka Stores the Event
+#### Step 3: Kafka Stores the Event
 
 Kafka places the event in one partition of the `orders` topic.
 
@@ -393,7 +393,7 @@ Partition 1 → ORD-9001
 Partition 2 → ORD-9002
 ```
 
-### Step 4: Multiple Consumers Process the Event
+#### Step 4: Multiple Consumers Process the Event
 
 ```text
                            ┌── Restaurant Service
@@ -412,7 +412,7 @@ orders topic ──────────────┤
                                Stores raw history
 ```
 
-### Step 5: Spark Performs Streaming Transformation
+#### Step 5: Spark Performs Streaming Transformation
 
 ```text
 Read orders
@@ -428,7 +428,7 @@ Write results to Delta Lake
 Update live dashboard
 ```
 
-### Step 6: Operations Dashboard Updates
+#### Step 6: Operations Dashboard Updates
 
 ```text
 Bengaluru
@@ -448,9 +448,9 @@ This is a real-time data pipeline:
 
 ---
 
-# 6. How Kafka Helps in Data Engineering
+## 6. How Kafka Helps in Data Engineering
 
-## 6.1 Real-Time Data Ingestion
+### 6.1 Real-Time Data Ingestion
 
 Kafka can continuously collect data from:
 
@@ -473,11 +473,11 @@ APIs ──────────┘
 
 ---
 
-## 6.2 Decoupling Source and Destination Systems
+### 6.2 Decoupling Source and Destination Systems
 
 The producer does not need to know every destination.
 
-### Before Kafka
+#### Before Kafka
 
 ```text
 Application → Database
@@ -487,7 +487,7 @@ Application → Notification
 Application → Data Warehouse
 ```
 
-### With Kafka
+#### With Kafka
 
 ```text
 Application → Kafka → Multiple destinations
@@ -497,7 +497,7 @@ This simplifies integration and allows new consumers to be added without redesig
 
 ---
 
-## 6.3 Buffering Sudden Data Volume
+### 6.3 Buffering Sudden Data Volume
 
 Suppose a shopping website normally receives:
 
@@ -517,7 +517,7 @@ This prevents a slow consumer from immediately blocking the producer.
 
 ---
 
-## 6.4 Building Bronze, Silver, and Gold Pipelines
+### 6.4 Building Bronze, Silver, and Gold Pipelines
 
 Kafka fits naturally into a medallion-style data platform.
 
@@ -540,7 +540,7 @@ Gold Layer
 Aggregations and business reports
 ```
 
-### Bronze Layer
+#### Bronze Layer
 
 Store the event exactly or nearly exactly as received.
 
@@ -549,7 +549,7 @@ order_id | event_type    | city      | amount
 ORD-101  | ORDER_CREATED | Bengaluru | 28.50
 ```
 
-### Silver Layer
+#### Silver Layer
 
 Perform:
 
@@ -560,7 +560,7 @@ Perform:
 - Standardisation
 - Filtering
 
-### Gold Layer
+#### Gold Layer
 
 Create:
 
@@ -572,7 +572,7 @@ Create:
 
 ---
 
-## 6.5 Integration With Stream-Processing Systems
+### 6.5 Integration With Stream-Processing Systems
 
 Kafka frequently provides input and output topics for stream-processing pipelines.
 
@@ -594,7 +594,7 @@ Delta Lake / Database / Dashboard
 
 ---
 
-## 6.6 Change Data Capture
+### 6.6 Change Data Capture
 
 Kafka can be used as part of a Change Data Capture pipeline.
 
@@ -616,7 +616,7 @@ For example, when a customer record changes in an operational database, the chan
 
 ---
 
-## 6.7 Replay and Reprocessing
+### 6.7 Replay and Reprocessing
 
 Kafka stores events according to a configured retention period.
 
@@ -639,7 +639,7 @@ Stored Kafka Events
 
 ---
 
-## 6.8 Multiple Destinations From One Source
+### 6.8 Multiple Destinations From One Source
 
 The same event can serve multiple data-engineering and business requirements.
 
@@ -657,7 +657,7 @@ Each destination can use a separate consumer group.
 
 ---
 
-# 7. Kafka Data Engineering Architecture
+## 7. Kafka Data Engineering Architecture
 
 ```text
 ┌───────────────────────────────────────────────┐
@@ -694,7 +694,7 @@ Each destination can use a separate consumer group.
 
 ---
 
-# 8. Kafka Connect
+## 8. Kafka Connect
 
 **Kafka Connect** is a Kafka component used to move data between Kafka and external systems using reusable connectors.
 
@@ -709,7 +709,7 @@ Application Logs → Kafka
 Cloud Storage → Kafka
 ```
 
-## Sink Connector
+### Sink Connector
 
 Moves data **from Kafka** to another system.
 
@@ -724,10 +724,10 @@ Kafka Connect reduces the need to write custom producer and consumer programs fo
 
 ---
 
-# 9. Kafka vs Traditional Database
+## 9. Kafka vs Traditional Database
 
 | Area | Kafka | Traditional Database |
-|---|---|---|
+| --- | --- | --- |
 | Main purpose | Event streaming and transport | Persistent business-data management |
 | Data model | Append-oriented event log | Tables, documents, or records |
 | Processing style | Continuous | Queries and transactions |
@@ -741,10 +741,10 @@ Kafka connects systems and transports events to the appropriate processing and s
 
 ---
 
-# 10. Kafka vs Simple Message Queue
+## 10. Kafka vs Simple Message Queue
 
 | Feature | Basic Message Queue | Kafka |
-|---|---|---|
+| --- | --- | --- |
 | Message retention | Often removed after acknowledgement | Retained based on policy |
 | Replay | Usually limited | Consumers can read earlier offsets |
 | Parallelism | Queue consumers | Topic partitions and consumer groups |
@@ -754,7 +754,7 @@ Kafka connects systems and transports events to the appropriate processing and s
 
 ---
 
-# 11. Advantages of Kafka
+## 11. Advantages of Kafka
 
 Kafka is especially useful when a system requires:
 
@@ -771,9 +771,9 @@ Kafka is especially useful when a system requires:
 
 ---
 
-# 12. Challenges and Considerations
+## 12. Challenges and Considerations
 
-## 12.1 Partition-Key Selection
+### 12.1 Partition-Key Selection
 
 A poor partition key may send most events to one partition.
 
@@ -791,7 +791,7 @@ Choose a key that distributes events evenly while preserving required ordering.
 
 ---
 
-## 12.2 Duplicate Handling
+### 12.2 Duplicate Handling
 
 Duplicate events can occur because of:
 
@@ -809,7 +809,7 @@ Use:
 
 ---
 
-## 12.3 Schema Evolution
+### 12.3 Schema Evolution
 
 Changing an event structure without coordination can break consumers.
 
@@ -823,7 +823,7 @@ Good practices include:
 
 ---
 
-## 12.4 Ordering
+### 12.4 Ordering
 
 Kafka guarantees ordering only within a partition.
 
@@ -831,7 +831,7 @@ Use the same event key when related events must remain ordered.
 
 ---
 
-## 12.5 Monitoring
+### 12.5 Monitoring
 
 Teams should monitor:
 
@@ -845,13 +845,13 @@ Teams should monitor:
 
 ---
 
-# 13. One-Line Interview Explanation
+## 13. One-Line Interview Explanation
 
 > Apache Kafka is a distributed event-streaming platform that allows producers to publish events into partitioned topics and multiple consumer groups to process those events independently, making it useful for scalable, fault-tolerant, real-time data-engineering pipelines.
 
 ---
 
-# 14. Interview Scenario
+## 14. Interview Scenario
 
 ## Question
 
@@ -882,7 +882,7 @@ Separate consumer groups can simultaneously:
 
 ---
 
-# 15. Final Data-Engineering Flow
+## 15. Final Data-Engineering Flow
 
 ```text
 Data generated continuously
@@ -908,7 +908,7 @@ Dashboard, alerts, warehouse and ML systems
 
 ---
 
-# 16. Main Takeaway
+## 16. Main Takeaway
 
 **Kafka is the transport and event backbone of a modern data platform.**
 

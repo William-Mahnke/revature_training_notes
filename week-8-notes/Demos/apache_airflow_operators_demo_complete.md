@@ -53,10 +53,10 @@ Airflow tasks are commonly created from operators. An operator is a reusable tas
 
 ---
 
-# 1. Operators demonstrated
+## 1. Operators demonstrated
 
 | Operator | What it does | Use in this example |
-|---|---|---|
+| --- | --- | --- |
 | `EmptyOperator` | Performs no business processing | Marks the start and joins branches |
 | `BashOperator` | Runs a Linux Bash command | Creates the CSV and writes a rejection report |
 | `PythonOperator` | Executes a Python function | Validates and processes transactions |
@@ -67,7 +67,7 @@ A DAG contains tasks and their dependencies; the dependencies determine their ex
 
 ---
 
-# 2. Open the Airflow DAG folder in VS Code
+## 2. Open the Airflow DAG folder in VS Code
 
 Open Ubuntu.
 
@@ -97,7 +97,7 @@ The full location should be:
 
 ---
 
-# 3. Complete DAG code
+## 3. Complete DAG code
 
 Paste the following code:
 
@@ -423,7 +423,7 @@ Ctrl + S
 
 ---
 
-# 4. What the sample input contains
+## 4. What the sample input contains
 
 The `BashOperator` creates:
 
@@ -445,7 +445,7 @@ status must be SUCCESS
 Expected classification:
 
 | Transaction | Amount | Status | Result |
-|---|---:|---|---|
+| --- | --- | --- | --- |
 | `TXN-1001` | 1500 | SUCCESS | Valid |
 | `TXN-1002` | 2200 | SUCCESS | Valid |
 | `TXN-1003` | -250 | SUCCESS | Invalid |
@@ -467,7 +467,7 @@ will appear as **skipped**. Branch operators mark unselected downstream paths as
 
 ---
 
-# 5. Validate the Python file
+## 5. Validate the Python file
 
 Open a VS Code Ubuntu terminal.
 
@@ -491,7 +491,7 @@ No output means the Python syntax is valid.
 
 ---
 
-# 6. Check whether Airflow found the DAG
+## 6. Check whether Airflow found the DAG
 
 Run:
 
@@ -544,7 +544,7 @@ airflow tasks list     operator_demo_bank_pipeline     --tree
 
 ---
 
-# 7. Start Airflow
+## 7. Start Airflow
 
 In VS Code Terminal 1 or Ubuntu Terminal 1:
 
@@ -568,7 +568,7 @@ http://localhost:8080
 
 ---
 
-# 8. Execute the DAG in the UI
+## 8. Execute the DAG in the UI
 
 Open:
 
@@ -613,12 +613,12 @@ Open **Grid View** to see the task states. Airflow represents workflows as DAGs 
 
 ---
 
-# 9. Expected first-run states
+## 9. Expected first-run states
 
 Because two invalid transactions exist:
 
 | Task | Expected state |
-|---|---|
+| --- | --- |
 | `start_pipeline` | Success |
 | `create_input_file` | Success |
 | `validate_transactions` | Success |
@@ -630,7 +630,7 @@ Because two invalid transactions exist:
 
 ---
 
-# 10. Examine the operator logs
+## 10. Examine the operator logs
 
 ## `create_input_file`
 
@@ -687,7 +687,7 @@ Review the validation task logs.
 
 ---
 
-# 11. Verify the generated files
+## 11. Verify the generated files
 
 In Terminal 2:
 
@@ -709,7 +709,7 @@ cat   ~/airflow/operator_demo/rejected_transactions.txt
 
 ---
 
-# 12. Run the other branch
+## 12. Run the other branch
 
 To demonstrate the valid-processing path, change these two rows inside the DAG’s `create_input_file` task:
 
@@ -738,7 +738,7 @@ process_valid_transactions
 Expected task states:
 
 | Task | Expected state |
-|---|---|
+| --- | --- |
 | `process_valid_transactions` | Success |
 | `quarantine_invalid_data` | Skipped |
 | `join_branches` | Success |
@@ -761,9 +761,9 @@ Valid total amount : 4850.0
 
 ---
 
-# 13. How each operator is helpful
+## 13. How each operator is helpful
 
-## EmptyOperator
+### EmptyOperator
 
 ```python
 start_pipeline = EmptyOperator(
@@ -784,7 +784,7 @@ Providing a common dependency point
 
 ---
 
-## BashOperator
+### BashOperator
 
 ```python
 create_input_file = BashOperator(
@@ -817,7 +817,7 @@ Execute an existing batch script
 
 ---
 
-## PythonOperator
+### PythonOperator
 
 ```python
 validate_data = PythonOperator(
@@ -840,7 +840,7 @@ The callable can receive Airflow context parameters such as `ti`, and its return
 
 ---
 
-## BranchPythonOperator
+### BranchPythonOperator
 
 ```python
 select_path = BranchPythonOperator(
@@ -866,7 +866,7 @@ The Python function returns the `task_id` of the downstream path that should run
 
 ---
 
-## Trigger rule
+### Trigger rule
 
 ```python
 trigger_rule="none_failed_min_one_success"
@@ -883,7 +883,7 @@ Without this trigger rule, the join might be skipped because the default behavio
 
 ---
 
-# 14. Easy explanation for participants
+## 14. Easy explanation for participants
 
 ```text
 Operator = type of work

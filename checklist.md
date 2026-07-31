@@ -1,8 +1,48 @@
 # Arizona Assignment & Notes Checklist
 
 - Week 6
-  - [ ] Item 1
+  - Demos
+    - [ ] Amazon EMR Pyspark
+    - [X] Data Loading Saving Through RDD
+    - [X] GCP Dataproc Cluster Architecture
+    - [X] PySpark Intro
+    - [X] Spark RDD
+  - GCP
+    - [ ] GCP Dataproc Complete Working Lab
+  - Notes
+    - [X] Intro to PySpark
+    - [X] Spark Ecosystem
+    - [ ] Hadoop vs Spark (download Hadoop)
+    - [X] PySpark Shared Variables
+    - [ ] Python Practical RDD
+    - [ ] PySpark RDD Data Loading
+    - [ ] GCP Dataproc Cluster Architecture
+    - [ ] AWS EMR Spark Cluster
+    - [ ] GCP Dataproc PySpark
+    - [ ] AWS EMR to GCP Dataproc
+    - [ ] GCP Dataproc GCS PySpark
 - Week 7
-  - [ ] Item 1
+  - Big Query
+    - [ ] Big Query vs SparkSQL
+    - [ ] Clustering & Column Sorting
+    - [ ] Google SQL
+    - [ ] BigQuery on Demand vs Reserved Capacity
+    - [ ] Partition Pruning
+    - [ ]Slot Execution vs Spark Executor
+  - Demos
+    - [X] Retail Store Demo
+    - [ ] SparkSQL Local Multiformat
+  - Notes
+    - [ ] SparkSQL
+    - [ ] SparkSQL Sorting
+    - [ ] SparkSQL, SparkSession, DataFrames
 - Week 8
-  - [ ] Item 1
+  - Demos
+    - [ ] airflow
+    - [ ] KafkaDemo
+    - [ ] apache airflow operator
+  - [X] Intro to Streaming
+  - [ ] Kafka Streaming
+  - [ ] Pub/Sub Messaging Fresher
+
+Kafka UUID: pqbtEqKsTqWzh-8a8Y9HFQ

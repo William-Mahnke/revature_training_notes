@@ -29,7 +29,7 @@ does not provide a browser page.
 
 ---
 
-# Part 1 — What you need
+## Part 1 — What you need
 
 Install:
 
@@ -58,18 +58,18 @@ code --version
 
 ---
 
-# Part 2 — First-time Kafka setup
+## Part 2 — First-time Kafka setup
 
 Open one VS Code window. You do not need two VS Code windows.
 
-## Step 1: Open the Kafka folder
+### Step 1: Open the Kafka folder
 
 ```powershell
 cd C:\kafka43
 code .
 ```
 
-## Step 2: Generate a cluster ID
+### Step 2: Generate a cluster ID
 
 Run:
 
@@ -86,7 +86,7 @@ Ycqt064WSGqOrN-uoxVAKQ
 A logging warning may appear before the ID on Windows. The cluster ID is the
 long final value containing letters, numbers, hyphens or underscores.
 
-## Step 3: Format Kafka storage
+### Step 3: Format Kafka storage
 
 Replace the example ID with your own:
 
@@ -96,7 +96,7 @@ Replace the example ID with your own:
 
 Run this format step only once for a fresh Kafka data directory.
 
-## Step 4: Start the broker
+### Step 4: Start the broker
 
 ```powershell
 .\bin\windows\kafka-server-start.bat .\config\server.properties
@@ -106,12 +106,12 @@ Keep this terminal open. Closing it stops Kafka.
 
 ---
 
-# Part 3 — One VS Code window and terminal layout
+## Part 3 — One VS Code window and terminal layout
 
 One VS Code window is enough. Use three integrated terminals:
 
 | Terminal | Purpose | Must remain running? |
-|---|---|---|
+| --- | --- | --- |
 | Terminal 1 | Kafka broker | Yes |
 | Terminal 2 | Create topic, then run consumer | Consumer must remain running |
 | Terminal 3 | Run producer | No; it exits after sending |
@@ -121,7 +121,7 @@ administration commands. It is optional.
 
 ---
 
-# Part 4 — Verify port 9092
+## Part 4 — Verify port 9092
 
 Open another VS Code terminal:
 
@@ -154,7 +154,7 @@ network protocol, not HTTP.
 
 ---
 
-# Part 5 — Create the topic
+## Part 5 — Create the topic
 
 With the broker running, use Terminal 2:
 
@@ -175,7 +175,7 @@ exercise uses one broker.
 
 ---
 
-# Part 6 — Create the Python project
+## Part 6 — Create the Python project
 
 Create this folder:
 
@@ -236,7 +236,7 @@ This tells pip which Kafka client library to install.
 
 ---
 
-# Part 7 — Create the Python environment
+## Part 7 — Create the Python environment
 
 Inside the project folder:
 
@@ -276,18 +276,18 @@ Do not copy a `.venv` from another computer. Recreate it locally.
 
 ---
 
-# Part 8 — Correct execution order
+## Part 8 — Correct execution order
 
 Every time you demonstrate the application:
 
-## Terminal 1 — Start Kafka
+### Terminal 1 — Start Kafka
 
 ```powershell
 cd C:\kafka43
 .\bin\windows\kafka-server-start.bat .\config\server.properties
 ```
 
-## Terminal 2 — Verify the topic
+### Terminal 2 — Verify the topic
 
 ```powershell
 cd C:\kafka43
@@ -296,7 +296,7 @@ cd C:\kafka43
 
 If `food-orders` is missing, create it.
 
-## Terminal 2 — Start the consumer first
+### Terminal 2 — Start the consumer first
 
 ```powershell
 cd C:\kafka-python-demo
@@ -306,7 +306,7 @@ python consumer.py
 
 It waits for events.
 
-## Terminal 3 — Start the producer second
+### Terminal 3 — Start the producer second
 
 ```powershell
 cd C:\kafka-python-demo
@@ -318,9 +318,9 @@ The producer sends five events. The consumer receives them immediately.
 
 ---
 
-# Part 9 — Producer code explanation
+## Part 9 — Producer code explanation
 
-## Imports
+### Imports
 
 ```python
 import json
@@ -333,7 +333,7 @@ from confluent_kafka import Message, Producer
 - `Producer` connects and sends events to Kafka.
 - `Message` is used as a type in the delivery callback.
 
-## Connection settings
+### Connection settings
 
 ```python
 BOOTSTRAP_SERVERS = "localhost:9092"
@@ -344,7 +344,7 @@ TOPIC = "food-orders"
 - `9092` is the broker's client port.
 - `food-orders` is the target topic.
 
-## Delivery callback
+### Delivery callback
 
 ```python
 def delivery_report(error, message):
@@ -359,7 +359,7 @@ On success, it displays:
 - offset;
 - message key.
 
-## Producer object
+### Producer object
 
 ```python
 producer = Producer(
@@ -373,7 +373,7 @@ producer = Producer(
 `bootstrap.servers` gives the initial broker address. The producer obtains
 cluster and topic metadata after connecting.
 
-## Event data
+### Event data
 
 ```python
 orders = [
@@ -386,7 +386,7 @@ orders = [
 
 Each dictionary represents one business event.
 
-## Produce
+### Produce
 
 ```python
 producer.produce(
@@ -402,7 +402,7 @@ producer.produce(
 - `value` is the JSON event payload.
 - `callback` reports delivery success or failure.
 
-## Poll
+### Poll
 
 ```python
 producer.poll(0)
@@ -410,7 +410,7 @@ producer.poll(0)
 
 This lets the client execute pending delivery callbacks without waiting.
 
-## Sleep
+### Sleep
 
 ```python
 time.sleep(1)
@@ -419,7 +419,7 @@ time.sleep(1)
 This is not required by Kafka. It is included only to make streaming visible:
 one event appears every second.
 
-## Flush
+### Flush
 
 ```python
 producer.flush(timeout=10)
@@ -430,9 +430,9 @@ exits.
 
 ---
 
-# Part 10 — Consumer code explanation
+## Part 10 — Consumer code explanation
 
-## Consumer group settings
+### Consumer group settings
 
 ```python
 GROUP_ID = os.getenv(
@@ -444,7 +444,7 @@ GROUP_ID = os.getenv(
 A consumer group identifies one logical consuming application. Kafka stores
 the group's progress as offsets.
 
-## Consumer object
+### Consumer object
 
 ```python
 consumer = Consumer(
@@ -466,7 +466,7 @@ consumer = Consumer(
 `earliest` does not force old events to be replayed every time. It applies
 only when the group has no valid committed offset.
 
-## Subscribe
+### Subscribe
 
 ```python
 consumer.subscribe([TOPIC])
@@ -474,7 +474,7 @@ consumer.subscribe([TOPIC])
 
 Registers interest in the `food-orders` topic.
 
-## Poll
+### Poll 2
 
 ```python
 message = consumer.poll(timeout=1.0)
@@ -483,7 +483,7 @@ message = consumer.poll(timeout=1.0)
 The consumer waits for up to one second for an event. `None` means no event
 arrived during that poll.
 
-## Decode the event
+### Decode the event
 
 ```python
 order = json.loads(message.value().decode("utf-8"))
@@ -493,7 +493,7 @@ order = json.loads(message.value().decode("utf-8"))
 2. `decode("utf-8")` converts bytes into text.
 3. `json.loads()` converts JSON text into a Python dictionary.
 
-## Metadata
+### Metadata
 
 ```python
 message.partition()
@@ -513,7 +513,7 @@ Leaves the consumer group and releases network resources.
 
 ---
 
-# Part 11 — Complete runtime flow
+## Part 11 — Complete runtime flow
 
 ```text
 1. Kafka broker starts
@@ -554,7 +554,7 @@ Leaves the consumer group and releases network resources.
 
 ---
 
-# Part 12 — Verify data and the consumer group
+## Part 12 — Verify data and the consumer group
 
 Read events using Kafka's console consumer:
 
@@ -586,7 +586,7 @@ Important columns:
 
 ---
 
-# Part 13 — Run the demo again
+## Part 13 — Run the demo again
 
 The existing group remembers its offsets. The easiest repeat demonstration is:
 
@@ -609,7 +609,7 @@ Remove-Item Env:KAFKA_GROUP_ID
 
 ---
 
-# Part 14 — Stop the applications
+## Part 14 — Stop the applications
 
 Stop producer or consumer:
 
@@ -627,9 +627,9 @@ When restarting later, do not format storage again. Start the broker directly.
 
 ---
 
-# Part 15 — Troubleshooting checklist
+## Part 15 — Troubleshooting checklist
 
-## Broker will not start
+### Broker will not start
 
 Check Java:
 
@@ -643,7 +643,7 @@ Check whether port 9092 is already used:
 netstat -ano | findstr :9092
 ```
 
-## Topic command cannot connect
+### Topic command cannot connect
 
 Confirm the broker terminal is still running:
 
@@ -651,14 +651,14 @@ Confirm the broker terminal is still running:
 Test-NetConnection localhost -Port 9092
 ```
 
-## Python import error
+### Python import error
 
 ```powershell
 .\.venv\Scripts\Activate.ps1
 pip install -r requirements.txt
 ```
 
-## Consumer shows nothing
+### Consumer shows nothing
 
 Verify:
 
@@ -669,11 +669,11 @@ Verify:
 5. both Python files use exactly `localhost:9092`;
 6. both use exactly `food-orders`.
 
-## Consumer waits on a repeated run
+### Consumer waits on a repeated run
 
 The group may already have consumed all existing messages. Start the producer
 to create new messages or use a new `KAFKA_GROUP_ID`.
 
-## Browser shows nothing on 9092
+### Browser shows nothing on 9092
 
 That is expected. Kafka port 9092 is not an HTTP website.

@@ -41,8 +41,13 @@
     - [ ] airflow
     - [X] KafkaDemo
     - [ ] apache airflow operator
+    - [ ] airflow local demo
   - [X] Intro to Streaming
   - [ ] Kafka Streaming
   - [ ] Pub/Sub Messaging Fresher
+  - [ ] Airflow DAG Design Dynamic
+  - [ ] Airflow DAG Design Operators
+  - [ ] Apache Airflow Dynamic
+  - [ ] Apache Beam Windowing
 
 Kafka UUID: pqbtEqKsTqWzh-8a8Y9HFQ

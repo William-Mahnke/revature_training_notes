@@ -39,7 +39,7 @@
 - Week 8
   - Demos
     - [ ] airflow
-    - [ ] KafkaDemo
+    - [X] KafkaDemo
     - [ ] apache airflow operator
   - [X] Intro to Streaming
   - [ ] Kafka Streaming

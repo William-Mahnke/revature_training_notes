@@ -12,42 +12,52 @@
   - Notes
     - [X] Intro to PySpark
     - [X] Spark Ecosystem
-    - [ ] Hadoop vs Spark (download Hadoop)
+    - [X] Hadoop vs Spark
     - [X] PySpark Shared Variables
     - [X] Python Practical RDD
-    - [ ] PySpark RDD Data Loading
-    - [ ] GCP Dataproc Cluster Architecture
-    - [ ] AWS EMR Spark Cluster
-    - [ ] GCP Dataproc PySpark
-    - [ ] AWS EMR to GCP Dataproc
-    - [ ] GCP Dataproc GCS PySpark
+    - [X] PySpark RDD Data Loading
+    - [X] GCP Dataproc Cluster Architecture
+    - [X] AWS EMR Spark Cluster
+    - [X] GCP Dataproc PySpark
+    - [X] AWS EMR to GCP Dataproc
+    - [X] GCP Dataproc GCS PySpark
 - Week 7
   - Big Query
-    - [ ] Big Query vs SparkSQL
-    - [ ] Clustering & Column Sorting
-    - [ ] Google SQL
-    - [ ] BigQuery on Demand vs Reserved Capacity
-    - [ ] Partition Pruning
-    - [ ]Slot Execution vs Spark Executor
+    - [X] Big Query vs SparkSQL
+    - [X] Clustering & Column Sorting
+    - [X] Google SQL
+    - [X] BigQuery on Demand vs Reserved Capacity
+    - [X] Partition Pruning
+    - [X]Slot Execution vs Spark Executor
   - Demos
     - [X] Retail Store Demo
     - [ ] SparkSQL Local Multiformat
   - Notes
-    - [ ] SparkSQL
+    - [X] SparkSQL
     - [ ] SparkSQL Sorting
-    - [ ] SparkSQL, SparkSession, DataFrames
+    - [X] SparkSQL, SparkSession, DataFrames
 - Week 8
   - Demos
     - [ ] airflow
     - [X] KafkaDemo
     - [ ] apache airflow operator
     - [ ] airflow local demo
-  - [X] Intro to Streaming
-  - [ ] Kafka Streaming
-  - [ ] Pub/Sub Messaging Fresher
-  - [ ] Airflow DAG Design Dynamic
-  - [ ] Airflow DAG Design Operators
-  - [ ] Apache Airflow Dynamic
-  - [ ] Apache Beam Windowing
-
-Kafka UUID: pqbtEqKsTqWzh-8a8Y9HFQ
+  - Intro to Streaming
+    - [X] HTML Notes
+  - Kafka Streaming
+    - [ ] Apache Kadka Intro MD
+    - [ ] Pubsub Messaging Fresher
+    - [X] Pubsub Messaging Slides
+  - Airflow
+    - [ ] Airflow Setup HTML
+    - [ ] Apache Airflow Basic to Advanced Slides
+    - [ ] Apacke Airflow Intro HTML
+  - Airflow DAG
+    - [ ] Airflow DAG Design Dynamic HTML
+    - [ ] Airflow DAG Design Operators HTML
+    - [ ] Apache Airflow Dynamic DAG MD
+    - [ ] Simple Dynamic DAG MD
+  - Beam
+    - [ ] Apache Beam Windowing HTML
+- Others
+  - [ ] Download Hadoop

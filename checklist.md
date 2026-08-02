@@ -14,7 +14,7 @@
     - [X] Spark Ecosystem
     - [ ] Hadoop vs Spark (download Hadoop)
     - [X] PySpark Shared Variables
-    - [ ] Python Practical RDD
+    - [X] Python Practical RDD
     - [ ] PySpark RDD Data Loading
     - [ ] GCP Dataproc Cluster Architecture
     - [ ] AWS EMR Spark Cluster

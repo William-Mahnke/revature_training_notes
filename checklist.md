@@ -34,7 +34,7 @@
     - [ ] SparkSQL Local Multiformat
   - Notes
     - [X] SparkSQL
-    - [ ] SparkSQL Sorting
+    - [X] SparkSQL Sorting
     - [X] SparkSQL, SparkSession, DataFrames
 - Week 8
   - Demos
@@ -45,13 +45,13 @@
   - Intro to Streaming
     - [X] HTML Notes
   - Kafka Streaming
-    - [ ] Apache Kadka Intro MD
-    - [ ] Pubsub Messaging Fresher
+    - [X] Apache Kadka Intro MD
+    - [X] Pubsub Messaging Fresher
     - [X] Pubsub Messaging Slides
   - Airflow
     - [ ] Airflow Setup HTML
     - [ ] Apache Airflow Basic to Advanced Slides
-    - [ ] Apacke Airflow Intro HTML
+    - [X] Apache Airflow Intro HTML
   - Airflow DAG
     - [ ] Airflow DAG Design Dynamic HTML
     - [ ] Airflow DAG Design Operators HTML

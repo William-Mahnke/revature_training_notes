@@ -28,7 +28,7 @@
     - [X] Google SQL
     - [X] BigQuery on Demand vs Reserved Capacity
     - [X] Partition Pruning
-    - [X]Slot Execution vs Spark Executor
+    - [X] Slot Execution vs Spark Executor
   - Demos
     - [X] Retail Store Demo
     - [ ] SparkSQL Local Multiformat
@@ -49,8 +49,8 @@
     - [X] Pubsub Messaging Fresher
     - [X] Pubsub Messaging Slides
   - Airflow
-    - [ ] Airflow Setup HTML
-    - [ ] Apache Airflow Basic to Advanced Slides
+    - [X] Airflow Setup HTML
+    - [X] Apache Airflow Basic to Advanced Slides
     - [X] Apache Airflow Intro HTML
   - Airflow DAG
     - [ ] Airflow DAG Design Dynamic HTML

@@ -42,6 +42,8 @@
     - [X] KafkaDemo
     - [ ] apache airflow operator
     - [ ] airflow local demo
+    - [ ] Airflow Docker SQL Server
+    - [ ] Parameterized DAG
   - Intro to Streaming
     - [X] HTML Notes
   - Kafka Streaming
@@ -57,6 +59,7 @@
     - [ ] Airflow DAG Design Operators HTML (demo to do)
     - [ ] Apache Airflow Dynamic DAG MD
     - [ ] Simple Dynamic DAG MD
+    - [ ] Apache Airflow Parameterized DAG Tutorial HTML
   - Beam
     - [ ] Apache Beam Windowing HTML (demo to do)
 - Others

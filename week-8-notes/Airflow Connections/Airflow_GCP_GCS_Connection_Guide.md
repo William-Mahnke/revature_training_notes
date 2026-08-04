@@ -32,9 +32,9 @@ Airflow task reads and prints records
 
 ---
 
-# Part 1 — Complete the GCP-Side Settings
+## Part 1 — Complete the GCP-Side Settings
 
-## Step 1: Confirm the Correct Google Cloud Project
+### Step 1: Confirm the Correct Google Cloud Project
 
 In the Google Cloud Console:
 
@@ -57,18 +57,13 @@ Keep this value. We will use it in Airflow.
 
 ---
 
-## Step 2: Enable the Cloud Storage API
+### Step 2: Enable the Cloud Storage API
 
 In the GCP Console:
 
 1. Open the navigation menu.
 2. Select **APIs & Services → Library**.
-3. Search for:
-
-```text
-Cloud Storage API
-```
-
+3. Search for: ```text Cloud Storage API```
 4. Open it.
 5. Click **Enable** if it is not already enabled.
 
@@ -76,7 +71,7 @@ For this particular DAG, you do not need BigQuery API, Compute Engine API, or Cl
 
 ---
 
-## Step 3: Find the Service-Account Email
+### Step 3: Find the Service-Account Email
 
 You already created a service account named:
 
@@ -101,7 +96,7 @@ The numeric value visible in your screenshot is a unique service-account ID. Air
 
 ---
 
-## Step 4: Grant Access Only to Your Bucket
+### Step 4: Grant Access Only to Your Bucket
 
 For reading the CSV, the recommended minimum predefined role is:
 
@@ -115,32 +110,12 @@ This role permits reading object data and listing objects. It can be assigned di
 In the GCP Console:
 
 1. Go to **Cloud Storage → Buckets**.
-2. Click:
-
-```text
-azctsdemo1bucket
-```
-
+2. Click: ```text azctsdemo1bucket```
 3. Open the **Permissions** tab.
 4. Click **Grant access**.
-5. Under **New principals**, enter the service-account email:
-
-```text
-airflow-gcs-service-account@YOUR_PROJECT_ID.iam.gserviceaccount.com
-```
-
-6. Under **Select a role**, search for:
-
-```text
-Storage Object Viewer
-```
-
-7. Select:
-
-```text
-Cloud Storage → Storage Object Viewer
-```
-
+5. Under **New principals**, enter the service-account email: ```text airflow-gcs-service-account@YOUR_PROJECT_ID.iam.gserviceaccount.com```
+6. Under **Select a role**, search for: ```text Storage Object Viewer```
+7. Select: ```text Cloud Storage → Storage Object Viewer```
 8. Click **Save**.
 
 You do not need these broader roles:
@@ -156,7 +131,7 @@ Storage Object Admin
 
 ---
 
-## Step 5: Obtain a JSON Key
+### Step 5: Obtain a JSON Key
 
 Your screenshot shows that the service account already has an active key. However, Google does not allow the private JSON key to be downloaded again after its initial creation.
 
@@ -182,7 +157,7 @@ Open it carefully in VS Code. A valid service-account JSON file contains fields 
 
 Do not paste this content into chat, GitHub, email, screenshots, or your DAG.
 
-### If You Do Not Have the Original JSON
+#### If You Do Not Have the Original JSON
 
 Create a new key:
 
@@ -200,7 +175,7 @@ After confirming the new key works, delete unused older keys to reduce risk.
 
 ---
 
-# Part 2 — Prepare the Airflow Docker Project
+## Part 2 — Prepare the Airflow Docker Project
 
 Your current project is:
 
@@ -248,7 +223,7 @@ C:\AirflowDockerSqlServer
 
 ---
 
-## Step 6: Copy and Rename the JSON File
+### Step 6: Copy and Rename the JSON File
 
 Copy the downloaded JSON key into:
 
@@ -270,7 +245,7 @@ C:\AirflowDockerSqlServer\gcp_credentials\airflow-gcs-key.json
 
 ---
 
-## Step 7: Protect the Credentials Folder from Git
+### Step 7: Protect the Credentials Folder from Git
 
 Create or update:
 
@@ -295,7 +270,7 @@ Do not copy the JSON key into the `dags` directory.
 
 ---
 
-# Part 3 — Install the Google Provider in Airflow
+## Part 3 — Install the Google Provider in Airflow
 
 Airflow communicates with GCP through:
 
@@ -303,7 +278,7 @@ Airflow communicates with GCP through:
 apache-airflow-providers-google
 ```
 
-## Step 8: Update `requirements.txt`
+### Step 8: Update `requirements.txt`
 
 Open:
 
@@ -329,7 +304,7 @@ pandas
 
 ---
 
-## Step 9: Check the Dockerfile
+### Step 9: Check the Dockerfile
 
 Your `Dockerfile` should install `requirements.txt`:
 
@@ -345,9 +320,9 @@ Retain the exact Airflow image version currently used by your project.
 
 ---
 
-# Part 4 — Mount the JSON File Inside Airflow Containers
+## Part 4 — Mount the JSON File Inside Airflow Containers
 
-## Step 10: Update `docker-compose.yaml`
+### Step 10: Update `docker-compose.yaml`
 
 Add this volume to the shared Airflow configuration:
 
@@ -370,7 +345,7 @@ If there is no shared `x-airflow-common` section, add the volume to every Airflo
 
 ---
 
-## Step 11: Rebuild and Restart Airflow
+### Step 11: Rebuild and Restart Airflow
 
 Open PowerShell in:
 
@@ -396,7 +371,7 @@ docker compose logs --tail=100 airflow-scheduler
 
 ---
 
-## Step 12: Verify the Google Provider
+### Step 12: Verify the Google Provider
 
 ```powershell
 docker compose exec airflow-scheduler airflow providers list
@@ -416,7 +391,7 @@ docker compose exec airflow-scheduler python -c "from airflow.providers.google.c
 
 ---
 
-## Step 13: Verify the JSON Mount
+### Step 13: Verify the JSON Mount
 
 ```powershell
 docker compose exec airflow-scheduler ls -l /opt/airflow/gcp_credentials
@@ -442,9 +417,9 @@ True
 
 ---
 
-# Part 5 — Create the GCP Connection in Airflow
+## Part 5 — Create the GCP Connection in Airflow
 
-## Step 14: Open Airflow
+### Step 14: Open Airflow
 
 Open:
 
@@ -462,10 +437,10 @@ Click **Add Connection**.
 
 ---
 
-## Step 15: Enter the Connection Values
+### Step 15: Enter the Connection Values
 
 | Field | Value |
-|---|---|
+| --- | --- |
 | Connection Id | `google_cloud_default` |
 | Connection Type | `Google Cloud` |
 | Project Id | Your real GCP Project ID |
@@ -482,7 +457,7 @@ Do not use the Windows path inside Airflow. Use the path inside the container:
 
 ---
 
-# Part 6 — Create the GCS DAG
+## Part 6 — Create the GCS DAG
 
 Create:
 
@@ -606,9 +581,9 @@ from airflow.decorators import dag, task
 
 ---
 
-# Part 7 — Trigger the DAG
+## Part 7 — Trigger the DAG
 
-## Step 17: Confirm the DAG Is Detected
+### Step 17: Confirm the DAG Is Detected
 
 Search for:
 
@@ -624,7 +599,7 @@ docker compose exec airflow-scheduler airflow dags list-import-errors
 
 ---
 
-## Step 18: Trigger It
+### Step 18: Trigger It
 
 1. Open `gcs_read_customers`.
 2. Enable or unpause it.
@@ -643,7 +618,7 @@ print_summary
 
 ---
 
-## Step 19: View the Records
+### Step 19: View the Records
 
 Open the log for:
 
@@ -662,7 +637,7 @@ Record 2: {...}
 
 ---
 
-# Connection-Only Test
+## Connection-Only Test
 
 ```powershell
 docker compose exec airflow-scheduler python -c "from airflow.providers.google.cloud.hooks.gcs import GCSHook; h=GCSHook(gcp_conn_id='google_cloud_default'); print(h.list(bucket_name='azctsdemo1bucket', prefix='input/'))"
@@ -676,9 +651,9 @@ Expected:
 
 ---
 
-# Common Errors
+## Common Errors
 
-## `403 Forbidden`
+### `403 Forbidden`
 
 Grant the service account:
 
@@ -692,7 +667,7 @@ on:
 azctsdemo1bucket
 ```
 
-## `404 Not Found`
+### `404 Not Found`
 
 Confirm the exact case-sensitive object path:
 
@@ -700,13 +675,13 @@ Confirm the exact case-sensitive object path:
 input/customers.csv
 ```
 
-## Key File Missing
+### Key File Missing
 
 ```powershell
 docker compose exec airflow-scheduler ls -l /opt/airflow/gcp_credentials
 ```
 
-## Google Provider Missing
+### Google Provider Missing
 
 ```text
 apache-airflow-providers-google
@@ -714,7 +689,7 @@ apache-airflow-providers-google
 
 Then rebuild the image.
 
-## Invalid JWT Signature
+### Invalid JWT Signature
 
 Check that:
 
@@ -725,7 +700,7 @@ Check that:
 
 ---
 
-# Final Checklist
+## Final Checklist
 
 ```text
 [ ] Cloud Storage API enabled

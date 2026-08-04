@@ -14,7 +14,7 @@ Airflow supports generating DAGs through normal Python loops and automatically r
 
 ---
 
-# Step 1: Create the Dynamic DAG File
+## Step 1: Create the Dynamic DAG File
 
 Inside VS Code, create this file:
 
@@ -24,7 +24,7 @@ Inside VS Code, create this file:
 
 ---
 
-# Step 2: Copy and Paste This Complete Code
+## Step 2: Copy and Paste This Complete Code
 
 ```python
 from datetime import datetime
@@ -104,7 +104,7 @@ Ctrl + S
 
 ---
 
-# Step 3: Understand the Configuration
+## Step 3: Understand the Configuration
 
 This dictionary contains the information used to generate the DAGs:
 
@@ -128,14 +128,14 @@ RETAIL_STORES = {
 There are three configurations, so Airflow creates three separate DAGs.
 
 | Configuration key | Generated DAG |
-|---|---|
+| --- | --- |
 | `chennai` | `retail_sales_chennai_dag` |
 | `bangalore` | `retail_sales_bangalore_dag` |
 | `hyderabad` | `retail_sales_hyderabad_dag` |
 
 ---
 
-# Step 4: Understand the Loop
+## Step 4: Understand the Loop
 
 ```python
 for store_code, store_config in RETAIL_STORES.items():
@@ -166,7 +166,7 @@ store_config = Hyderabad configuration
 
 ---
 
-# Step 5: Understand the Dynamic DAG ID
+## Step 5: Understand the Dynamic DAG ID
 
 ```python
 dynamic_dag_id = f"retail_sales_{store_code}_dag"
@@ -194,7 +194,7 @@ Each generated DAG has a unique `dag_id`. Airflow requires every DAG ID to be un
 
 ---
 
-# Step 6: Understand the DAG Factory
+## Step 6: Understand the DAG Factory
 
 ```python
 @dag(
@@ -224,9 +224,9 @@ Only the store information changes.
 
 ---
 
-# Step 7: Understand the Tasks
+## Step 7: Understand the Tasks
 
-## Extract Task
+### Extract Task
 
 ```python
 @task
@@ -240,7 +240,7 @@ For Chennai, its log will show:
 Extracting sales data for Chennai Retail Store
 ```
 
-## Transform Task
+### Transform Task
 
 ```python
 @task
@@ -254,7 +254,7 @@ For Chennai:
 Transforming sales data for Chennai Retail Store
 ```
 
-## Load Task
+### Load Task
 
 ```python
 @task
@@ -272,7 +272,7 @@ Target table: chennai_daily_sales
 
 ---
 
-# Step 8: Understand DAG Registration
+## Step 8: Understand DAG Registration
 
 The following line is essential:
 
@@ -286,7 +286,7 @@ That causes Airflow to create and register one DAG for every configuration.
 
 ---
 
-# Step 9: Check the Python File
+## Step 9: Check the Python File
 
 Open the VS Code terminal and run:
 
@@ -315,7 +315,7 @@ This checks whether the file can be parsed. It does not execute the tasks.
 
 ---
 
-# Step 10: Check for Import Errors
+## Step 10: Check for Import Errors
 
 Run:
 
@@ -333,7 +333,7 @@ Any indentation, syntax, or import problem will be displayed by this command.
 
 ---
 
-# Step 11: Confirm That the Dynamic DAGs Were Created
+## Step 11: Confirm That the Dynamic DAGs Were Created
 
 Run:
 
@@ -353,7 +353,7 @@ One Python file has now generated three DAGs.
 
 ---
 
-# Step 12: Start Airflow
+## Step 12: Start Airflow
 
 Run:
 
@@ -373,7 +373,7 @@ Wait for the DAG processor to parse the file and refresh the browser.
 
 ---
 
-# Step 13: Find the DAGs in the Web UI
+## Step 13: Find the DAGs in the Web UI
 
 Search for:
 
@@ -403,7 +403,7 @@ load_sales
 
 ---
 
-# Step 14: Trigger One DAG
+## Step 14: Trigger One DAG
 
 Open:
 
@@ -442,7 +442,7 @@ hyderabad_daily_sales
 
 ---
 
-# Step 15: Add Another Store Dynamically
+## Step 15: Add Another Store Dynamically
 
 Add this entry inside `RETAIL_STORES`:
 
@@ -488,7 +488,7 @@ You do not need to copy and rewrite the complete DAG for Pune. That is the main 
 
 ---
 
-# Static DAG Versus Dynamic DAG
+## Static DAG Versus Dynamic DAG
 
 Your previous static file created one DAG:
 

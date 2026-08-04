@@ -16,7 +16,7 @@ Apache Airflow represents a workflow as a **Directed Acyclic Graph**, containing
 
 ---
 
-# 1. What is a DAG?
+## 1. What is a DAG?
 
 **DAG** means:
 
@@ -24,7 +24,7 @@ Apache Airflow represents a workflow as a **Directed Acyclic Graph**, containing
 Directed Acyclic Graph
 ```
 
-## Directed
+### Directed
 
 The workflow moves in a defined direction.
 
@@ -32,7 +32,7 @@ The workflow moves in a defined direction.
 Extract → Transform → Load
 ```
 
-## Acyclic
+### Acyclic
 
 The workflow must not create an endless circular dependency.
 
@@ -50,7 +50,7 @@ Task A → Task B → Task C
    └─────────────────┘
 ```
 
-## Graph
+### Graph
 
 A graph contains:
 
@@ -69,7 +69,7 @@ In Airflow:
 
 ---
 
-# 2. Real-world example
+## 2. Real-world example
 
 Consider a retail company that receives a sales CSV every day.
 
@@ -97,7 +97,7 @@ The arrows represent dependencies.
 
 ---
 
-# 3. Why use Airflow?
+## 3. Why use Airflow?
 
 Without Airflow, you might manually run:
 
@@ -138,7 +138,7 @@ Airflow handles:
 
 ---
 
-# 4. Airflow architecture for a local demo
+## 4. Airflow architecture for a local demo
 
 A simple local installation contains:
 
@@ -156,27 +156,27 @@ Task execution
 Airflow Web UI
 ```
 
-## Main components
+### Main components
 
-### DAG file
+#### DAG file
 
 A Python file defining the workflow.
 
-### Scheduler
+#### Scheduler
 
 Checks which DAGs and tasks are ready to run.
 
-### DAG Processor
+#### DAG Processor
 
 Reads Python DAG files and loads the DAG definitions.
 
-### Executor
+#### Executor
 
 Determines how task instances are executed.
 
 For a basic local setup, tasks run on the same Ubuntu machine.
 
-### Metadata database
+#### Metadata database
 
 Stores:
 
@@ -187,17 +187,17 @@ Stores:
 * Connections
 * Logs and execution metadata
 
-### API server and UI
+#### API server and UI
 
 Provides the Airflow web interface and API.
 
 ---
 
-# 5. Install Airflow locally on Ubuntu
+## 5. Install Airflow locally on Ubuntu
 
 The current stable Airflow documentation supports local standalone setup using Python. Airflow’s officially supported Python installation uses `pip` or `uv`, and the constraints file provides a tested combination of dependencies. ([Apache Airflow][2])
 
-## Step 1: Update Ubuntu
+### Step 1: Update Ubuntu
 
 Open Ubuntu Terminal:
 
@@ -208,7 +208,7 @@ sudo apt upgrade -y
 
 ---
 
-## Step 2: Install Python prerequisites
+### Step 2: Install Python prerequisites
 
 ```bash
 sudo apt install python3 python3-pip python3-venv -y
@@ -226,7 +226,7 @@ For a stable beginner environment, Python 3.11 or 3.12 is a practical choice.
 
 ---
 
-## Step 3: Create a project folder
+### Step 3: Create a project folder
 
 ```bash
 mkdir -p ~/airflow-local-demo
@@ -235,7 +235,7 @@ cd ~/airflow-local-demo
 
 ---
 
-## Step 4: Create a virtual environment
+### Step 4: Create a virtual environment
 
 ```bash
 python3 -m venv .venv
@@ -255,7 +255,7 @@ Your terminal should show:
 
 ---
 
-## Step 5: Define `AIRFLOW_HOME`
+### Step 5: Define `AIRFLOW_HOME`
 
 Set Airflow’s home directory inside the project:
 
@@ -280,7 +280,7 @@ Airflow creates `airflow.cfg` inside `$AIRFLOW_HOME` when it initializes. ([Apac
 
 ---
 
-## Step 6: Install Apache Airflow
+### Step 6: Install Apache Airflow
 
 Set the Airflow and Python versions:
 
@@ -312,7 +312,7 @@ Expected:
 
 ---
 
-# 6. Start Airflow in standalone mode
+## 6. Start Airflow in standalone mode
 
 Run:
 
@@ -346,7 +346,7 @@ export AIRFLOW_HOME=~/airflow-local-demo/airflow
 
 ---
 
-# 7. Find the DAG folder
+## 7. Find the DAG folder
 
 Run:
 
@@ -370,7 +370,7 @@ Airflow reads Python source files from its DAG folder and executes those files t
 
 ---
 
-# 8. Create your first simple DAG
+## 8. Create your first simple DAG
 
 Create:
 
@@ -452,7 +452,7 @@ Ctrl + X
 
 ---
 
-# 9. Understanding every DAG argument
+## 9. Understanding every DAG argument
 
 The DAG section is:
 
@@ -467,7 +467,7 @@ with DAG(
 ) as dag:
 ```
 
-## `dag_id`
+### `dag_id`
 
 ```python
 dag_id="simple_retail_sales_dag"
@@ -497,19 +497,19 @@ List it:
 airflow dags list
 ```
 
-### Good DAG ID
+#### Good DAG ID
 
 ```text
 retail_daily_sales_pipeline
 ```
 
-### Poor DAG ID
+#### Poor DAG ID
 
 ```text
 dag1
 ```
 
-### Recommended naming style
+#### Recommended naming style
 
 ```text
 <domain>_<frequency>_<purpose>
@@ -527,7 +527,7 @@ A dynamically generated DAG must produce a stable and consistent DAG ID every ti
 
 ---
 
-## `description`
+### `description`
 
 ```python
 description="Simple retail ETL workflow"
@@ -539,7 +539,7 @@ It does not control execution.
 
 ---
 
-## `start_date`
+### `start_date`
 
 ```python
 start_date=datetime(2026, 7, 1)
@@ -577,7 +577,7 @@ A continuously changing start date can create confusing scheduling behavior.
 
 ---
 
-## `schedule`
+### `schedule`
 
 ```python
 schedule=None
@@ -585,7 +585,7 @@ schedule=None
 
 Defines when Airflow should automatically create DAG runs.
 
-### Manual-only DAG
+#### Manual-only DAG
 
 ```python
 schedule=None
@@ -593,19 +593,19 @@ schedule=None
 
 The DAG runs only when triggered manually or through an API.
 
-### Daily DAG
+#### Daily DAG
 
 ```python
 schedule="@daily"
 ```
 
-### Hourly DAG
+#### Hourly DAG
 
 ```python
 schedule="@hourly"
 ```
 
-### Cron schedule
+#### Cron schedule
 
 ```python
 schedule="0 6 * * *"
@@ -629,7 +629,7 @@ Other examples:
 
 ---
 
-## `catchup`
+### `catchup`
 
 The user’s word “catcher” most likely refers to **`catchup`**.
 
@@ -648,7 +648,7 @@ schedule="@daily"
 
 and the DAG is enabled on July 10.
 
-### `catchup=True`
+#### `catchup=True`
 
 Airflow may create runs for:
 
@@ -660,7 +660,7 @@ July 3
 July 9
 ```
 
-### `catchup=False`
+#### `catchup=False`
 
 Airflow skips the missed historical intervals and schedules only the latest/current run.
 
@@ -680,7 +680,7 @@ catchup=True
 
 ---
 
-## `tags`
+### `tags`
 
 ```python
 tags=["training", "retail", "beginner"]
@@ -702,7 +702,7 @@ Tags do not control dependencies or execution.
 
 ---
 
-# 10. Understanding tasks
+## 10. Understanding tasks
 
 A task is the smallest unit of work in an Airflow workflow. Airflow supports operators, sensors and TaskFlow tasks. ([Apache Airflow][9])
 
@@ -726,7 +726,7 @@ The task call adds the task to the DAG.
 
 ---
 
-# 11. Understanding task IDs
+## 11. Understanding task IDs
 
 When using the TaskFlow API:
 
@@ -771,7 +771,7 @@ Run: scheduled__2026-07-31
 
 ---
 
-# 12. How dependencies are created
+## 12. How dependencies are created
 
 A dependency means:
 
@@ -781,7 +781,7 @@ Airflow refers to tasks before another task as **upstream**, and tasks after it 
 
 ---
 
-## Method 1: Data dependency using TaskFlow
+### Method 1: Data dependency using TaskFlow
 
 ```python
 extracted_data = extract_sales()
@@ -806,7 +806,7 @@ This is the cleanest approach when data moves between Python tasks.
 
 ---
 
-## Method 2: Bitshift operator
+### Method 2: Bitshift operator
 
 ```python
 task_a >> task_b
@@ -834,7 +834,7 @@ extract >> validate >> transform >> load
 
 ---
 
-## Method 3: `set_downstream`
+### Method 3: `set_downstream`
 
 ```python
 extract.set_downstream(validate)
@@ -848,7 +848,7 @@ extract >> validate
 
 ---
 
-## Method 4: `set_upstream`
+### Method 4: `set_upstream`
 
 ```python
 validate.set_upstream(extract)
@@ -864,7 +864,7 @@ The `>>` and `<<` syntax is generally easier to read.
 
 ---
 
-# 13. Sequential dependency example
+## 13. Sequential dependency example
 
 ```python
 task_a >> task_b >> task_c
@@ -882,7 +882,7 @@ Task C
 
 ---
 
-# 14. Parallel dependency example
+## 14. Parallel dependency example
 
 ```python
 extract >> [validate_sales, validate_customers]
@@ -900,7 +900,7 @@ Both validation tasks can run after extraction.
 
 ---
 
-# 15. Join dependency example
+## 15. Join dependency example
 
 ```python
 [validate_sales, validate_customers] >> load_data
@@ -918,7 +918,7 @@ Validate Customers ───┘
 
 ---
 
-# 16. Complete dependency example using operators
+## 16. Complete dependency example using operators
 
 Create:
 
@@ -1033,7 +1033,7 @@ Validate Sales   Validate Customers
 
 ---
 
-# 17. Important task arguments
+## 17. Important task arguments
 
 Example:
 
@@ -1046,7 +1046,7 @@ extract = PythonOperator(
 )
 ```
 
-## `task_id`
+### `task_id`
 
 Unique task name inside the DAG.
 
@@ -1056,7 +1056,7 @@ task_id="extract_data"
 
 ---
 
-## `python_callable`
+### `python_callable`
 
 The Python function the operator should execute.
 
@@ -1080,7 +1080,7 @@ python_callable=extract_function()
 
 ---
 
-## `retries`
+### `retries`
 
 Number of times Airflow retries a failed task.
 
@@ -1096,7 +1096,7 @@ Initial attempt + up to 2 retries
 
 ---
 
-## `retry_delay`
+### `retry_delay`
 
 Delay between retries.
 
@@ -1106,7 +1106,7 @@ retry_delay=timedelta(minutes=1)
 
 ---
 
-## `execution_timeout`
+### `execution_timeout`
 
 Maximum allowed execution time:
 
@@ -1116,7 +1116,7 @@ execution_timeout=timedelta(minutes=10)
 
 ---
 
-## `owner`
+### `owner`
 
 Descriptive owner:
 
@@ -1128,7 +1128,7 @@ This is useful for identification and operational ownership.
 
 ---
 
-# 18. Using `default_args`
+## 18. Using `default_args`
 
 Common arguments can be placed once:
 
@@ -1170,7 +1170,7 @@ This task uses five retries instead of the default two.
 
 ---
 
-# 19. Validate that Airflow loaded the DAG
+## 19. Validate that Airflow loaded the DAG
 
 Run:
 
@@ -1200,7 +1200,7 @@ Airflow recommends treating DAGs as production code and testing them. ([Apache A
 
 ---
 
-# 20. Trigger the DAG from CLI
+## 20. Trigger the DAG from CLI
 
 Run:
 
@@ -1217,21 +1217,11 @@ airflow dags list-runs \
 
 ---
 
-# 21. Trigger from the Airflow UI
+## 21. Trigger from the Airflow UI
 
-1. Open:
-
-```text
-http://localhost:8080
-```
-
+1. Open: ```text http://localhost:8080```
 2. Sign in.
-3. Search for:
-
-```text
-simple_retail_sales_dag
-```
-
+3. Search for: ```text simple_retail_sales_dag```
 4. Enable the DAG if required.
 5. Click **Trigger DAG**.
 6. Open the DAG.
@@ -1242,7 +1232,7 @@ simple_retail_sales_dag
 
 ---
 
-# 22. What is a parameterized DAG?
+## 22. What is a parameterized DAG?
 
 A parameterized DAG accepts values at runtime.
 
@@ -1259,7 +1249,7 @@ Airflow Params provide runtime configuration to tasks. Default values can be def
 
 ---
 
-# 23. Simple parameterized DAG
+## 23. Simple parameterized DAG
 
 Create:
 
@@ -1380,7 +1370,7 @@ with DAG(
 
 ---
 
-# 24. Trigger the parameterized DAG
+## 24. Trigger the parameterized DAG
 
 From the UI:
 
@@ -1410,7 +1400,7 @@ This is a **parameterized DAG**, not dynamic DAG generation.
 
 ---
 
-# 25. What is a dynamic DAG?
+## 25. What is a dynamic DAG?
 
 Dynamic DAG generation means Python code creates multiple DAG definitions from configuration.
 
@@ -1446,7 +1436,7 @@ Airflow supports dynamically creating DAGs using the `@dag` decorator or `with D
 
 ---
 
-# 26. Create a dynamic DAG generator
+## 26. Create a dynamic DAG generator
 
 Create:
 
@@ -1589,9 +1579,9 @@ for config_key, config in sorted(
 
 ---
 
-# 27. How the dynamic DAG code works
+## 27. How the dynamic DAG code works
 
-## Configuration
+### Configuration
 
 ```python
 CITY_CONFIGS = {
@@ -1607,7 +1597,7 @@ Three entries produce three DAGs.
 
 ---
 
-## Factory function
+### Factory function
 
 ```python
 def create_retail_dag(...):
@@ -1623,7 +1613,7 @@ DAG factory
 
 ---
 
-## Dynamic DAG ID
+### Dynamic DAG ID
 
 ```python
 generated_dag_id = (
@@ -1641,7 +1631,7 @@ retail_sales_coimbatore_dag
 
 ---
 
-## Registering generated DAGs
+### Registering generated DAGs
 
 ```python
 globals()[generated_dag_id] = (
@@ -1655,7 +1645,7 @@ Modern Airflow can also automatically register DAGs generated through supported 
 
 ---
 
-## Stable ordering
+### Stable ordering
 
 ```python
 for config_key, config in sorted(
@@ -1669,7 +1659,7 @@ Dynamic DAG generation should consistently produce stable DAG IDs and task order
 
 ---
 
-# 28. Validate the generated DAGs
+## 28. Validate the generated DAGs
 
 Run:
 
@@ -1702,7 +1692,7 @@ The same DAG IDs should be generated each time.
 
 ---
 
-# 29. Trigger one generated DAG
+## 29. Trigger one generated DAG
 
 ```bash
 airflow dags trigger \
@@ -1728,9 +1718,9 @@ Each generated DAG has its own:
 
 ---
 
-# 30. Parameterized DAG vs dynamic DAG generation
+## 30. Parameterized DAG vs dynamic DAG generation
 
-## Parameterized DAG
+### Parameterized DAG
 
 One DAG:
 
@@ -1750,7 +1740,7 @@ The DAG ID and task structure remain the same.
 
 ---
 
-## Dynamic DAG generation
+### Dynamic DAG generation
 
 Configuration creates multiple DAGs:
 
@@ -1764,7 +1754,7 @@ Each is independently scheduled and monitored.
 
 ---
 
-## Comparison
+### Comparison
 
 | Area            | Parameterized DAG        | Dynamic DAG generation              |
 | --------------- | ------------------------ | ----------------------------------- |
@@ -1777,11 +1767,11 @@ Each is independently scheduled and monitored.
 
 ---
 
-# 31. Dynamic DAG generation vs Dynamic Task Mapping
+## 31. Dynamic DAG generation vs Dynamic Task Mapping
 
 These are different.
 
-## Dynamic DAG generation
+### Dynamic DAG generation (2)
 
 Creates multiple DAGs during DAG-file parsing.
 
@@ -1793,7 +1783,7 @@ DAG B
 DAG C
 ```
 
-## Dynamic Task Mapping
+### Dynamic Task Mapping
 
 Creates multiple task instances at runtime based on current data.
 
@@ -1811,7 +1801,7 @@ Airflow Dynamic Task Mapping lets a workflow create a runtime-determined number 
 
 ---
 
-# 32. Simple Dynamic Task Mapping example
+## 32. Simple Dynamic Task Mapping example
 
 Create:
 
@@ -1874,7 +1864,7 @@ This is one DAG with several mapped task instances.
 
 ---
 
-# 33. Which approach should you use?
+## 33. Which approach should you use?
 
 Use a **parameterized DAG** when:
 
@@ -1897,9 +1887,9 @@ Use **Dynamic Task Mapping** when:
 
 ---
 
-# 34. Professional recommendations
+## 34. Professional recommendations
 
-## Keep DAG parsing lightweight
+### Keep DAG parsing lightweight
 
 Airflow repeatedly parses DAG files.
 
@@ -1932,7 +1922,7 @@ Prefer:
 
 ---
 
-## Keep IDs stable
+### Keep IDs stable
 
 Do not generate IDs using:
 
@@ -1958,7 +1948,7 @@ dag_id=f"sales_{customer_code}"
 
 ---
 
-## Avoid spaces in IDs
+### Avoid spaces in IDs
 
 Good:
 
@@ -1974,7 +1964,7 @@ Retail Daily Sales DAG
 
 ---
 
-## Use clear dependency flow
+### Use clear dependency flow
 
 Good:
 
@@ -1986,7 +1976,7 @@ Avoid scattered dependencies that are difficult to understand.
 
 ---
 
-## Make tasks idempotent
+### Make tasks idempotent
 
 A retried task should not create duplicate or inconsistent results.
 
@@ -2000,7 +1990,7 @@ For example:
 
 ---
 
-# 35. Recommended trainer demonstration order
+## 35. Recommended trainer demonstration order
 
 1. Install Airflow using Ubuntu.
 2. Run `airflow standalone`.
@@ -2026,45 +2016,45 @@ For example:
 
 ---
 
-# 36. Quick interview answers
+## 36. Quick interview answers
 
-## What is a DAG in Airflow?
+### What is a DAG in Airflow?
 
 A DAG is a Directed Acyclic Graph representing a workflow. It contains tasks and dependencies that determine their execution order.
 
-## What is a dependency?
+### What is a dependency?
 
 A dependency defines which task must complete before another task can start.
 
-## What is `dag_id`?
+### What is `dag_id`?
 
 `dag_id` is the unique name Airflow uses to identify a DAG in the scheduler, UI, CLI, API, runs and logs.
 
-## What is `task_id`?
+### What is `task_id`?
 
 `task_id` uniquely identifies a task inside one DAG.
 
-## What is `catchup`?
+### What is `catchup`?
 
 Catchup determines whether Airflow creates scheduled runs for intervals missed between the start date and the current scheduling point.
 
-## What does `schedule=None` mean?
+### What does `schedule=None` mean?
 
 The DAG has no automatic schedule and must be triggered manually or programmatically.
 
-## What is a parameterized DAG?
+### What is a parameterized DAG?
 
 A parameterized DAG accepts runtime values such as city, date or minimum amount without changing its DAG structure.
 
-## What is dynamic DAG generation?
+### What is dynamic DAG generation?
 
 Dynamic DAG generation uses Python configuration and loops to create multiple DAG objects from reusable code.
 
-## What is Dynamic Task Mapping?
+### What is Dynamic Task Mapping?
 
 Dynamic Task Mapping creates multiple task instances at runtime based on data produced by an upstream task.
 
-## Can a DAG contain a cycle?
+### Can a DAG contain a cycle?
 
 No. Airflow DAGs must be acyclic because circular dependencies would prevent a valid task execution order.
 

@@ -53,11 +53,11 @@
     - [X] Apache Airflow Basic to Advanced Slides
     - [X] Apache Airflow Intro HTML
   - Airflow DAG
-    - [ ] Airflow DAG Design Dynamic HTML
-    - [ ] Airflow DAG Design Operators HTML
+    - [ ] Airflow DAG Design Dynamic HTML (demo to do)
+    - [ ] Airflow DAG Design Operators HTML (demo to do)
     - [ ] Apache Airflow Dynamic DAG MD
     - [ ] Simple Dynamic DAG MD
   - Beam
-    - [ ] Apache Beam Windowing HTML
+    - [ ] Apache Beam Windowing HTML (demo to do)
 - Others
   - [ ] Download Hadoop

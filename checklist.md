@@ -44,6 +44,8 @@
     - [ ] airflow local demo
     - [ ] Airflow Docker SQL Server
     - [ ] Parameterized DAG
+    - [ ] Apache Beam
+    - [ ] pub sub demo
   - Intro to Streaming
     - [X] HTML Notes
   - Kafka Streaming
@@ -62,5 +64,16 @@
     - [ ] Apache Airflow Parameterized DAG Tutorial HTML
   - Beam
     - [ ] Apache Beam Windowing HTML (demo to do)
-- Others
-  - [ ] Download Hadoop
+  - [ ] Apache Beam Dataflow Demos
+  - Apache Beam Dataflow Windowing Watermark Demos
+    - [ ] Dataflow Demo
+    - [ ] Demos
+  - Composer
+    - [ ]  Cloud Composer Environemnt HTML/MD
+  - GCP PubSub Tutorial
+    - [ ] GCP PubSub MD
+    - [ ] GCP PubSub Message Filtering MD
+    - [ ] Kafka vs GCP PubSub HTML
+    - [ ] Kafka vs Google Cloud PubSub MD
+  - [ ] airflow job orchestration docker practice MD
+  - [ ] Pub Sub Topic Subscription DOCX

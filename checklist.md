@@ -77,3 +77,5 @@
     - [ ] Kafka vs Google Cloud PubSub MD
   - [ ] airflow job orchestration docker practice MD
   - [ ] Pub Sub Topic Subscription DOCX
+- Week 9
+  - [ ] Data Warehouse vs Data Lake vs Lakehouse Tutorial MD

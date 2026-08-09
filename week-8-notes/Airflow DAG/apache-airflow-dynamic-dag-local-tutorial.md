@@ -2,17 +2,17 @@
 
 This tutorial explains:
 
-* What a DAG is
-* How to create tasks
-* How to define dependencies
-* Meaning of `dag_id`, `schedule`, `start_date`, `catchup`, tags and other arguments
-* How to install and run Airflow locally on Ubuntu
-* How to create a simple static DAG
-* How to create a parameterized DAG
-* How to generate dynamic DAGs
-* Difference between dynamic DAG generation and dynamic task mapping
+- What a DAG is
+- How to create tasks
+- How to define dependencies
+- Meaning of `dag_id`, `schedule`, `start_date`, `catchup`, tags and other arguments
+- How to install and run Airflow locally on Ubuntu
+- How to create a simple static DAG
+- How to create a parameterized DAG
+- How to generate dynamic DAGs
+- Difference between dynamic DAG generation and dynamic task mapping
 
-Apache Airflow represents a workflow as a **Directed Acyclic Graph**, containing tasks connected through dependencies. Airflow is designed to programmatically author, schedule and monitor workflows. ([Apache Airflow][1])
+Apache Airflow represents a workflow as a **Directed Acyclic Graph**, containing tasks connected through dependencies. Airflow is designed to programmatically author, schedule and monitor workflows. ([Apache Airflow](https://airflow.apache.org/docs/apache-airflow/stable/core-concepts/overview.html?utm_source=chatgpt.com))
 
 ---
 
@@ -54,8 +54,8 @@ Task A → Task B → Task C
 
 A graph contains:
 
-* Nodes
-* Connections between nodes
+- Nodes
+- Connections between nodes
 
 In Airflow:
 
@@ -110,12 +110,12 @@ python load.py
 
 Problems:
 
-* The scripts must be run in the correct order.
-* Failures must be checked manually.
-* Scheduling must be handled separately.
-* Retry logic must be written manually.
-* Monitoring is difficult.
-* Logs are spread across different programs.
+- The scripts must be run in the correct order.
+- Failures must be checked manually.
+- Scheduling must be handled separately.
+- Retry logic must be written manually.
+- Monitoring is difficult.
+- Logs are spread across different programs.
 
 With Airflow, you define the workflow once:
 
@@ -125,16 +125,16 @@ extract → validate → transform → load
 
 Airflow handles:
 
-* Scheduling
-* Task ordering
-* Dependencies
-* Retries
-* Failure tracking
-* Logging
-* Monitoring
-* Manual reruns
-* Backfills
-* Runtime parameters
+- Scheduling
+- Task ordering
+- Dependencies
+- Retries
+- Failure tracking
+- Logging
+- Monitoring
+- Manual reruns
+- Backfills
+- Runtime parameters
 
 ---
 
@@ -180,12 +180,12 @@ For a basic local setup, tasks run on the same Ubuntu machine.
 
 Stores:
 
-* DAG runs
-* Task states
-* Users
-* Variables
-* Connections
-* Logs and execution metadata
+- DAG runs
+- Task states
+- Users
+- Variables
+- Connections
+- Logs and execution metadata
 
 #### API server and UI
 
@@ -195,7 +195,7 @@ Provides the Airflow web interface and API.
 
 ## 5. Install Airflow locally on Ubuntu
 
-The current stable Airflow documentation supports local standalone setup using Python. Airflow’s officially supported Python installation uses `pip` or `uv`, and the constraints file provides a tested combination of dependencies. ([Apache Airflow][2])
+The current stable Airflow documentation supports local standalone setup using Python. Airflow’s officially supported Python installation uses `pip` or `uv`, and the constraints file provides a tested combination of dependencies. ([Apache Airflow](https://airflow.apache.org/docs/apache-airflow/stable/start.html?utm_source=chatgpt.com))
 
 ### Step 1: Update Ubuntu
 
@@ -220,7 +220,7 @@ Verify:
 python3 --version
 ```
 
-Airflow 3.3 supports Python 3.10 through Python 3.14. ([Apache Airflow][2])
+Airflow 3.3 supports Python 3.10 through Python 3.14. ([Apache Airflow](https://airflow.apache.org/docs/apache-airflow/stable/start.html?utm_source=chatgpt.com))
 
 For a stable beginner environment, Python 3.11 or 3.12 is a practical choice.
 
@@ -276,7 +276,7 @@ echo 'export AIRFLOW_HOME=~/airflow-local-demo/airflow' >> ~/.bashrc
 source ~/.bashrc
 ```
 
-Airflow creates `airflow.cfg` inside `$AIRFLOW_HOME` when it initializes. ([Apache Airflow][3])
+Airflow creates `airflow.cfg` inside `$AIRFLOW_HOME` when it initializes. ([Apache Airflow](https://airflow.apache.org/docs/apache-airflow/stable/howto/set-config.html?utm_source=chatgpt.com))
 
 ---
 
@@ -320,13 +320,13 @@ Run:
 airflow standalone
 ```
 
-This local quick-start command initializes Airflow and starts the services needed for a standalone learning environment. ([Apache Airflow][2])
+This local quick-start command initializes Airflow and starts the services needed for a standalone learning environment. ([Apache Airflow](https://airflow.apache.org/docs/apache-airflow/stable/start.html?utm_source=chatgpt.com))
 
 The terminal displays:
 
-* Username
-* Password
-* UI address
+- Username
+- Password
+- UI address
 
 Typically, the UI is available at:
 
@@ -366,7 +366,7 @@ Create the folder if necessary:
 mkdir -p "$AIRFLOW_HOME/dags"
 ```
 
-Airflow reads Python source files from its DAG folder and executes those files to discover DAG objects. ([Apache Airflow][4])
+Airflow reads Python source files from its DAG folder and executes those files to discover DAG objects. ([Apache Airflow](https://airflow.apache.org/docs/apache-airflow/stable/core-concepts/dags.html?utm_source=chatgpt.com))
 
 ---
 
@@ -477,13 +477,13 @@ The `dag_id` is the unique identifier of the DAG.
 
 It is used by:
 
-* Airflow UI
-* Scheduler
-* CLI commands
-* REST API
-* Logs
-* DAG runs
-* Task instance identification
+- Airflow UI
+- Scheduler
+- CLI commands
+- REST API
+- Logs
+- DAG runs
+- Task instance identification
 
 Example CLI:
 
@@ -523,7 +523,7 @@ bank_hourly_transaction_check
 healthcare_monthly_claim_summary
 ```
 
-A dynamically generated DAG must produce a stable and consistent DAG ID every time Airflow parses the file. ([Apache Airflow][5])
+A dynamically generated DAG must produce a stable and consistent DAG ID every time Airflow parses the file. ([Apache Airflow](https://airflow.apache.org/docs/apache-airflow/stable/faq.html?utm_source=chatgpt.com))
 
 ---
 
@@ -553,11 +553,11 @@ It does **not** mean:
 
 The actual scheduling behavior depends on:
 
-* `start_date`
-* `schedule`
-* `catchup`
+- `start_date`
+- `schedule`
+- `catchup`
 
-Airflow uses these values together to determine DAG runs and data intervals. ([Apache Airflow][6])
+Airflow uses these values together to determine DAG runs and data intervals. ([Apache Airflow](https://airflow.apache.org/docs/apache-airflow/stable/authoring-and-scheduling/timetable.html?utm_source=chatgpt.com))
 
 Use a fixed start date.
 
@@ -631,7 +631,7 @@ Other examples:
 
 ### `catchup`
 
-The user’s word “catcher” most likely refers to **`catchup`**.
+The user’s word “catcher” most likely refers to `catchup`.
 
 ```python
 catchup=False
@@ -664,7 +664,7 @@ July 9
 
 Airflow skips the missed historical intervals and schedules only the latest/current run.
 
-Airflow defines catchup as creating DAG runs for schedule intervals that were not previously run. ([Apache Airflow][7])
+Airflow defines catchup as creating DAG runs for schedule intervals that were not previously run. ([Apache Airflow](https://airflow.apache.org/docs/apache-airflow/stable/core-concepts/dag-run.html?utm_source=chatgpt.com))
 
 For beginner demonstrations, use:
 
@@ -686,7 +686,7 @@ catchup=True
 tags=["training", "retail", "beginner"]
 ```
 
-Tags help filter DAGs in the Airflow UI. ([Apache Airflow][8])
+Tags help filter DAGs in the Airflow UI. ([Apache Airflow](https://airflow.apache.org/docs/apache-airflow/stable/howto/add-dag-tags.html?utm_source=chatgpt.com))
 
 Examples:
 
@@ -704,7 +704,7 @@ Tags do not control dependencies or execution.
 
 ## 10. Understanding tasks
 
-A task is the smallest unit of work in an Airflow workflow. Airflow supports operators, sensors and TaskFlow tasks. ([Apache Airflow][9])
+A task is the smallest unit of work in an Airflow workflow. Airflow supports operators, sensors and TaskFlow tasks. ([Apache Airflow](https://airflow.apache.org/docs/apache-airflow/stable/core-concepts/tasks.html?utm_source=chatgpt.com))
 
 Example:
 
@@ -1196,7 +1196,7 @@ You can also test the Python file directly:
 python "$AIRFLOW_HOME/dags/simple_retail_dag.py"
 ```
 
-Airflow recommends treating DAGs as production code and testing them. ([Apache Airflow][10])
+Airflow recommends treating DAGs as production code and testing them. ([Apache Airflow](https://airflow.apache.org/docs/apache-airflow/stable/best-practices.html?utm_source=chatgpt.com))
 
 ---
 
@@ -1219,9 +1219,9 @@ airflow dags list-runs \
 
 ## 21. Trigger from the Airflow UI
 
-1. Open: ```text http://localhost:8080```
+1. Open: `text http://localhost:8080`
 2. Sign in.
-3. Search for: ```text simple_retail_sales_dag```
+3. Search for: `text simple_retail_sales_dag`
 4. Enable the DAG if required.
 5. Click **Trigger DAG**.
 6. Open the DAG.
@@ -1238,14 +1238,14 @@ A parameterized DAG accepts values at runtime.
 
 Example parameters:
 
-* City
-* Minimum amount
-* Input file
-* Processing date
-* Output format
-* Environment
+- City
+- Minimum amount
+- Input file
+- Processing date
+- Output format
+- Environment
 
-Airflow Params provide runtime configuration to tasks. Default values can be defined in the DAG and overridden during a manual trigger; Params are validated using JSON Schema. ([Apache Airflow][11])
+Airflow Params provide runtime configuration to tasks. Default values can be defined in the DAG and overridden during a manual trigger; Params are validated using JSON Schema. ([Apache Airflow](https://airflow.apache.org/docs/apache-airflow/stable/core-concepts/params.html?utm_source=chatgpt.com))
 
 ---
 
@@ -1432,7 +1432,7 @@ retail_sales_bengaluru
 retail_sales_coimbatore
 ```
 
-Airflow supports dynamically creating DAGs using the `@dag` decorator or `with DAG(...)` context manager; Airflow automatically registers the resulting DAGs. ([Apache Airflow][12])
+Airflow supports dynamically creating DAGs using the `@dag` decorator or `with DAG(...)` context manager; Airflow automatically registers the resulting DAGs. ([Apache Airflow](https://airflow.apache.org/docs/apache-airflow/stable/howto/dynamic-dag-generation.html?utm_source=chatgpt.com))
 
 ---
 
@@ -1641,7 +1641,7 @@ globals()[generated_dag_id] = (
 
 This places each generated DAG object in the Python module’s global namespace so Airflow can discover it.
 
-Modern Airflow can also automatically register DAGs generated through supported decorator or context-manager patterns. ([Apache Airflow][12])
+Modern Airflow can also automatically register DAGs generated through supported decorator or context-manager patterns. ([Apache Airflow](https://airflow.apache.org/docs/apache-airflow/stable/howto/dynamic-dag-generation.html?utm_source=chatgpt.com))
 
 ---
 
@@ -1655,7 +1655,7 @@ for config_key, config in sorted(
 
 Using `sorted()` ensures the generation order remains stable.
 
-Dynamic DAG generation should consistently produce stable DAG IDs and task ordering across parses. ([Apache Airflow][12])
+Dynamic DAG generation should consistently produce stable DAG IDs and task ordering across parses. ([Apache Airflow](https://airflow.apache.org/docs/apache-airflow/stable/howto/dynamic-dag-generation.html?utm_source=chatgpt.com))
 
 ---
 
@@ -1708,13 +1708,13 @@ airflow dags trigger \
 
 Each generated DAG has its own:
 
-* DAG ID
-* Schedule
-* Runs
-* Task instances
-* Logs
-* UI page
-* Configuration
+- DAG ID
+- Schedule
+- Runs
+- Task instances
+- Logs
+- UI page
+- Configuration
 
 ---
 
@@ -1797,7 +1797,7 @@ Process file 2
 Process file 3
 ```
 
-Airflow Dynamic Task Mapping lets a workflow create a runtime-determined number of task instances. ([Apache Airflow][13])
+Airflow Dynamic Task Mapping lets a workflow create a runtime-determined number of task instances. ([Apache Airflow](https://airflow.apache.org/docs/apache-airflow/stable/authoring-and-scheduling/dynamic-task-mapping.html?utm_source=chatgpt.com))
 
 ---
 
@@ -1868,22 +1868,22 @@ This is one DAG with several mapped task instances.
 
 Use a **parameterized DAG** when:
 
-* One workflow should accept different values.
-* Runs should remain under one DAG ID.
-* Users trigger the DAG with different input parameters.
+- One workflow should accept different values.
+- Runs should remain under one DAG ID.
+- Users trigger the DAG with different input parameters.
 
 Use **dynamic DAG generation** when:
 
-* Each customer, region or source needs a separate schedule.
-* Separate monitoring is required.
-* Separate DAG IDs are useful.
-* The pipelines have similar code but different configuration.
+- Each customer, region or source needs a separate schedule.
+- Separate monitoring is required.
+- Separate DAG IDs are useful.
+- The pipelines have similar code but different configuration.
 
 Use **Dynamic Task Mapping** when:
 
-* The number of files or entities is known only at runtime.
-* One task must run once per item.
-* You want one DAG run with parallel task instances.
+- The number of files or entities is known only at runtime.
+- One task must run once per item.
+- You want one DAG run with parallel task instances.
 
 ---
 
@@ -1895,12 +1895,12 @@ Airflow repeatedly parses DAG files.
 
 Avoid top-level code that:
 
-* Calls a REST API
-* Queries a database
-* Reads a massive file
-* Performs expensive calculations
-* Sleeps
-* Downloads data
+- Calls a REST API
+- Queries a database
+- Reads a massive file
+- Performs expensive calculations
+- Sleeps
+- Downloads data
 
 Bad:
 
@@ -1914,11 +1914,11 @@ at the top level of the DAG file.
 
 Prefer:
 
-* Environment variables
-* Generated Python configuration
-* Small local JSON/YAML files
-* Airflow-supported configuration approaches
-* Runtime API calls inside tasks
+- Environment variables
+- Generated Python configuration
+- Small local JSON/YAML files
+- Airflow-supported configuration approaches
+- Runtime API calls inside tasks
 
 ---
 
@@ -1982,11 +1982,11 @@ A retried task should not create duplicate or inconsistent results.
 
 For example:
 
-* Use `MERGE` instead of uncontrolled inserts.
-* Overwrite one specific partition safely.
-* Use execution date as a partition.
-* Use unique business keys.
-* Record batch IDs.
+- Use `MERGE` instead of uncontrolled inserts.
+- Overwrite one specific partition safely.
+- Use execution date as a partition.
+- Use unique business keys.
+- Record batch IDs.
 
 ---
 
@@ -2017,57 +2017,3 @@ For example:
 ---
 
 ## 36. Quick interview answers
-
-### What is a DAG in Airflow?
-
-A DAG is a Directed Acyclic Graph representing a workflow. It contains tasks and dependencies that determine their execution order.
-
-### What is a dependency?
-
-A dependency defines which task must complete before another task can start.
-
-### What is `dag_id`?
-
-`dag_id` is the unique name Airflow uses to identify a DAG in the scheduler, UI, CLI, API, runs and logs.
-
-### What is `task_id`?
-
-`task_id` uniquely identifies a task inside one DAG.
-
-### What is `catchup`?
-
-Catchup determines whether Airflow creates scheduled runs for intervals missed between the start date and the current scheduling point.
-
-### What does `schedule=None` mean?
-
-The DAG has no automatic schedule and must be triggered manually or programmatically.
-
-### What is a parameterized DAG?
-
-A parameterized DAG accepts runtime values such as city, date or minimum amount without changing its DAG structure.
-
-### What is dynamic DAG generation?
-
-Dynamic DAG generation uses Python configuration and loops to create multiple DAG objects from reusable code.
-
-### What is Dynamic Task Mapping?
-
-Dynamic Task Mapping creates multiple task instances at runtime based on data produced by an upstream task.
-
-### Can a DAG contain a cycle?
-
-No. Airflow DAGs must be acyclic because circular dependencies would prevent a valid task execution order.
-
-[1]: https://airflow.apache.org/docs/apache-airflow/stable/core-concepts/overview.html?utm_source=chatgpt.com "Architecture Overview — Airflow 3.3.0 Documentation"
-[2]: https://airflow.apache.org/docs/apache-airflow/stable/start.html?utm_source=chatgpt.com "Quick Start — Airflow 3.3.0 Documentation - Apache Airflow"
-[3]: https://airflow.apache.org/docs/apache-airflow/stable/howto/set-config.html?utm_source=chatgpt.com "Setting Configuration Options — Airflow 3.3.0 Documentation"
-[4]: https://airflow.apache.org/docs/apache-airflow/stable/core-concepts/dags.html?utm_source=chatgpt.com "Dags — Airflow 3.3.0 Documentation"
-[5]: https://airflow.apache.org/docs/apache-airflow/stable/faq.html?utm_source=chatgpt.com "FAQ — Airflow 3.3.0 Documentation"
-[6]: https://airflow.apache.org/docs/apache-airflow/stable/authoring-and-scheduling/timetable.html?utm_source=chatgpt.com "Timetables — Airflow 3.3.0 Documentation"
-[7]: https://airflow.apache.org/docs/apache-airflow/stable/core-concepts/dag-run.html?utm_source=chatgpt.com "Dag Runs — Airflow 3.3.0 Documentation"
-[8]: https://airflow.apache.org/docs/apache-airflow/stable/howto/add-dag-tags.html?utm_source=chatgpt.com "Add tags to Dags and use it for filtering in the UI - Apache Airflow"
-[9]: https://airflow.apache.org/docs/apache-airflow/stable/core-concepts/tasks.html?utm_source=chatgpt.com "Tasks — Airflow 3.3.0 Documentation"
-[10]: https://airflow.apache.org/docs/apache-airflow/stable/best-practices.html?utm_source=chatgpt.com "Best Practices — Airflow 3.3.0 Documentation"
-[11]: https://airflow.apache.org/docs/apache-airflow/stable/core-concepts/params.html?utm_source=chatgpt.com "Params — Airflow 3.3.0 Documentation"
-[12]: https://airflow.apache.org/docs/apache-airflow/stable/howto/dynamic-dag-generation.html?utm_source=chatgpt.com "Dynamic Dag Generation — Airflow 3.3.0 Documentation"
-[13]: https://airflow.apache.org/docs/apache-airflow/stable/authoring-and-scheduling/dynamic-task-mapping.html?utm_source=chatgpt.com "Dynamic Task Mapping — Airflow 3.3.0 Documentation"

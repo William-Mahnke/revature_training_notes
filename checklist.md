@@ -38,14 +38,14 @@
     - [X] SparkSQL, SparkSession, DataFrames
 - Week 8
   - Demos
-    - [ ] airflow
+    - [X] airflow
     - [X] KafkaDemo
-    - [ ] apache airflow operator
-    - [ ] airflow local demo
-    - [ ] Airflow Docker SQL Server
-    - [ ] Parameterized DAG
-    - [ ] Apache Beam
-    - [ ] pub sub demo
+    - [X] apache airflow operator
+    - [X] airflow local demo
+    - [X] Airflow Docker SQL Server
+    - [X] Parameterized DAG
+    - [X] Apache Beam
+    - [X] pub sub demo
   - Intro to Streaming
     - [X] HTML Notes
   - Kafka Streaming
@@ -56,12 +56,13 @@
     - [X] Airflow Setup HTML
     - [X] Apache Airflow Basic to Advanced Slides
     - [X] Apache Airflow Intro HTML
+    - [ ] airflow job orchestration docker practice MD
   - Airflow DAG
     - [X] Airflow DAG Design Dynamic HTML
-    - [ ] Airflow DAG Design Operators HTML (demo to do)
-    - [ ] Apache Airflow Dynamic DAG MD
-    - [ ] Simple Dynamic DAG MD
-    - [ ] Apache Airflow Parameterized DAG Tutorial HTML
+    - [X] Airflow DAG Design Operators HTML
+    - [X] Apache Airflow Dynamic DAG MD
+    - [X] Simple Dynamic DAG MD
+    - [X] Apache Airflow Parameterized DAG Tutorial HTML
   - Beam
     - [ ] Apache Beam Windowing HTML (demo to do)
   - [ ] Apache Beam Dataflow Demos
@@ -75,7 +76,6 @@
     - [ ] GCP PubSub Message Filtering MD
     - [ ] Kafka vs GCP PubSub HTML
     - [ ] Kafka vs Google Cloud PubSub MD
-  - [ ] airflow job orchestration docker practice MD
-  - [ ] Pub Sub Topic Subscription DOCX
+    - [ ] Pub Sub Topic Subscription DOCX
 - Week 9
   - [ ] Data Warehouse vs Data Lake vs Lakehouse Tutorial MD

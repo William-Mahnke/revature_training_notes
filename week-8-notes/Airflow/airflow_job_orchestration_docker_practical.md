@@ -946,7 +946,7 @@ dir .\dags\output
 ## 27. What Students Learn
 
 | Concept | Demonstrated By |
-|---|---|
+| --- | --- |
 | DAG | `student_result_job_orchestration` |
 | Task | Each decorated function |
 | Dependency | Passing task outputs |

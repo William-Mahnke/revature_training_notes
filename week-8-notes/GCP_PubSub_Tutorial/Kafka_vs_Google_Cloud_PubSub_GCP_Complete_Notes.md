@@ -1,26 +1,24 @@
-# Kafka vs Google Cloud Pub/Sub (GCP)
-
-## Complete Fresher-Friendly Notes for Data Engineering
+# Kafka vs Google Cloud Pub/Sub (GCP), Complete Fresher-Friendly Notes for Data Engineering
 
 ------------------------------------------------------------------------
 
-# Learning Objectives
+## Learning Objectives
 
 After completing this topic, you should be able to answer:
 
--   What is Apache Kafka?
--   What is Google Cloud Pub/Sub?
--   Why do both exist?
--   When should we choose Kafka?
--   When should we choose Pub/Sub?
--   What are their similarities?
--   What are their differences?
--   Which companies generally use Kafka and which use Pub/Sub?
--   Interview questions and answers.
+- What is Apache Kafka?
+- What is Google Cloud Pub/Sub?
+- Why do both exist?
+- When should we choose Kafka?
+- When should we choose Pub/Sub?
+- What are their similarities?
+- What are their differences?
+- Which companies generally use Kafka and which use Pub/Sub?
+- Interview questions and answers.
 
 ------------------------------------------------------------------------
 
-# Real-World Story
+## Real-World Story
 
 Imagine an international e-commerce company.
 
@@ -32,12 +30,12 @@ Orders Generated
 
 Many systems need the order:
 
--   Inventory
--   Payment
--   Shipping
--   Email Notification
--   Analytics
--   Fraud Detection
+- Inventory
+- Payment
+- Shipping
+- Email Notification
+- Analytics
+- Fraud Detection
 
 The challenge is:
 
@@ -47,12 +45,12 @@ This is where **Messaging Systems** come in.
 
 Two popular solutions are:
 
-1.  Apache Kafka
-2.  Google Cloud Pub/Sub
+1. Apache Kafka
+2. Google Cloud Pub/Sub
 
 ------------------------------------------------------------------------
 
-# What is Apache Kafka?
+## What is Apache Kafka?
 
 Apache Kafka is an **open-source distributed event streaming platform**.
 
@@ -61,11 +59,11 @@ independently.
 
 Common use cases:
 
--   High-speed streaming
--   Event-driven architectures
--   Log aggregation
--   Data pipelines
--   Real-time analytics
+- High-speed streaming
+- Event-driven architectures
+- Log aggregation
+- Data pipelines
+- Real-time analytics
 
 ``` text
 Producer
@@ -87,17 +85,17 @@ Consumer C
 
 ------------------------------------------------------------------------
 
-# What is Google Cloud Pub/Sub?
+## What is Google Cloud Pub/Sub?
 
 Google Cloud Pub/Sub is Google's **fully managed messaging service**.
 
 You only create Topics and Subscriptions. Google manages:
 
--   Infrastructure
--   Scaling
--   Replication
--   High Availability
--   Maintenance
+- Infrastructure
+- Scaling
+- Replication
+- High Availability
+- Maintenance
 
 ``` text
 Publisher
@@ -115,7 +113,7 @@ SvcA SvcB  SvcC
 
 ------------------------------------------------------------------------
 
-# Why Messaging Systems?
+## Why Messaging Systems?
 
 Without messaging:
 
@@ -129,9 +127,9 @@ Inv Pay Ship Mail Analytics
 
 Problems:
 
--   Tight coupling
--   Slow downstream systems affect upstream systems
--   Difficult to add new consumers
+- Tight coupling
+- Slow downstream systems affect upstream systems
+- Difficult to add new consumers
 
 With messaging:
 
@@ -150,123 +148,123 @@ Each consumer works independently.
 
 ------------------------------------------------------------------------
 
-# Kafka vs Pub/Sub Overview
+## Kafka vs Pub/Sub Overview
 
-  Kafka                         Google Cloud Pub/Sub
-  ----------------------------- -------------------------------
-  Open Source                   Fully Managed
-  Install & Manage Yourself     No Installation
-  Stores Events                 Delivers Events
-  Full Infrastructure Control   Google Manages Infrastructure
+| Kafka | Google Cloud Pub/Sub |
+| --- | --- |
+| Open Source | Fully Managed |
+| Install & Manage Yourself | No Installation |
+| Stores Events | Delivers Events |
+| Full Infrastructure Control | Google Manages Infrastructure |
 
 ------------------------------------------------------------------------
 
-# Deployment
+## Deployment
 
-## Kafka
+### Kafka Deployment
 
 You manage:
 
--   Brokers
--   Storage
--   Replication
--   Upgrades
--   Monitoring
--   Scaling
+- Brokers
+- Storage
+- Replication
+- Upgrades
+- Monitoring
+- Scaling
 
-## Pub/Sub
+### Pub/Sub Deployment
 
 Google manages everything.
 
 You simply:
 
-1.  Create Topic
-2.  Create Subscription
-3.  Publish
-4.  Consume
+1. Create Topic
+2. Create Subscription
+3. Publish
+4. Consume
 
 ------------------------------------------------------------------------
 
-# Message Storage
+## Message Storage
 
-## Kafka
+### Kafka Message Storage
 
--   Long configurable retention
--   Replay historical events
--   Consumers control offsets
+- Long configurable retention
+- Replay historical events
+- Consumers control offsets
 
-## Pub/Sub
+### Pub/Sub Message Storage
 
--   Configurable retention for reliable delivery
--   Supports replay within retention window
--   Optimized for message delivery
+- Configurable retention for reliable delivery
+- Supports replay within retention window
+- Optimized for message delivery
 
 ------------------------------------------------------------------------
 
-# Ordering
+## Ordering
 
-## Kafka
+### Kafka Ordering
 
 Ordering guaranteed within a partition.
 
-## Pub/Sub
+### Pub/Sub Ordering
 
 Ordering supported using Ordering Keys.
 
 ------------------------------------------------------------------------
 
-# Scalability
+## Scalability
 
-## Kafka
+### Kafka Scalability
 
 Manual cluster expansion.
 
-## Pub/Sub
+### Pub/Sub Scalability
 
 Automatic scaling handled by Google.
 
 ------------------------------------------------------------------------
 
-# Security
+## Security
 
-## Kafka
+### Kafka Security
 
 Configure manually:
 
--   SSL
--   SASL
--   ACLs
+- SSL
+- SASL
+- ACLs
 
-## Pub/Sub
+### Pub/Sub Security
 
 Integrated with:
 
--   IAM
--   Service Accounts
--   Cloud Audit Logs
--   Encryption
+- IAM
+- Service Accounts
+- Cloud Audit Logs
+- Encryption
 
 ------------------------------------------------------------------------
 
-# Monitoring
+## Monitoring
 
 Kafka:
 
--   Prometheus
--   Grafana
--   JMX
+- Prometheus
+- Grafana
+- JMX
 
 Pub/Sub:
 
--   Cloud Monitoring
--   Cloud Logging
--   Cloud Audit Logs
+- Cloud Monitoring
+- Cloud Logging
+- Cloud Audit Logs
 
 ------------------------------------------------------------------------
 
-# Real-World Example
+## Real-World Example
 
-## Kafka
+### Kafka Ex
 
 Customer Order
 
@@ -288,7 +286,7 @@ Recommendation Engine
 
 Historical replay available.
 
-## Pub/Sub
+### Pub/Sub Ex
 
 Customer Order
 
@@ -310,46 +308,46 @@ Auto scales automatically.
 
 ------------------------------------------------------------------------
 
-# When to Choose Kafka
+## When to Choose Kafka
 
 Choose Kafka if:
 
--   Need event replay
--   Multi-cloud
--   On-premises
--   High throughput streaming
--   Long-term retention
--   Fine-grained control
+- Need event replay
+- Multi-cloud
+- On-premises
+- High throughput streaming
+- Long-term retention
+- Fine-grained control
 
 ------------------------------------------------------------------------
 
-# When to Choose Pub/Sub
+## When to Choose Pub/Sub
 
 Choose Pub/Sub if:
 
--   Working mainly in GCP
--   Want serverless architecture
--   Need automatic scaling
--   Prefer no infrastructure management
--   Integrating with Dataflow or BigQuery
+- Working mainly in GCP
+- Want serverless architecture
+- Need automatic scaling
+- Prefer no infrastructure management
+- Integrating with Dataflow or BigQuery
 
 ------------------------------------------------------------------------
 
-# Feature Comparison
+## Feature Comparison
 
-  Feature          Kafka                      Pub/Sub
-  ---------------- -------------------------- -------------------------
-  Type             Event Streaming Platform   Managed Messaging
-  Installation     Required                   None
-  Scaling          Manual                     Automatic
-  Replay           Excellent                  Within retention window
-  Ordering         Per Partition              Ordering Keys
-  Infrastructure   Self Managed               Google Managed
-  Best For         Streaming Platforms        Cloud Native Apps
+| Feature | Kafka | Pub/Sub |
+| --- | --- | --- |
+| Type | Event Streaming Platform | Managed Messaging |
+| Installation | Required | None |
+| Scaling | Manual | Automatic |
+| Replay | Excellent | Within retention window |
+| Ordering | Per Partition | Ordering Keys |
+| Infrastructure | Self Managed | Google Managed |
+| Best For | Streaming Platforms | Cloud Native Apps |
 
 ------------------------------------------------------------------------
 
-# Decision Flow
+## Decision Flow
 
 ``` text
 Need infrastructure control?
@@ -373,42 +371,42 @@ Need long-term replay?
 
 ------------------------------------------------------------------------
 
-# Advantages
+## Advantages
 
-## Kafka
+### Kafka Advantages
 
--   Open source
--   Vendor independent
--   Excellent replay
--   High throughput
--   Large ecosystem
+- Open source
+- Vendor independent
+- Excellent replay
+- High throughput
+- Large ecosystem
 
-## Pub/Sub
+### Pub/Sub Advantages
 
--   Fully managed
--   Auto scaling
--   Easy integration
--   High availability
--   Minimal operations
-
-------------------------------------------------------------------------
-
-# Limitations
-
-## Kafka
-
--   Operational complexity
--   Cluster management
--   Capacity planning
-
-## Pub/Sub
-
--   GCP ecosystem dependency
--   Less infrastructure control
+- Fully managed
+- Auto scaling
+- Easy integration
+- High availability
+- Minimal operations
 
 ------------------------------------------------------------------------
 
-# Interview Questions
+## Limitations
+
+### Kafka Limitations
+
+- Operational complexity
+- Cluster management
+- Capacity planning
+
+### Pub/Sub Limitations
+
+- GCP ecosystem dependency
+- Less infrastructure control
+
+------------------------------------------------------------------------
+
+## Interview Questions
 
 ### What is the primary difference?
 
@@ -445,14 +443,14 @@ Pub/Sub.
 
 ------------------------------------------------------------------------
 
-# Summary
+## Summary
 
-  Choose Kafka             Choose Pub/Sub
-  ------------------------ -------------------
-  Event Streaming          Managed Messaging
-  Replay                   Easy Operations
-  Multi-cloud              GCP Native
-  Infrastructure Control   Automatic Scaling
+| Choose Kafka | Choose Pub/Sub |
+| --- | --- |
+| Event Streaming | Managed Messaging |
+| Replay | Easy Operations |
+| Multi-cloud | GCP Native |
+| Infrastructure Control | Automatic Scaling |
 
 ## Key Takeaway
 

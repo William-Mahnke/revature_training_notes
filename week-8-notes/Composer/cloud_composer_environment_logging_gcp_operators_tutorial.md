@@ -4,7 +4,7 @@
 
 ---
 
-# 1. What You Will Build
+## 1. What You Will Build
 
 In this tutorial, you will:
 
@@ -42,7 +42,7 @@ Display the result
 
 ---
 
-# 2. Cloud Composer Architecture
+## 2. Cloud Composer Architecture
 
 ```text
                        Google Cloud Project
@@ -74,9 +74,9 @@ When you upload a Python DAG file to the environment's `dags` folder, Composer s
 
 ---
 
-# Part 1: Cloud Composer Environment Setup
+## Part 1: Cloud Composer Environment Setup
 
-# 3. Prerequisites
+## 3. Prerequisites
 
 You need:
 
@@ -92,13 +92,13 @@ Cloud Composer creates billable resources. Delete the environment after completi
 
 ---
 
-# 4. Create or Select a Google Cloud Project
+## 4. Create or Select a Google Cloud Project
 
-## Step 1: Open Google Cloud Console
+### Step 1: Open Google Cloud Console
 
 Open the Google Cloud Console and sign in.
 
-## Step 2: Select a project
+### Step 2: Select a project
 
 At the top of the console:
 
@@ -117,7 +117,7 @@ Project selector
 Example values:
 
 | Property | Example |
-|---|---|
+| --- | --- |
 | Project name | `composer-training-project` |
 | Project ID | `composer-training-12345` |
 | Organization | Select the appropriate organization |
@@ -133,7 +133,7 @@ PROJECT_ID = "composer-training-12345"
 
 ---
 
-# 5. Enable Billing
+## 5. Enable Billing
 
 Open:
 
@@ -148,7 +148,7 @@ Composer environment creation will fail when billing is not enabled.
 
 ---
 
-# 6. Enable the Required APIs
+## 6. Enable the Required APIs
 
 Open:
 
@@ -161,7 +161,7 @@ Navigation menu
 Search for and enable the following APIs:
 
 | API | Purpose |
-|---|---|
+| --- | --- |
 | Cloud Composer API | Creates and manages Composer environments |
 | Compute Engine API | Supports environment compute resources |
 | Kubernetes Engine API | Supports the managed environment infrastructure |
@@ -183,7 +183,7 @@ Cloud Monitoring API
 
 ---
 
-# 7. Create the Composer Service Account
+## 7. Create the Composer Service Account
 
 Cloud Composer runs DAG tasks using an environment service account. This account needs the Composer Worker role plus permissions for the Google Cloud services used by the DAG. Google recommends granting extra resource permissions to this service account rather than embedding a JSON key in the DAG. ([Create environments](https://docs.cloud.google.com/composer/docs/composer-3/create-environments))
 
@@ -204,7 +204,7 @@ Create service account
 Enter:
 
 | Property | Value |
-|---|---|
+| --- | --- |
 | Service account name | `composer-training-sa` |
 | Service account ID | `composer-training-sa` |
 | Description | `Service account used by Cloud Composer training environment` |
@@ -219,12 +219,12 @@ composer-training-sa@PROJECT_ID.iam.gserviceaccount.com
 
 ---
 
-# 8. Assign Permissions to the Composer Service Account
+## 8. Assign Permissions to the Composer Service Account
 
 Assign these roles for the lab:
 
 | Role | Why it is needed |
-|---|---|
+| --- | --- |
 | Composer Worker | Required for the environment service account |
 | Storage Object Admin | Allows the DAG to inspect and manage lab objects |
 | BigQuery Job User | Allows execution of BigQuery jobs |
@@ -235,7 +235,7 @@ The required base role for the environment service account is **Composer Worker*
 
 For a training project, project-level roles are simpler. In production, use narrower permissions on specific buckets and datasets.
 
-## Console procedure
+### Console procedure
 
 Open:
 
@@ -255,7 +255,7 @@ Add the required roles one at a time, and then click **Save**.
 
 ---
 
-# 9. Ensure Your User Can Use the Service Account
+## 9. Ensure Your User Can Use the Service Account
 
 The user creating the environment generally needs:
 
@@ -282,7 +282,7 @@ Select your own Google account and add the appropriate Composer and service-acco
 
 ---
 
-# 10. Create the Cloud Composer Environment
+## 10. Create the Cloud Composer Environment
 
 Google's current documentation describes Managed Airflow Gen 3 as the current managed environment option. The exact labels shown in the console can vary as Google updates the interface. ([Create environments](https://docs.cloud.google.com/composer/docs/composer-3/create-environments))
 
@@ -309,12 +309,12 @@ Select the currently available managed environment generation, preferably **Gen 
 
 ---
 
-# 11. Basic Environment Configuration
+## 11. Basic Environment Configuration
 
 Use values similar to these:
 
 | Property | Example |
-|---|---|
+| --- | --- |
 | Environment name | `composer-training-env` |
 | Region | `asia-south1` |
 | Service account | `composer-training-sa@PROJECT_ID.iam.gserviceaccount.com` |
@@ -323,7 +323,7 @@ Use values similar to these:
 | Subnetwork | Default |
 | Web server access | Allow access according to your lab policy |
 
-## Environment name rules
+### Environment name rules
 
 Use:
 
@@ -341,7 +341,7 @@ Avoid spaces and underscores.
 
 ---
 
-# 12. Select the Region Carefully
+## 12. Select the Region Carefully
 
 Create related resources in the same or a compatible location.
 
@@ -366,7 +366,7 @@ Replace these values when the selected region differs.
 
 ---
 
-# 13. Environment Sizing
+## 13. Environment Sizing
 
 For a basic training environment:
 
@@ -393,7 +393,7 @@ Running
 
 ---
 
-# 14. Examine the Environment Details
+## 14. Examine the Environment Details
 
 Open:
 
@@ -419,7 +419,7 @@ The environment page provides access to Airflow information, logs, monitoring an
 
 ---
 
-# 15. Composer Environment Bucket
+## 15. Composer Environment Bucket
 
 Composer uses a Cloud Storage bucket containing folders similar to:
 
@@ -430,10 +430,10 @@ logs/
 plugins/
 ```
 
-## Folder purposes
+### Folder purposes
 
 | Folder | Purpose |
-|---|---|
+| --- | --- |
 | `dags/` | Stores Airflow Python DAG files |
 | `data/` | Stores data or supporting files |
 | `plugins/` | Stores custom Airflow plugins |
@@ -443,7 +443,7 @@ Composer schedules DAGs found in the environment's `/dags` folder. Uploaded file
 
 ---
 
-# 16. Upload a Basic DAG
+## 16. Upload a Basic DAG
 
 Create a file named:
 
@@ -502,7 +502,7 @@ with DAG(
 
 ---
 
-# 17. Upload the DAG Through the Console
+## 17. Upload the DAG Through the Console
 
 Open:
 
@@ -539,7 +539,7 @@ Composer automatically synchronizes the file and reparses the DAG. Allow approxi
 
 ---
 
-# 18. Run the DAG
+## 18. Run the DAG
 
 Return to:
 
@@ -592,9 +592,9 @@ Successful tasks normally appear green.
 
 ---
 
-# Part 2: Monitoring Composer Through Cloud Logging
+## Part 2: Monitoring Composer Through Cloud Logging
 
-# 19. What Is Cloud Logging?
+## 19. What Is Cloud Logging?
 
 Cloud Logging collects log entries generated by:
 
@@ -612,9 +612,9 @@ Cloud Composer provides streaming Airflow task and component logs, while Cloud M
 
 ---
 
-# 20. Three Places to View Composer Logs
+## 20. Three Places to View Composer Logs
 
-## Method 1: DAG task log
+### Method 1: DAG task log
 
 Open:
 
@@ -646,7 +646,7 @@ Cloud Composer DAG is running successfully
 
 This is the easiest method for checking one task execution.
 
-## Method 2: Environment Logs tab
+### Method 2: Environment Logs tab
 
 Open:
 
@@ -669,7 +669,7 @@ You can filter by:
 - time range
 - log message
 
-## Method 3: Logs Explorer
+### Method 3: Logs Explorer
 
 Open:
 
@@ -690,7 +690,7 @@ Logs Explorer is best for:
 
 ---
 
-# 21. Search for Errors in Logs Explorer
+## 21. Search for Errors in Logs Explorer
 
 In the query editor, start with:
 
@@ -730,7 +730,7 @@ Because log field names can differ between environment versions and resource typ
 
 ---
 
-# 22. Find a Particular DAG Run
+## 22. Find a Particular DAG Run
 
 Run the DAG manually.
 
@@ -766,7 +766,7 @@ Expand a matching entry and inspect:
 
 ---
 
-# 23. Generate a Controlled Failure
+## 23. Generate a Controlled Failure
 
 Create a file named:
 
@@ -818,7 +818,7 @@ This demonstrates how application-specific messages make troubleshooting easier.
 
 ---
 
-# 24. Useful Logging Statements in Python Tasks
+## 24. Useful Logging Statements in Python Tasks
 
 Use Python's logging module rather than relying only on `print()`:
 
@@ -845,7 +845,7 @@ def process_orders():
 Levels:
 
 | Level | Meaning |
-|---|---|
+| --- | --- |
 | `DEBUG` | Detailed development information |
 | `INFO` | Normal process progress |
 | `WARNING` | Unexpected condition but task may continue |
@@ -854,7 +854,7 @@ Levels:
 
 ---
 
-# 25. Composer Monitoring Dashboard
+## 25. Composer Monitoring Dashboard
 
 Open:
 
@@ -880,7 +880,7 @@ The managed monitoring dashboard is designed to identify DAG-run trends and prob
 
 ---
 
-# 26. Create a Log-Based Alert
+## 26. Create a Log-Based Alert
 
 A useful production alert is:
 
@@ -888,7 +888,7 @@ A useful production alert is:
 Notify the support team when Composer task failures are logged.
 ```
 
-## Step 1: Create a Logs Explorer query
+### Step 1: Create a Logs Explorer query
 
 Open:
 
@@ -906,7 +906,7 @@ severity>=ERROR
 
 Confirm that matching entries appear.
 
-## Step 2: Create an alert
+### Step 2: Create an alert
 
 Click:
 
@@ -921,18 +921,18 @@ Actions
 → Create log alert
 ```
 
-## Step 3: Configure the condition
+### Step 3: Configure the condition
 
 Example:
 
 | Property | Value |
-|---|---|
+| --- | --- |
 | Alert name | `Composer DAG Failure Alert` |
 | Condition | At least one matching log entry |
 | Evaluation window | 5 minutes |
 | Auto-close | According to operational policy |
 
-## Step 4: Add notification channel
+### Step 4: Add notification channel
 
 Possible channels include:
 
@@ -943,7 +943,7 @@ Possible channels include:
 - Pub/Sub
 - incident-management integration
 
-## Step 5: Test
+### Step 5: Test
 
 Trigger `composer_failure_demo`.
 
@@ -956,9 +956,9 @@ Confirm that:
 
 ---
 
-# Part 3: GCP-Native Airflow Operators
+## Part 3: GCP-Native Airflow Operators
 
-# 27. What Is a GCP-Native Operator?
+## 27. What Is a GCP-Native Operator?
 
 An Airflow operator defines the work performed by one task.
 
@@ -967,7 +967,7 @@ GCP-native operators are operators from the Google Airflow provider that communi
 Examples include:
 
 | Google Cloud service | Example operator |
-|---|---|
+| --- | --- |
 | BigQuery | `BigQueryInsertJobOperator` |
 | Cloud Storage | `GCSObjectExistenceSensor` |
 | Pub/Sub | `PubSubPublishMessageOperator` |
@@ -982,17 +982,17 @@ Google recommends using Google Cloud Airflow operators when a DAG needs to opera
 
 ---
 
-# 28. Operator vs Hook vs Sensor
+## 28. Operator vs Hook vs Sensor
 
 | Component | Purpose | Example |
-|---|---|---|
+| --- | --- | --- |
 | Operator | Performs an action | Run a BigQuery query |
 | Sensor | Waits for a condition | Wait until a GCS object exists |
 | Hook | Provides a lower-level API connection | Connect to BigQuery from Python |
 | Transfer operator | Moves data between systems | GCS to BigQuery |
 | Deferrable operator | Waits without occupying a worker continuously | Long-running cloud job sensor |
 
-## Example comparison
+### Example comparison
 
 ```text
 Operator:
@@ -1012,7 +1012,7 @@ Deferrable operators can reduce worker-slot usage while waiting for long-running
 
 ---
 
-# 29. Authentication in Cloud Composer
+## 29. Authentication in Cloud Composer
 
 Inside Composer, you normally do not upload or reference a service-account JSON key.
 
@@ -1046,9 +1046,9 @@ This is why the Composer service account must have permission to use each target
 
 ---
 
-# Part 4: Practical GCP-Native Operator Example
+## Part 4: Practical GCP-Native Operator Example
 
-# 30. Example Requirement
+## 30. Example Requirement
 
 Create an Airflow pipeline that:
 
@@ -1061,7 +1061,7 @@ Create an Airflow pipeline that:
 
 ---
 
-# 31. Create a Cloud Storage Bucket
+## 31. Create a Cloud Storage Bucket
 
 Open:
 
@@ -1075,7 +1075,7 @@ Navigation menu
 Use:
 
 | Property | Example |
-|---|---|
+| --- | --- |
 | Bucket name | `PROJECT_ID-composer-training-data` |
 | Location type | Region |
 | Region | Same or compatible region as Composer |
@@ -1093,7 +1093,7 @@ Bucket names are globally unique.
 
 ---
 
-# 32. Create the Input CSV File
+## 32. Create the Input CSV File
 
 Create a local file named:
 
@@ -1113,7 +1113,7 @@ employee_id,employee_name,department,salary
 
 ---
 
-# 33. Upload the CSV to Cloud Storage
+## 33. Upload the CSV to Cloud Storage
 
 Open:
 
@@ -1149,7 +1149,7 @@ gs://YOUR_DATA_BUCKET/input/employees.csv
 
 ---
 
-# 34. GCP-Native Operator DAG
+## 34. GCP-Native Operator DAG
 
 Create:
 
@@ -1317,7 +1317,7 @@ with DAG(
 
 ---
 
-# 35. Workflow Diagram
+## 35. Workflow Diagram
 
 ```text
 start
@@ -1348,9 +1348,9 @@ end
 
 ---
 
-# 36. Explanation of the Operators
+## 36. Explanation of the Operators
 
-## `GCSObjectExistenceSensor`
+### `GCSObjectExistenceSensor`
 
 ```python
 wait_for_employee_file = GCSObjectExistenceSensor(
@@ -1371,7 +1371,7 @@ Without this sensor, the query might run before the input file arrives.
 ### Important options
 
 | Option | Meaning |
-|---|---|
+| --- | --- |
 | `bucket` | Bucket name without `gs://` |
 | `object` | Path inside the bucket |
 | `poke_interval` | Seconds between checks |
@@ -1397,7 +1397,7 @@ Create the BigQuery dataset when it does not already exist.
 
 `exists_ok=True` prevents failure when the dataset already exists.
 
-## `BigQueryInsertJobOperator`
+### `BigQueryInsertJobOperator`
 
 ```python
 BigQueryInsertJobOperator(
@@ -1429,7 +1429,7 @@ It can execute:
 
 ---
 
-# 37. Upload and Execute the DAG
+## 37. Upload and Execute the DAG
 
 Upload:
 
@@ -1477,7 +1477,7 @@ Graph
 
 ---
 
-# 38. Verify the BigQuery Output
+## 38. Verify the BigQuery Output
 
 Open:
 
@@ -1505,14 +1505,14 @@ department_salary_summary
 Expected output:
 
 | department | employee_count | total_salary | average_salary |
-|---|---:|---:|---:|
+| --- | ---: | ---: | ---: |
 | Engineering | 2 | 156000 | 78000 |
 | Finance | 2 | 142000 | 71000 |
 | Sales | 2 | 128000 | 64000 |
 
 ---
 
-# 39. Monitor the GCP-Native DAG in Cloud Logging
+## 39. Monitor the GCP-Native DAG in Cloud Logging
 
 Open:
 
@@ -1553,9 +1553,9 @@ Check for messages such as:
 
 ---
 
-# Part 5: Other Useful GCP-Native Operators
+## Part 5: Other Useful GCP-Native Operators
 
-# 40. Cloud Storage Operators
+## 40. Cloud Storage Operators
 
 Common examples:
 
@@ -1581,7 +1581,7 @@ The Google provider includes dedicated Cloud Storage operators and transfer oper
 
 ---
 
-# 41. Pub/Sub Operator
+## 41. Pub/Sub Operator
 
 A Pub/Sub operator can publish a pipeline-completion event.
 
@@ -1628,7 +1628,7 @@ The Composer service account needs permission to publish messages to the topic.
 
 ---
 
-# 42. Dataproc Operator
+## 42. Dataproc Operator
 
 A Dataproc operator can create a cluster or submit a Spark job.
 
@@ -1659,7 +1659,7 @@ Dataproc operators can create managed clusters and submit jobs while waiting for
 
 ---
 
-# 43. Dataflow Operator
+## 43. Dataflow Operator
 
 A Dataflow operator can launch Apache Beam pipelines.
 
@@ -1682,7 +1682,7 @@ Google provides Composer guidance for launching Dataflow pipelines using managed
 
 ---
 
-# 44. Cloud Run Job Operator
+## 44. Cloud Run Job Operator
 
 Cloud Run operators can manage and execute Cloud Run jobs.
 
@@ -1714,9 +1714,9 @@ The current Google provider includes operators for creating and managing Cloud R
 
 ---
 
-# Part 6: PyPI Packages and Environment Variables
+## Part 6: PyPI Packages and Environment Variables
 
-# 45. Install an Additional Python Package
+## 45. Install an Additional Python Package
 
 Some packages are already installed with Composer. Do not install another version of the Google Airflow provider without checking compatibility.
 
@@ -1738,7 +1738,7 @@ Edit
 Add:
 
 | Package | Version |
-|---|---|
+| --- | --- |
 | `pandas` | A version compatible with the environment |
 
 Save the environment update.
@@ -1747,7 +1747,7 @@ Package installation updates the environment and may take several minutes. Only 
 
 ---
 
-# 46. Add Environment Variables
+## 46. Add Environment Variables
 
 Open:
 
@@ -1762,7 +1762,7 @@ Composer
 Example:
 
 | Name | Value |
-|---|---|
+| --- | --- |
 | `TRAINING_BUCKET` | `your-bucket-name` |
 | `BQ_DATASET` | `composer_training` |
 
@@ -1779,9 +1779,9 @@ Do not store passwords or private keys in plain environment variables. Use Secre
 
 ---
 
-# Part 7: Troubleshooting
+## Part 7: Troubleshooting
 
-# 47. DAG Does Not Appear
+## 47. DAG Does Not Appear
 
 Check:
 
@@ -1809,7 +1809,7 @@ from airflow.operators import PythonOperator
 
 ---
 
-# 48. Broken DAG or Import Error
+## 48. Broken DAG or Import Error
 
 Open:
 
@@ -1845,7 +1845,7 @@ Common causes:
 
 ---
 
-# 49. Permission Denied
+## 49. Permission Denied
 
 Example error:
 
@@ -1865,7 +1865,7 @@ Confirm the Composer environment service account has the required role.
 Examples:
 
 | Operation | Required permission category |
-|---|---|
+| --- | --- |
 | Run BigQuery query | BigQuery Job User |
 | Create or update tables | BigQuery Data Editor |
 | Read a GCS file | Storage Object Viewer |
@@ -1878,7 +1878,7 @@ Do not grant `Owner` only to solve a permission error. Identify the missing perm
 
 ---
 
-# 50. BigQuery Location Error
+## 50. BigQuery Location Error
 
 Example:
 
@@ -1907,7 +1907,7 @@ Use that exact value in the DAG.
 
 ---
 
-# 51. GCS Sensor Keeps Waiting
+## 51. GCS Sensor Keeps Waiting
 
 Check:
 
@@ -1938,7 +1938,7 @@ Also confirm capitalization and folder names. Cloud Storage object paths are cas
 
 ---
 
-# 52. Task Remains Queued
+## 52. Task Remains Queued
 
 Possible causes:
 
@@ -1968,7 +1968,7 @@ Review:
 
 ---
 
-# 53. Environment Creation Fails
+## 53. Environment Creation Fails
 
 Check:
 
@@ -1984,9 +1984,9 @@ Google's troubleshooting guidance highlights missing user and service-account pe
 
 ---
 
-# Part 8: Best Practices
+## Part 8: Best Practices
 
-## Security
+### Security
 
 - Use a dedicated Composer service account.
 - Avoid service-account key files.
@@ -1995,7 +1995,7 @@ Google's troubleshooting guidance highlights missing user and service-account pe
 - Restrict Airflow web-server access.
 - Separate development and production environments.
 
-## DAG development
+### DAG development
 
 - Keep DAG files lightweight.
 - Do not perform API calls while the DAG file is being imported.
@@ -2005,7 +2005,7 @@ Google's troubleshooting guidance highlights missing user and service-account pe
 - Avoid hard-coding project IDs where configuration is preferable.
 - Log important business checkpoints.
 
-## Reliability
+### Reliability
 
 - Use sensors for external dependencies.
 - Use `mode="reschedule"` or deferrable sensors when appropriate.
@@ -2014,7 +2014,7 @@ Google's troubleshooting guidance highlights missing user and service-account pe
 - Design tasks to be idempotent.
 - Validate data before publishing downstream output.
 
-## Cost control
+### Cost control
 
 - Use the smallest appropriate environment.
 - Delete training environments after use.
@@ -2025,9 +2025,9 @@ Google's troubleshooting guidance highlights missing user and service-account pe
 
 ---
 
-# 54. Complete Real-World Scenario
+## 54. Complete Real-World Scenario
 
-## Requirement
+### Requirement
 
 A retail organization receives a daily sales file.
 
@@ -2048,10 +2048,10 @@ The required pipeline is:
 8. Notify support through an alert
 ```
 
-## Suitable Airflow components
+### Suitable Airflow components
 
 | Requirement | Component |
-|---|---|
+| --- | --- |
 | Wait for file | `GCSObjectExistenceSensor` |
 | Load to BigQuery | GCS-to-BigQuery transfer operator |
 | Transform | `BigQueryInsertJobOperator` |
@@ -2063,9 +2063,9 @@ The required pipeline is:
 
 ---
 
-# 55. Final Checklist
+## 55. Final Checklist
 
-## Environment setup
+### Environment setup
 
 ```text
 [ ] Google Cloud project selected
@@ -2080,7 +2080,7 @@ The required pipeline is:
 [ ] Composer environment running
 ```
 
-## DAG deployment
+### DAG deployment
 
 ```text
 [ ] Python DAG file created
@@ -2094,7 +2094,7 @@ The required pipeline is:
 [ ] Tasks completed successfully
 ```
 
-## Monitoring
+### Monitoring
 
 ```text
 [ ] Task logs inspected
@@ -2105,7 +2105,7 @@ The required pipeline is:
 [ ] Log-based alert created
 ```
 
-# Summary
+## Summary
 
 **Cloud Composer environment setup** creates a managed Apache Airflow platform, including schedulers, workers, a DAG bucket, logging and monitoring integrations.
 

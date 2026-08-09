@@ -35,7 +35,7 @@ ecommerce-order-events
 Three departments need different events:
 
 | Department | Subscription | Required messages |
-|---|---|---|
+| --- | --- | --- |
 | Billing | `billing-subscription` | Payment events |
 | Inventory | `inventory-subscription` | Stock events |
 | Delivery | `delivery-subscription` | Shipping events |
@@ -245,7 +245,7 @@ Expected:
 - `ORD-1001 - DISPATCHED`
 
 | Published message | Attribute | Billing | Inventory | Delivery |
-|---|---|---:|---:|---:|
+| --- | --- | ---: | ---: | ---: |
 | Payment completed | `department=billing` | Yes | No | No |
 | Stock reserved | `department=inventory` | No | Yes | No |
 | Package dispatched | `department=delivery` | No | No | Yes |
@@ -293,7 +293,7 @@ an inventory message does not match. Pub/Sub automatically acknowledges the nonm
 attributes.department = "billing"
 ```
 
-8. Click **Create**.
+Click **Create**.
 
 ### 9.4 Create the inventory subscription
 
@@ -329,15 +329,15 @@ Filter: attributes.department = "delivery"
 }
 ```
 
-6. Under **Message attributes**, add:
+Under **Message attributes**, add:
 
 | Key | Value |
-|---|---|
+| --- | --- |
 | `department` | `billing` |
 | `event_type` | `payment_completed` |
 | `priority` | `high` |
 
-7. Click **Publish**.
+Click **Publish**.
 
 ### 9.7 Publish an inventory message
 
@@ -355,7 +355,7 @@ Message body:
 Attributes:
 
 | Key | Value |
-|---|---|
+| --- | --- |
 | `department` | `inventory` |
 | `event_type` | `stock_reserved` |
 | `priority` | `normal` |
@@ -375,7 +375,7 @@ Message body:
 Attributes:
 
 | Key | Value |
-|---|---|
+| --- | --- |
 | `department` | `delivery` |
 | `event_type` | `package_dispatched` |
 | `priority` | `normal` |
@@ -489,7 +489,7 @@ gcloud pubsub subscriptions create finance-subscription \
 ## 13. Common Errors
 
 | Problem | Cause | Fix |
-|---|---|---|
+| --- | --- | --- |
 | Subscription receives nothing | Attribute value does not match | Check exact key, value, and letter case |
 | Filter field exists only in JSON body | Filters do not inspect message data | Publish the value with `--attribute` |
 | Wrong key used | `team` is not `department` | Match the filter's attribute key exactly |

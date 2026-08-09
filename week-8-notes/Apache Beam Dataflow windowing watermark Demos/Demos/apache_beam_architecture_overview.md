@@ -89,7 +89,7 @@ flowchart TB
 
 ---
 
-# 4. Main Components of Apache Beam
+## 4. Main Components of Apache Beam
 
 ```text
 Pipeline
@@ -107,7 +107,7 @@ Pipeline
    +-- Output Sink
 ```
 
-## 4.1 Pipeline
+### 4.1 Pipeline
 
 A **Pipeline** is the complete data-processing workflow.
 
@@ -135,7 +135,7 @@ import apache_beam as beam
 pipeline = beam.Pipeline()
 ```
 
-## 4.2 PipelineOptions
+### 4.2 PipelineOptions
 
 `PipelineOptions` contains the configuration required to execute the pipeline.
 
@@ -159,7 +159,7 @@ options = PipelineOptions(
 )
 ```
 
-## 4.3 Input Source
+### 4.3 Input Source
 
 Common sources include:
 
@@ -176,7 +176,7 @@ Common sources include:
 lines = pipeline | beam.io.ReadFromText("employees.csv")
 ```
 
-## 4.4 PCollection
+### 4.4 PCollection
 
 A **PCollection** is the distributed dataset used inside a Beam pipeline.
 
@@ -192,12 +192,12 @@ Output PCollection
 employees = pipeline | beam.io.ReadFromText("employees.csv")
 ```
 
-## 4.5 PTransform
+### 4.5 PTransform
 
 A **PTransform** is an operation performed on a `PCollection`.
 
 | Transform | Purpose |
-|---|---|
+| --- | --- |
 | `Map` | Transform each record |
 | `FlatMap` | Convert one record into zero, one or many records |
 | `Filter` | Keep only matching records |
@@ -214,7 +214,7 @@ active_employees = employees | beam.Filter(
 )
 ```
 
-## 4.6 Runner
+### 4.6 Runner
 
 A **Runner** executes the pipeline.
 
@@ -224,7 +224,7 @@ Runner       = Executes the processing
 ```
 
 | Runner | Execution location | Typical use |
-|---|---|---|
+| --- | --- | --- |
 | Direct Runner | Local computer | Development and testing |
 | Dataflow Runner | Google Cloud | Managed cloud processing |
 | Flink Runner | Flink cluster | Batch and streaming |
@@ -234,7 +234,7 @@ Runner       = Executes the processing
 python employee_pipeline.py --runner DirectRunner
 ```
 
-## 4.7 Output Sink
+### 4.7 Output Sink
 
 The **Output Sink** is the final destination where processed data is written.
 
@@ -244,7 +244,7 @@ results | beam.io.WriteToText("output/department_summary")
 
 ---
 
-# 5. Apache Beam Pipeline Architecture
+## 5. Apache Beam Pipeline Architecture
 
 ```mermaid
 flowchart LR
@@ -281,7 +281,7 @@ Sink
 
 ---
 
-# 6. Simple Employee Processing Example
+## 6. Simple Employee Processing Example
 
 Input file:
 
@@ -324,7 +324,7 @@ flowchart TD
 
 ---
 
-# 7. Complete Python Program
+## 7. Complete Python Program
 
 Save as `employee_pipeline.py`.
 
@@ -418,7 +418,7 @@ if __name__ == "__main__":
 
 ---
 
-# 8. Expected Output
+## 8. Expected Output
 
 ```csv
 department,total_annual_salary
@@ -429,7 +429,7 @@ HR,54000.00
 
 ---
 
-# 9. Batch Processing Architecture
+## 9. Batch Processing Architecture
 
 ```mermaid
 flowchart LR
@@ -451,7 +451,7 @@ Batch processing works with a finite dataset, such as:
 
 ---
 
-# 10. Streaming Processing Architecture
+## 10. Streaming Processing Architecture
 
 ```mermaid
 flowchart LR
@@ -475,9 +475,9 @@ Streaming processing handles continuously arriving events such as:
 
 ---
 
-# 11. Important Streaming Concepts
+## 11. Important Streaming Concepts
 
-## Window
+### Window
 
 A Window divides an infinite stream into smaller time groups.
 
@@ -495,25 +495,25 @@ windowed_orders = orders | beam.WindowInto(
 )
 ```
 
-## Trigger
+### Trigger
 
 A Trigger decides when the result of a window should be produced.
 
-## Watermark
+### Watermark
 
 A Watermark estimates how far event-time processing has progressed.
 
-## Event Time
+### Event Time
 
 The time at which the event actually occurred.
 
-## Processing Time
+### Processing Time
 
 The time at which the system processed the event.
 
 ---
 
-# 12. Apache Beam Portability Architecture
+## 12. Apache Beam Portability Architecture
 
 ```mermaid
 flowchart TB
@@ -555,7 +555,7 @@ flowchart TB
 
 ---
 
-# 13. Real-World Food Order Example
+## 13. Real-World Food Order Example
 
 ```mermaid
 flowchart LR
@@ -589,10 +589,10 @@ Processing steps:
 
 ---
 
-# 14. Apache Beam vs Runner
+## 14. Apache Beam vs Runner
 
 | Apache Beam | Runner |
-|---|---|
+| --- | --- |
 | Provides the programming model | Executes the pipeline |
 | Defines transformations | Distributes transformations |
 | Creates PCollections | Divides data into bundles |
@@ -602,7 +602,7 @@ Processing steps:
 
 ---
 
-# 15. Simple Analogy
+## 15. Simple Analogy
 
 Think of Apache Beam as a recipe.
 
@@ -621,10 +621,10 @@ Similarly, the same Beam pipeline can be executed using different compatible Run
 
 ---
 
-# 16. Important Terms Summary
+## 16. Important Terms Summary
 
 | Term | Simple meaning |
-|---|---|
+| --- | --- |
 | Pipeline | Complete data-processing workflow |
 | PipelineOptions | Pipeline execution configuration |
 | PCollection | Distributed dataset |
@@ -644,7 +644,7 @@ Similarly, the same Beam pipeline can be executed using different compatible Run
 
 ---
 
-# 17. Final Architecture Summary
+## 17. Final Architecture Summary
 
 ```mermaid
 flowchart TB
@@ -692,7 +692,7 @@ flowchart TB
 
 ---
 
-# 18. Final Understanding
+## 18. Final Understanding
 
 Apache Beam works using the following sequence:
 

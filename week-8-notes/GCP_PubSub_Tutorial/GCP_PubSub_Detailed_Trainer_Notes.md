@@ -1,10 +1,10 @@
-<h1 style="color:#0B57D0;">Google Cloud Pub/Sub: Publisher, Topic, Subscription and Subscriber</h1>
+# Google Cloud Pub/Sub: Publisher, Topic, Subscription and Subscriber
 
-> <span style="color:#5F6368;"><b>Detailed fresher-friendly tutorial based on the supplied classroom document and the complete Cloud Shell practice session.</b></span>
+Detailed fresher-friendly tutorial based on the supplied classroom document and the complete Cloud Shell practice session.
 
 ---
 
-## <span style="color:#188038;">1. Learning Objectives</span>
+## 1. Learning Objectives
 
 By the end of this tutorial, you will be able to:
 
@@ -20,7 +20,7 @@ By the end of this tutorial, you will be able to:
 
 ---
 
-## <span style="color:#188038;">2. What Is Google Cloud Pub/Sub?</span>
+## 2. What Is Google Cloud Pub/Sub?
 
 **Google Cloud Pub/Sub** is a fully managed, asynchronous messaging service in Google Cloud.
 
@@ -31,8 +31,7 @@ The publisher sends the message to a **Topic**.
 A **Subscription** is attached to that topic.  
 A **Subscriber** reads messages through the subscription.
 
-> <span style="color:#0B57D0;"><b>Simple definition:</b></span>  
-> Pub/Sub is a messaging system that separates message producers from message consumers, so both sides can work independently.
+> Simple definition: Pub/Sub is a messaging system that separates message producers from message consumers, so both sides can work independently.
 
 ### Why is this useful?
 
@@ -46,7 +45,7 @@ Without Pub/Sub, the sender may need to know:
 
 Pub/Sub removes this direct dependency.
 
-> <span style="color:#B06000;"><b>Trainer analogy – YouTube:</b></span>  
+Trainer analogy – YouTube:
 > A YouTube creator publishes a new video. The creator does not personally contact every viewer. Subscribers who follow the channel receive the update independently.  
 > In this analogy:
 >
@@ -58,7 +57,7 @@ Pub/Sub removes this direct dependency.
 
 ---
 
-## <span style="color:#188038;">3. Core Concepts and Terminology</span>
+## 3. Core Concepts and Terminology
 
 ![Pub/Sub core concepts and terminology](images/image1.png)
 
@@ -76,7 +75,7 @@ my-demo-topic
 
 A topic acts like a central communication channel.
 
-> <span style="color:#B06000;"><b>Analogy:</b></span>  
+> Analogy:
 > A topic is like a television channel. Programs are transmitted through the channel, while viewers access them through their own connection.
 
 ### 3.2 Subscription
@@ -156,7 +155,7 @@ Your Cloud Shell practice used the **pull** model.
 
 ---
 
-## <span style="color:#188038;">4. Publisher–Subscriber Relationships</span>
+## 4. Publisher–Subscriber Relationships
 
 ![Publisher and subscriber relationships](images/image2.png)
 
@@ -204,7 +203,7 @@ This creates a loosely coupled event-driven architecture.
 
 ---
 
-## <span style="color:#188038;">5. Core Pub/Sub Components</span>
+## 5. Core Pub/Sub Components
 
 ![Core Pub/Sub components](images/image7.png)
 
@@ -216,13 +215,13 @@ The core components highlighted in the attached document are:
 
 For a complete runtime flow, we also include:
 
-4. **Message**
-5. **Subscriber**
-6. **Acknowledgement**
+1. **Message**
+2. **Subscriber**
+3. **Acknowledgement**
 
 ---
 
-## <span style="color:#188038;">6. Basic Message Flow</span>
+## 6. Basic Message Flow
 
 ![Basic Pub/Sub sender-topic-receiver flow](images/image8.png)
 
@@ -248,12 +247,12 @@ Subscriber
 ACK returned to Pub/Sub
 ```
 
-> <span style="color:#B06000;"><b>Important:</b></span>  
+> Important:
 > The topic receives the published message, but the subscription maintains the subscriber-facing delivery state.
 
 ---
 
-## <span style="color:#188038;">7. Real-World Analogy from the Attached Material</span>
+## 7. Real-World Analogy from the Attached Material
 
 ![YouTube and Prime analogy](images/image9.png)
 
@@ -267,12 +266,12 @@ A useful classroom interpretation is:
 - The person consuming the content acts like the **subscriber**.
 - The content or notification is the **message**.
 
-> <span style="color:#D93025;"><b>Do not confuse these:</b></span>  
+> Do not confuse these:
 > A Pub/Sub **subscription** is not simply a user profile. It is a cloud resource that retains delivery state for messages belonging to one topic.
 
 ---
 
-## <span style="color:#188038;">8. Pub/Sub Use Cases</span>
+## 8. Pub/Sub Use Cases
 
 ![Pub/Sub use cases](images/image3.png)
 
@@ -326,7 +325,7 @@ Changes from one database or system can be published and consumed by downstream 
 
 ---
 
-## <span style="color:#188038;">9. Pub/Sub IAM Permissions</span>
+## 9. Pub/Sub IAM Permissions
 
 ![Pub/Sub IAM permissions](images/image5.png)
 
@@ -360,12 +359,12 @@ Allows management of Pub/Sub resources, with broader permissions than publisher 
 
 Provides administrative access over Pub/Sub resources.
 
-> <span style="color:#B06000;"><b>Best practice:</b></span>  
+> Best practice:
 > Apply least privilege. A publishing application should normally receive publisher permissions, not full administrator access.
 
 ---
 
-## <span style="color:#188038;">10. Lab Architecture</span>
+## 10. Lab Architecture
 
 ![Pub/Sub introduction and demo overview](images/image6.png)
 
@@ -389,9 +388,9 @@ Each subscription receives its own independent copy of each published message.
 
 ---
 
-# <span style="color:#0B57D0;">11. Complete Cloud Shell Implementation</span>
+## 11. Complete Cloud Shell Implementation
 
-## <span style="color:#188038;">11.1 Confirm the Active Project</span>
+### 11.1 Confirm the Active Project
 
 Your Cloud Shell session displayed:
 
@@ -417,12 +416,12 @@ To verify:
 gcloud config get-value project
 ```
 
-> <span style="color:#B06000;"><b>Trainer note:</b></span>  
+> Trainer note:
 > Always confirm the project before creating resources. A correct command executed in the wrong project is still an operational mistake.
 
 ---
 
-## <span style="color:#188038;">11.2 Create the First Topic</span>
+### 11.2 Create the First Topic
 
 You entered:
 
@@ -432,15 +431,13 @@ gcloud pubsub topics create my-demo-topic-from-gcloud
 
 Then pressed `Ctrl+C`, and Cloud Shell displayed:
 
-
-
 ```text
 Resource already exists in the project
 ```
 
 ### Key lesson
 
-> <span style="color:#D93025;"><b>Important:</b></span>  
+> Important:
 > Cancelling the terminal command does not always mean the cloud operation was cancelled. The resource may already have been created.
 
 Verify with:
@@ -457,7 +454,7 @@ gcloud pubsub topics describe my-demo-topic-from-gcloud
 
 ---
 
-## <span style="color:#188038;">11.3 Create the Main Demo Topic</span>
+### 11.3 Create the Main Demo Topic
 
 You successfully ran:
 
@@ -483,7 +480,7 @@ my-demo-topic           Topic name
 
 ---
 
-## <span style="color:#188038;">11.4 Create the First Subscription</span>
+### 11.4 Create the First Subscription
 
 You ran:
 
@@ -500,7 +497,7 @@ Created subscription [
 ].
 ```
 
-### Command breakdown
+#### Subscription Command breakdown
 
 - `subscriptions create` creates a subscription.
 - `my-demo-subscription` is the subscription name.
@@ -512,7 +509,7 @@ The attached document also contains the equivalent command pattern:
 
 ---
 
-## <span style="color:#188038;">11.5 Create the Second Subscription</span>
+### 11.5 Create the Second Subscription
 
 You ran:
 
@@ -531,19 +528,17 @@ my-demo-topic
    +--> my-demo-subscription1
 ```
 
-> <span style="color:#0B57D0;"><b>Critical concept:</b></span>  
+> Critical concept:
 > Pub/Sub creates a separate delivery stream for each subscription. One published message is available independently in both subscriptions.
 
 ---
 
-
-
-> <span style="color:#D93025;"><b>Common mistake:</b></span>  
+> Common mistake:
 > Resource names must match exactly. `my=demo-subscription` and `my-demo-subscription` are completely different strings.
 
 ---
 
-## <span style="color:#188038;">11.7 Pulling Before Publishing</span>
+### 11.7 Pulling Before Publishing
 
 You ran:
 
@@ -557,7 +552,7 @@ Output:
 Listed 0 items.
 ```
 
-### Why?
+#### Why?
 
 The subscription existed, but no messages had been published after the subscription became available.
 
@@ -565,19 +560,17 @@ This is not an error. It simply means the pull request found no currently availa
 
 ---
 
-
-
 ```bash
 gcloud pubsub topics publish my-demo-topic \
   --message="My First Message from Gcloud"
 ```
 
-> <span style="color:#B06000;"><b>Diagnostic tip:</b></span>  
+> Diagnostic tip:
 > `command not found` usually means the command name is misspelled or the executable is not installed/on the PATH. It is different from a Google Cloud API error.
 
 ---
 
-## <span style="color:#188038;">11.9 Publish Three Messages</span>
+### 11.9 Publish Three Messages
 
 You published:
 
@@ -605,7 +598,7 @@ messageIds:
 - '20881234175085408'
 ```
 
-### What is the message ID?
+#### What is the message ID?
 
 The message ID is generated by Pub/Sub and identifies a published message within the service.
 
@@ -618,7 +611,7 @@ It is useful for:
 
 ---
 
-# <span style="color:#0B57D0;">12. Why the Same Messages Appeared Repeatedly</span>
+## 12. Why the Same Messages Appeared Repeatedly
 
 You pulled messages without `--auto-ack`:
 
@@ -652,7 +645,7 @@ My Second Message from Gcloud
 
 appeared multiple times.
 
-> <span style="color:#D93025;"><b>Very important:</b></span>  
+> Very important:
 > Pulling a message is not the same as completing it. The message must be acknowledged after successful processing.
 
 ### Why did the ACK ID change?
@@ -663,7 +656,7 @@ The message ID remains the same because it is the same published message.
 
 ---
 
-## <span style="color:#188038;">12.1 Pull and Automatically Acknowledge</span>
+### 12.1 Pull and Automatically Acknowledge
 
 You then ran:
 
@@ -701,7 +694,7 @@ This means the subscription had no currently available unacknowledged messages.
 
 ---
 
-# <span style="color:#0B57D0;">13. Why the Second Subscription Still Contained All Messages</span>
+## 13. Why the Second Subscription Still Contained All Messages
 
 After the first subscription was emptied, you pulled from:
 
@@ -748,7 +741,7 @@ Both consumers can process the same business event independently.
 
 ---
 
-## <span style="color:#188038;">13.1 Acknowledge Messages in Subscription 2</span>
+### 13.1 Acknowledge Messages in Subscription 2
 
 You later used:
 
@@ -766,7 +759,7 @@ At that point, the second subscription's copies were also processed.
 
 ---
 
-# <span style="color:#0B57D0;">14. List Subscriptions Attached to a Topic</span>
+## 14. List Subscriptions Attached to a Topic
 
 You first typed:
 
@@ -803,7 +796,7 @@ This verified that both subscriptions belonged to `my-demo-topic`.
 
 ---
 
-# <span style="color:#0B57D0;">15. Complete Correct Command Sequence</span>
+## 15. Complete Correct Command Sequence
 
 ```bash
 # 1. Set the project
@@ -845,9 +838,9 @@ gcloud pubsub topics list-subscriptions my-demo-topic
 
 ---
 
-# <span style="color:#0B57D0;">16. Pull vs Push Subscription</span>
+## 16. Pull vs Push Subscription
 
-## <span style="color:#188038;">16.1 Pull Subscription</span>
+### 16.1 Pull Subscription
 
 The subscriber actively requests messages.
 
@@ -864,7 +857,7 @@ Advantages:
 - Suitable for Cloud Shell demonstrations.
 - Subscriber can manage batching and concurrency.
 
-## <span style="color:#188038;">16.2 Push Subscription</span>
+### 16.2 Push Subscription
 
 Pub/Sub sends messages to a configured HTTPS endpoint.
 
@@ -881,7 +874,7 @@ Advantages:
 
 ---
 
-# <span style="color:#0B57D0;">17. Message Delivery Semantics</span>
+## 17. Message Delivery Semantics
 
 Pub/Sub is designed for **at-least-once delivery** in the normal delivery model.
 
@@ -908,10 +901,10 @@ If already processed -> skip duplicate business action
 
 ---
 
-# <span style="color:#0B57D0;">18. All Errors from Your Practice Session</span>
+## 18. All Errors from Your Practice Session
 
 | Error or observation | Cause | Correct action |
-|---|---|---|
+| --- | --- | --- |
 | `Command killed by keyboard interrupt` | `Ctrl+C` was pressed | Verify whether the cloud resource was still created |
 | `Resource already exists` | Topic creation completed during the first request | List or describe the topic instead of recreating |
 | `my=demo-subscription` | `=` typed instead of `-` | Use `my-demo-subscription` |
@@ -923,39 +916,39 @@ If already processed -> skip duplicate business action
 
 ---
 
-# <span style="color:#0B57D0;">19. Verification Commands</span>
+## 19. Verification Commands
 
-## List topics
+### List topics
 
 ```bash
 gcloud pubsub topics list
 ```
 
-## Describe a topic
+### Describe a topic
 
 ```bash
 gcloud pubsub topics describe my-demo-topic
 ```
 
-## List subscriptions
+### List subscriptions
 
 ```bash
 gcloud pubsub subscriptions list
 ```
 
-## Describe a subscription
+### Describe a subscription
 
 ```bash
 gcloud pubsub subscriptions describe my-demo-subscription
 ```
 
-## List subscriptions for one topic
+### List subscriptions for one topic
 
 ```bash
 gcloud pubsub topics list-subscriptions my-demo-topic
 ```
 
-## Pull and acknowledge messages
+### Pull and acknowledge messages
 
 ```bash
 gcloud pubsub subscriptions pull my-demo-subscription --auto-ack
@@ -963,7 +956,7 @@ gcloud pubsub subscriptions pull my-demo-subscription --auto-ack
 
 ---
 
-# <span style="color:#0B57D0;">20. Cleanup Commands</span>
+## 20. Cleanup Commands
 
 Delete subscriptions first:
 
@@ -984,12 +977,12 @@ Delete the accidentally created topic if it is no longer needed:
 gcloud pubsub topics delete my-demo-topic-from-gcloud
 ```
 
-> <span style="color:#B06000;"><b>Best practice:</b></span>  
+> Best practice:
 > Clean up training resources after the lab to avoid confusion and unnecessary retained resources.
 
 ---
 
-# <span style="color:#0B57D0;">21. Practical Mini Exercise</span>
+## 21. Practical Mini Exercise
 
 Create a simple order event flow.
 
@@ -1026,7 +1019,7 @@ gcloud pubsub topics publish order-events-topic \
 
 ---
 
-# <span style="color:#0B57D0;">22. Interview Questions and Answers</span>
+## 22. Interview Questions and Answers
 
 ### Q1. What is a topic in Google Cloud Pub/Sub?
 
@@ -1078,7 +1071,7 @@ Because at-least-once delivery can produce duplicate delivery attempts.
 
 ---
 
-# <span style="color:#0B57D0;">23. Command Cheat Sheet</span>
+## 23. Command Cheat Sheet
 
 ```bash
 # Create topic
@@ -1116,7 +1109,7 @@ gcloud pubsub topics delete TOPIC_NAME
 
 ---
 
-# <span style="color:#0B57D0;">24. Final Summary</span>
+## 24. Final Summary
 
 Google Cloud Pub/Sub separates message producers from message consumers.
 

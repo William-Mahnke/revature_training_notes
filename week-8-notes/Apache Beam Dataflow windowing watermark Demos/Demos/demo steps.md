@@ -5,6 +5,7 @@ This guide walks you through setting up and running an Apache Beam pipeline loca
 ---
 
 ## Step 1: Set Up Your Project Folder in VS Code
+
 1. Open **VS Code** on your machine.
 2. Go to the top menu and select **File** > **Open Folder...**
 3. Create a new folder on your computer named `beam-demo` and select it.
@@ -14,7 +15,8 @@ This guide walks you through setting up and running an Apache Beam pipeline loca
 ---
 
 ## Step 2: Create the Mock Input Dataset
-Open your newly created `tolls.csv` file in VS Code and paste this sample data inside it. 
+
+Open your newly created `tolls.csv` file in VS Code and paste this sample data inside it.
 
 *Note for students: Look closely at the timestamps. The vehicle `MNO-456` passes the toll at 12:03:00 but appears last in the file, simulating a network delay (out-of-order data).*
 
@@ -28,6 +30,7 @@ MNO-456,6.00,2026-08-05T12:03:00Z
 ---
 
 ## Step 3: Set Up and Activate Your Virtual Environment
+
 We will use an isolated virtual environment so we don't interfere with your computer's global Python settings.
 
 1. Open the terminal inside VS Code by going to the top menu and selecting **Terminal** > **New Terminal**.
@@ -38,9 +41,9 @@ We will use an isolated virtual environment so we don't interfere with your comp
    * **Windows (Command Prompt):** `.venv\Scripts\activate.bat`
    * **Windows (PowerShell):** `.venv\Scripts\Activate.ps1`
    * **Mac / Linux:** `source .venv/bin/activate`
-   
    *(Verification: You will see `(.venv)` appear at the very beginning of your terminal prompt line.)*
 4. Upgrade your package installer and install Apache Beam:
+
    ```bash
    pip install --upgrade pip
    pip install apache-beam
@@ -49,6 +52,7 @@ We will use an isolated virtual environment so we don't interfere with your comp
 ---
 
 ## Step 4: Write the Apache Beam Pipeline Code
+
 Open your `pipeline.py` file and paste the complete Python script below:
 
 ```python
@@ -131,16 +135,21 @@ if __name__ == "__main__":
 ---
 
 ## Step 5: Execute the Pipeline Manually
+
 1. Make sure your virtual environment is still active in your terminal (`(.venv)` should be visible).
 2. Start the local pipeline runtime execution by typing this command into your terminal:
+
    ```bash
    python pipeline.py
+
    ```
+
 3. Once finished, a confirmation message will print to the screen.
 
 ---
 
 ## Step 6: Reviewing the Concepts with Students
+
 Look at your VS Code File Explorer panel on the left side. Open the newly generated file named `output_results-00000-of-00001` to view the outputs:
 
 ```text
@@ -148,7 +157,8 @@ Window [12:00:00 to 12:05:00] -> Total Revenue: \$11.50
 Window [12:05:00 to 12:10:00] -> Total Revenue: \$4.25
 ```
 
-### Core Teaching Moments to Explain:
+### Core Teaching Moments to Explain
+
 1. **PCollection & PTransform:** Every step (demarcated by `|`) converts an immutable data pool (`PCollection`) into a new structured pool using an operation (`PTransform`).
-2. **Event-Time vs. Processing-Time:** Even though `MNO-456` (12:03:00) was ordered *last* in our text file, Apache Beam read its internal timestamp metadata and correctly grouped its `$6.00` fee into the **12:00 to 12:05** window alongside `ABC-123` ($5.50 + $6.00 = $11.50). 
+2. **Event-Time vs. Processing-Time:** Even though `MNO-456` (12:03:00) was ordered *last* in our text file, Apache Beam read its internal timestamp metadata and correctly grouped its `$6.00` fee into the **12:00 to 12:05** window alongside `ABC-123` ($5.50 + $6.00 = $11.50).
 3. **Window Isolation:** `XYZ-789` (12:06:00) fell outside the first 5-minute block boundaries and was seamlessly isolated into its own independent **12:05 to 12:10** bucket allocation.

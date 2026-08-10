@@ -1,6 +1,10 @@
+<div align="center">
+
 # 🔵 Data Warehouse vs 🟢 Data Lake vs 🟣 Lakehouse
 
-## Architecture, Data Flow, Features, Use Cases and Interview Questions
+### Architecture, Data Flow, Features, Use Cases and Interview Questions
+
+</div>
 
 ![Professional 3D architecture comparison of Data Warehouse, Data Lake and Lakehouse](data_warehouse_vs_data_lake_vs_lakehouse_infographic.png)
 
@@ -18,7 +22,7 @@ The visual below lets you compare their architecture and data flow.
 
 ---
 
-### 1. Why do we need these systems?
+## 1. Why do we need these systems?
 
 An organization generates data from many places:
 
@@ -56,9 +60,9 @@ For those questions, data is copied into a specialized analytical platform: a wa
 
 ---
 
-## 🔵 Part 1: Data Warehouse
+# 🔵 Part 1: Data Warehouse
 
-### 2. What is a Data Warehouse?
+## 2. What is a Data Warehouse?
 
 A **Data Warehouse** is a centralized system that stores **cleaned, transformed and structured data** for reporting and analysis.
 
@@ -80,7 +84,7 @@ Examples of data warehouse technologies include:
 
 ---
 
-### 3. Data Warehouse architecture
+## 3. Data Warehouse architecture
 
 ```text
 +---------------------+
@@ -131,7 +135,7 @@ Examples of data warehouse technologies include:
 
 ---
 
-### 4. Schema-on-write
+## 4. Schema-on-write
 
 A data warehouse normally follows **schema-on-write**.
 
@@ -168,7 +172,7 @@ Transform data
 Write into predefined tables
 ```
 
-#### Why is this useful?
+### Why is this useful?
 
 Because warehouse data becomes:
 
@@ -178,17 +182,17 @@ Because warehouse data becomes:
 * Business-friendly
 * Reliable for reports
 
-#### Limitation
+### Limitation
 
 A lot of preparation is required before the data can be stored.
 
 ---
 
-### 5. Star schema example
+## 5. Star schema example
 
 Consider an e-commerce company.
 
-#### Fact table
+### Fact table
 
 ```text
 Fact_Sales
@@ -204,7 +208,7 @@ discount
 sales_amount
 ```
 
-#### Dimension tables
+### Dimension tables
 
 ```text
 Dim_Customer           Dim_Product
@@ -224,7 +228,7 @@ quarter                state
 year                   region
 ```
 
-#### Diagram
+### Diagram
 
 ```text
                   +----------------+
@@ -246,7 +250,7 @@ The central fact table contains measurable business events. Dimension tables pro
 
 ---
 
-### 6. Typical Data Warehouse workflow
+## 6. Typical Data Warehouse workflow
 
 ```text
 Source database
@@ -266,7 +270,7 @@ Load warehouse tables
 Refresh Power BI dashboard
 ```
 
-#### Example SQL query
+### Example SQL query
 
 ```sql
 SELECT
@@ -288,7 +292,7 @@ ORDER BY
 
 ---
 
-### 7. Strengths of a Data Warehouse
+## 7. Strengths of a Data Warehouse
 
 * Fast analytical SQL queries
 * High-quality, validated data
@@ -298,7 +302,7 @@ ORDER BY
 * Excellent performance for dashboards
 * Supports historical reporting
 
-### 8. Limitations of a Data Warehouse
+## 8. Limitations of a Data Warehouse
 
 * Structured data is preferred
 * Loading unstructured data can be difficult
@@ -310,15 +314,15 @@ ORDER BY
 
 ---
 
-## 🟢 Part 2: Data Lake
+# 🟢 Part 2: Data Lake
 
-### 9. What is a Data Lake?
+## 9. What is a Data Lake?
 
 A **Data Lake** is a centralized repository that stores large quantities of data in its original or near-original form.
 
 It can store:
 
-#### Structured data
+### Structured data
 
 ```text
 Database tables
@@ -326,7 +330,7 @@ CSV files
 Transaction records
 ```
 
-#### Semi-structured data
+### Semi-structured data
 
 ```text
 JSON
@@ -335,7 +339,7 @@ Application logs
 Web events
 ```
 
-#### Unstructured data
+### Unstructured data
 
 ```text
 Images
@@ -357,7 +361,7 @@ A storage service alone is not the complete data platform, but it often forms th
 
 ---
 
-### 10. Data Lake architecture
+## 10. Data Lake architecture
 
 ```text
 +------------------------------------------------+
@@ -386,7 +390,7 @@ A storage service alone is not the complete data platform, but it often forms th
 
 ---
 
-### 11. Schema-on-read
+## 11. Schema-on-read
 
 A data lake generally uses **schema-on-read**.
 
@@ -441,7 +445,7 @@ The lake did not force the data to follow a predefined table when it arrived.
 
 ---
 
-### 12. Data Lake folder design
+## 12. Data Lake folder design
 
 A simple data lake might be organized like this:
 
@@ -482,7 +486,7 @@ This is one example of how a lake can become difficult to govern.
 
 ---
 
-### 13. Data swamp problem
+## 13. Data swamp problem
 
 A badly managed data lake is often called a **data swamp**.
 
@@ -515,7 +519,7 @@ A data lake does not automatically become a data swamp. The problem occurs when 
 
 ---
 
-### 14. Strengths of a Data Lake
+## 14. Strengths of a Data Lake
 
 * Stores almost any type of data
 * Suitable for very large volumes
@@ -526,7 +530,7 @@ A data lake does not automatically become a data swamp. The problem occurs when 
 * Flexible for future use cases
 * Works well with Spark and distributed processing
 
-### 15. Limitations of a traditional Data Lake
+## 15. Limitations of a traditional Data Lake
 
 * Data quality may vary
 * SQL performance may be inconsistent
@@ -539,9 +543,9 @@ A data lake does not automatically become a data swamp. The problem occurs when 
 
 ---
 
-## 🟣 Part 3: Lakehouse
+# 🟣 Part 3: Lakehouse
 
-### 16. What is a Lakehouse?
+## 16. What is a Lakehouse?
 
 A **Lakehouse** is a data architecture that combines:
 
@@ -575,7 +579,7 @@ Common lakehouse technologies include:
 
 ---
 
-### 17. Lakehouse architecture
+## 17. Lakehouse architecture
 
 ```text
 +--------------------------------------------------+
@@ -622,11 +626,11 @@ Common lakehouse technologies include:
 
 ---
 
-### 18. Medallion architecture
+## 18. Medallion architecture
 
 A lakehouse often uses the **Bronze, Silver and Gold** model.
 
-#### Bronze layer
+## Bronze layer
 
 Stores raw data as received.
 
@@ -653,7 +657,7 @@ C102        | "invalid"| 05-08-2026 | Complete
 C101        | "2500"   | 05-08-2026 | completed
 ```
 
-#### Silver layer
+## Silver layer
 
 Stores cleaned and standardized data.
 
@@ -678,7 +682,7 @@ customer_id | amount  | order_date | status
 C101        | 2500.00 | 2026-08-05 | COMPLETED
 ```
 
-#### Gold layer
+## Gold layer
 
 Stores business-ready data.
 
@@ -704,11 +708,11 @@ North  | 2026-08     | 3800000.00  | 1030
 
 ---
 
-### 19. What are ACID transactions?
+## 19. What are ACID transactions?
 
 ACID stands for:
 
-#### Atomicity
+### Atomicity
 
 A transaction either completes fully or does not happen.
 
@@ -719,21 +723,21 @@ Update 2 fails
 Entire transaction is rolled back
 ```
 
-#### Consistency
+### Consistency
 
 Data must remain valid before and after a transaction.
 
-#### Isolation
+### Isolation
 
 Multiple users can work on the data without corrupting each other’s operations.
 
-#### Durability
+### Durability
 
 After a successful commit, the change remains saved.
 
 ---
 
-### 20. Why ACID matters in a Lakehouse
+## 20. Why ACID matters in a Lakehouse
 
 Imagine two jobs run simultaneously.
 
@@ -766,7 +770,7 @@ Readers see one consistent version
 
 ---
 
-### 21. Transaction log concept
+## 21. Transaction log concept
 
 A lakehouse table usually includes data files and metadata describing which files belong to the current table version.
 
@@ -804,7 +808,7 @@ MERGE
 
 ---
 
-### 22. Time travel
+## 22. Time travel
 
 Many lakehouse table formats allow users to query an earlier version of a table.
 
@@ -827,7 +831,7 @@ Typical use cases:
 
 ---
 
-### 🟠 23. Direct Comparison
+# 🟠 23. Direct Comparison
 
 | Feature           | Data Warehouse             | Data Lake                                    | Lakehouse                            |
 | ----------------- | -------------------------- | -------------------------------------------- | ------------------------------------ |
@@ -848,9 +852,9 @@ Typical use cases:
 
 ---
 
-### 🟠 24. Restaurant Analogy
+# 🟠 24. Restaurant Analogy
 
-#### Data Warehouse: Restaurant dining area
+## Data Warehouse: Restaurant dining area
 
 A restaurant dining area is prepared and organized.
 
@@ -878,7 +882,7 @@ Organized into tables
 Presented through reports
 ```
 
-#### Data Lake: Restaurant storage facility
+## Data Lake: Restaurant storage facility
 
 The storage area contains many kinds of items:
 
@@ -891,7 +895,7 @@ The storage area contains many kinds of items:
 
 The materials are available for many future recipes, but they are not immediately ready to serve.
 
-#### Lakehouse: Organized storage plus restaurant kitchen
+## Lakehouse: Organized storage plus restaurant kitchen
 
 The lakehouse keeps the large storage capacity but adds:
 
@@ -906,9 +910,9 @@ It supports both raw material storage and reliable final delivery.
 
 ---
 
-### 🟠 25. Library Analogy
+# 🟠 25. Library Analogy
 
-#### Data Warehouse
+## Data Warehouse
 
 A curated reference section:
 
@@ -917,7 +921,7 @@ A curated reference section:
 * Catalog information is accurate
 * Users can quickly find trusted information
 
-#### Data Lake
+## Data Lake
 
 A large collection room:
 
@@ -930,7 +934,7 @@ A large collection room:
 
 It provides flexibility but needs proper cataloging.
 
-#### Lakehouse
+## Lakehouse
 
 A digital library that stores everything while also offering:
 
@@ -943,7 +947,7 @@ A digital library that stores everything while also offering:
 
 ---
 
-### 🟠 26. Example: E-commerce Company
+# 🟠 26. Example: E-commerce Company
 
 An e-commerce company collects:
 
@@ -958,7 +962,7 @@ Customer support recordings
 Delivery GPS events
 ```
 
-#### Using only a Data Warehouse
+## Using only a Data Warehouse
 
 ```text
 MySQL Orders ──┐
@@ -975,7 +979,7 @@ This works well for:
 
 But product images, audio recordings and detailed clickstream events may be difficult or expensive to manage directly.
 
-#### Using a Data Lake
+## Using a Data Lake
 
 ```text
 Orders ──────────┐
@@ -996,7 +1000,7 @@ This supports:
 
 But business dashboards may require extra cleaned datasets and query engines.
 
-#### Using a Lakehouse
+## Using a Lakehouse
 
 ```text
 All sources
@@ -1023,9 +1027,9 @@ The same platform can support:
 
 ---
 
-### 🟠 27. Example Data Flow
+# 🟠 27. Example Data Flow
 
-#### Source records
+## Source records
 
 ```text
 order_id,customer_id,amount,status,order_date
@@ -1035,7 +1039,7 @@ O103,C103,1750,COMPLETED,2026/08/05
 O101,C101,2500,completed,05-08-2026
 ```
 
-#### Warehouse approach
+## Warehouse approach
 
 The records are corrected before they enter the warehouse:
 
@@ -1055,7 +1059,7 @@ Load warehouse
 
 Invalid records may be rejected into an error table.
 
-#### Data Lake approach
+## Data Lake approach
 
 The original file is stored immediately:
 
@@ -1065,7 +1069,7 @@ data-lake/raw/orders/2026/08/05/orders.csv
 
 Later, Spark or another engine reads and transforms it.
 
-#### Lakehouse approach
+## Lakehouse approach
 
 ```text
 Bronze:
@@ -1091,9 +1095,9 @@ order_date | completed_orders | total_sales
 
 ---
 
-### 🟠 28. ETL versus ELT
+# 🟠 28. ETL versus ELT
 
-#### Traditional Data Warehouse: ETL
+## Traditional Data Warehouse: ETL
 
 ETL means:
 
@@ -1111,7 +1115,7 @@ Source → Transformation Server → Warehouse
 
 Data is cleaned before it enters the destination.
 
-#### Data Lake and modern Lakehouse: ELT
+## Data Lake and modern Lakehouse: ELT
 
 ELT means:
 
@@ -1133,9 +1137,9 @@ A lakehouse often supports both ETL and ELT.
 
 ---
 
-### 🟠 29. Batch and Streaming Support
+# 🟠 29. Batch and Streaming Support
 
-#### Batch processing
+## Batch processing
 
 Data is processed at intervals.
 
@@ -1156,7 +1160,7 @@ Suitable for:
 * Monthly billing
 * Historical analysis
 
-#### Streaming processing
+## Streaming processing
 
 Data is processed continuously or with very low latency.
 
@@ -1176,9 +1180,9 @@ Traditional data warehouses increasingly support streaming, but lakehouse archit
 
 ---
 
-### 🟠 30. Who Typically Uses Each System?
+# 🟠 30. Who Typically Uses Each System?
 
-#### Data Warehouse users
+## Data Warehouse users
 
 * Business analysts
 * BI developers
@@ -1187,7 +1191,7 @@ Traditional data warehouses increasingly support streaming, but lakehouse archit
 * Business managers
 * SQL analysts
 
-#### Data Lake users
+## Data Lake users
 
 * Data engineers
 * Data scientists
@@ -1195,7 +1199,7 @@ Traditional data warehouses increasingly support streaming, but lakehouse archit
 * Researchers
 * Advanced analysts
 
-#### Lakehouse users
+## Lakehouse users
 
 * Data engineers
 * BI analysts
@@ -1206,9 +1210,9 @@ Traditional data warehouses increasingly support streaming, but lakehouse archit
 
 ---
 
-### 🟠 31. Which One Should You Choose?
+# 🟠 31. Which One Should You Choose?
 
-#### When to Choose a Data Warehouse
+## Choose a Data Warehouse when:
 
 * Reporting is the main requirement
 * Most data is structured
@@ -1224,7 +1228,7 @@ A financial company needs certified monthly reports
 for revenue, expenses, tax and regulatory compliance.
 ```
 
-#### When to Choose a Data Lake
+## Choose a Data Lake when:
 
 * You need to store very large amounts of raw data
 * Data comes in many formats
@@ -1240,7 +1244,7 @@ An IoT company receives billions of sensor readings,
 device logs, images and maintenance documents.
 ```
 
-#### When to Choose a Lakehouse
+## Choose a Lakehouse when:
 
 * Both BI and machine learning are important
 * You want open file-based storage
@@ -1259,7 +1263,7 @@ clickstream analytics and historical data recovery.
 
 ---
 
-### 🟠 32. Can an Organization Use All Three?
+# 🟠 32. Can an Organization Use All Three?
 
 Yes. Real organizations frequently use a combination.
 
@@ -1296,7 +1300,7 @@ The choice is not always “one versus the others.” It can be a layered enterp
 
 ---
 
-### 🟠 33. Important Misconception
+# 🟠 33. Important Misconception
 
 A lakehouse is not simply:
 
@@ -1326,7 +1330,7 @@ Without these controls, the environment may still be only a collection of files.
 
 ---
 
-### 🟠 34. Simplified Technology Mapping
+# 🟠 34. Simplified Technology Mapping
 
 ```text
 DATA SOURCES
@@ -1357,29 +1361,29 @@ A complete lakehouse usually consists of several components working together.
 
 ---
 
-### 🟠 35. Interview Questions and Answers
+# 🟠 35. Interview Questions and Answers
 
-#### 1. What is the main difference between a warehouse and a lake?
+## 1. What is the main difference between a warehouse and a lake?
 
 A warehouse mainly stores cleaned and structured data for reporting. A lake stores raw structured, semi-structured and unstructured data for flexible processing.
 
-#### 2. What is schema-on-write?
+## 2. What is schema-on-write?
 
 The schema is defined and enforced before data is written. This is commonly associated with data warehouses.
 
-#### 3. What is schema-on-read?
+## 3. What is schema-on-read?
 
 The data is stored first, and its structure is applied when it is read. This is commonly associated with data lakes.
 
-#### 4. What is a lakehouse?
+## 4. What is a lakehouse?
 
 A lakehouse combines low-cost and flexible data-lake storage with warehouse features such as ACID transactions, schemas, governance and SQL performance.
 
-#### 5. What is a data swamp?
+## 5. What is a data swamp?
 
 A data lake that lacks proper metadata, organization, ownership, quality and governance is often called a data swamp.
 
-#### 6. What is the Medallion architecture?
+## 6. What is the Medallion architecture?
 
 It is a layered data design:
 
@@ -1389,34 +1393,34 @@ Silver → Cleaned and standardized data
 Gold   → Business-ready data
 ```
 
-#### 7. Why are ACID transactions important?
+## 7. Why are ACID transactions important?
 
 They prevent partial or conflicting changes and ensure readers see consistent data.
 
-#### 8. Can a data lake store structured data?
+## 8. Can a data lake store structured data?
 
 Yes. It can store structured, semi-structured and unstructured data.
 
-#### 9. Can a data warehouse support machine learning?
+## 9. Can a data warehouse support machine learning?
 
 Yes, but traditional warehouses are mainly optimized for SQL analytics and BI. A lake or lakehouse may provide greater flexibility for large-scale ML workloads.
 
-#### 10. Is a lakehouse always cheaper than a warehouse?
+## 10. Is a lakehouse always cheaper than a warehouse?
 
 Not automatically. Cost depends on storage, query volume, compute usage, data design, optimization and platform pricing.
 
-#### 11. What is time travel?
+## 11. What is time travel?
 
 Time travel allows users to query or restore an earlier version of a table.
 
-#### 12. What is the difference between ETL and ELT?
+## 12. What is the difference between ETL and ELT?
 
 ```text
 ETL: Extract → Transform → Load
 ELT: Extract → Load → Transform
 ```
 
-#### 13. Why use Parquet in a lake or lakehouse?
+## 13. Why use Parquet in a lake or lakehouse?
 
 Parquet is a columnar format that provides:
 
@@ -1426,13 +1430,13 @@ Parquet is a columnar format that provides:
 * Efficient distributed processing
 * Schema information
 
-#### 14. Does a Lakehouse replace a Data Warehouse?
+## 14. Does a Lakehouse replace a Data Warehouse?
 
 It can replace some warehouse workloads, but many organizations still maintain warehouses for specialized reporting, predictable performance or established governance processes.
 
 ---
 
-### 🟠 36. Final Memory Diagram
+# 🟠 36. Final Memory Diagram
 
 ```text
 DATA WAREHOUSE
@@ -1470,7 +1474,7 @@ Governance
 SQL and ML
 ```
 
-#### One-line conclusion
+## One-line conclusion
 
 ```text
 Warehouse = trusted business reporting

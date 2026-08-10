@@ -3,66 +3,66 @@
 - Week 6
   - Demos
     - [ ] Amazon EMR Pyspark
-    - [X] Data Loading Saving Through RDD
-    - [X] GCP Dataproc Cluster Architecture
-    - [X] PySpark Intro
-    - [X] Spark RDD
+    - [x] Data Loading Saving Through RDD
+    - [x] GCP Dataproc Cluster Architecture
+    - [x] PySpark Intro
+    - [x] Spark RDD
   - GCP
     - [ ] GCP Dataproc Complete Working Lab
   - Notes
-    - [X] Intro to PySpark
-    - [X] Spark Ecosystem
-    - [X] Hadoop vs Spark
-    - [X] PySpark Shared Variables
-    - [X] Python Practical RDD
-    - [X] PySpark RDD Data Loading
-    - [X] GCP Dataproc Cluster Architecture
-    - [X] AWS EMR Spark Cluster
-    - [X] GCP Dataproc PySpark
-    - [X] AWS EMR to GCP Dataproc
-    - [X] GCP Dataproc GCS PySpark
+    - [x] Intro to PySpark
+    - [x] Spark Ecosystem
+    - [x] Hadoop vs Spark
+    - [x] PySpark Shared Variables
+    - [x] Python Practical RDD
+    - [x] PySpark RDD Data Loading
+    - [x] GCP Dataproc Cluster Architecture
+    - [x] AWS EMR Spark Cluster
+    - [x] GCP Dataproc PySpark
+    - [x] AWS EMR to GCP Dataproc
+    - [x] GCP Dataproc GCS PySpark
 - Week 7
   - Big Query
-    - [X] Big Query vs SparkSQL
-    - [X] Clustering & Column Sorting
-    - [X] Google SQL
-    - [X] BigQuery on Demand vs Reserved Capacity
-    - [X] Partition Pruning
-    - [X] Slot Execution vs Spark Executor
+    - [x] Big Query vs SparkSQL
+    - [x] Clustering & Column Sorting
+    - [x] Google SQL
+    - [x] BigQuery on Demand vs Reserved Capacity
+    - [x] Partition Pruning
+    - [x] Slot Execution vs Spark Executor
   - Demos
-    - [X] Retail Store Demo
+    - [x] Retail Store Demo
     - [ ] SparkSQL Local Multiformat
   - Notes
-    - [X] SparkSQL
-    - [X] SparkSQL Sorting
-    - [X] SparkSQL, SparkSession, DataFrames
+    - [x] SparkSQL
+    - [x] SparkSQL Sorting
+    - [x] SparkSQL, SparkSession, DataFrames
 - Week 8
   - Demos
-    - [X] airflow
-    - [X] KafkaDemo
-    - [X] apache airflow operator
-    - [X] airflow local demo
-    - [X] Airflow Docker SQL Server
-    - [X] Parameterized DAG
-    - [X] Apache Beam
-    - [X] pub sub demo
+    - [x] airflow
+    - [x] KafkaDemo
+    - [ ] apache airflow operator
+    - [x] airflow local demo
+    - [ ] Airflow Docker SQL Server
+    - [x] Parameterized DAG
+    - [ ] Apache Beam
+    - [ ] pub sub demo
   - Intro to Streaming
-    - [X] HTML Notes
+    - [x] HTML Notes
   - Kafka Streaming
-    - [X] Apache Kadka Intro MD
-    - [X] Pubsub Messaging Fresher
-    - [X] Pubsub Messaging Slides
+    - [x] Apache Kadka Intro MD
+    - [x] Pubsub Messaging Fresher
+    - [x] Pubsub Messaging Slides
   - Airflow
-    - [X] Airflow Setup HTML
-    - [X] Apache Airflow Basic to Advanced Slides
-    - [X] Apache Airflow Intro HTML
-    - [ ] airflow job orchestration docker practice MD
+    - [x] Airflow Setup HTML
+    - [x] Apache Airflow Basic to Advanced Slides
+    - [x] Apache Airflow Intro HTML
+    - [ ] airflow job orchestration docker practice MD [Demo]
   - Airflow DAG
-    - [X] Airflow DAG Design Dynamic HTML
-    - [X] Airflow DAG Design Operators HTML
-    - [X] Apache Airflow Dynamic DAG MD
-    - [X] Simple Dynamic DAG MD
-    - [X] Apache Airflow Parameterized DAG Tutorial HTML
+    - [x] Airflow DAG Design Dynamic HTML
+    - [x] Airflow DAG Design Operators HTML
+    - [x] Apache Airflow Dynamic DAG MD
+    - [x] Simple Dynamic DAG MD
+    - [x] Apache Airflow Parameterized DAG Tutorial HTML
   - Beam
     - [ ] Apache Beam Windowing HTML (demo to do)
   - [ ] Apache Beam Dataflow Demos
@@ -70,12 +70,16 @@
     - [ ] Dataflow Demo
     - [ ] Demos
   - Composer
-    - [ ]  Cloud Composer Environemnt HTML/MD
+    - [ ] Cloud Composer Environemnt HTML/MD [Demo]
   - GCP PubSub Tutorial
-    - [ ] GCP PubSub MD
-    - [ ] GCP PubSub Message Filtering MD
-    - [ ] Kafka vs GCP PubSub HTML
-    - [ ] Kafka vs Google Cloud PubSub MD
-    - [ ] Pub Sub Topic Subscription DOCX
+    - [ ] ***GCP PubSub MD (Demo to do)***
+    - [ ] ***GCP PubSub Message Filtering MD (Demo to do with GCP PubSub MD)***
+    - [ ] ***Kafka vs GCP PubSub HTML (Demo to do)***
+    - [x] Kafka vs Google Cloud PubSub MD
+    - [ ] Pub Sub Topic Subscription DOCX [Demo?]
 - Week 9
-  - [ ] Data Warehouse vs Data Lake vs Lakehouse Tutorial MD
+  - [x] Data Warehouse vs Data Lake vs Lakehouse Tutorial MD
+  - [ ] Snowflake Data Loading File Formats MD
+  - [ ] Snowflake Tables Guide MD
+  - [ ] Snowflake Views
+  - [ ] Snowpipe with GCS DOCX

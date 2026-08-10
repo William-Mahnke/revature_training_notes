@@ -1,28 +1,18 @@
-<div align="center">
-
-# <span style="color:#6C5CE7;">❄️ Snowflake Table Types — Permanent vs Transient vs Temporary</span>
-
-### <span style="color:#0984E3;">A Fresher-Friendly Mental Model with Real-World Examples</span>
-
-</div>
+# ❄️ Snowflake Table Types — Permanent vs Transient vs Temporary
 
 ---
 
-> <span style="color:#2D3436;"><b>Core idea:</b></span> All three are Snowflake tables. The main difference is <b>how long the data should live</b> and <b>how much recovery protection it needs</b>.
-
-<div align="center">
+> **Core idea:** All three are Snowflake tables. The main difference is **how long the data should live** and **how much recovery protection it needs**.
 
 | Table Type | Easy Mental Model | Best Used For |
-|---|---|---|
+| --- | --- | --- |
 | 🟦 **Permanent** | **Protect it** | Important business data |
 | 🟧 **Transient** | **Rebuild it** | Staging / intermediate data |
 | 🟩 **Temporary** | **Use it now** | Session-only calculations |
 
-</div>
-
 ---
 
-## <span style="color:#6C5CE7;">🧠 First Mental Model</span>
+## 🧠 First Mental Model
 
 ```mermaid
 mindmap
@@ -46,10 +36,9 @@ mindmap
 
 ---
 
-<details open>
-<summary><b><span style="color:#0984E3;">🟦 1. Permanent Table — “This data is important”</span></b></summary>
+## 🟦 1. Permanent Table — “This data is important”
 
-### <span style="color:#00B894;">What is it?</span>
+### What is it?
 
 A **Permanent table** is the normal/default table type in Snowflake.
 
@@ -63,7 +52,7 @@ CREATE TABLE CUSTOMERS (
 
 You do not need to write `PERMANENT`. A normal `CREATE TABLE` creates a permanent table.
 
-### <span style="color:#E17055;">When should I use it?</span>
+### When should I use it?
 
 Use it when the data is important and should remain available until somebody explicitly deletes the table.
 
@@ -77,7 +66,7 @@ Examples:
 - Finance transactions
 - Audit-sensitive business records
 
-### <span style="color:#6C5CE7;">Visual Understanding</span>
+### Visual Understanding
 
 ```mermaid
 flowchart TB
@@ -93,7 +82,7 @@ flowchart TB
     style E fill:#55efc4,stroke:#00b894,color:#2d3436
 ```
 
-### <span style="color:#D63031;">What if something goes wrong?</span>
+### What if something goes wrong?
 
 If somebody accidentally drops or modifies important data, Snowflake recovery features may help.
 
@@ -111,14 +100,11 @@ Permanent tables can also have Snowflake **Fail-safe** protection after Time Tra
 
 > 🟦 **Fresher memory:** Permanent = **I care about this data. Protect it.**
 
-</details>
-
 ---
 
-<details>
-<summary><b><span style="color:#E67E22;">🟧 2. Transient Table — “Keep it, but I can rebuild it”</span></b></summary>
+## 2. Transient Table — “Keep it, but I can rebuild it”
 
-### <span style="color:#00B894;">What is it?</span>
+### What Is it?
 
 A **Transient table** stays in Snowflake until you explicitly drop it, just like a permanent table.
 
@@ -130,7 +116,7 @@ CREATE TRANSIENT TABLE STAGING_ORDERS (
 );
 ```
 
-### <span style="color:#D63031;">Very important fresher misunderstanding</span>
+### Very important fresher misunderstanding
 
 **Transient does NOT mean Snowflake automatically deletes the table after one day.**
 
@@ -142,7 +128,7 @@ It disappears only when you drop it:
 DROP TABLE STAGING_ORDERS;
 ```
 
-### <span style="color:#6C5CE7;">Why use it?</span>
+### Why use it?
 
 Use a transient table when the data is useful but can be recreated from another source.
 
@@ -162,13 +148,13 @@ flowchart LR
 
 If `STAGING_ORDERS` is lost, the pipeline can reload the source data and rebuild it.
 
-### <span style="color:#E17055;">Recovery characteristics</span>
+### Recovery characteristics
 
 - Can use Time Travel, but retention is limited compared with permanent tables.
 - No Fail-safe.
 - Suitable when strong long-term recovery is not required.
 
-### <span style="color:#0984E3;">Typical real-world uses</span>
+### Typical real-world uses
 
 - ETL staging tables
 - Intermediate transformations
@@ -178,14 +164,11 @@ If `STAGING_ORDERS` is lost, the pipeline can reload the source data and rebuild
 
 > 🟧 **Fresher memory:** Transient = **I want to keep it, but I can rebuild it.**
 
-</details>
-
 ---
 
-<details>
-<summary><b><span style="color:#00B894;">🟩 3. Temporary Table — “I only need this right now”</span></b></summary>
+## 🟩 3. Temporary Table — “I only need this right now”
 
-### <span style="color:#00B894;">What is it?</span>
+### What is It?
 
 A **Temporary table** exists only for the current Snowflake session.
 
@@ -205,7 +188,7 @@ CREATE TEMP TABLE TEMP_SALES (
 );
 ```
 
-### <span style="color:#6C5CE7;">Example</span>
+### Example
 
 An analyst wants to inspect today's high-value orders:
 
@@ -223,7 +206,7 @@ SELECT *
 FROM TODAY_HIGH_VALUE_ORDERS;
 ```
 
-### <span style="color:#E17055;">What happens when the session ends?</span>
+### What happens when the session ends?
 
 ```mermaid
 flowchart LR
@@ -241,7 +224,7 @@ flowchart LR
 
 Temporary tables are also visible only within the session that created them.
 
-### <span style="color:#0984E3;">Typical real-world uses</span>
+### Typical real-world Uses
 
 - One-time calculations
 - Data exploration
@@ -251,12 +234,9 @@ Temporary tables are also visible only within the session that created them.
 
 > 🟩 **Fresher memory:** Temporary = **I need it only right now.**
 
-</details>
-
 ---
 
-<details>
-<summary><b><span style="color:#8E44AD;">🏢 Office Analogy — The Easiest Way to Remember</span></b></summary>
+## 🏢 Office Analogy — The Easiest Way to Remember
 
 ```mermaid
 flowchart TB
@@ -281,12 +261,9 @@ You keep project files while they are useful, but you know you can rebuild them.
 
 You use it for today's calculation and throw it away when you leave.
 
-</details>
-
 ---
 
-<details>
-<summary><b><span style="color:#D63031;">🔥 Most Important Difference: Transient vs Temporary</span></b></summary>
+## 🔥 Most Important Difference: Transient vs Temporary
 
 This is where freshers usually get confused.
 
@@ -319,16 +296,13 @@ flowchart LR
 ```
 
 | After Session Ends | Result |
-|---|---|
+| --- | --- |
 | 🟧 Transient table | ✅ Still exists |
 | 🟩 Temporary table | ❌ Disappears |
 
-</details>
-
 ---
 
-<details>
-<summary><b><span style="color:#0984E3;">🛒 Complete E-Commerce Example</span></b></summary>
+## 🛒 Complete E-Commerce Example
 
 Imagine an e-commerce company receives a file every night:
 
@@ -394,12 +368,9 @@ Why temporary?
 
 Because the analyst only needs it during the current analysis session.
 
-</details>
-
 ---
 
-<details>
-<summary><b><span style="color:#E67E22;">⚠️ What Happens If Someone Accidentally Drops a Table?</span></b></summary>
+## ⚠️ What Happens If Someone Accidentally Drops a Table?
 
 ### 🟦 Permanent Table
 
@@ -441,12 +412,9 @@ Temporary tables are intended for the current session.
 
 When the session ends, the table is purged and should not be treated as recoverable long-term storage.
 
-</details>
-
 ---
 
-<details>
-<summary><b><span style="color:#6C5CE7;">💰 Why Not Use Permanent Tables for Everything?</span></b></summary>
+## 💰 Why Not Use Permanent Tables for Everything?
 
 Because not every piece of data requires the strongest recovery protection.
 
@@ -473,15 +441,12 @@ strong recovery may not be necessary.
 
 So the choice should be based on **business value + recovery need + data lifetime**.
 
-</details>
-
 ---
 
-<details open>
-<summary><b><span style="color:#00B894;">✅ Comparison Table</span></b></summary>
+## ✅ Comparison Table
 
 | Feature | 🟦 Permanent | 🟧 Transient | 🟩 Temporary |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | Lifetime | Until dropped | Until dropped | Until session ends |
 | Default table type | ✅ Yes | ❌ No | ❌ No |
 | Survives logout/session end | ✅ Yes | ✅ Yes | ❌ No |
@@ -493,12 +458,9 @@ So the choice should be based on **business value + recovery need + data lifetim
 | Suitable for scratch calculations | Possible | Possible | ✅ Best |
 | Typical mental model | Protect it | Rebuild it | Use it now |
 
-</details>
-
 ---
 
-<details open>
-<summary><b><span style="color:#D63031;">🎯 Fresher Decision Guide</span></b></summary>
+## 🎯 Fresher Decision Guide
 
 ```mermaid
 flowchart TB
@@ -524,12 +486,9 @@ flowchart TB
    → Yes = **Transient**  
    → No / important business data = **Permanent**
 
-</details>
-
 ---
 
-<details>
-<summary><b><span style="color:#0984E3;">💻 SQL Cheat Sheet</span></b></summary>
+## 💻 SQL Cheat Sheet
 
 ### 🟦 Permanent
 
@@ -558,30 +517,21 @@ CREATE TEMPORARY TABLE TEMP_CUSTOMERS (
 );
 ```
 
-</details>
-
 ---
 
-<details>
-<summary><b><span style="color:#8E44AD;">🎤 Interview / Knowledge Check Answer</span></b></summary>
+## 🎤 Interview / Knowledge Check Answer
 
 > **Permanent tables** are for long-lived important data and provide the strongest recovery protection, including Time Travel and Fail-safe. **Transient tables** also persist until explicitly dropped but are intended for rebuildable or intermediate data and do not have Fail-safe. **Temporary tables** are session-scoped, visible only to the creating session, and disappear when that session ends.
 
-</details>
-
 ---
 
-## <span style="color:#D63031;">⭐ Final Memory Trick</span>
+## ⭐ Final Memory Trick
 
-<div align="center">
+### 🟦 Permanent = PROTECT IT
 
-### <span style="color:#0984E3;">🟦 Permanent = PROTECT IT</span>
+### 🟧 Transient = REBUILD IT
 
-### <span style="color:#E67E22;">🟧 Transient = REBUILD IT</span>
-
-### <span style="color:#00B894;">🟩 Temporary = USE IT NOW</span>
-
-</div>
+### 🟩 Temporary = USE IT NOW
 
 ---
 

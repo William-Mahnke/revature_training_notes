@@ -78,8 +78,10 @@
     - [x] Kafka vs Google Cloud PubSub MD
     - [ ] Pub Sub Topic Subscription DOCX [Demo?]
 - Week 9
-  - [x] Data Warehouse vs Data Lake vs Lakehouse Tutorial MD
-  - [ ] Snowflake Data Loading File Formats MD
-  - [ ] Snowflake Tables Guide MD
-  - [ ] Snowflake Views
-  - [ ] Snowpipe with GCS DOCX
+  - Warehouse, Lake, Lakehouse
+    - [x] Data Warehouse vs Data Lake vs Lakehouse Tutorial MD
+  - Snowflake
+    - [ ] Snowflake Data Loading File Formats MD
+    - [ ] Snowflake Tables Guide MD
+    - [ ] Snowflake Views
+    - [ ] Snowpipe with GCS DOCX

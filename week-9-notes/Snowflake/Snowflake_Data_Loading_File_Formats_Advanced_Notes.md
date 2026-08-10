@@ -1,38 +1,25 @@
-<div align="center">
+# ❄️ SNOWFLAKE DATA LOADING
 
-# ❄️ <span style="color:#29B5E8;">SNOWFLAKE DATA LOADING</span>
-## 🌈 <span style="color:#7C3AED;">FILE FORMATS — COMPLETE HANDS-ON NOTEBOOK GUIDE</span>
+## 🌈 FILE FORMATS — COMPLETE HANDS-ON NOTEBOOK GUIDE
 
-**CSV • JSON • PARQUET • AVRO • ORC • XML**
-
-</div>
+**CSV • JSON • PARQUET • AVRO • ORC • XML.**
 
 ---
 
-<table>
-<tr>
-<td style="background-color:#E8F7FF;padding:16px;border-left:6px solid #29B5E8;">
-<b>🎯 Learning Goal</b><br>
-Understand <b>why Snowflake needs file formats</b>, how to choose the correct format, how <b>Stage → File Format → COPY INTO → Table</b> works, and execute CSV, JSON, and Parquet loading demonstrations step by step.
-</td>
-</tr>
-</table>
+🎯 Learning Goal
+
+Understand **why Snowflake needs file formats**, how to choose the correct format, how **Stage → File Format → COPY INTO → Table** works, and execute CSV, JSON, and Parquet loading demonstrations step by step.
 
 ---
 
-# 🟦 1. REAL-WORLD SCENARIO
+## 🟦 1. REAL-WORLD SCENARIO
 
-<table>
-<tr>
-<td style="background-color:#F3E8FF;padding:16px;border-left:6px solid #8B5CF6;">
-<b>🏢 Scenario: Global Customer Analytics Platform</b><br><br>
-A company receives data from multiple systems. Each system exports data differently. Snowflake therefore needs to know <b>how each file is structured before loading it</b>.
-</td>
-</tr>
-</table>
+🏢 Scenario: Global Customer Analytics Platform
+
+A company receives data from multiple systems. Each system exports data differently. Snowflake therefore needs to know **how each file is structured before loading it**.
 
 | Source System | Example Data | Typical Format |
-|---|---|---|
+| --- | --- | --- |
 | CRM | Customer master data | CSV |
 | REST API | Customer events | JSON |
 | Data Lake | Historical analytics | Parquet |
@@ -44,13 +31,13 @@ A company receives data from multiple systems. Each system exports data differen
 
 The following records contain similar information but are stored differently.
 
-**CSV**
+CSV
 
 ```text
 101|John|Chennai|5000
 ```
 
-**JSON**
+JSON
 
 ```json
 {
@@ -61,24 +48,19 @@ The following records contain similar information but are stored differently.
 }
 ```
 
-**Parquet**
+Parquet
 
 ```text
 Binary + Columnar + Embedded Schema
 ```
 
-<table>
-<tr>
-<td style="background-color:#FFF7D6;padding:16px;border-left:6px solid #F59E0B;">
-<b>💡 Key Idea</b><br>
-A Snowflake <b>FILE FORMAT</b> tells Snowflake <b>how to interpret the bytes and records inside a staged file</b>.
-</td>
-</tr>
-</table>
+💡 Key Idea
+
+A Snowflake **FILE FORMAT** tells Snowflake **how to interpret the bytes and records inside a staged file**.
 
 ---
 
-# 🟪 2. ADVANCED ARCHITECTURE — HOW LOADING WORKS
+## 🟪 2. ADVANCED ARCHITECTURE — HOW LOADING WORKS
 
 ```mermaid
 flowchart LR
@@ -124,24 +106,19 @@ flowchart LR
 
 ---
 
-# 🟩 3. THE MOST IMPORTANT MENTAL MODEL
+## 🟩 3. THE MOST IMPORTANT MENTAL MODEL
 
-<table>
-<tr>
-<td style="background-color:#E0F2FE;padding:18px;border-left:7px solid #0284C7;">
-<b>📦 STAGE = WHERE?</b><br>
+**📦 STAGE = WHERE?**
+
 Where is the file stored?
-</td>
-<td style="background-color:#FCE7F3;padding:18px;border-left:7px solid #DB2777;">
-<b>📝 FILE FORMAT = HOW?</b><br>
+
+**📝 FILE FORMAT = HOW?**
+
 How should Snowflake interpret the file?
-</td>
-<td style="background-color:#DCFCE7;padding:18px;border-left:7px solid #16A34A;">
-<b>🚚 COPY INTO = LOAD!</b><br>
+
+**🚚 COPY INTO = LOAD!**
+
 Move staged records into a table.
-</td>
-</tr>
-</table>
 
 ```mermaid
 flowchart LR
@@ -161,7 +138,7 @@ flowchart LR
 
 ---
 
-# 🟧 4. WHICH FILE FORMAT SHOULD I CHOOSE?
+## 🟧 4. WHICH FILE FORMAT SHOULD I CHOOSE?
 
 ```mermaid
 flowchart TD
@@ -194,7 +171,7 @@ flowchart TD
 ```
 
 | Requirement | Recommended |
-|---|---|
+| --- | --- |
 | Spreadsheet-like rows and columns | **CSV** |
 | REST API response | **JSON** |
 | Nested application events | **JSON** |
@@ -205,7 +182,7 @@ flowchart TD
 
 ---
 
-# 🟦 5. SUPPORTED FILE FORMAT OVERVIEW
+## 🟦 5. SUPPORTED FILE FORMAT OVERVIEW
 
 ```text
 FILE FORMAT
@@ -219,7 +196,7 @@ FILE FORMAT
 ```
 
 | Feature | CSV | JSON | Parquet | Avro | ORC | XML |
-|---|---:|---:|---:|---:|---:|---:|
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
 | Human readable | ✅ | ✅ | ❌ | ❌ | ❌ | ✅ |
 | Nested data | ❌ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Binary | ❌ | ❌ | ✅ | ✅ | ✅ | ❌ |
@@ -231,16 +208,11 @@ FILE FORMAT
 
 ---
 
-# 🧪 6. NOTEBOOK LAB — ENVIRONMENT SETUP
+## 🧪 6. NOTEBOOK LAB — ENVIRONMENT SETUP
 
-<table>
-<tr>
-<td style="background-color:#E8F7FF;padding:14px;border-left:6px solid #29B5E8;">
-<b>▶ Notebook Cell 1</b><br>
+▶ Notebook Cell 1
+
 Create the database, schema, and compute warehouse used for the complete demonstration.
-</td>
-</tr>
-</table>
 
 ```sql
 USE ROLE ACCOUNTADMIN;
@@ -274,16 +246,11 @@ flowchart TD
 
 ---
 
-# 🟦 7. CSV — WHEN AND WHY?
+## 🟦 7. CSV — WHEN AND WHY?
 
-<table>
-<tr>
-<td style="background-color:#DBEAFE;padding:16px;border-left:6px solid #2563EB;">
-<b>✅ Choose CSV when</b><br>
+✅ Choose CSV when
+
 The source is simple tabular data: customers, employees, orders, products, lookup tables, exported spreadsheets, or relational database extracts.
-</td>
-</tr>
-</table>
 
 Example:
 
@@ -295,15 +262,9 @@ ID|LAST_NAME|FIRST_NAME|COMPANY|CITY
 
 ---
 
-# 🧪 8. CREATE CSV TARGET TABLE
+## 🧪 8. CREATE CSV TARGET TABLE
 
-<table>
-<tr>
-<td style="background-color:#E8F7FF;padding:14px;border-left:6px solid #29B5E8;">
-<b>▶ Notebook Cell 2</b>
-</td>
-</tr>
-</table>
+▶ Notebook Cell 2
 
 ```sql
 CREATE OR REPLACE TABLE CONTACTS_CSV
@@ -325,15 +286,9 @@ DESCRIBE TABLE CONTACTS_CSV;
 
 ---
 
-# 🧪 9. CREATE CSV FILE FORMAT
+## 🧪 9. CREATE CSV FILE FORMAT
 
-<table>
-<tr>
-<td style="background-color:#E8F7FF;padding:14px;border-left:6px solid #29B5E8;">
-<b>▶ Notebook Cell 3</b>
-</td>
-</tr>
-</table>
+▶ Notebook Cell 3
 
 ```sql
 CREATE OR REPLACE FILE FORMAT CONTACTS_CSV_FORMAT
@@ -346,20 +301,23 @@ CREATE OR REPLACE FILE FORMAT CONTACTS_CSV_FORMAT
 
 ### 🎨 CSV option breakdown
 
-<table>
-<tr>
-<td style="background-color:#DBEAFE;padding:12px;"><b>TYPE = CSV</b><br>Read the source as delimited text.</td>
-<td style="background-color:#DCFCE7;padding:12px;"><b>FIELD_DELIMITER='|'</b><br>Pipe separates columns.</td>
-</tr>
-<tr>
-<td style="background-color:#FEF3C7;padding:12px;"><b>SKIP_HEADER=1</b><br>Ignore the first header line.</td>
-<td style="background-color:#FCE7F3;padding:12px;"><b>TRIM_SPACE=TRUE</b><br>Remove surrounding spaces.</td>
-</tr>
-<tr>
-<td style="background-color:#F3E8FF;padding:12px;"><b>EMPTY_FIELD_AS_NULL=TRUE</b><br>Empty values become NULL.</td>
-<td style="background-color:#FFEDD5;padding:12px;"><b>Named format</b><br>Reusable across multiple loads.</td>
-</tr>
-</table>
+**TYPE = CSV**
+Read the source as delimited text.
+
+**FIELD_DELIMITER='|'**
+Pipe separates columns.
+
+**SKIP_HEADER=1**
+Ignore the first header line.
+
+**TRIM_SPACE=TRUE**
+Remove surrounding spaces.
+
+**EMPTY_FIELD_AS_NULL=TRUE**
+Empty values become NULL.
+
+**Named format**
+Reusable across multiple loads.
 
 Inspect it:
 
@@ -371,25 +329,15 @@ SHOW FILE FORMATS;
 
 ---
 
-# 🟪 10. CREATE THE EXTERNAL STAGE
+## 🟪 10. CREATE THE EXTERNAL STAGE
 
-<table>
-<tr>
-<td style="background-color:#F3E8FF;padding:16px;border-left:6px solid #9333EA;">
-<b>🌐 Public Dataset</b><br>
-This lab uses Snowflake's public tutorial bucket:<br><br>
-<code>s3://snowflake-docs/tutorials/dataloading/</code>
-</td>
-</tr>
-</table>
+🌐 Public Dataset
 
-<table>
-<tr>
-<td style="background-color:#E8F7FF;padding:14px;border-left:6px solid #29B5E8;">
-<b>▶ Notebook Cell 4</b>
-</td>
-</tr>
-</table>
+This lab uses Snowflake's public tutorial bucket:
+
+`s3://snowflake-docs/tutorials/dataloading/`
+
+▶ Notebook Cell 4
 
 ```sql
 CREATE OR REPLACE STAGE CONTACTS_PUBLIC_STAGE
@@ -399,15 +347,9 @@ CREATE OR REPLACE STAGE CONTACTS_PUBLIC_STAGE
 
 ---
 
-# 🧪 11. LIST THE AVAILABLE FILES
+## 🧪 11. LIST THE AVAILABLE FILES
 
-<table>
-<tr>
-<td style="background-color:#E8F7FF;padding:14px;border-left:6px solid #29B5E8;">
-<b>▶ Notebook Cell 5</b>
-</td>
-</tr>
-</table>
+▶ Notebook Cell 5
 
 ```sql
 LIST @CONTACTS_PUBLIC_STAGE/tutorials/dataloading/;
@@ -426,7 +368,7 @@ contacts.json
 
 ---
 
-# 🟧 12. ADVANCED SAFE-LOAD PIPELINE
+## 🟧 12. ADVANCED SAFE-LOAD PIPELINE
 
 ```mermaid
 flowchart LR
@@ -449,26 +391,15 @@ flowchart LR
     style H fill:#E0F2FE,stroke:#0284C7
 ```
 
-<table>
-<tr>
-<td style="background-color:#FFF7D6;padding:16px;border-left:6px solid #F59E0B;">
-<b>⭐ Best Practice</b><br>
-Do not immediately run <code>COPY INTO</code>. First list, preview, and validate the staged data.
-</td>
-</tr>
-</table>
+⭐ Best Practice
+
+Do not immediately run `COPY INTO`. First list, preview, and validate the staged data.
 
 ---
 
-# 🧪 13. PREVIEW CSV BEFORE LOADING
+## 🧪 13. PREVIEW CSV BEFORE LOADING
 
-<table>
-<tr>
-<td style="background-color:#E8F7FF;padding:14px;border-left:6px solid #29B5E8;">
-<b>▶ Notebook Cell 6</b>
-</td>
-</tr>
-</table>
+▶ Notebook Cell 6
 
 ```sql
 SELECT
@@ -495,7 +426,7 @@ $1    $2    $3     $4         $5
 
 ---
 
-# 🧪 14. PREVIEW FILE METADATA
+## 🧪 14. PREVIEW FILE METADATA
 
 ```sql
 SELECT
@@ -508,26 +439,15 @@ SELECT
 FROM @CONTACTS_PUBLIC_STAGE/tutorials/dataloading/contacts1.csv;
 ```
 
-<table>
-<tr>
-<td style="background-color:#DCFCE7;padding:16px;border-left:6px solid #16A34A;">
-<b>✅ Why metadata is useful</b><br>
+✅ Why metadata is useful
+
 Auditing • Data lineage • Troubleshooting • Bad-record tracing • Source-file identification
-</td>
-</tr>
-</table>
 
 ---
 
-# 🧪 15. VALIDATE BEFORE LOADING
+## 🧪 15. VALIDATE BEFORE LOADING
 
-<table>
-<tr>
-<td style="background-color:#E8F7FF;padding:14px;border-left:6px solid #29B5E8;">
-<b>▶ Notebook Cell 7</b>
-</td>
-</tr>
-</table>
+▶ Notebook Cell 7
 
 ```sql
 COPY INTO CONTACTS_CSV
@@ -538,18 +458,13 @@ FILE_FORMAT = (
 VALIDATION_MODE = 'RETURN_ERRORS';
 ```
 
-<table>
-<tr>
-<td style="background-color:#FFF7D6;padding:14px;border-left:6px solid #F59E0B;">
-<b>🧠 Interpretation</b><br>
+🧠 Interpretation
+
 If the query returns no loading errors, the file is ready for the actual COPY operation.
-</td>
-</tr>
-</table>
 
 ---
 
-# 🧪 16. LOAD CSV INTO SNOWFLAKE
+## 🧪 16. LOAD CSV INTO SNOWFLAKE
 
 ```sql
 COPY INTO CONTACTS_CSV
@@ -572,7 +487,7 @@ FROM CONTACTS_CSV;
 
 ---
 
-# 🟩 17. LOAD MULTIPLE CSV FILES
+## 🟩 17. LOAD MULTIPLE CSV FILES
 
 ```sql
 COPY INTO CONTACTS_CSV
@@ -604,7 +519,7 @@ flowchart LR
 
 ---
 
-# 🟥 18. DUPLICATE LOAD PROTECTION
+## 🟥 18. DUPLICATE LOAD PROTECTION
 
 Normal repeated `COPY INTO` normally uses Snowflake load metadata to avoid loading the same file repeatedly.
 
@@ -626,16 +541,11 @@ flowchart TD
 
 ---
 
-# 🟩 19. JSON — WHEN AND WHY?
+## 🟩 19. JSON — WHEN AND WHY?
 
-<table>
-<tr>
-<td style="background-color:#DCFCE7;padding:16px;border-left:6px solid #16A34A;">
-<b>✅ Choose JSON when</b><br>
+✅ Choose JSON when
+
 The source is a REST API, application event stream, IoT payload, web/mobile event, log record, or nested structure containing objects and arrays.
-</td>
-</tr>
-</table>
 
 Example:
 
@@ -656,7 +566,7 @@ Example:
 
 ---
 
-# 🟣 20. JSON ARCHITECTURE
+## 🟣 20. JSON ARCHITECTURE
 
 ```mermaid
 flowchart LR
@@ -683,7 +593,7 @@ flowchart LR
 
 ---
 
-# 🧪 21. CREATE JSON TABLE
+## 🧪 21. CREATE JSON TABLE
 
 ```sql
 CREATE OR REPLACE TABLE RAW_JSON_DATA
@@ -692,18 +602,13 @@ CREATE OR REPLACE TABLE RAW_JSON_DATA
 );
 ```
 
-<table>
-<tr>
-<td style="background-color:#F3E8FF;padding:16px;border-left:6px solid #9333EA;">
-<b>🧬 Why VARIANT?</b><br>
+**🧬 Why VARIANT?**
+
 VARIANT can hold semi-structured objects such as JSON while allowing Snowflake SQL to navigate individual attributes later.
-</td>
-</tr>
-</table>
 
 ---
 
-# 🧪 22. CREATE JSON FILE FORMAT
+## 🧪 22. CREATE JSON FILE FORMAT
 
 ```sql
 CREATE OR REPLACE FILE FORMAT APP_JSON_FORMAT
@@ -712,7 +617,7 @@ CREATE OR REPLACE FILE FORMAT APP_JSON_FORMAT
 
 ---
 
-# 🧪 23. CREATE PUBLIC JSON STAGE
+## 🧪 23. CREATE PUBLIC JSON STAGE
 
 Public Snowflake sample:
 
@@ -728,7 +633,7 @@ CREATE OR REPLACE STAGE APP_JSON_STAGE
 
 ---
 
-# 🧪 24. LIST AND PREVIEW JSON
+## 🧪 24. LIST AND PREVIEW JSON
 
 ```sql
 LIST @APP_JSON_STAGE;
@@ -759,7 +664,7 @@ LIMIT 10;
 
 ---
 
-# 🧪 25. LOAD JSON
+## 🧪 25. LOAD JSON
 
 ```sql
 COPY INTO RAW_JSON_DATA
@@ -788,7 +693,7 @@ LIMIT 20;
 
 ---
 
-# 🟧 26. JSON `STRIP_OUTER_ARRAY`
+## 🟧 26. JSON `STRIP_OUTER_ARRAY`
 
 Consider:
 
@@ -824,16 +729,11 @@ flowchart LR
 
 ---
 
-# 🟪 27. PARQUET — WHEN AND WHY?
+## 🟪 27. PARQUET — WHEN AND WHY?
 
-<table>
-<tr>
-<td style="background-color:#F3E8FF;padding:16px;border-left:6px solid #9333EA;">
-<b>✅ Choose Parquet when</b><br>
+✅ Choose Parquet when
+
 Working with Spark, data lakes, large analytical datasets, column-heavy queries, or systems where storage efficiency and schema awareness matter.
-</td>
-</tr>
-</table>
 
 ### Row versus column mental model
 
@@ -850,7 +750,7 @@ flowchart LR
 
 ---
 
-# 🧪 28. CREATE PARQUET FORMAT AND INTERNAL STAGE
+## 🧪 28. CREATE PARQUET FORMAT AND INTERNAL STAGE
 
 ```sql
 CREATE OR REPLACE FILE FORMAT PARQUET_FORMAT
@@ -864,7 +764,7 @@ FILE_FORMAT = PARQUET_FORMAT;
 
 ---
 
-# 🟢 29. GENERATE A PARQUET FILE INSIDE SNOWFLAKE
+## 🟢 29. GENERATE A PARQUET FILE INSIDE SNOWFLAKE
 
 Instead of asking students to download and upload a local Parquet file, reuse the CSV data already loaded.
 
@@ -886,7 +786,7 @@ flowchart LR
 
 ---
 
-# 🧪 30. UNLOAD TABLE DATA TO PARQUET
+## 🧪 30. UNLOAD TABLE DATA TO PARQUET
 
 ```sql
 COPY INTO @PARQUET_STAGE/contacts/
@@ -922,7 +822,7 @@ LIMIT 20;
 
 ---
 
-# 🧪 31. INFER PARQUET SCHEMA
+## 🧪 31. INFER PARQUET SCHEMA
 
 ```sql
 SELECT *
@@ -934,19 +834,15 @@ FROM TABLE(
 );
 ```
 
-<table>
-<tr>
-<td style="background-color:#FFF7D6;padding:16px;border-left:6px solid #F59E0B;">
-<b>⭐ Important Difference</b><br><br>
-<b>CSV:</b> schema is normally defined externally by us.<br>
-<b>Parquet:</b> schema information travels with the file and can be inspected using <code>INFER_SCHEMA</code>.
-</td>
-</tr>
-</table>
+⭐ Important Difference
+
+**CSV:** schema is normally defined externally by us.
+
+**Parquet:** schema information travels with the file and can be inspected using `INFER_SCHEMA`.
 
 ---
 
-# 🧪 32. LOAD PARQUET INTO A TABLE
+## 🧪 32. LOAD PARQUET INTO A TABLE
 
 ```sql
 CREATE OR REPLACE TABLE PARQUET_CONTACTS
@@ -978,7 +874,7 @@ FROM PARQUET_CONTACTS;
 
 ---
 
-# 🟨 33. `MATCH_BY_COLUMN_NAME`
+## 🟨 33. `MATCH_BY_COLUMN_NAME`
 
 ```mermaid
 flowchart LR
@@ -1005,16 +901,11 @@ This tells Snowflake to match source and target columns by name rather than simp
 
 ---
 
-# 🟧 34. AVRO
+## 🟧 34. AVRO
 
-<table>
-<tr>
-<td style="background-color:#FFEDD5;padding:16px;border-left:6px solid #EA580C;">
-<b>Typical use</b><br>
+Typical use
+
 Kafka • Event streaming • Schema-oriented messaging • Data integration pipelines
-</td>
-</tr>
-</table>
 
 ```mermaid
 flowchart LR
@@ -1041,16 +932,11 @@ TYPE = AVRO;
 
 ---
 
-# 🟥 35. ORC
+## 🟥 35. ORC
 
-<table>
-<tr>
-<td style="background-color:#FEE2E2;padding:16px;border-left:6px solid #DC2626;">
-<b>Typical use</b><br>
+Typical use
+
 Existing Hadoop and Hive environments where ORC already exists as the analytical storage format.
-</td>
-</tr>
-</table>
 
 ```sql
 CREATE OR REPLACE FILE FORMAT ORC_FORMAT
@@ -1059,16 +945,11 @@ TYPE = ORC;
 
 ---
 
-# 🟨 36. XML
+## 🟨 36. XML
 
-<table>
-<tr>
-<td style="background-color:#FEF9C3;padding:16px;border-left:6px solid #CA8A04;">
-<b>Typical use</b><br>
+Typical use
+
 Legacy enterprise systems • SOAP services • Financial integrations • Government systems • Older middleware platforms
-</td>
-</tr>
-</table>
 
 Example:
 
@@ -1089,24 +970,29 @@ TYPE = XML;
 
 ---
 
-# 🌈 37. FILE FORMAT QUICK REFERENCE
+## 🌈 37. FILE FORMAT QUICK REFERENCE
 
-<table>
-<tr>
-<td style="background-color:#DBEAFE;padding:16px;"><b>🟦 CSV</b><br>Rows + columns</td>
-<td style="background-color:#DCFCE7;padding:16px;"><b>🟩 JSON</b><br>API + nested data</td>
-<td style="background-color:#F3E8FF;padding:16px;"><b>🟪 PARQUET</b><br>Analytics + Data Lake</td>
-</tr>
-<tr>
-<td style="background-color:#FFEDD5;padding:16px;"><b>🟧 AVRO</b><br>Kafka + events</td>
-<td style="background-color:#FEE2E2;padding:16px;"><b>🟥 ORC</b><br>Hadoop + Hive</td>
-<td style="background-color:#FEF9C3;padding:16px;"><b>🟨 XML</b><br>Legacy enterprise</td>
-</tr>
-</table>
+**🟦 CSV**
+Rows + columns
+
+**🟩 JSON**
+API + nested data
+
+**🟪 PARQUET**
+Analytics + Data Lake
+
+**🟧 AVRO**
+Kafka + events
+
+**🟥 ORC**
+Hadoop + Hive
+
+**🟨 XML**
+Legacy enterprise
 
 ---
 
-# ⭐ 38. IMPORTANT CSV OPTIONS
+## ⭐ 38. IMPORTANT CSV OPTIONS
 
 ```sql
 CREATE OR REPLACE FILE FORMAT PRODUCTION_CSV_FORMAT
@@ -1149,7 +1035,7 @@ null   → SQL NULL
 
 ---
 
-# 🟫 39. INLINE VS NAMED FILE FORMAT
+## 🟫 39. INLINE VS NAMED FILE FORMAT
 
 ### Inline
 
@@ -1196,18 +1082,13 @@ flowchart TD
     style E fill:#F3E8FF,stroke:#9333EA
 ```
 
-<table>
-<tr>
-<td style="background-color:#DCFCE7;padding:16px;border-left:6px solid #16A34A;">
-<b>✅ Recommendation</b><br>
-Use <b>named file formats</b> for reusable, maintainable, production-style pipelines.
-</td>
-</tr>
-</table>
+✅ Recommendation
+
+Use **named file formats** for reusable, maintainable, production-style pipelines.
 
 ---
 
-# 🟦 40. COMPLETE END-TO-END LOADING ARCHITECTURE
+## 🟦 40. COMPLETE END-TO-END LOADING ARCHITECTURE
 
 ```mermaid
 flowchart TB
@@ -1276,7 +1157,7 @@ flowchart TB
 
 ---
 
-# 🧠 41. CLASSROOM EXECUTION ORDER
+## 🧠 41. CLASSROOM EXECUTION ORDER
 
 ```mermaid
 flowchart TD
@@ -1312,27 +1193,21 @@ flowchart TD
 
 ---
 
-# 🏆 42. GOLDEN RULE
+## 🏆 42. GOLDEN RULE
 
-<table>
-<tr>
-<td style="background-color:#E0F2FE;padding:22px;border:3px solid #0284C7;border-radius:12px;">
-<h3>❄️ Snowflake Data Loading Formula</h3>
+### ❄️ Snowflake Data Loading Formula
 
-<b>📦 STAGE</b> tells Snowflake <b>WHERE</b> the files are.<br><br>
+**📦 STAGE** tells Snowflake **WHERE** the files are.
 
-<b>📝 FILE FORMAT</b> tells Snowflake <b>HOW</b> to interpret those files.<br><br>
+**📝 FILE FORMAT** tells Snowflake **HOW** to interpret those files.
 
-<b>🚚 COPY INTO</b> performs the <b>LOAD</b>.<br><br>
+**🚚 COPY INTO** performs the **LOAD**.
 
-<b>❄️ TABLE</b> stores the resulting records.
-</td>
-</tr>
-</table>
+**❄️ TABLE** stores the resulting records.
 
 ---
 
-# 🧹 43. OPTIONAL CLEANUP
+## 🧹 43. OPTIONAL CLEANUP
 
 ```sql
 DROP DATABASE IF EXISTS FILE_FORMAT_DEMO_DB;
@@ -1342,11 +1217,8 @@ DROP WAREHOUSE IF EXISTS FILE_FORMAT_DEMO_WH;
 
 ---
 
-<div align="center">
-
-# 🎉 <span style="color:#16A34A;">END OF LAB</span>
+## 🎉 END OF LAB
 
 ### ❄️ Snowflake File Formats
-**CSV → JSON → Parquet → Avro → ORC → XML**
 
-</div>
+**CSV → JSON → Parquet → Avro → ORC → XML.**

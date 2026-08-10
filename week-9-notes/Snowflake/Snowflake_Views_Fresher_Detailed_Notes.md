@@ -1,25 +1,15 @@
-<div align="center">
-
-# <span style="color:#2563EB;">❄️ Snowflake Views — Fresher-Friendly Detailed Guide</span>
-
-### <span style="color:#7C3AED;">Standard • Secure • Materialized • Recursive • Temporary • Semantic Views</span>
+# ❄️ Snowflake Views: Standard • Secure • Materialized • Recursive • Temporary • Semantic Views
 
 **Goal:** Understand **what a view is, how it works, why we use it, and when to choose each type**.
-
-</div>
 
 ---
 
 > 🟦 **Fresher Memory Line**
->
 > **A table stores the data. A normal view stores the SQL. A materialized view stores the computed result. A semantic view stores business meaning.**
 
 ---
 
-<details open>
-<summary><b>🌟 1. First Understand: What is a View?</b></summary>
-
-## <span style="color:#0EA5E9;">What is a View?</span>
+## What is a View?
 
 A **view** is a named SQL query that you can use almost like a table.
 
@@ -38,7 +28,7 @@ CREATE OR REPLACE TABLE ORDERS (
 Assume it contains:
 
 | ORDER_ID | CUSTOMER_ID | STATUS | AMOUNT |
-|---:|---:|---|---:|
+| ---: | ---: | --- | ---: |
 | 101 | 1 | COMPLETED | 2500 |
 | 102 | 2 | CANCELLED | 900 |
 | 103 | 3 | COMPLETED | 4200 |
@@ -67,7 +57,7 @@ SELECT *
 FROM COMPLETED_ORDERS_V;
 ```
 
-### <span style="color:#16A34A;">Mental Model</span>
+### Mental Model
 
 ```mermaid
 flowchart LR
@@ -96,14 +86,9 @@ When you query the view, Snowflake evaluates the view definition against the und
 
 > 🟨 **Important:** A view is an abstraction layer over tables/views. It can simplify SQL, hide columns, filter rows, join objects, and expose a business-friendly interface.
 
-</details>
-
 ---
 
-<details>
-<summary><b>🎯 2. Why Do We Need Views?</b></summary>
-
-## <span style="color:#F97316;">Why not query tables directly?</span>
+## Why not query tables directly?
 
 Views solve several practical problems.
 
@@ -224,14 +209,9 @@ flowchart LR
     class D consumer
 ```
 
-</details>
-
 ---
 
-<details open>
-<summary><b>🗺️ 3. Snowflake View Types — Big Picture</b></summary>
-
-## <span style="color:#7C3AED;">The View Family</span>
+## The View Family
 
 For learning purposes, think of Snowflake views like this:
 
@@ -271,14 +251,9 @@ flowchart TD
 > 🟨 **Very important:**  
 > **Secure** is not simply a completely separate storage mechanism. Snowflake allows both **non-materialized views and materialized views to be secure**.
 
-</details>
-
 ---
 
-<details open>
-<summary><b>🔵 4. Standard / Non-Materialized View</b></summary>
-
-## <span style="color:#2563EB;">The Normal View You Will Use Most Often</span>
+## The Normal View You Will Use Most Often
 
 A normal view stores the **query definition**, not its own persistent copy of the result rows.
 
@@ -380,14 +355,9 @@ WHERE AMOUNT >= 3000;
 
 > 🔵 **Standard View = Save the QUERY**
 
-</details>
-
 ---
 
-<details>
-<summary><b>🛡️ 5. Secure View</b></summary>
-
-## <span style="color:#16A34A;">Use When Privacy of the View Definition / Data Exposure Matters</span>
+## Use When Privacy of the View Definition / Data Exposure Matters
 
 Create a secure non-materialized view:
 
@@ -424,7 +394,7 @@ flowchart LR
 ### Standard View vs Secure View
 
 | Question | Standard View | Secure View |
-|---|---|---|
+| --- | --- | --- |
 | Can simplify SQL? | ✅ | ✅ |
 | Can expose subset of data? | ✅ | ✅ |
 | Privacy-focused behavior? | Basic | ✅ Stronger |
@@ -476,18 +446,13 @@ SHOW VIEWS LIKE 'CUSTOMER_SAFE_V';
 
 You can also inspect view metadata through Snowflake's Information Schema / Account Usage where appropriate.
 
-### Memory trick
+### Memory trick (2)
 
 > 🛡️ **Secure View = Save the QUERY + Protect the INTERFACE**
 
-</details>
-
 ---
 
-<details open>
-<summary><b>🟣 6. Materialized View</b></summary>
-
-## <span style="color:#7C3AED;">A View Whose Results Are Precomputed and Stored</span>
+## A View Whose Results Are Precomputed and Stored
 
 This is the biggest conceptual difference from a standard view.
 
@@ -505,7 +470,7 @@ Compute result → Store result → Maintain it as source data changes
 
 Snowflake describes a materialized view as a **precomputed data set** that is stored for later use.
 
-### Syntax
+### Syntax (2)
 
 ```sql
 CREATE OR REPLACE MATERIALIZED VIEW COMPLETED_ORDER_AMOUNTS_MV AS
@@ -519,7 +484,7 @@ WHERE STATUS = 'COMPLETED';
 
 > ⚠️ **Edition note:** Materialized views are an **Enterprise Edition feature** in Snowflake.
 
-### How it works
+### How it works (2)
 
 ```mermaid
 flowchart LR
@@ -582,18 +547,13 @@ flowchart TD
 
 That would increase storage and maintenance costs unnecessarily.
 
-### Memory trick
+### Memory trick (3)
 
 > 🟣 **Materialized View = Save the RESULT**
 
-</details>
-
 ---
 
-<details>
-<summary><b>🔁 7. Recursive View</b></summary>
-
-## <span style="color:#EA580C;">Useful for Hierarchical Data</span>
+## Useful for Hierarchical Data
 
 A recursive non-materialized view can refer to itself.
 
@@ -706,22 +666,17 @@ Recursive logic must eventually stop.
 
 Bad recursive logic can result in non-terminating / excessive recursion behavior.
 
-### Memory trick
+### Memory trick (4)
 
 > 🔁 **Recursive View = Walk a HIERARCHY**
 
-</details>
-
 ---
 
-<details>
-<summary><b>🟡 8. Temporary View</b></summary>
-
-## <span style="color:#D97706;">A View Needed Only for Your Current Session</span>
+## A View Needed Only for Your Current Session
 
 A temporary view exists only for the session in which it was created.
 
-### Syntax
+### Syntax (3)
 
 ```sql
 CREATE OR REPLACE TEMPORARY VIEW TODAY_HIGH_VALUE_ORDERS_V AS
@@ -771,18 +726,13 @@ NORMAL VIEW       → remains until dropped
 TEMPORARY VIEW    → automatically disappears when session ends
 ```
 
-### Memory trick
+### Memory trick (5)
 
 > 🟡 **Temporary View = VIEW for THIS SESSION**
 
-</details>
-
 ---
 
-<details>
-<summary><b>🧠 9. Semantic View</b></summary>
-
-## <span style="color:#0891B2;">A Business Meaning Layer Above Physical Data</span>
+## A Business Meaning Layer Above Physical Data
 
 Semantic views are different from the traditional “saved SELECT” mental model.
 
@@ -894,18 +844,13 @@ Semantic View connects those two worlds.
 ✅ BI semantic consistency  
 ✅ Centralized business logic
 
-### Memory trick
+### Memory trick (6)
 
 > 🧠 **Semantic View = Save the BUSINESS MEANING**
 
-</details>
-
 ---
 
-<details>
-<summary><b>🔐 10. Important Point: Secure is a Property, Not Just Another Box</b></summary>
-
-## <span style="color:#DC2626;">This is a Common Interview Confusion</span>
+## This is a Common Interview Confusion
 
 Snowflake documentation states that **both non-materialized and materialized views can be defined as secure**.
 
@@ -953,17 +898,12 @@ Recursive = Query behavior
 Semantic = Business-semantic modeling
 ```
 
-</details>
-
 ---
 
-<details open>
-<summary><b>⚖️ 11. Complete Comparison Table</b></summary>
-
-## <span style="color:#9333EA;">View Comparison</span>
+## View Comparison
 
 | Feature | Standard View | Secure View | Materialized View | Recursive View | Temporary View | Semantic View |
-|---|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- | --- |
 | Main purpose | Simplify/reuse query | Privacy | Performance | Hierarchy | Session-only use | Business meaning |
 | Stores normal query definition | ✅ | ✅ if non-materialized | Definition + stored result | ✅ | ✅ | Different semantic model |
 | Stores precomputed result | ❌ | Only if secure materialized | ✅ | ❌ | ❌ | Not the traditional MV concept |
@@ -973,14 +913,9 @@ Semantic = Business-semantic modeling
 | Special cost concern | Query compute | Potential optimization tradeoff | Storage + maintenance | Recursive query cost | Minimal persistence | Depends on downstream use |
 | Special edition note | Normal availability | Normal feature | Enterprise Edition | Non-materialized view feature | Normal view feature | Current Snowflake semantic object |
 
-</details>
-
 ---
 
-<details>
-<summary><b>🛒 12. One E-Commerce Scenario Using Different Views</b></summary>
-
-## <span style="color:#F97316;">One System — Different Requirements</span>
+## One System — Different Requirements
 
 Assume:
 
@@ -1119,14 +1054,9 @@ Relationship: Customer → Orders
 
 ✅ **Semantic view**
 
-</details>
-
 ---
 
-<details>
-<summary><b>🚦 13. Which View Should I Choose?</b></summary>
-
-## <span style="color:#16A34A;">Fresher Decision Diagram</span>
+## Fresher Decision Diagram
 
 ```mermaid
 flowchart TD
@@ -1161,14 +1091,9 @@ flowchart TD
     class V standard
 ```
 
-</details>
-
 ---
 
-<details>
-<summary><b>🧪 14. Small Hands-On Lab for Freshers</b></summary>
-
-## <span style="color:#2563EB;">Step 1 — Create Demo Data</span>
+## Step 1 — Create Demo Data
 
 ```sql
 CREATE OR REPLACE DATABASE VIEW_DEMO_DB;
@@ -1195,7 +1120,7 @@ INSERT INTO ORDERS VALUES
 
 ---
 
-## <span style="color:#16A34A;">Step 2 — Create Standard View</span>
+## Step 2 — Create Standard View
 
 ```sql
 CREATE OR REPLACE VIEW COMPLETED_ORDERS_V AS
@@ -1215,7 +1140,7 @@ FROM COMPLETED_ORDERS_V;
 
 ---
 
-## <span style="color:#7C3AED;">Step 3 — Prove That the View Reflects Base Data</span>
+## Step 3 — Prove That the View Reflects Base Data
 
 ```sql
 INSERT INTO ORDERS VALUES
@@ -1235,7 +1160,7 @@ Ask students:
 
 ---
 
-## <span style="color:#16A34A;">Step 4 — Create Secure View</span>
+## Step 4 — Create Secure View
 
 ```sql
 CREATE OR REPLACE SECURE VIEW COMPLETED_ORDERS_SECURE_V AS
@@ -1253,7 +1178,7 @@ SHOW VIEWS LIKE 'COMPLETED_ORDERS_SECURE_V';
 
 ---
 
-## <span style="color:#D97706;">Step 5 — Create Temporary View</span>
+## Step 5 — Create Temporary View
 
 ```sql
 CREATE OR REPLACE TEMP VIEW HIGH_VALUE_ORDERS_TEMP_V AS
@@ -1271,7 +1196,7 @@ Then end the session and explain that the temporary view is session-scoped.
 
 ---
 
-## <span style="color:#7C3AED;">Step 6 — Materialized View (Only if Account Edition Supports It)</span>
+## Step 6 — Materialized View (Only if Account Edition Supports It)
 
 ```sql
 CREATE OR REPLACE MATERIALIZED VIEW COMPLETED_ORDER_MV AS
@@ -1291,14 +1216,9 @@ SHOW MATERIALIZED VIEWS;
 
 > ⚠️ Materialized views require Snowflake Enterprise Edition.
 
-</details>
-
 ---
 
-<details>
-<summary><b>⚠️ 15. Common Fresher Mistakes</b></summary>
-
-## <span style="color:#DC2626;">Mistake 1 — “A standard view stores another copy of the data.”</span>
+## Mistake 1 — “A standard view stores another copy of the data.”
 
 ❌ Wrong.
 
@@ -1306,7 +1226,7 @@ A normal/non-materialized view stores the query definition.
 
 ---
 
-## <span style="color:#DC2626;">Mistake 2 — “A view is always faster than a table.”</span>
+## Mistake 2 — “A view is always faster than a table.”
 
 ❌ Wrong.
 
@@ -1314,7 +1234,7 @@ A standard view mainly provides abstraction and reusable logic. It does not auto
 
 ---
 
-## <span style="color:#DC2626;">Mistake 3 — “Secure view means users automatically get access.”</span>
+## Mistake 3 — “Secure view means users automatically get access.”
 
 ❌ Wrong.
 
@@ -1322,7 +1242,7 @@ Snowflake privileges still matter. Secure behavior and access control are relate
 
 ---
 
-## <span style="color:#DC2626;">Mistake 4 — “Materialized view is free.”</span>
+## Mistake 4 — “Materialized view is free.”
 
 ❌ Wrong.
 
@@ -1330,7 +1250,7 @@ Precomputed results require storage and maintenance, which can incur cost.
 
 ---
 
-## <span style="color:#DC2626;">Mistake 5 — “Temporary view survives logout.”</span>
+## Mistake 5 — “Temporary view survives logout.”
 
 ❌ Wrong.
 
@@ -1338,7 +1258,7 @@ It is session-scoped.
 
 ---
 
-## <span style="color:#DC2626;">Mistake 6 — “Secure and materialized are mutually exclusive.”</span>
+## Mistake 6 — “Secure and materialized are mutually exclusive.”
 
 ❌ Wrong.
 
@@ -1346,20 +1266,15 @@ Snowflake supports **secure materialized views**.
 
 ---
 
-## <span style="color:#DC2626;">Mistake 7 — “Semantic view is just another saved SELECT.”</span>
+## Mistake 7 — “Semantic view is just another saved SELECT.”
 
 ❌ Wrong.
 
 Semantic views model business entities, relationships, dimensions, facts, and metrics.
 
-</details>
-
 ---
 
-<details>
-<summary><b>🆚 16. Table vs View vs Materialized View</b></summary>
-
-## <span style="color:#9333EA;">Quick Comparison</span>
+## Quick Comparison
 
 ```mermaid
 flowchart LR
@@ -1377,7 +1292,7 @@ flowchart LR
 ```
 
 | Question | Table | Standard View | Materialized View |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | Stores actual business rows? | ✅ | ❌ | Stores derived/precomputed result |
 | Has own data storage? | ✅ | No dedicated result storage | ✅ |
 | Based on another table/query? | Not necessarily | ✅ | ✅ |
@@ -1385,14 +1300,9 @@ flowchart LR
 | Extra storage for result? | ✅ table storage | ❌ view result | ✅ |
 | Main purpose | Store data | Abstraction | Performance |
 
-</details>
-
 ---
 
-<details>
-<summary><b>💡 17. View vs Dynamic Table — Don't Confuse Them</b></summary>
-
-## <span style="color:#0EA5E9;">A useful modern Snowflake distinction</span>
+## A useful modern Snowflake distinction
 
 A **dynamic table is not simply another traditional view type**.
 
@@ -1422,12 +1332,7 @@ For a fresher:
 
 > Use **views** primarily for abstraction, **materialized views** for suitable query-performance scenarios, and **dynamic tables** for declarative transformation pipelines.
 
-</details>
-
 ---
-
-<details>
-<summary><b>🎤 18. Interview Questions & Answers</b></summary>
 
 ### Q1. What is a view in Snowflake?
 
@@ -1487,34 +1392,21 @@ Because its precomputed results consume storage and Snowflake performs maintenan
 
 The view definition is not automatically rewritten. Querying the affected view can fail because the referenced object/column is no longer valid.
 
-</details>
-
 ---
 
-<details open>
-<summary><b>🧠 19. Final Memory Cheat Sheet</b></summary>
+**🧠 19. Final Memory Cheat Sheet:**
 
-<div align="center">
+### 🔵 STANDARD VIEW: SAVE THE QUERY
 
-### <span style="color:#2563EB;">🔵 STANDARD VIEW</span>
-**SAVE THE QUERY**
+### 🛡️ SECURE VIEW: PROTECT THE INTERFACE
 
-### <span style="color:#16A34A;">🛡️ SECURE VIEW</span>
-**PROTECT THE INTERFACE**
+### 🟣 MATERIALIZED VIEW: SAVE THE RESULT
 
-### <span style="color:#7C3AED;">🟣 MATERIALIZED VIEW</span>
-**SAVE THE RESULT**
+### 🔁 RECURSIVE VIEW: WALK THE HIERARCHY
 
-### <span style="color:#EA580C;">🔁 RECURSIVE VIEW</span>
-**WALK THE HIERARCHY**
+### 🟡 TEMPORARY VIEW: USE IT THIS SESSION
 
-### <span style="color:#D97706;">🟡 TEMPORARY VIEW</span>
-**USE IT THIS SESSION**
-
-### <span style="color:#0891B2;">🧠 SEMANTIC VIEW</span>
-**SAVE THE BUSINESS MEANING**
-
-</div>
+### 🧠 SEMANTIC VIEW: SAVE THE BUSINESS MEANING
 
 ---
 
@@ -1546,37 +1438,32 @@ flowchart LR
     class SEM semantic
 ```
 
-</details>
-
 ---
 
-<details>
-<summary><b>📚 20. Official Snowflake References</b></summary>
+## Official Snowflake References
 
 The notes above are aligned with Snowflake's official documentation:
 
 - **Overview of Views**  
-  https://docs.snowflake.com/en/user-guide/views-introduction
+  <https://docs.snowflake.com/en/user-guide/views-introduction>
 
 - **CREATE VIEW**  
-  https://docs.snowflake.com/en/sql-reference/sql/create-view
+  <https://docs.snowflake.com/en/sql-reference/sql/create-view>
 
 - **Working with Secure Views**  
-  https://docs.snowflake.com/en/user-guide/views-secure
+  <https://docs.snowflake.com/en/user-guide/views-secure>
 
 - **Working with Materialized Views**  
-  https://docs.snowflake.com/en/user-guide/views-materialized
+  <https://docs.snowflake.com/en/user-guide/views-materialized>
 
 - **CREATE MATERIALIZED VIEW**  
-  https://docs.snowflake.com/en/sql-reference/sql/create-materialized-view
+  <https://docs.snowflake.com/en/sql-reference/sql/create-materialized-view>
 
 - **Overview of Semantic Views**  
-  https://docs.snowflake.com/en/user-guide/views-semantic/overview
+  <https://docs.snowflake.com/en/user-guide/views-semantic/overview>
 
 - **CREATE SEMANTIC VIEW**  
-  https://docs.snowflake.com/en/sql-reference/sql/create-semantic-view
-
-</details>
+  <https://docs.snowflake.com/en/sql-reference/sql/create-semantic-view>
 
 ---
 

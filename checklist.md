@@ -85,3 +85,6 @@
     - [ ] ***Snowflake Tables Guide MD (Demo to do)***
     - [ ] ***Snowflake Views (Demo to do)***
     - [ ] Snowpipe with GCS DOCX
+  - DBT
+    - [ ] simple_dbt_project
+    - [ ] dbt_notes MD

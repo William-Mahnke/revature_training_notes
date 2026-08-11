@@ -1,12 +1,8 @@
-<div align="center">
-
 # 🟦 dbt — Fresher Friendly Introduction
 
-### <span style="color:#22c55e">From Raw Data to Trusted Business Data</span>
+## From Raw Data to Trusted Business Data
 
-**High-Level Notes | Snowflake + dbt**
-
-</div>
+High-Level Notes | Snowflake + dbt
 
 ---
 
@@ -28,7 +24,7 @@ dbt helps us organize SQL transformations as **models**, manage dependencies bet
 
 ### 🧠 Remember
 
-**dbt = SQL + Automation + Testing + Documentation + Lineage**
+dbt = SQL + Automation + Testing + Documentation + Lineage
 
 ---
 
@@ -55,7 +51,7 @@ Without dbt, developers may write many SQL scripts manually.
 ### Typical problems
 
 | Area | Without dbt |
-|---|---|
+| --- | --- |
 | SQL organization | Large or scattered scripts |
 | Execution order | Developer must remember |
 | Dependencies | Managed manually |
@@ -170,7 +166,7 @@ flowchart LR
 The business wants:
 
 | Customer | Total Orders | Total Revenue |
-|---|---:|---:|
+| --- | ---: | ---: |
 | Ravi | 2 | 3000 |
 | John | 0 | 0 |
 
@@ -307,7 +303,7 @@ dbt mainly helps with the **Transform** part:
 ## 🟪 11. Why is dbt Helpful?
 
 | dbt Feature | Benefit |
-|---|---|
+| --- | --- |
 | Models | Break large SQL logic into smaller files |
 | `ref()` | Manage model dependencies |
 | Tests | Validate data quality |
@@ -338,7 +334,7 @@ In analytics:
 ## 🟦 13. Final Summary
 
 | Question | Short Answer |
-|---|---|
+| --- | --- |
 | What is dbt? | SQL-based transformation tool |
 | What does it mainly do? | Converts raw warehouse data into analytics-ready data |
 | Main language | SQL + Jinja |
@@ -351,12 +347,8 @@ In analytics:
 
 ---
 
-<div align="center">
-
 ## 🌟 One-Line Definition
 
-### <span style="color:#16a34a">dbt helps teams transform raw warehouse data into clean, reliable, reusable business data using SQL.</span>
+dbt helps teams transform raw warehouse data into clean, reliable, reusable business data using SQL
 
-**RAW ➜ STAGING ➜ MARTS ➜ REPORTS**
-
-</div>
+RAW ➜ STAGING ➜ MARTS ➜ REPORTS

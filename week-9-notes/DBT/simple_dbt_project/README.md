@@ -1,11 +1,14 @@
 # Welcome to your new dbt project
 
-## Using the starter project
+## Using the Project
 
-Try running the following commands:
-
-- dbt run
-- dbt test
+1. source .venv/bin/activate
+2. navigate to simple_dbt_project directory
+3. run `dbt debug` - approve push notification on DUO
+4. Confirm raw tables (customers, events, orders, products) are in database raw schema
+5. `dbt seed`
+6. `dbt run`
+7. (optional) `dbt test`
 
 ### Resources
 

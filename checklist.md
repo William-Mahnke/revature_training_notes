@@ -64,7 +64,7 @@
     - [x] Simple Dynamic DAG MD
     - [x] Apache Airflow Parameterized DAG Tutorial HTML
   - Beam
-    - [ ] Apache Beam Windowing HTML (demo to do)
+    - [ ] ***Apache Beam Windowing HTML (demo to do)***
   - [ ] Apache Beam Dataflow Demos
   - Apache Beam Dataflow Windowing Watermark Demos
     - [ ] Dataflow Demo
@@ -81,7 +81,7 @@
   - Warehouse, Lake, Lakehouse
     - [x] Data Warehouse vs Data Lake vs Lakehouse Tutorial MD
   - Snowflake
-    - [ ] Snowflake Data Loading File Formats MD
-    - [ ] Snowflake Tables Guide MD
-    - [ ] Snowflake Views
+    - [ ] ***Snowflake Data Loading File Formats MD (Demo to do)***
+    - [ ] ***Snowflake Tables Guide MD (Demo to do)***
+    - [ ] ***Snowflake Views (Demo to do)***
     - [ ] Snowpipe with GCS DOCX

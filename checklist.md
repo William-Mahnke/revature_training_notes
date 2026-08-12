@@ -88,3 +88,8 @@
   - DBT
     - [x] simple_dbt_project
     - [x] dbt_notes MD
+  - BigQuery External Tables
+    - [ ] BigQuery Partitioned Clustered Models MD
+    - [ ] BigQuery Profile in dbt DOCX
+    - [ ] BigQuery Security Demo DOCX
+    - [ ] Federated Queries MD

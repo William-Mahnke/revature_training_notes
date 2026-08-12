@@ -1,100 +1,25 @@
-<style>
-:root {
-  --bg: #ffffff;
-  --panel: #f7f9fc;
-  --border: #dfe5ec;
-  --text: #1f2937;
-  --muted: #5b6472;
-  --accent: #2563eb;
-}
-body {
-  color: var(--text);
-  background: var(--bg);
-  line-height: 1.6;
-}
-.layout {
-  display: flex;
-  gap: 24px;
-  align-items: flex-start;
-}
-.sidebar {
-  width: 250px;
-  min-width: 250px;
-  position: sticky;
-  top: 16px;
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 14px 16px;
-}
-.content {
-  flex: 1;
-  min-width: 0;
-}
-.sidebar a {
-  text-decoration: none;
-}
-details {
-  margin: 10px 0;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 8px 12px;
-}
-summary {
-  cursor: pointer;
-  font-weight: 600;
-}
-h1, h2, h3 {
-  color: var(--accent);
-}
-blockquote {
-  border-left: 4px solid var(--accent);
-  padding-left: 12px;
-  color: var(--muted);
-}
-@media (max-width: 800px) {
-  .layout { display: block; }
-  .sidebar {
-    width: auto;
-    min-width: 0;
-    position: static;
-    margin-bottom: 16px;
-  }
-}
-</style>
-
 # Federated Queries over GCS with BigQuery
 
 > Query files stored in Google Cloud Storage directly from BigQuery without first loading them into a normal BigQuery table.
 
-<div class="layout">
+## Navigation
 
-<div class="sidebar">
+- [Concept](#1-what-is-a-federated-query-over-gcs)
+- [Setup Required](#2-setup-required)
+- [Demo Architecture](#3-recommended-demo-architecture)
+- [Sample Dataset](#4-sample-dataset)
+- [Implementation Steps](#5-implementation-steps)
+- [Business Queries](#6-simple-business-queries)
+- [Change the GCS File](#7-best-classroom-demonstration--change-the-gcs-file)
+- [Create External Table with SQL](#8-create-the-external-table-using-sql)
+- [Multiple Files](#9-query-multiple-files)
+- [External vs Native](#10-external-table-vs-native-bigquery-table)
+- [Real-World Use](#11-real-world-use-case)
+- [CSV vs Parquet](#12-csv-vs-parquet)
+- [Terminology Note](#13-important-terminology-note)
+- [Teaching Flow](#14-recommended-teaching-flow)
 
-<details open>
-<summary>Navigation</summary>
-
-- [Concept](#concept)
-- [Setup Required](#setup-required)
-- [Demo Architecture](#demo-architecture)
-- [Sample Dataset](#sample-dataset)
-- [Implementation Steps](#implementation-steps)
-- [Business Queries](#business-queries)
-- [Multiple Files](#multiple-files)
-- [External vs Native](#external-vs-native)
-- [Real-World Use](#real-world-use)
-- [Teaching Flow](#teaching-flow)
-- [Terminology Note](#terminology-note)
-
-</details>
-
-</div>
-
-<div class="content">
-
-<a id="concept"></a>
-<details open>
-<summary>1. What is a federated query over GCS?</summary>
+## 1. What is a federated query over GCS?
 
 For a fresher-friendly explanation:
 
@@ -124,16 +49,12 @@ SQL Query
 
 The CSV, JSON, Parquet, Avro, or ORC file physically remains in GCS.
 
-</details>
-
-<a id="setup-required"></a>
-<details>
-<summary>2. Setup Required</summary>
+## 2. Setup Required
 
 For a simple classroom demo, you need:
 
 | Component | Purpose |
-|---|---|
+| --- | --- |
 | Google Cloud Project | Contains the resources |
 | GCS Bucket | Stores the source file |
 | BigQuery Dataset | Holds the external-table definition |
@@ -144,11 +65,7 @@ Keep the GCS bucket and BigQuery dataset in a compatible location.
 
 For a beginner demo, using the same project and the same location keeps the setup simple.
 
-</details>
-
-<a id="demo-architecture"></a>
-<details>
-<summary>3. Recommended Demo Architecture</summary>
+## 3. Recommended Demo Architecture
 
 ```text
 Google Cloud Project
@@ -167,11 +84,7 @@ Google Cloud Project
 
 It points to the file stored in GCS.
 
-</details>
-
-<a id="sample-dataset"></a>
-<details>
-<summary>4. Sample Dataset</summary>
+## 4. Sample Dataset
 
 Create a file named:
 
@@ -193,11 +106,7 @@ order_id,customer_name,product,category,quantity,price,region
 1008,David,Chair,Furniture,2,5500,North
 ```
 
-</details>
-
-<a id="implementation-steps"></a>
-<details open>
-<summary>5. Implementation Steps</summary>
+## 5. Implementation Steps
 
 ### Step 1 — Create a GCS bucket
 
@@ -310,11 +219,7 @@ FROM `YOUR_PROJECT.federated_demo.ext_sales`;
 
 The records are returned even though the source data remains in GCS.
 
-</details>
-
-<a id="business-queries"></a>
-<details>
-<summary>6. Simple Business Queries</summary>
+## 6. Simple Business Queries
 
 ### Total sales by region
 
@@ -352,10 +257,7 @@ FROM `YOUR_PROJECT.federated_demo.ext_sales`
 GROUP BY category;
 ```
 
-</details>
-
-<details>
-<summary>7. Best Classroom Demonstration — Change the GCS File</summary>
+## 7. Best Classroom Demonstration — Change the GCS File
 
 Add another row to the CSV:
 
@@ -384,10 +286,7 @@ BigQuery queries the latest underlying data
 
 You did not manually load the new row into a native BigQuery table.
 
-</details>
-
-<details>
-<summary>8. Create the External Table Using SQL</summary>
+## 8. Create the External Table Using SQL
 
 ```sql
 CREATE OR REPLACE EXTERNAL TABLE
@@ -416,11 +315,7 @@ SELECT *
 FROM `YOUR_PROJECT.federated_demo.ext_sales`;
 ```
 
-</details>
-
-<a id="multiple-files"></a>
-<details>
-<summary>9. Query Multiple Files</summary>
+## 9. Query Multiple Files
 
 A real data lake may contain:
 
@@ -462,14 +357,10 @@ FROM `YOUR_PROJECT.federated_demo.ext_sales_all`;
 
 This is useful when new files arrive regularly in the same folder.
 
-</details>
-
-<a id="external-vs-native"></a>
-<details>
-<summary>10. External Table vs Native BigQuery Table</summary>
+## 10. External Table vs Native BigQuery Table
 
 | Native BigQuery Table | GCS External Table |
-|---|---|
+| --- | --- |
 | Data stored in BigQuery | Data remains in GCS |
 | Data must be loaded | No initial data load |
 | Better for repeated analytics | Useful for direct data-lake access |
@@ -489,11 +380,7 @@ Repeated Production Analytics
 Native BigQuery Table
 ```
 
-</details>
-
-<a id="real-world-use"></a>
-<details>
-<summary>11. Real-World Use Case</summary>
+## 11. Real-World Use Case
 
 Imagine applications generate daily files:
 
@@ -517,10 +404,7 @@ Dashboards / Reporting
 
 A company can keep large amounts of raw data in GCS and query only what is required.
 
-</details>
-
-<details>
-<summary>12. CSV vs Parquet</summary>
+## 12. CSV vs Parquet
 
 For a first demo:
 
@@ -542,11 +426,7 @@ Often better suited to analytics
 
 Start with CSV and introduce Parquet afterward.
 
-</details>
-
-<a id="terminology-note"></a>
-<details>
-<summary>13. Important Terminology Note</summary>
+## 13. Important Terminology Note
 
 In casual training discussions, people may say:
 
@@ -577,11 +457,7 @@ Cloud SQL / Spanner / supported databases
 → Federated Query / EXTERNAL_QUERY()
 ```
 
-</details>
-
-<a id="teaching-flow"></a>
-<details open>
-<summary>14. Recommended Teaching Flow</summary>
+## 14. Recommended Teaching Flow
 
 1. Show `sales.csv`.
 2. Upload it into GCS.
@@ -598,8 +474,6 @@ Cloud SQL / Spanner / supported databases
 Final message for students:
 
 > **The file stays in GCS. BigQuery can query it through an external table without first loading it into native BigQuery storage.**
-
-</details>
 
 ## Final Flow
 
@@ -625,6 +499,3 @@ SQL
 ```
 
 For this basic demonstration, you do not need Dataflow, Dataproc, a VM, Cloud SQL, or the `gcloud` CLI.
-
-</div>
-</div>

@@ -64,8 +64,7 @@ BigQuery can first eliminate irrelevant date partitions and then skip many irrel
 
 ---
 
-<details open>
-<summary><strong>1️⃣ What is Partitioning?</strong></summary>
+## 1️⃣ What is Partitioning?
 
 A **partitioned table** divides one large table into smaller logical segments based on **one partitioning column**.
 
@@ -97,12 +96,9 @@ If `sales_date` is the partitioning column, BigQuery can read only the relevant 
 
 This is called **partition pruning**.
 
-</details>
-
 ---
 
-<details open>
-<summary><strong>2️⃣ Simple Partition Example</strong></summary>
+## 2️⃣ Simple Partition Example
 
 Suppose your table contains:
 
@@ -147,12 +143,9 @@ WHERE order_date = '2026-08-12';
 
 can focus on that matching partition instead of scanning all dates.
 
-</details>
-
 ---
 
-<details open>
-<summary><strong>3️⃣ What is Clustering?</strong></summary>
+## 3️⃣ What is Clustering?
 
 Clustering is different.
 
@@ -185,8 +178,6 @@ WHERE region = 'INDIA'
 ```
 
 BigQuery can use clustering metadata to skip blocks that are unlikely to contain `INDIA`.
-
-</details>
 
 ---
 
@@ -387,9 +378,9 @@ Cluster block pruning
 
 ---
 
-# 🧪 Hands-On Demo in GCP BigQuery
+## 🧪 Hands-On Demo in GCP BigQuery
 
-## Scenario
+### Scenario
 
 We will build:
 
@@ -414,7 +405,7 @@ status
 
 ---
 
-## Step 1 — Open BigQuery
+### Step 1 — Open BigQuery
 
 Go to:
 
@@ -436,7 +427,7 @@ bigquery-optimization-lab
 
 ---
 
-## Step 2 — Create Dataset
+### Step 2 — Create Dataset
 
 Create:
 
@@ -448,7 +439,7 @@ Use the same BigQuery region you normally use.
 
 ---
 
-## Step 3 — Create Raw Table
+### Step 3 — Create Raw Table
 
 ```sql
 CREATE OR REPLACE TABLE
@@ -466,7 +457,7 @@ CREATE OR REPLACE TABLE
 
 ---
 
-## Step 4 — Insert Sample Data
+### Step 4 — Insert Sample Data
 
 ```sql
 INSERT INTO
@@ -503,7 +494,7 @@ FROM `YOUR_PROJECT.partition_cluster_demo.raw_orders`;
 
 ---
 
-## Step 5 — First Create a Normal Table
+### Step 5 — First Create a Normal Table
 
 Create an unoptimized table for comparison:
 
@@ -526,7 +517,7 @@ No clustering
 
 ---
 
-## Step 6 — Create Partitioned Table
+### Step 6 — Create Partitioned Table
 
 ```sql
 CREATE OR REPLACE TABLE
@@ -551,7 +542,7 @@ sales_partitioned
 
 ---
 
-## Step 7 — Query the Partitioned Table
+### Step 7 — Query the Partitioned Table
 
 ```sql
 SELECT
@@ -578,7 +569,7 @@ BigQuery can prune the other date partitions.
 
 ---
 
-## Step 8 — Show Students the Difference
+### Step 8 — Show Students the Difference
 
 Before clicking **Run**, BigQuery normally displays an estimate such as:
 
@@ -588,7 +579,7 @@ This query will process ...
 
 Compare:
 
-### Normal table
+#### Normal table
 
 ```sql
 SELECT *
@@ -596,7 +587,7 @@ FROM `sales_normal`
 WHERE order_date = '2026-08-12';
 ```
 
-### Partitioned table
+#### Partitioned table
 
 ```sql
 SELECT *
@@ -611,7 +602,7 @@ WHERE order_date = '2026-08-12';
 
 ---
 
-## Step 9 — Create Only a Clustered Table
+### Step 9 — Create Only a Clustered Table
 
 ```sql
 CREATE OR REPLACE TABLE
@@ -628,7 +619,7 @@ FROM
 
 ---
 
-## Step 10 — Query Clustered Table
+### Step 10 — Query Clustered Table
 
 ```sql
 SELECT *
@@ -649,7 +640,7 @@ is the first clustered column, this query matches the clustering design well.
 
 ---
 
-## Step 11 — Create Partitioned + Clustered Table
+### Step 11 — Create Partitioned + Clustered Table
 
 Now create the most useful version:
 
@@ -685,7 +676,7 @@ sales_optimized
 
 ---
 
-## Step 12 — Query the Optimized Table
+### Step 12 — Query the Optimized Table
 
 ```sql
 SELECT
@@ -738,7 +729,7 @@ Return result
 
 ---
 
-## 👀 Where Can I See Partition Details?
+### 👀 Where Can I See Partition Details?
 
 In BigQuery:
 
@@ -773,7 +764,7 @@ category
 
 ---
 
-# 🛠️ How This Relates to dbt
+## 🛠️ How This Relates to dbt
 
 Suppose you're using:
 
@@ -893,7 +884,7 @@ When the dbt model is executed, BigQuery creates the relation using those optimi
 
 ---
 
-# ⚠️ Why Not Partition Everything?
+## ⚠️ Why Not Partition Everything?
 
 Partitioning isn't automatically better for every table.
 
@@ -914,7 +905,7 @@ Partitioning may help.
 
 ---
 
-# ⚠️ Why Not Cluster Every Column?
+## ⚠️ Why Not Cluster Every Column?
 
 Clustering columns should match **real query patterns**.
 
@@ -947,7 +938,7 @@ may not be useful unless those fields genuinely appear frequently in selective f
 
 ---
 
-# 🧠 Easy Student Comparison
+## 🧠 Easy Student Comparison
 
 ```text
 PARTITION
@@ -978,7 +969,7 @@ I narrow down even more.
 
 ---
 
-# 🌍 Real-World Query
+## 🌍 Real-World Query
 
 Suppose the company stores:
 
@@ -1007,10 +998,10 @@ BigQuery can first restrict the relevant August data and then prune blocks using
 
 ---
 
-# 📊 Partition vs Cluster vs Both
+## 📊 Partition vs Cluster vs Both
 
 | Requirement | Best Choice |
-|---|---|
+| --- | --- |
 | Queries mostly filter by date | Partition |
 | Queries mostly filter by customer/category | Cluster |
 | Queries filter by date + dimensions | Partition + Cluster |
@@ -1020,7 +1011,7 @@ BigQuery can first restrict the relevant August data and then prune blocks using
 
 ---
 
-# 🎓 Final Teaching Flow
+## 🎓 Final Teaching Flow
 
 ```text
 1. Create normal table
@@ -1059,6 +1050,7 @@ BigQuery can first restrict the relevant August data and then prune blocks using
 ### Suggested Reference
 
 Google Cloud BigQuery documentation:
+
 - Partitioned tables
 - Querying partitioned tables
 - Clustered tables

@@ -77,6 +77,7 @@
     - [ ] ***Kafka vs GCP PubSub HTML (Demo to do)***
     - [x] Kafka vs Google Cloud PubSub MD
     - [ ] Pub Sub Topic Subscription DOCX [Demo?]
+  - [ ] Project 1 (Power BI Assignment)
 - Week 9
   - Warehouse, Lake, Lakehouse
     - [x] Data Warehouse vs Data Lake vs Lakehouse Tutorial MD
@@ -89,7 +90,7 @@
     - [x] simple_dbt_project
     - [x] dbt_notes MD
   - BigQuery External Tables
-    - [ ] BigQuery Partitioned Clustered Models MD
+    - [x] BigQuery Partitioned Clustered Models MD
     - [ ] BigQuery Profile in dbt DOCX
     - [ ] BigQuery Security Demo DOCX
     - [ ] Federated Queries MD

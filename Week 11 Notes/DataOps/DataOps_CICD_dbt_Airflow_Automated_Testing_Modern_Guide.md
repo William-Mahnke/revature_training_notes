@@ -1,6 +1,6 @@
 # 🚀 DataOps for Freshers
 
-**DataOps Lifecycle • CI/CD for dbt & Airflow • Automated Testing**
+## DataOps Lifecycle • CI/CD for dbt & Airflow • Automated Testing
 
 > **Learning Goal:** Understand how modern data teams develop, test, deploy, orchestrate, and monitor reliable data pipelines using DataOps practices.
 

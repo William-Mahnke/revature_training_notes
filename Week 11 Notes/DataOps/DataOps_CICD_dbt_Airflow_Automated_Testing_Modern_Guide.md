@@ -1,14 +1,12 @@
 # 🚀 DataOps for Freshers
-## DataOps Lifecycle • CI/CD for dbt & Airflow • Automated Testing
+
+**DataOps Lifecycle • CI/CD for dbt & Airflow • Automated Testing**
 
 > **Learning Goal:** Understand how modern data teams develop, test, deploy, orchestrate, and monitor reliable data pipelines using DataOps practices.
 
 ---
 
 ## 📌 Table of Contents
-
-<details>
-<summary><strong>Click to expand</strong></summary>
 
 1. [What is DataOps?](#1-what-is-dataops)
 2. [Why DataOps?](#2-why-do-we-need-dataops)
@@ -26,11 +24,9 @@
 14. [Recommended Classroom Demo Order](#14-recommended-classroom-demo-order)
 15. [Key Takeaways](#15-key-takeaways)
 
-</details>
-
 ---
 
-# 1. What is DataOps?
+## 1. What is DataOps?
 
 > [!IMPORTANT]
 > **DataOps = Data Operations**
@@ -42,7 +38,7 @@ It brings DevOps-style practices into data engineering.
 ### 💡 Simple comparison
 
 | Software Engineering | Data Engineering |
-|---|---|
+| --- | --- |
 | Application Code | SQL / Python / dbt / DAG Code |
 | Unit Testing | Data & Pipeline Testing |
 | Build | dbt Compile / Build |
@@ -52,23 +48,11 @@ It brings DevOps-style practices into data engineering.
 
 ---
 
-## 🎯 Simple real-world scenario
+### 🎯 Simple real-world scenario
 
 Imagine an e-commerce company receiving customer orders every day.
 
-<table>
-<tr>
-<td align="center">🛒<br><b>Website Orders</b></td>
-<td align="center">➡️</td>
-<td align="center">📥<br><b>Raw Data</b></td>
-<td align="center">➡️</td>
-<td align="center">🧱<br><b>Transformation</b></td>
-<td align="center">➡️</td>
-<td align="center">🏢<br><b>Data Warehouse</b></td>
-<td align="center">➡️</td>
-<td align="center">📊<br><b>Dashboard</b></td>
-</tr>
-</table>
+🛒 **Website Orders** → 📥 **Raw Data** → 🧱 **Transformation** → 🏢 **Data Warehouse** → 📊 **Dashboard**
 
 The data team must make sure that:
 
@@ -84,7 +68,7 @@ That complete operating approach is **DataOps**.
 
 ---
 
-# 2. Why do we need DataOps?
+## 2. Why do we need DataOps?
 
 Suppose a developer changes this model:
 
@@ -109,65 +93,26 @@ The `amount` column is accidentally removed.
 
 ### ❌ Without DataOps
 
-<table>
-<tr>
-<td align="center">👨‍💻<br><b>Developer Changes Code</b></td>
-<td>➡️</td>
-<td align="center">🚀<br><b>Deploy</b></td>
-<td>➡️</td>
-<td align="center">📊<br><b>Dashboard Breaks</b></td>
-<td>➡️</td>
-<td align="center">📞<br><b>User Complains</b></td>
-</tr>
-</table>
+👨‍💻 **Developer Changes Code** → 🚀 **Deploy** → 📊 **Dashboard Breaks** → 📞 **User Complains**
 
 ### ✅ With DataOps
 
-<table>
-<tr>
-<td align="center">👨‍💻<br><b>Code Change</b></td>
-<td>➡️</td>
-<td align="center">🔁<br><b>CI Starts</b></td>
-<td>➡️</td>
-<td align="center">🧪<br><b>Tests Run</b></td>
-<td>➡️</td>
-<td align="center">🛑<br><b>Failure Detected</b></td>
-</tr>
-</table>
+👨‍💻 **Code Change** → 🔁 **CI Starts** → 🧪 **Tests Run** → 🛑 **Failure Detected**
 
 > [!TIP]
 > **Goal:** Detect problems before bad code or bad data reaches production.
 
 ---
 
-# 3. DataOps Lifecycle
+## 3. DataOps Lifecycle
 
 The DataOps lifecycle can be remembered as:
 
-<table>
-<tr>
-<td align="center">📝<br><b>PLAN</b></td>
-<td>➡️</td>
-<td align="center">💻<br><b>DEVELOP</b></td>
-<td>➡️</td>
-<td align="center">🌿<br><b>VERSION CONTROL</b></td>
-<td>➡️</td>
-<td align="center">🧪<br><b>TEST</b></td>
-</tr>
-<tr>
-<td align="center">📈<br><b>IMPROVE</b></td>
-<td>⬅️</td>
-<td align="center">👀<br><b>MONITOR</b></td>
-<td>⬅️</td>
-<td align="center">⚙️<br><b>ORCHESTRATE</b></td>
-<td>⬅️</td>
-<td align="center">🚀<br><b>DEPLOY</b></td>
-</tr>
-</table>
+📝 **PLAN** → 💻 **DEVELOP** → 🌿 **VERSION CONTROL** → 🧪 **TEST** → 🚀 **DEPLOY** → ⚙️ **ORCHESTRATE** → 👀 **MONITOR** → 📈 **IMPROVE**
 
 ---
 
-## 3.1 📝 Plan
+### 3.1 📝 Plan
 
 The team decides:
 
@@ -177,7 +122,7 @@ The team decides:
 - Which analytical tables should be created?
 - What data quality rules should exist?
 
-### Example requirement
+#### Example requirement
 
 > Management wants **daily revenue by region**.
 
@@ -194,7 +139,7 @@ Final output:
 
 ---
 
-## 3.2 💻 Develop
+### 3.2 💻 Develop
 
 Data engineers create:
 
@@ -205,7 +150,7 @@ Data engineers create:
 - configuration files
 - data tests
 
-### Example dbt staging model
+#### Example dbt staging model
 
 ```sql
 -- models/staging/stg_orders.sql
@@ -218,7 +163,7 @@ select
 from raw.orders
 ```
 
-### Example mart model
+#### Example mart model
 
 ```sql
 -- models/marts/daily_sales.sql
@@ -232,7 +177,7 @@ group by order_date
 
 ---
 
-## 3.3 🌿 Version Control
+### 3.3 🌿 Version Control
 
 Instead of files like:
 
@@ -245,19 +190,9 @@ orders_final_latest2.sql
 
 use **Git**.
 
-<table>
-<tr>
-<td align="center">👨‍💻<br><b>Developer</b></td>
-<td>➡️</td>
-<td align="center">🌿<br><b>Feature Branch</b></td>
-<td>➡️</td>
-<td align="center">🔃<br><b>Pull Request</b></td>
-<td>➡️</td>
-<td align="center">✅<br><b>Review & Merge</b></td>
-</tr>
-</table>
+👨‍💻 **Developer** → 🌿 **Feature Branch** → 🔃 **Pull Request** → ✅ **Review & Merge**
 
-### Commands
+#### Commands
 
 ```bash
 git checkout -b feature/customer-model
@@ -277,7 +212,7 @@ git push origin feature/customer-model
 
 ---
 
-# 4. Key Practice — Collaboration
+## 4. Key Practice — Collaboration
 
 Collaboration means multiple data engineers can safely work on the same project.
 
@@ -294,28 +229,20 @@ Collaboration means multiple data engineers can safely work on the same project.
 ### Example
 
 | Engineer | Responsibility | Branch |
-|---|---|---|
+| --- | --- | --- |
 | Engineer A | Customer Model | `feature/customers` |
 | Engineer B | Orders Model | `feature/orders` |
 | Engineer C | Products Model | `feature/products` |
 
-<table>
-<tr>
-<td align="center">👩‍💻<br><b>Engineer A</b></td>
-<td rowspan="3">➡️</td>
-<td rowspan="3" align="center">🐙<br><b>Git Repository</b><br>Shared Source of Truth</td>
-<td rowspan="3">➡️</td>
-<td rowspan="3" align="center">🔍<br><b>Review</b></td>
-<td rowspan="3">➡️</td>
-<td rowspan="3" align="center">🚀<br><b>Production</b></td>
-</tr>
-<tr><td align="center">👨‍💻<br><b>Engineer B</b></td></tr>
-<tr><td align="center">👩‍💻<br><b>Engineer C</b></td></tr>
-</table>
+- 👩‍💻 **Engineer A**
+- 👨‍💻 **Engineer B**
+- 👩‍💻 **Engineer C**
+
+All changes go through: 🐙 **Git Repository** (shared source of truth) → 🔍 **Review** → 🚀 **Production**
 
 ---
 
-# 5. Key Practice — Automation
+## 5. Key Practice — Automation
 
 Automation means:
 
@@ -333,17 +260,7 @@ Automation means:
 
 ### ✅ Automated approach
 
-<table>
-<tr>
-<td align="center">📤<br><b>Git Push</b></td>
-<td>➡️</td>
-<td align="center">🤖<br><b>CI Pipeline</b></td>
-<td>➡️</td>
-<td align="center">🧪<br><b>Tests</b></td>
-<td>➡️</td>
-<td align="center">🚀<br><b>Deploy</b></td>
-</tr>
-</table>
+📤 **Git Push** → 🤖 **CI Pipeline** → 🧪 **Tests** → 🚀 **Deploy**
 
 For dbt, automation may execute:
 
@@ -368,7 +285,7 @@ airflow dags test ...
 
 ---
 
-# 6. Key Practice — Monitoring
+## 6. Key Practice — Monitoring
 
 Automation is incomplete without monitoring.
 
@@ -376,37 +293,17 @@ Imagine an Airflow pipeline is scheduled every day at **6:00 AM**.
 
 ### Normal run
 
-<table>
-<tr>
-<td align="center">⏰<br><b>6:00 AM</b></td>
-<td>➡️</td>
-<td align="center">📥<br><b>Extract</b></td>
-<td>➡️</td>
-<td align="center">🧱<br><b>Transform</b></td>
-<td>➡️</td>
-<td align="center">📤<br><b>Load</b></td>
-</tr>
-</table>
+⏰ **6:00 AM** → 📥 **Extract** → 🧱 **Transform** → 📤 **Load**
 
 ### Failure run
 
-<table>
-<tr>
-<td align="center">❌<br><b>Task Failure</b></td>
-<td>➡️</td>
-<td align="center">📝<br><b>Logs</b></td>
-<td>➡️</td>
-<td align="center">🔔<br><b>Alert</b></td>
-<td>➡️</td>
-<td align="center">🛠️<br><b>Investigation</b></td>
-</tr>
-</table>
+❌ **Task Failure** → 📝 **Logs** → 🔔 **Alert** → 🛠️ **Investigation**
 
 ---
 
-## What should we monitor?
+### What should we monitor?
 
-### ⚙️ Pipeline Health
+#### ⚙️ Pipeline Health
 
 - Did the pipeline execute?
 - Did it complete successfully?
@@ -414,7 +311,7 @@ Imagine an Airflow pipeline is scheduled every day at **6:00 AM**.
 - How long did it take?
 - How many retries occurred?
 
-### 🧪 Data Health
+#### 🧪 Data Health
 
 - Did expected rows arrive?
 - Are key columns null?
@@ -425,41 +322,21 @@ Imagine an Airflow pipeline is scheduled every day at **6:00 AM**.
 
 ---
 
-# 7. CI/CD in Data Engineering
+## 7. CI/CD in Data Engineering
 
-## CI = Continuous Integration
+### CI = Continuous Integration
 
 Whenever code changes, automatically validate and test it.
 
-<table>
-<tr>
-<td align="center">👨‍💻<br><b>Developer</b></td>
-<td>➡️</td>
-<td align="center">📤<br><b>Push / PR</b></td>
-<td>➡️</td>
-<td align="center">🤖<br><b>CI</b></td>
-<td>➡️</td>
-<td align="center">🧪<br><b>Validate & Test</b></td>
-<td>➡️</td>
-<td align="center">✅ / ❌<br><b>Pass or Fail</b></td>
-</tr>
-</table>
+👨‍💻 **Developer** → 📤 **Push / PR** → 🤖 **CI** → 🧪 **Validate & Test** → ✅ / ❌ **Pass or Fail**
 
 ---
 
-## CD = Continuous Delivery / Deployment
+### CD = Continuous Delivery / Deployment
 
 After CI succeeds:
 
-<table>
-<tr>
-<td align="center">✅<br><b>CI Passed</b></td>
-<td>➡️</td>
-<td align="center">🧪<br><b>DEV / TEST</b></td>
-<td>➡️</td>
-<td align="center">🚀<br><b>PRODUCTION</b></td>
-</tr>
-</table>
+✅ **CI Passed** → 🧪 **DEV / TEST** → 🚀 **PRODUCTION**
 
 In data engineering, deployment may include:
 
@@ -471,9 +348,9 @@ In data engineering, deployment may include:
 
 ---
 
-# 8. CI/CD for dbt
+## 8. CI/CD for dbt
 
-## Example project structure
+### Example project structure
 
 ```text
 dataops-demo/
@@ -496,7 +373,7 @@ dataops-demo/
 
 ---
 
-## 8.1 Check dbt configuration
+### 8.1 Check dbt configuration
 
 ```bash
 dbt debug
@@ -511,25 +388,17 @@ Use it to check:
 
 ---
 
-## 8.2 Compile
+### 8.2 Compile
 
 ```bash
 dbt compile
 ```
 
-<table>
-<tr>
-<td align="center">📝<br><b>dbt Model</b></td>
-<td>➡️</td>
-<td align="center">🧩<br><b>Resolve Jinja/ref()</b></td>
-<td>➡️</td>
-<td align="center">📄<br><b>Executable SQL</b></td>
-</tr>
-</table>
+📝 **dbt Model** → 🧩 **Resolve Jinja/ref()** → 📄 **Executable SQL**
 
 ---
 
-## 8.3 Execute models
+### 8.3 Execute models
 
 ```bash
 dbt run
@@ -537,24 +406,16 @@ dbt run
 
 Example:
 
-<table>
-<tr>
-<td align="center">📦<br><b>RAW.ORDERS</b></td>
-<td>➡️</td>
-<td align="center">🧱<br><b>STG_ORDERS</b></td>
-<td>➡️</td>
-<td align="center">📊<br><b>DAILY_SALES</b></td>
-</tr>
-</table>
+📦 **RAW.ORDERS** → 🧱 **STG_ORDERS** → 📊 **DAILY_SALES**
 
 ---
 
-# 9. Automated Testing with dbt
+## 9. Automated Testing with dbt
 
 Suppose the data contains:
 
 | order_id | customer_id | amount |
-|---:|---:|---:|
+| ---: | ---: | ---: |
 | 1001 | 1 | 200 |
 | 1002 | 2 | 300 |
 | 1002 | 3 | 500 |
@@ -567,7 +428,7 @@ Problems:
 
 ---
 
-## 9.1 Unique and Not Null Tests
+### 9.1 Unique and Not Null Tests
 
 ```yaml
 version: 2
@@ -590,12 +451,12 @@ dbt test
 
 ---
 
-## 9.2 Relationship Test
+### 9.2 Relationship Test
 
 Customers:
 
 | customer_id |
-|---:|
+| ---: |
 | 101 |
 | 102 |
 | 103 |
@@ -615,7 +476,7 @@ The test detects records that reference customers that do not exist.
 
 ---
 
-## 9.3 Accepted Values
+### 9.3 Accepted Values
 
 Valid statuses:
 
@@ -638,7 +499,7 @@ Valid statuses:
 
 ---
 
-## 9.4 dbt build
+### 9.4 dbt build
 
 Instead of:
 
@@ -653,43 +514,21 @@ you can often execute:
 dbt build
 ```
 
-<table>
-<tr>
-<td align="center">🧱<br><b>Models</b></td>
-<td>➕</td>
-<td align="center">🧪<br><b>Tests</b></td>
-<td>➕</td>
-<td align="center">🔗<br><b>Dependencies</b></td>
-<td>➡️</td>
-<td align="center">🚀<br><b>dbt build</b></td>
-</tr>
-</table>
+🧱 **Models** + 🧪 **Tests** + 🔗 **Dependencies** → 🚀 **dbt build**
 
 ---
 
-# 10. CI/CD for Airflow
+## 10. CI/CD for Airflow
 
 Airflow is commonly used for **workflow orchestration**.
 
 Example pipeline:
 
-<table>
-<tr>
-<td align="center">📥<br><b>Extract</b></td>
-<td>➡️</td>
-<td align="center">📦<br><b>Load</b></td>
-<td>➡️</td>
-<td align="center">🧱<br><b>dbt Run</b></td>
-<td>➡️</td>
-<td align="center">🧪<br><b>dbt Test</b></td>
-<td>➡️</td>
-<td align="center">📊<br><b>Publish</b></td>
-</tr>
-</table>
+📥 **Extract** → 📦 **Load** → 🧱 **dbt Run** → 🧪 **dbt Test** → 📊 **Publish**
 
 ---
 
-## 10.1 Simple Airflow DAG
+### 10.1 Simple Airflow DAG
 
 ```python
 from airflow.sdk import DAG
@@ -723,7 +562,7 @@ with DAG(
 
 ---
 
-## 10.2 Validate the DAG
+### 10.2 Validate the DAG
 
 List DAGs:
 
@@ -745,7 +584,7 @@ airflow dags test ecommerce_data_pipeline
 
 ---
 
-## 10.3 `dag.test()`
+### 10.3 `dag.test()`
 
 You can also add:
 
@@ -764,30 +603,17 @@ This is useful while developing and debugging locally.
 
 ---
 
-# 11. Automated Testing in Data Workflows
+## 11. Automated Testing in Data Workflows
 
 Automated testing can be understood in layers.
 
-<table>
-<tr>
-<th>🧑‍💻 Code Tests</th>
-<th>⚙️ Pipeline Tests</th>
-<th>🧪 Data Tests</th>
-<th>💼 Business Tests</th>
-<th>🕒 Freshness Tests</th>
-</tr>
-<tr>
-<td>pytest</td>
-<td>Airflow DAG validation</td>
-<td>dbt tests</td>
-<td>Business rules</td>
-<td>Latest data checks</td>
-</tr>
-</table>
+| 🧑‍💻 Code Tests | ⚙️ Pipeline Tests | 🧪 Data Tests | 💼 Business Tests | 🕒 Freshness Tests |
+| --- | --- | --- | --- | --- |
+| pytest | Airflow DAG validation | dbt tests | Business rules | Latest data checks |
 
 ---
 
-## 11.1 Code Testing
+### 11.1 Code Testing
 
 Python function:
 
@@ -819,7 +645,7 @@ the automated test fails.
 
 ---
 
-## 11.2 Pipeline Testing
+### 11.2 Pipeline Testing
 
 Check that:
 
@@ -840,29 +666,29 @@ airflow dags test ecommerce_data_pipeline
 
 ---
 
-## 11.3 Data Testing
+### 11.3 Data Testing
 
 Examples:
 
-### Null Rule
+#### Null Rule
 
 ```text
 order_id cannot be NULL
 ```
 
-### Unique Rule
+#### Unique Rule
 
 ```text
 order_id must be unique
 ```
 
-### Relationship Rule
+#### Relationship Rule
 
 ```text
 orders.customer_id must exist in customers.customer_id
 ```
 
-### Accepted Value Rule
+#### Accepted Value Rule
 
 ```text
 status must be one of:
@@ -871,7 +697,7 @@ NEW, SHIPPED, DELIVERED, CANCELLED
 
 ---
 
-## 11.4 Business Rule Testing
+### 11.4 Business Rule Testing
 
 Technical validity does not always mean business validity.
 
@@ -901,7 +727,7 @@ If rows are returned:
 
 ---
 
-## 11.5 Freshness Testing
+### 11.5 Freshness Testing
 
 A pipeline can succeed but still process stale data.
 
@@ -928,40 +754,21 @@ Things to monitor:
 
 ---
 
-# 12. End-to-End Real-World Mini Project
+## 12. End-to-End Real-World Mini Project
 
-## 🛒 Scenario
+### 🛒 Scenario
 
 An e-commerce company wants:
 
 > **Daily sales reporting by product and customer region.**
 
-### Modern box view
+#### Modern box view
 
-<table>
-<tr>
-<td align="center">🛒<br><b>Orders</b><br>Source</td>
-<td>➡️</td>
-<td align="center">📥<br><b>Raw Layer</b><br>Snowflake</td>
-<td>➡️</td>
-<td align="center">⚙️<br><b>Airflow</b><br>Orchestration</td>
-<td>➡️</td>
-<td align="center">🧱<br><b>dbt Staging</b></td>
-</tr>
-<tr>
-<td align="center">📊<br><b>Dashboard</b></td>
-<td>⬅️</td>
-<td align="center">🏢<br><b>Data Mart</b></td>
-<td>⬅️</td>
-<td align="center">🧪<br><b>Automated Tests</b></td>
-<td>⬅️</td>
-<td align="center">📈<br><b>dbt Marts</b></td>
-</tr>
-</table>
+🛒 **Orders** (Source) → 📥 **Raw Layer** (Snowflake) → ⚙️ **Airflow** (Orchestration) → 🧱 **dbt Staging** → 📈 **dbt Marts** → 🧪 **Automated Tests** → 🏢 **Data Mart** → 📊 **Dashboard**
 
 ---
 
-## Project Structure
+### Project Structure
 
 ```text
 dataops-ecommerce/
@@ -991,19 +798,11 @@ dataops-ecommerce/
 
 ---
 
-# 13. Complete DataOps Execution Flow
+## 13. Complete DataOps Execution Flow
 
-## Stage A — Local Development
+### Stage A — Local Development
 
-<table>
-<tr>
-<td align="center">💻<br><b>VS Code</b></td>
-<td>➡️</td>
-<td align="center">📝<br><b>SQL / Python</b></td>
-<td>➡️</td>
-<td align="center">🧪<br><b>Local Tests</b></td>
-</tr>
-</table>
+💻 **VS Code** → 📝 **SQL / Python** → 🧪 **Local Tests**
 
 Useful dbt commands:
 
@@ -1017,7 +816,7 @@ dbt build
 
 ---
 
-## Stage B — Collaboration
+### Stage B — Collaboration
 
 ```bash
 git checkout -b feature/order-transform
@@ -1031,19 +830,11 @@ git push origin feature/order-transform
 
 Then create a Pull Request.
 
-<table>
-<tr>
-<td align="center">🌿<br><b>Feature Branch</b></td>
-<td>➡️</td>
-<td align="center">🔃<br><b>Pull Request</b></td>
-<td>➡️</td>
-<td align="center">👀<br><b>Review</b></td>
-</tr>
-</table>
+🌿 **Feature Branch** → 🔃 **Pull Request** → 👀 **Review**
 
 ---
 
-## Stage C — CI
+### Stage C — CI
 
 Example GitHub Actions workflow:
 
@@ -1091,21 +882,9 @@ jobs:
           dbt build
 ```
 
-### CI box flow
+#### CI box flow
 
-<table>
-<tr>
-<td align="center">🔃<br><b>Pull Request</b></td>
-<td>➡️</td>
-<td align="center">🐍<br><b>Python Validation</b></td>
-<td>➡️</td>
-<td align="center">🧩<br><b>dbt Compile</b></td>
-<td>➡️</td>
-<td align="center">🧪<br><b>dbt Build</b></td>
-<td>➡️</td>
-<td align="center">✅<br><b>PASS</b></td>
-</tr>
-</table>
+🔃 **Pull Request** → 🐍 **Python Validation** → 🧩 **dbt Compile** → 🧪 **dbt Build** → ✅ **PASS**
 
 If any step fails:
 
@@ -1113,152 +892,70 @@ If any step fails:
 
 ---
 
-## Stage D — CD
+### Stage D — CD
 
-<table>
-<tr>
-<td align="center">✅<br><b>CI Passed</b></td>
-<td>➡️</td>
-<td align="center">👀<br><b>Approval</b></td>
-<td>➡️</td>
-<td align="center">🔀<br><b>Merge</b></td>
-<td>➡️</td>
-<td align="center">🚀<br><b>Deploy</b></td>
-</tr>
-</table>
+✅ **CI Passed** → 👀 **Approval** → 🔀 **Merge** → 🚀 **Deploy**
 
 ---
 
-## Stage E — Production Orchestration
+### Stage E — Production Orchestration
 
 Airflow handles scheduled data workflow execution.
 
-<table>
-<tr>
-<td align="center">⏰<br><b>Schedule</b></td>
-<td>➡️</td>
-<td align="center">📥<br><b>Extract</b></td>
-<td>➡️</td>
-<td align="center">🧱<br><b>dbt Run</b></td>
-<td>➡️</td>
-<td align="center">🧪<br><b>dbt Test</b></td>
-<td>➡️</td>
-<td align="center">📊<br><b>Publish</b></td>
-</tr>
-</table>
+⏰ **Schedule** → 📥 **Extract** → 🧱 **dbt Run** → 🧪 **dbt Test** → 📊 **Publish**
 
 ---
 
-## Stage F — Monitoring
+### Stage F — Monitoring
 
-<table>
-<tr>
-<td align="center">⚙️<br><b>Pipeline</b></td>
-<td>➡️</td>
-<td align="center">📝<br><b>Logs</b></td>
-<td>➡️</td>
-<td align="center">📈<br><b>Metrics</b></td>
-<td>➡️</td>
-<td align="center">🔔<br><b>Alerts</b></td>
-<td>➡️</td>
-<td align="center">🛠️<br><b>Fix</b></td>
-</tr>
-</table>
+⚙️ **Pipeline** → 📝 **Logs** → 📈 **Metrics** → 🔔 **Alerts** → 🛠️ **Fix**
 
 ---
 
-# 14. Recommended Classroom Demo Order
+## 14. Recommended Classroom Demo Order
 
-## 🟦 Demo 1 — Manual Pipeline
+### 🟦 Demo 1 — Manual Pipeline
 
-<table>
-<tr>
-<td align="center">📄<br><b>CSV</b></td>
-<td>➡️</td>
-<td align="center">❄️<br><b>Snowflake</b></td>
-<td>➡️</td>
-<td align="center">🧱<br><b>dbt run</b></td>
-<td>➡️</td>
-<td align="center">📊<br><b>Table</b></td>
-</tr>
-</table>
+📄 **CSV** → ❄️ **Snowflake** → 🧱 **dbt run** → 📊 **Table**
 
 Goal: Understand transformation first.
 
 ---
 
-## 🟩 Demo 2 — Add dbt Tests
+### 🟩 Demo 2 — Add dbt Tests
 
-<table>
-<tr>
-<td align="center">🧱<br><b>dbt run</b></td>
-<td>➡️</td>
-<td align="center">🧪<br><b>dbt test</b></td>
-<td>➡️</td>
-<td align="center">✅ / ❌<br><b>Result</b></td>
-</tr>
-</table>
+🧱 **dbt run** → 🧪 **dbt test** → ✅ / ❌ **Result**
 
 Introduce duplicate or null data intentionally.
 
 ---
 
-## 🟨 Demo 3 — Add Airflow
+### 🟨 Demo 3 — Add Airflow
 
-<table>
-<tr>
-<td align="center">⚙️<br><b>Airflow</b></td>
-<td>➡️</td>
-<td align="center">🧱<br><b>dbt run</b></td>
-<td>➡️</td>
-<td align="center">🧪<br><b>dbt test</b></td>
-</tr>
-</table>
+⚙️ **Airflow** → 🧱 **dbt run** → 🧪 **dbt test**
 
 Goal: Automate pipeline execution.
 
 ---
 
-## 🟪 Demo 4 — Add Git Collaboration
+### 🟪 Demo 4 — Add Git Collaboration
 
-<table>
-<tr>
-<td align="center">🌿<br><b>Branch</b></td>
-<td>➡️</td>
-<td align="center">💾<br><b>Commit</b></td>
-<td>➡️</td>
-<td align="center">📤<br><b>Push</b></td>
-<td>➡️</td>
-<td align="center">🔃<br><b>PR</b></td>
-</tr>
-</table>
+🌿 **Branch** → 💾 **Commit** → 📤 **Push** → 🔃 **PR**
 
 ---
 
-## 🟥 Demo 5 — Add CI
+### 🟥 Demo 5 — Add CI
 
-<table>
-<tr>
-<td align="center">🔃<br><b>PR</b></td>
-<td>➡️</td>
-<td align="center">🤖<br><b>GitHub Actions</b></td>
-<td>➡️</td>
-<td align="center">🧩<br><b>Compile</b></td>
-<td>➡️</td>
-<td align="center">🧪<br><b>Test</b></td>
-<td>➡️</td>
-<td align="center">✅<br><b>Pass</b></td>
-</tr>
-</table>
+🔃 **PR** → 🤖 **GitHub Actions** → 🧩 **Compile** → 🧪 **Test** → ✅ **Pass**
 
 ---
 
-## 🔥 Demo 6 — Intentionally Create an Error
+### 🔥 Demo 6 — Intentionally Create an Error
 
 Good data:
 
 | ORDER_ID | CUSTOMER_ID | AMOUNT |
-|---:|---|---:|
+| ---: | --- | ---: |
 | 101 | C01 | 500 |
 | 102 | C02 | 700 |
 | 103 | C03 | 300 |
@@ -1270,7 +967,7 @@ Result:
 Change to:
 
 | ORDER_ID | CUSTOMER_ID | AMOUNT |
-|---:|---|---:|
+| ---: | --- | ---: |
 | 101 | C01 | 500 |
 | 102 | C02 | 700 |
 | 102 | C03 | 300 |
@@ -1289,39 +986,19 @@ This gives trainees a clear reason for automated testing.
 
 ---
 
-## 🟧 Demo 7 — Merge and Deploy
+### 🟧 Demo 7 — Merge and Deploy
 
-<table>
-<tr>
-<td align="center">🔃<br><b>Pull Request</b></td>
-<td>➡️</td>
-<td align="center">✅<br><b>CI Pass</b></td>
-<td>➡️</td>
-<td align="center">👀<br><b>Review</b></td>
-<td>➡️</td>
-<td align="center">🔀<br><b>Merge</b></td>
-</tr>
-</table>
+🔃 **Pull Request** → ✅ **CI Pass** → 👀 **Review** → 🔀 **Merge**
 
 ---
 
-## 🟦 Demo 8 — Production Pipeline
+### 🟦 Demo 8 — Production Pipeline
 
-<table>
-<tr>
-<td align="center">📥<br><b>Extract</b></td>
-<td>➡️</td>
-<td align="center">🧱<br><b>Transform</b></td>
-<td>➡️</td>
-<td align="center">🧪<br><b>Test</b></td>
-<td>➡️</td>
-<td align="center">📊<br><b>Publish</b></td>
-</tr>
-</table>
+📥 **Extract** → 🧱 **Transform** → 🧪 **Test** → 📊 **Publish**
 
 ---
 
-## 🟥 Demo 9 — Monitoring Failure
+### 🟥 Demo 9 — Monitoring Failure
 
 Break one task intentionally.
 
@@ -1345,9 +1022,9 @@ Ask trainees to identify:
 
 ---
 
-# 15. Key Takeaways
+## 15. Key Takeaways
 
-## 🟦 DataOps
+### 🟦 DataOps
 
 > **Collaborate → Automate → Test → Deploy → Monitor → Improve**
 
@@ -1355,7 +1032,7 @@ DataOps is the overall operating methodology for reliable data platforms.
 
 ---
 
-## 🟩 CI/CD
+### 🟩 CI/CD
 
 > **CI/CD protects code changes before they reach production.**
 
@@ -1369,7 +1046,7 @@ CD answers:
 
 ---
 
-## 🟨 Airflow
+### 🟨 Airflow
 
 > **Airflow orchestrates when and in what order data pipeline tasks run.**
 
@@ -1381,22 +1058,22 @@ Every day at 6 AM
 
 ---
 
-## 🟪 dbt
+### 🟪 dbt
 
 > **dbt transforms warehouse data and provides strong data testing capabilities.**
 
 ---
 
-## 🟥 Automated Testing
+### 🟥 Automated Testing
 
 > **Automated testing continuously checks code, pipelines, transformations, data quality, and business rules.**
 
 ---
 
-# 🧠 CI/CD vs Airflow vs dbt
+## 🧠 CI/CD vs Airflow vs dbt
 
 | Tool / Practice | Main Question |
-|---|---|
+| --- | --- |
 | **Git** | What changed? |
 | **GitHub** | How do team members collaborate? |
 | **GitHub Actions** | Is the code safe to integrate/deploy? |
@@ -1409,24 +1086,9 @@ Every day at 6 AM
 
 ---
 
-# 🌟 Final End-to-End Mental Model
+## 🌟 Final End-to-End Mental Model
 
-<table>
-<tr>
-<td align="center">👨‍💻<br><b>DEVELOP</b><br>SQL • Python • dbt • DAG</td>
-<td>➡️</td>
-<td align="center">🤝<br><b>COLLABORATE</b><br>Git • Branch • PR</td>
-<td>➡️</td>
-<td align="center">🤖<br><b>VALIDATE</b><br>CI • Tests</td>
-</tr>
-<tr>
-<td align="center">♻️<br><b>IMPROVE</b><br>Fix • Commit • Repeat</td>
-<td>⬅️</td>
-<td align="center">👀<br><b>MONITOR</b><br>Logs • Alerts • Quality</td>
-<td>⬅️</td>
-<td align="center">🚀<br><b>OPERATE</b><br>Deploy • Airflow • dbt</td>
-</tr>
-</table>
+👨‍💻 **DEVELOP** (SQL • Python • dbt • DAG) → 🤝 **COLLABORATE** (Git • Branch • PR) → 🤖 **VALIDATE** (CI • Tests) → 🚀 **OPERATE** (Deploy • Airflow • dbt) → 👀 **MONITOR** (Logs • Alerts • Quality) → ♻️ **IMPROVE** (Fix • Commit • Repeat)
 
 > [!NOTE]
 > Once trainees understand this lifecycle, they move from simply **writing data pipelines** to understanding how professional teams **operate production-quality data platforms**.

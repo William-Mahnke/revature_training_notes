@@ -94,3 +94,14 @@
     - [ ] BigQuery Profile in dbt DOCX
     - [ ] BigQuery Security Demo DOCX
     - [ ] Federated Queries MD
+- Week 10 (ignore)
+- Week 11
+  - CICD
+    - [ ] DataOps_dbt_Airflow demo HTML
+    - [ ] gcp monitoring logging HTML
+  - DataPlex
+    - [ ] Automatic Discovery HTML
+    - [ ] Data Quality Dimension HTML
+    - [ ] Dataplex GCP Tutorial HTML
+  - [x] DataOps CICD dbt Airflow MD
+  - [x] DataOps CICD dbt Airflow HTML
